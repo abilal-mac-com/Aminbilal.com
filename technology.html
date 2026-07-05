@@ -275,7 +275,7 @@
       <nav class="crumb" aria-label="Breadcrumb">
         <a class="crumb-site" href="index.html">aminbilal.com</a>
         <span class="sep">&rsaquo;</span>
-        <b>Overview</b>
+        <a class="crumb-overview" href="#">Overview</a>
       </nav>
     </div>
   </div>
@@ -946,6 +946,18 @@
     if(e.key === 'ArrowLeft'){ e.preventDefault(); location.hash = pageView.querySelector('.flip.prev').getAttribute('href').slice(1); }
     else if(e.key === 'ArrowRight'){ e.preventDefault(); location.hash = pageView.querySelector('.flip.next').getAttribute('href').slice(1); }
     else if(e.key === 'Escape'){ e.preventDefault(); location.hash = pageView.querySelector('.back-to-block').getAttribute('href').slice(1); }
+  });
+
+  /* The Overview breadcrumb link must not rely on an empty-fragment href
+     (href="#"), which does not reliably fire a hashchange in mobile Safari.
+     Navigate explicitly instead. Works on the overview page (returns to the
+     top) and on every sub-page (returns to the overview). */
+  function goOverview(){
+    if(location.hash){ location.hash = ''; }   /* sub-page: clearing the hash routes home */
+    else { showHome('introduction', false); }  /* already on the overview: re-show and scroll up */
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.crumb-overview'), function(a){
+    a.addEventListener('click', function(e){ e.preventDefault(); goOverview(); });
   });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
