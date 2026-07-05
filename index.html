@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive Technology Literacy — Amin Bilal</title>
+<meta name="description" content="A first-principles programme in executive technology literacy for senior finance leadership, in ten building blocks.">
+
+<!--
+  ============================================================
+  aminbilal.com — programme home page
+  ------------------------------------------------------------
+  SELF-CONTAINED. One file. Everything is inline except:
+    · Lora, loaded from Google Fonts (one <link> below).
+    · The typeset PDFs, expected in a sibling folder /documents/:
+         documents/the-whole-before-the-parts.pdf   (Introduction)
+         documents/neither-memory-nor-time.pdf       (Block 1)
+         documents/from-keypad-to-cloud.pdf          (Block 7)
+      The page works without them; the buttons open once the
+      files are placed there.
+
+  TO BRING A BLOCK ONLINE LATER
+    1. In its rail button, change class "is-prep" to "is-done"
+       and the hidden status text to "— complete".
+    2. In its panel, replace the .prep-note block with the
+       .panel-action block (copy the pattern from Block 1),
+       pointing href at documents/<file>.pdf.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F9F8F3;
+    --ink:#1A1A1A;
+    --body:#26241F;
+    --crimson:#861831;
+    --crimson-deep:#6C1327;
+    --grey:#5A5A5A;
+    --soft:#4A4843;
+    --rule:#D8D5CC;
+    --rule-strong:#C7C3B8;
+    --serif:'Lora', Georgia, 'Times New Roman', serif;
+    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --wrap:1180px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--body);
+    font-family:var(--serif);
+    font-size:18px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+
+  a{ color:var(--crimson); text-decoration:none; }
+  a:hover{ color:var(--crimson-deep); }
+  hr{ border:0; }
+
+  /* focus visibility (quality floor) */
+  a:focus-visible,
+  .rail-item:focus-visible,
+  .pdf-btn:focus-visible,
+  .panel:focus-visible{
+    outline:2px solid var(--crimson);
+    outline-offset:3px;
+  }
+
+  .eyebrow{
+    font-family:var(--sans);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.22em;
+    color:var(--crimson);
+    font-size:12px;
+    margin:0;
+  }
+
+  /* ---------------- masthead ---------------- */
+  .masthead{
+    padding:clamp(52px,9vw,104px) 0 clamp(34px,5vw,56px);
+    border-bottom:1px solid var(--rule);
+  }
+  .masthead-title{
+    font-family:var(--serif);
+    font-weight:700;
+    color:var(--ink);
+    font-size:clamp(44px,8.5vw,84px);
+    line-height:1.0;
+    letter-spacing:-.015em;
+    margin:20px 0 0;
+  }
+  .masthead-sub{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--grey);
+    font-size:clamp(19px,2.6vw,25px);
+    line-height:1.4;
+    margin:18px 0 0;
+    max-width:34ch;
+  }
+  .byline{
+    font-family:var(--sans);
+    text-transform:uppercase;
+    letter-spacing:.2em;
+    font-size:12.5px;
+    color:var(--ink);
+    margin:26px 0 0;
+  }
+  .masthead-rule{
+    width:62px; height:3px; background:var(--crimson);
+    margin:26px 0 0;
+  }
+  .standfirst{
+    font-family:var(--serif);
+    font-size:clamp(18px,2.1vw,21px);
+    line-height:1.62;
+    color:var(--soft);
+    margin:26px 0 0;
+    max-width:66ch;
+  }
+  .progress{
+    font-family:var(--sans);
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--grey);
+    margin:18px 0 0;
+    max-width:66ch;
+  }
+  .progress a{ font-weight:700; border-bottom:1px solid rgba(134,24,49,.3); }
+
+  /* ---------------- series (rail + panels) ---------------- */
+  .series{
+    display:flex;
+    align-items:flex-start;
+    gap:clamp(28px,4vw,64px);
+    padding:clamp(36px,5vw,60px) 0 clamp(60px,8vw,96px);
+  }
+
+  .rail{
+    flex:0 0 322px;
+    position:sticky;
+    top:26px;
+    align-self:flex-start;
+  }
+  .rail-head{
+    font-family:var(--sans);
+    text-transform:uppercase;
+    letter-spacing:.2em;
+    font-size:11.5px;
+    color:var(--grey);
+    padding-bottom:12px;
+    margin-bottom:6px;
+    border-bottom:1px solid var(--rule-strong);
+  }
+
+  .rail-item{
+    display:grid;
+    grid-template-columns:34px 1fr 14px;
+    align-items:baseline;
+    column-gap:14px;
+    width:100%;
+    text-align:left;
+    background:transparent;
+    border:0;
+    border-left:2px solid transparent;
+    padding:13px 12px 13px 14px;
+    margin:0;
+    cursor:pointer;
+    color:var(--ink);
+    font-family:var(--serif);
+    transition:background .18s ease, border-color .18s ease;
+  }
+  .rail-item + .rail-item{ border-top:1px solid var(--rule); }
+  .rail-num{
+    font-family:var(--serif);
+    font-size:17px;
+    font-weight:600;
+    color:var(--crimson);
+    font-variant-numeric:lining-nums tabular-nums;
+    letter-spacing:.02em;
+  }
+  .rail-title{
+    font-family:var(--serif);
+    font-size:16.5px;
+    line-height:1.3;
+    color:var(--ink);
+  }
+  .rail-dot{
+    align-self:center;
+    width:9px; height:9px; border-radius:50%;
+    border:1.5px solid var(--crimson);
+    background:transparent;
+  }
+  .is-done .rail-dot{ background:var(--crimson); }
+
+  .rail-item:hover{ background:rgba(134,24,49,.045); }
+  .rail-item[aria-selected="true"]{
+    background:rgba(134,24,49,.07);
+    border-left-color:var(--crimson);
+  }
+  .rail-item[aria-selected="true"] .rail-title{ font-weight:600; }
+
+  .rail-legend{
+    display:flex; gap:20px;
+    font-family:var(--sans);
+    font-size:11.5px;
+    color:var(--grey);
+    padding:14px 12px 0;
+    margin-top:6px;
+    border-top:1px solid var(--rule-strong);
+  }
+  .rail-legend span{ display:inline-flex; align-items:center; gap:7px; }
+  .lg-dot{ width:9px; height:9px; border-radius:50%; border:1.5px solid var(--crimson); }
+  .lg-dot.full{ background:var(--crimson); }
+
+  .vh{
+    position:absolute !important; width:1px; height:1px;
+    padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0);
+    white-space:nowrap; border:0;
+  }
+
+  /* ---------------- panels ---------------- */
+  .panels{ flex:1 1 auto; min-width:0; max-width:70ch; }
+  .panel{ min-width:0; }
+  .panel[hidden]{ display:none; }
+
+  .panel-head-row{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
+  }
+  .panel-eyebrow{
+    font-family:var(--sans);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    color:var(--crimson);
+    font-size:12px;
+    margin:0;
+  }
+  .status{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    color:var(--grey);
+    white-space:nowrap;
+  }
+  .status.done{ color:var(--crimson); border-color:rgba(134,24,49,.4); }
+
+  .panel-title{
+    font-family:var(--serif);
+    font-weight:700;
+    color:var(--ink);
+    font-size:clamp(30px,4.4vw,44px);
+    line-height:1.06;
+    letter-spacing:-.01em;
+    margin:14px 0 0;
+  }
+  .panel-sub{
+    font-family:var(--serif);
+    font-style:italic;
+    color:var(--grey);
+    font-size:clamp(17px,2vw,20px);
+    line-height:1.4;
+    margin:12px 0 0;
+  }
+  .panel-rule{
+    height:1px; background:var(--rule);
+    margin:26px 0 24px;
+  }
+
+  .prose > p{ margin:0 0 1.05em; }
+  .prose > p:last-child{ margin-bottom:0; }
+  .prose em{ font-style:italic; }
+  .prose strong{ font-weight:700; color:var(--ink); }
+  .prose-head{
+    font-family:var(--serif);
+    font-weight:700;
+    color:var(--ink);
+    font-size:22px;
+    line-height:1.2;
+    margin:1.6em 0 .5em;
+    display:flex; align-items:baseline; gap:12px;
+  }
+  .prose-num{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:.14em;
+    color:var(--crimson);
+    transform:translateY(-1px);
+  }
+  .lede{
+    font-family:var(--serif);
+    font-size:19.5px;
+    line-height:1.55;
+    color:var(--soft);
+  }
+
+  /* action / status footers inside a panel */
+  .panel-action{
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+    margin-top:30px; padding-top:24px;
+    border-top:1px solid var(--rule);
+  }
+  .pdf-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:13.5px;
+    letter-spacing:.04em;
+    color:#fff; background:var(--crimson);
+    padding:12px 20px;
+    border-radius:2px;
+    transition:background .18s ease;
+  }
+  .pdf-btn:hover{ background:var(--crimson-deep); color:#fff; }
+  .pdf-btn svg{ width:15px; height:15px; }
+  .pdf-meta{
+    font-family:var(--sans);
+    font-size:12.5px;
+    letter-spacing:.04em;
+    color:var(--grey);
+  }
+  .artefact{
+    font-family:var(--sans);
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--grey);
+    margin:0 0 22px;
+  }
+  .artefact b{ color:var(--ink); font-weight:700; letter-spacing:.02em; text-transform:none; font-size:14.5px; }
+
+  .prep-note{
+    display:inline-flex; align-items:center; gap:11px;
+    font-family:var(--sans);
+    font-size:13px;
+    letter-spacing:.04em;
+    color:var(--grey);
+  }
+  .prep-note::before{
+    content:""; width:9px; height:9px; border-radius:50%;
+    border:1.5px solid var(--rule-strong);
+  }
+
+  .xref{ border-bottom:1px solid rgba(134,24,49,.3); cursor:pointer; }
+
+  /* entrance motion */
+  .panel.enter{ animation:panelIn .34s ease both; }
+  @keyframes panelIn{ from{ opacity:0; transform:translateY(7px);} to{ opacity:1; transform:none;} }
+
+  /* ---------------- footer ---------------- */
+  .colophon{
+    border-top:1px solid var(--rule);
+    padding:38px 0 60px;
+  }
+  .colophon .wrap{ display:flex; justify-content:space-between; gap:22px; flex-wrap:wrap; }
+  .colophon p{
+    font-family:var(--sans);
+    font-size:12.5px;
+    letter-spacing:.03em;
+    color:var(--grey);
+    margin:0;
+  }
+  .colophon .sig{ color:var(--ink); font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+
+  /* ---------------- responsive ---------------- */
+  @media (max-width:860px){
+    body{ font-size:17px; }
+    .series{ flex-direction:column; gap:26px; }
+    .rail{
+      flex:0 0 auto;
+      position:static;
+      display:flex; flex-direction:row; overflow-x:auto;
+      gap:0; margin:0 calc(clamp(20px,5vw,56px) * -1);
+      padding:0 clamp(20px,5vw,56px);
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:thin;
+    }
+    .rail-head, .rail-legend{ display:none; }
+    .rail-item{
+      flex:0 0 auto;
+      grid-template-columns:auto auto;
+      column-gap:10px;
+      border-left:0;
+      border-bottom:2px solid transparent;
+      border-top:0 !important;
+      padding:12px 16px;
+      white-space:nowrap;
+    }
+    .rail-item + .rail-item{ border-top:0; }
+    .rail-item[aria-selected="true"]{
+      border-left-color:transparent;
+      border-bottom-color:var(--crimson);
+    }
+    .rail-title{ font-size:15px; }
+    .rail-dot{ display:none; }
+    .panels{ max-width:none; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+    .panel.enter{ animation:none; }
+  }
+</style>
+
+<noscript><style>
+  /* Without scripting, reveal every panel as one continuous document */
+  .panel[hidden]{ display:block !important; }
+  .panel + .panel{ margin-top:56px; padding-top:40px; border-top:1px solid var(--rule); }
+  .rail{ display:none; }
+</style></noscript>
+</head>
+
+<body>
+
+<!-- ============ MASTHEAD ============ -->
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">A First-Principles Programme for Senior Finance Leadership</p>
+    <h1 class="masthead-title">Executive Technology<br>Literacy</h1>
+    <p class="masthead-sub">Reconstructing the field, from the ground upwards, in ten building blocks.</p>
+    <p class="byline">Amin Bilal</p>
+    <hr class="masthead-rule">
+    <p class="standfirst">What does it take for a senior finance leader to sit across from a Chief Technology Officer and engage as a peer &mdash; not on outcomes and budgets, but on the substance of the architecture itself? This programme is an attempt to build exactly that capacity, from first principles, across the ten domains that compose the field.</p>
+    <p class="progress">The Introduction and two of the ten blocks &mdash; <a href="#block-1" data-goto="block-1">Systems Architecture</a> and <a href="#block-7" data-goto="block-7">Networks</a> &mdash; are complete. The remainder are in preparation.</p>
+  </div>
+</header>
+
+<!-- ============ SERIES ============ -->
+<main class="wrap series">
+
+  <!-- contents rail = tab list -->
+  <nav class="rail" role="tablist" aria-label="Programme contents" aria-orientation="vertical">
+    <div class="rail-head">Contents</div>
+
+    <button class="rail-item is-done" role="tab" id="tab-introduction" data-slug="introduction" aria-controls="panel-introduction" aria-selected="true" tabindex="0">
+      <span class="rail-num" aria-hidden="true">&mdash;</span>
+      <span class="rail-title">Introduction<span class="vh"> — complete</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-done" role="tab" id="tab-block-1" data-slug="block-1" aria-controls="panel-block-1" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">01</span>
+      <span class="rail-title">Systems Architecture and Distributed Systems<span class="vh"> — complete</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-prep" role="tab" id="tab-block-2" data-slug="block-2" aria-controls="panel-block-2" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">02</span>
+      <span class="rail-title">Data Architecture and the Modern Data Stack<span class="vh"> — in preparation</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-prep" role="tab" id="tab-block-3" data-slug="block-3" aria-controls="panel-block-3" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">03</span>
+      <span class="rail-title">Cloud Computing and Its Economics<span class="vh"> — in preparation</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-prep" role="tab" id="tab-block-4" data-slug="block-4" aria-controls="panel-block-4" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">04</span>
+      <span class="rail-title">Software Engineering Practice and the Development Lifecycle<span class="vh"> — in preparation</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-prep" role="tab" id="tab-block-5" data-slug="block-5" aria-controls="panel-block-5" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">05</span>
+      <span class="rail-title">Security and Identity<span class="vh"> — in preparation</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-prep" role="tab" id="tab-block-6" data-slug="block-6" aria-controls="panel-block-6" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">06</span>
+      <span class="rail-title">AI and Machine Learning<span class="vh"> — in preparation</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-done" role="tab" id="tab-block-7" data-slug="block-7" aria-controls="panel-block-7" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">07</span>
+      <span class="rail-title">Networks and the Internet&rsquo;s Mechanics<span class="vh"> — complete</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-prep" role="tab" id="tab-block-8" data-slug="block-8" aria-controls="panel-block-8" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">08</span>
+      <span class="rail-title">Databases and Storage<span class="vh"> — in preparation</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-prep" role="tab" id="tab-block-9" data-slug="block-9" aria-controls="panel-block-9" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">09</span>
+      <span class="rail-title">Engineering Organisation and Leadership<span class="vh"> — in preparation</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <button class="rail-item is-prep" role="tab" id="tab-block-10" data-slug="block-10" aria-controls="panel-block-10" aria-selected="false" tabindex="-1">
+      <span class="rail-num" aria-hidden="true">10</span>
+      <span class="rail-title">Regulatory and Risk Overlay for Financial Services<span class="vh"> — in preparation</span></span>
+      <span class="rail-dot" aria-hidden="true"></span>
+    </button>
+
+    <div class="rail-legend" aria-hidden="true">
+      <span><span class="lg-dot full"></span> Complete</span>
+      <span><span class="lg-dot"></span> In preparation</span>
+    </div>
+  </nav>
+
+  <!-- panels -->
+  <div class="panels">
+
+    <!-- INTRODUCTION -->
+    <section class="panel" role="tabpanel" id="panel-introduction" aria-labelledby="tab-introduction" tabindex="0">
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Programme Introduction</p>
+        <span class="status done">Complete</span>
+      </div>
+      <h2 class="panel-title">The Whole Before the Parts</h2>
+      <p class="panel-sub">An introduction to the programme and its ten building blocks</p>
+      <hr class="panel-rule">
+      <div class="prose">
+        <p class="lede">There is a particular kind of senior executive who has acquired the vocabulary of technology without the understanding beneath it. He can name the building blocks at a meeting, reach for the fashionable terms, and pass, for a sentence or two, as informed. The performance survives precisely as long as nobody asks him <em>why</em>.</p>
+        <p>This programme is built in deliberate opposition to that failure. Its purpose is not to furnish a vocabulary but to reconstruct a field, from the ground upwards, so that what is known is genuinely understood and therefore holds when it is tested.</p>
+
+        <h3 class="prose-head"><span class="prose-num">I</span> The Objective</h3>
+        <p>The aim is a specific competence: technology literacy sufficient for peer-to-peer engagement with the Chief Technology Officer and the Chief Transformation Officer, and with their counterparts across the financial-services firms of the United Kingdom and the United States. It is worth being precise about what this is <em>not</em>. It is not the ability to write production software. The conversation this programme prepares one for is the architectural and strategic conversation: how large systems are composed, where they fail, what the trade-offs are, and what a given choice commits the firm to over the following decade.</p>
+        <p>The competence is deliberately generalised &mdash; expertise in the field, not in any single firm. A Chief Technology Officer at a British insurer, the head of engineering at an American asset manager, and the equivalent at a global bank face the same fundamental questions, draw on the same vendor landscape, and increasingly move between firms. Becoming credible to one of them is, in large part, becoming credible to the community.</p>
+
+        <h3 class="prose-head"><span class="prose-num">II</span> Four Governing Principles</h3>
+        <p><strong>First</strong>, first-principles understanding rather than pattern-matching &mdash; reconstructed understanding degrades gracefully where memorised vocabulary fails the moment the territory shifts. <strong>Second</strong>, building-blocks sequencing &mdash; a thin veneer established across all ten domains, each then deepened in turn, a schema built before it is populated, exactly as in medical training. <strong>Third</strong>, generalised expertise in the field rather than firm-specific knowledge, because that is the knowledge that transfers and compounds. <strong>Fourth</strong>, a working separation between the durable substrate and the current frontier.</p>
+
+        <h3 class="prose-head"><span class="prose-num">III</span> Substrate and Frontier</h3>
+        <p>The knowledge decomposes into two layers with very different shelf lives. The <em>durable substrate</em> &mdash; distributed-systems theory, database internals, cryptography, networking, the economics of cloud computing, the principles of software engineering, and the structure of the regulatory regimes &mdash; changes slowly and can be learnt properly once; it is taught here directly and at depth. The <em>current frontier</em> &mdash; what the major firms are doing now, which vendors are ascendant or in difficulty, where the investment is concentrated this quarter &mdash; changes constantly and is served by sustained attention to a small number of primary sources. Every claim about a named product, a named person, or a recent event is treated as a frontier matter: verified against live sources before it is asserted.</p>
+
+        <h3 class="prose-head"><span class="prose-num">IV</span> The Method</h3>
+        <p>The method is Socratic and consistent across the blocks. Each block is taken in a fresh conversation. A question is posed; it is answered at whatever depth is available; the answer is corrected where it is wrong, refined where it is roughly right, and extended with the layers that were missing; and the next question follows from there. Each block concludes with a typeset reference artefact in the house style &mdash; the documents linked from this page are instances of that form.</p>
+
+        <h3 class="prose-head"><span class="prose-num">V</span> The Order of Study</h3>
+        <p>The blocks are numbered for reference, not for marching order, and study proceeds along the lines of dependency and readiness. The traverse of <span class="xref" data-goto="block-7">networks</span> was taken first, as the most concrete point of entry to the field; <span class="xref" data-goto="block-1">systems architecture</span> followed, as the conceptual spine to which the rest of the field attaches; databases and storage come next, because they are where that spine becomes the single piece of infrastructure a finance leader most often has to reason about in practice. The whole is designed to be worked through over many months; the reward is not fluency at next week&rsquo;s meeting but understanding that still holds five years from now &mdash; which is the only kind worth the cost of acquiring.</p>
+      </div>
+      <div class="panel-action">
+        <a class="pdf-btn" href="documents/the-whole-before-the-parts.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+          Read the typeset PDF
+        </a>
+        <span class="pdf-meta">Ten pages &middot; A4</span>
+      </div>
+    </section>
+
+    <!-- BLOCK 1 -->
+    <section class="panel" role="tabpanel" id="panel-block-1" aria-labelledby="tab-block-1" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 1 of 10 &middot; Systems Architecture</p>
+        <span class="status done">Complete</span>
+      </div>
+      <h2 class="panel-title">Systems Architecture and Distributed Systems</h2>
+      <hr class="panel-rule">
+      <p class="artefact">Reference artefact &mdash; <b>Neither Memory nor Time</b></p>
+      <div class="prose">
+        <p>Why no serious firm runs its business on a single machine, however powerful one it could afford; the physics that forces multiplicity once single-core speed plateaus; the parallelism ceiling described by Amdahl and lifted by Gustafson; the loss of shared truth and shared time the moment work crosses a network; the CAP trade-off; the consistency spectrum; the append-only log as the primitive beneath modern architecture; and the machinery of consensus and quorum by which machines that trust neither one another nor their own clocks nonetheless reach firm agreement.</p>
+        <p>The foundational grammar on which most of the other blocks rest.</p>
+      </div>
+      <div class="panel-action">
+        <a class="pdf-btn" href="documents/neither-memory-nor-time.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+          Read the typeset PDF
+        </a>
+        <span class="pdf-meta">Twenty-one pages &middot; A4</span>
+      </div>
+    </section>
+
+    <!-- BLOCK 2 -->
+    <section class="panel" role="tabpanel" id="panel-block-2" aria-labelledby="tab-block-2" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 2 of 10 &middot; Data Architecture</p>
+        <span class="status">In preparation</span>
+      </div>
+      <h2 class="panel-title">Data Architecture and the Modern Data Stack</h2>
+      <hr class="panel-rule">
+      <div class="prose">
+        <p>How data is modelled, moved, stored, and served across an enterprise; the separation of the operational and analytical estates and the reasons for it; the warehouse, the lake, and the lakehouse that sought to reconcile them; batch against streaming ingestion; and the discipline of data contracts and the treatment of data as a product with named owners and guarantees.</p>
+        <p>The layer at which a firm&rsquo;s information becomes either an asset or a liability.</p>
+      </div>
+      <div class="panel-action"><span class="prep-note">In preparation</span></div>
+    </section>
+
+    <!-- BLOCK 3 -->
+    <section class="panel" role="tabpanel" id="panel-block-3" aria-labelledby="tab-block-3" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 3 of 10 &middot; Cloud Computing</p>
+        <span class="status">In preparation</span>
+      </div>
+      <h2 class="panel-title">Cloud Computing and Its Economics</h2>
+      <hr class="panel-rule">
+      <div class="prose">
+        <p>What the cloud actually is beneath the marketing; the service models &mdash; infrastructure, platform, software, and function &mdash; and what each one delegates and retains; the economics of renting rather than owning compute; the buy-versus-build calculus; data gravity and the precise mechanics of vendor lock-in; and the financial discipline of treating cloud cost as a managed line of the profit-and-loss account rather than an uncontrolled overhead.</p>
+        <p>The block that bears most directly on a firm-wide cost base.</p>
+      </div>
+      <div class="panel-action"><span class="prep-note">In preparation</span></div>
+    </section>
+
+    <!-- BLOCK 4 -->
+    <section class="panel" role="tabpanel" id="panel-block-4" aria-labelledby="tab-block-4" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 4 of 10 &middot; Software Engineering</p>
+        <span class="status">In preparation</span>
+      </div>
+      <h2 class="panel-title">Software Engineering Practice and the Development Lifecycle</h2>
+      <hr class="panel-rule">
+      <div class="prose">
+        <p>How software is actually built, tested, released, and maintained; version control and the mechanics of collaboration at scale; continuous integration and delivery; testing strategy and what it does and does not buy; technical debt, what it genuinely is, and the circumstances under which incurring it is rational; and the perennial, much-mismeasured question of engineering productivity.</p>
+        <p>The block that explains why software takes as long as it does, and where the cost truly sits.</p>
+      </div>
+      <div class="panel-action"><span class="prep-note">In preparation</span></div>
+    </section>
+
+    <!-- BLOCK 5 -->
+    <section class="panel" role="tabpanel" id="panel-block-5" aria-labelledby="tab-block-5" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 5 of 10 &middot; Security and Identity</p>
+        <span class="status">In preparation</span>
+      </div>
+      <h2 class="panel-title">Security and Identity</h2>
+      <hr class="panel-rule">
+      <div class="prose">
+        <p>The trust architecture beneath everything else; the distinction between authentication and authorisation; encryption in transit and at rest, and what each actually protects against; identity as the perimeter that has displaced the old network boundary; the threat landscape facing financial institutions specifically; and the zero-trust posture understood as a design principle rather than a product to be purchased.</p>
+        <p>The block in which architecture and risk most plainly meet.</p>
+      </div>
+      <div class="panel-action"><span class="prep-note">In preparation</span></div>
+    </section>
+
+    <!-- BLOCK 6 -->
+    <section class="panel" role="tabpanel" id="panel-block-6" aria-labelledby="tab-block-6" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 6 of 10 &middot; AI and Machine Learning</p>
+        <span class="status">In preparation</span>
+      </div>
+      <h2 class="panel-title">AI and Machine Learning</h2>
+      <p class="panel-sub">With particular attention to large language models</p>
+      <hr class="panel-rule">
+      <div class="prose">
+        <p>What these systems are and, just as importantly, what they are not; the distinction between training and inference; the transformer architecture in outline and the economics of the buildout that sustains it; retrieval, fine-tuning, and the agentic patterns now emerging; and model risk management in a regulated setting.</p>
+        <p>The block where the frontier moves fastest and the search-and-verify discipline therefore matters most.</p>
+      </div>
+      <div class="panel-action"><span class="prep-note">In preparation</span></div>
+    </section>
+
+    <!-- BLOCK 7 -->
+    <section class="panel" role="tabpanel" id="panel-block-7" aria-labelledby="tab-block-7" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 7 of 10 &middot; Networks</p>
+        <span class="status done">Complete</span>
+      </div>
+      <h2 class="panel-title">Networks and the Internet&rsquo;s Mechanics</h2>
+      <hr class="panel-rule">
+      <p class="artefact">Reference artefact &mdash; <b>From Keypad to Cloud</b></p>
+      <div class="prose">
+        <p>The physical internet, traced from the keypad to the cloud; the journey of a single message and the layered envelopes it travels in; the Domain Name System; submarine cables and the quiet migration of their ownership to the hyperscalers; data centres, the power they draw, and the grid that now constrains them; and the abstraction stack from physical server through virtualisation, containers, and orchestration.</p>
+        <p>The machinery on which everything else physically runs.</p>
+      </div>
+      <div class="panel-action">
+        <a class="pdf-btn" href="documents/from-keypad-to-cloud.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+          Read the typeset PDF
+        </a>
+        <span class="pdf-meta">Twenty-one pages &middot; A4</span>
+      </div>
+    </section>
+
+    <!-- BLOCK 8 -->
+    <section class="panel" role="tabpanel" id="panel-block-8" aria-labelledby="tab-block-8" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 8 of 10 &middot; Databases and Storage</p>
+        <span class="status">In preparation</span>
+      </div>
+      <h2 class="panel-title">Databases and Storage</h2>
+      <hr class="panel-rule">
+      <div class="prose">
+        <p>How data is durably persisted and efficiently retrieved; the storage engine and the central divide between the B-tree and the log-structured merge-tree; indexing and what it costs to maintain; replication and sharding as the concrete implementation of the consistency choices first met in <span class="xref" data-goto="block-1">Block One</span>; the transactional and analytical divide; and the proliferation of database types, with the judgement of when each is warranted.</p>
+        <p>The tightest dependency from the systems-architecture block, and the next to be taken.</p>
+      </div>
+      <div class="panel-action"><span class="prep-note">In preparation</span></div>
+    </section>
+
+    <!-- BLOCK 9 -->
+    <section class="panel" role="tabpanel" id="panel-block-9" aria-labelledby="tab-block-9" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 9 of 10 &middot; Engineering Organisation</p>
+        <span class="status">In preparation</span>
+      </div>
+      <h2 class="panel-title">Engineering Organisation and Leadership</h2>
+      <hr class="panel-rule">
+      <div class="prose">
+        <p>The human side of the field; how engineering organisations are structured, how they fail, and how they are led; Conway&rsquo;s Law turned from an observation into a deliberate strategy; the team topologies by which groups are arranged to ship independently of one another; the economics of scarce talent; and what a Chief Technology Officer and a Chief Transformation Officer actually do with their days.</p>
+        <p>The block that explains why architecture and organisation are so often the same decision viewed twice.</p>
+      </div>
+      <div class="panel-action"><span class="prep-note">In preparation</span></div>
+    </section>
+
+    <!-- BLOCK 10 -->
+    <section class="panel" role="tabpanel" id="panel-block-10" aria-labelledby="tab-block-10" tabindex="0" hidden>
+      <div class="panel-head-row">
+        <p class="panel-eyebrow">Building Block 10 of 10 &middot; Regulatory and Risk</p>
+        <span class="status">In preparation</span>
+      </div>
+      <h2 class="panel-title">Regulatory and Risk Overlay for Financial Services</h2>
+      <hr class="panel-rule">
+      <div class="prose">
+        <p>The frameworks that constrain technology in regulated finance; operational resilience under DORA and the United Kingdom&rsquo;s equivalent regime; model risk under the PRA&rsquo;s SS1/23 and its American analogues; data sovereignty and residency; third-party and concentration risk as the supervisory lens now trained on the hyperscalers; and the regulator understood as a standing stakeholder in every architecture decision.</p>
+        <p>The block that binds the technical substrate to the obligations of a regulated firm.</p>
+      </div>
+      <div class="panel-action"><span class="prep-note">In preparation</span></div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="colophon">
+  <div class="wrap">
+    <p class="sig">Amin Bilal</p>
+    <p>A first-principles programme in executive technology literacy &middot; &copy; <span id="yr">2026</span></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('[role="tabpanel"]'));
+
+  function panelFor(tab){ return document.getElementById(tab.getAttribute('aria-controls')); }
+
+  function activate(tab, setFocus, updateHash){
+    tabs.forEach(function(t){
+      var selected = (t === tab);
+      t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      t.tabIndex = selected ? 0 : -1;
+    });
+    panels.forEach(function(p){ p.hidden = true; p.classList.remove('enter'); });
+    var panel = panelFor(tab);
+    panel.hidden = false;
+    void panel.offsetWidth;              /* reflow, so the entrance animation restarts */
+    panel.classList.add('enter');
+    if(setFocus){ tab.focus(); }
+    if(updateHash !== false){
+      var slug = tab.getAttribute('data-slug');
+      if(history.replaceState){ history.replaceState(null, '', '#' + slug); }
+      else { location.hash = slug; }
+    }
+  }
+
+  tabs.forEach(function(tab, i){
+    tab.addEventListener('click', function(){ activate(tab, false, true); });
+    tab.addEventListener('keydown', function(e){
+      var idx = i, handled = true;
+      switch(e.key){
+        case 'ArrowDown': case 'ArrowRight': idx = (i + 1) % tabs.length; break;
+        case 'ArrowUp':   case 'ArrowLeft':  idx = (i - 1 + tabs.length) % tabs.length; break;
+        case 'Home': idx = 0; break;
+        case 'End':  idx = tabs.length - 1; break;
+        default: handled = false;
+      }
+      if(handled){ e.preventDefault(); activate(tabs[idx], true, true); }
+    });
+  });
+
+  /* in-panel cross-references that jump to another tab */
+  document.querySelectorAll('[data-goto]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById('tab-' + link.getAttribute('data-goto'));
+      if(target){ activate(target, true, true); window.scrollTo({ top:0, behavior:'smooth' }); }
+    });
+  });
+
+  /* open from URL hash on load and on change */
+  function openFromHash(){
+    var slug = (location.hash || '').replace('#','');
+    if(!slug) return;
+    var match = tabs.filter(function(t){ return t.getAttribute('data-slug') === slug; })[0];
+    if(match){ activate(match, false, false); }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
