@@ -178,10 +178,12 @@
   /* ---------------- page view (Content / Key Takeaways / FAQs) ---------------- */
   #page-view{ min-height:70vh; }
   .page-top{ border-bottom:1px solid var(--rule); background:var(--cream); position:sticky; top:0; z-index:5; }
-  .page-top .wrap{ display:flex; align-items:center; justify-content:space-between; gap:18px; padding-top:16px; padding-bottom:16px; }
-  .home-link{ font-family:var(--sans); font-weight:700; text-transform:uppercase; letter-spacing:.16em; font-size:11.5px; color:var(--crimson); display:inline-flex; align-items:center; gap:9px; }
-  .home-link .hl-ar{ font-size:14px; }
-  .crumb{ font-family:var(--sans); font-size:12px; letter-spacing:.03em; color:var(--grey); text-align:right; }
+  .page-top.is-static{ position:static; }
+  .page-top .wrap{ display:flex; align-items:center; justify-content:space-between; gap:18px; padding-top:14px; padding-bottom:14px; }
+  .crumb{ font-family:var(--sans); font-size:12px; letter-spacing:.03em; color:var(--grey); display:flex; flex-wrap:wrap; align-items:center; gap:8px; line-height:1.4; }
+  .crumb a{ color:var(--crimson); font-weight:700; }
+  .crumb a:hover{ color:var(--crimson-deep); text-decoration:underline; }
+  .crumb .sep{ color:var(--rule-strong); }
   .crumb b{ color:var(--ink); font-weight:700; }
 
   .page-body{ padding:clamp(30px,5vw,54px) 0 clamp(56px,8vw,90px); }
@@ -248,7 +250,7 @@
     .rail-legend{ display:none; }
 
     .panels{ max-width:none; }
-    .crumb{ display:none; }
+    .deep-only{ display:none; }
   }
   @media (prefers-reduced-motion:reduce){
     *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
@@ -267,6 +269,16 @@
 
 <!-- ============================================================ HOME VIEW ============================================================ -->
 <div id="home-view">
+
+  <div class="page-top is-static">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a class="crumb-site" href="index.html">aminbilal.com</a>
+        <span class="sep">&rsaquo;</span>
+        <b>Overview</b>
+      </nav>
+    </div>
+  </div>
 
   <header class="masthead">
     <div class="wrap">
@@ -565,8 +577,15 @@
 <div id="page-view" hidden>
   <div class="page-top">
     <div class="wrap">
-      <a class="home-link" href="#"><span class="hl-ar" aria-hidden="true">&larr;</span> Overview</a>
-      <nav class="crumb" aria-label="Breadcrumb"><span class="cr-block"></span> &rsaquo; <b class="cr-page"></b></nav>
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a class="crumb-site" href="index.html">aminbilal.com</a>
+        <span class="sep">&rsaquo;</span>
+        <a class="crumb-overview" href="#">Overview</a>
+        <span class="sep deep-only">&rsaquo;</span>
+        <a class="cr-block deep-only" href="#"></a>
+        <span class="sep deep-only">&rsaquo;</span>
+        <b class="cr-page deep-only"></b>
+      </nav>
     </div>
   </div>
   <article class="page-body" tabindex="-1" aria-live="polite">
@@ -883,7 +902,9 @@
     var num = numOf(slug), lbl = labelOf(slug);
     pageView.querySelector('.page-eyebrow').textContent = (num ? 'Building Block '+num+' of 10 \u00B7 ' : '') + lbl;
     pageView.querySelector('.page-title').textContent = SUBLABEL[sub];
-    pageView.querySelector('.cr-block').textContent = (num ? num+'. ' : '') + lbl;
+    var crBlock = pageView.querySelector('.cr-block');
+    crBlock.textContent = (num ? num+'. ' : '') + lbl;
+    crBlock.setAttribute('href', '#'+slug);
     pageView.querySelector('.cr-page').textContent = SUBLABEL[sub];
 
     var body = pageView.querySelector('.page-content');
