@@ -232,44 +232,20 @@
   @media (max-width:860px){
     body{ font-size:17px; }
 
-    /* Stack the rail above the panels using ordinary block flow.
-       The rail must NOT be a flex child here: in Mobile Safari a scroll
-       container (overflow:auto) that is a flex item of a column flex
-       parent collapses to zero height, which is what hid the modules on
-       iPhone while the iPad (wide layout) was unaffected. */
+    /* On narrow screens the rail sits ABOVE the panels as a full-width
+       vertical list. This deliberately reuses the wide-layout rail styling
+       (a grid list, which renders correctly in Safari on the iPad) rather
+       than a horizontal strip, which did not work on iPhone. The only mobile
+       changes are: the container stops being a flex row, and the rail stops
+       being sticky and fixed-width — everything else falls back to the
+       wide-layout rules. */
     .series{ display:block; }
-
-    /* Contents becomes a horizontal, swipeable strip */
     .rail{
       position:static;
-      display:flex;
-      flex-wrap:nowrap;
-      align-items:stretch;
-      overflow-x:auto;
-      overflow-y:hidden;
-      -webkit-overflow-scrolling:touch;
-      scrollbar-width:thin;
-      margin:0 -20px 30px;
-      padding:0 20px;
-      border-bottom:1px solid var(--rule-strong);
+      align-self:auto;
+      margin:0 0 34px;
     }
-    .rail-head, .rail-legend{ display:none; }
-
-    .rail-item{
-      display:inline-flex;
-      align-items:center;
-      flex:0 0 auto;
-      gap:9px;
-      border:0;
-      border-bottom:2px solid transparent;
-      padding:13px 15px;
-      white-space:nowrap;
-    }
-    .rail-item + .rail-item{ border-top:0; }
-    .rail-item[aria-selected="true"]{ background:transparent; border-bottom-color:var(--crimson); }
-    .rail-num{ font-size:15px; }
-    .rail-title{ font-size:15px; }
-    .rail-dot{ width:8px; height:8px; margin-left:2px; }
+    .rail-legend{ display:none; }
 
     .panels{ max-width:none; }
     .crumb{ display:none; }
@@ -842,12 +818,21 @@
     void panel.offsetWidth; panel.classList.add('enter');
     if(setFocus){ tab.focus(); }
   }
-  function showHome(slug){
+  function showHome(slug, deep){
     pageView.hidden = true;
     homeView.hidden = false;
     var tab = document.getElementById('tab-'+slug) || document.getElementById('tab-introduction');
     activateTab(tab, false);
-    window.scrollTo(0,0);
+    // On phones the rail is stacked above the content, so after a tap on a
+    // specific module bring its panel into view; otherwise (wide screens,
+    // first load, or the Introduction) return to the top.
+    var narrow = window.matchMedia && window.matchMedia('(max-width: 860px)').matches;
+    var panel  = tab ? document.getElementById(tab.getAttribute('aria-controls')) : null;
+    if(deep && narrow && panel && slug && slug !== 'introduction' && panel.scrollIntoView){
+      panel.scrollIntoView({ behavior:'smooth', block:'start' });
+    } else {
+      window.scrollTo(0, 0);
+    }
   }
 
   tabs.forEach(function(tab, i){
@@ -923,14 +908,14 @@
   }
 
   /* ---------- router ---------- */
-  function route(){
+  function route(deep){
     var h = (location.hash || '').replace(/^#/,'');
-    if(!h){ showHome('introduction'); return; }
+    if(!h){ showHome('introduction', deep); return; }
     var parts = h.split('/');
     if(parts.length >= 2 && SUBS.indexOf(parts[1]) !== -1){ renderPage(parts[0], parts[1]); }
-    else { showHome(parts[0]); }
+    else { showHome(parts[0], deep); }
   }
-  window.addEventListener('hashchange', route);
+  window.addEventListener('hashchange', function(){ route(true); });
 
   /* ---------- keyboard on page view: ← → flip, Esc back ---------- */
   document.addEventListener('keydown', function(e){
@@ -943,7 +928,7 @@
   });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
-  route();
+  route(false);
 })();
 </script>
 </body>
