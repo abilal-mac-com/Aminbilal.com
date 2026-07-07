@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FBF9F4">
+<meta name="description" content="A first-principles guide to photons, fermions, bosons, the four forces, energy and mass, and the structure of the universe — assuming no prior scientific knowledge.">
+<title>The Particle Physics Primer &mdash; Amin Bilal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF9F4;
+    --panel:#FFFDF9;
+    --ink:#1d1b19;
+    --ink-soft:#5a544c;
+    --house:#8B0000;
+    --hair:#DAD2C4;
+    --measure:40rem;
+    --display:'Helvetica Neue',Helvetica,Arial,'Segoe UI',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Amiri',Georgia,'Times New Roman',serif;
+    font-size:clamp(1.08rem,1.0rem + 0.5vw,1.26rem);
+    line-height:1.78;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---- Sticky breadcrumb ---- */
+  .topbar{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--hair)}
+  .crumb{max-width:var(--measure);margin:0 auto;padding:.72rem 1.25rem;font-family:var(--display);text-transform:uppercase;letter-spacing:.13em;font-size:.64rem;font-weight:700;color:var(--ink-soft)}
+  .crumb a{color:var(--house);text-decoration:none}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--hair);margin:0 .5rem}
+  .crumb .here{color:var(--ink-soft)}
+
+  .wrap{max-width:var(--measure);margin:0 auto;padding:1.6rem 1.25rem 4rem}
+
+  /* ---- Masthead ---- */
+  .kicker{font-family:var(--display);text-transform:uppercase;letter-spacing:.28em;font-size:.66rem;font-weight:700;color:var(--house);margin:.6rem 0 0}
+  h1.title{font-family:var(--display);font-weight:700;letter-spacing:-.014em;line-height:1.06;font-size:clamp(2rem,1.4rem + 3vw,3.1rem);margin:.55rem 0 .8rem}
+  .standfirst{font-style:italic;font-size:1.08em;line-height:1.5;color:var(--ink-soft);margin:0 0 1rem;max-width:34rem}
+  .byline{font-family:var(--display);text-transform:uppercase;letter-spacing:.14em;font-weight:700;font-size:.7rem;color:var(--ink)}
+  .titlerule{height:2px;background:var(--house);opacity:.85;margin:1.5rem 0 1.9rem}
+
+  /* ---- Body ---- */
+  p{margin:0 0 1.15em;text-align:justify;-webkit-hyphens:auto;hyphens:auto}
+  .opening{margin-top:0}
+  .dropcap{float:left;font-family:var(--display);font-weight:700;color:var(--house);font-size:3.5em;line-height:.78;margin:.02em .1em 0 0}
+  .lede-note{font-family:var(--display);font-size:.82rem;line-height:1.55;letter-spacing:.01em;color:var(--ink-soft);text-transform:none;background:var(--panel);border:1px solid var(--hair);border-left:3px solid var(--house);border-radius:2px;padding:.9rem 1.05rem;margin:1.4rem 0 0;text-align:left;hyphens:none}
+
+  /* ---- Contents index ---- */
+  .contents{margin:2.6rem 0 .4rem;border-top:1px solid var(--hair);padding-top:1.5rem}
+  .contents h2{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:.68rem;color:var(--house);margin:0 0 1.2rem}
+  .toc-group{margin:0 0 1.15rem}
+  .toc-group .mv{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.63rem;font-weight:700;color:var(--ink-soft);margin:0 0 .35rem}
+  .toc-group ol{list-style:none;margin:0;padding:0}
+  .toc-group li{margin:.12rem 0}
+  .toc-group a{display:flex;gap:.7rem;align-items:baseline;text-decoration:none;color:var(--ink);line-height:1.35;padding:.15rem 0}
+  .toc-group a:hover{color:var(--house)}
+  .toc-group a:hover .tnum{color:var(--house)}
+  .toc-group .tnum{flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:.72rem;color:var(--hair);width:1.6rem;text-align:right}
+  .toc-group .ttext{font-size:.95rem}
+
+  /* ---- Movement heading ---- */
+  .movement{margin:3.2rem 0 1.3rem;clear:both}
+  .movement .mv-no{font-family:var(--display);font-weight:700;letter-spacing:.16em;font-size:.66rem;color:var(--house);text-transform:uppercase}
+  .movement h2{font-family:var(--display);font-weight:700;font-size:1.42em;line-height:1.18;letter-spacing:-.006em;margin:.35rem 0 0}
+  .movement h2::after{content:"";display:block;width:2.4rem;height:2px;background:var(--house);margin-top:.6rem}
+
+  /* ---- Accordion (no JavaScript) ---- */
+  .qa{border-bottom:1px solid var(--hair)}
+  .qa:first-of-type{border-top:1px solid var(--hair)}
+  .qa>summary{
+    list-style:none;cursor:pointer;display:flex;gap:.85rem;align-items:baseline;
+    padding:1.02rem .2rem 1.02rem 0;
+  }
+  .qa>summary::-webkit-details-marker{display:none}
+  .qa .qnum{flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:.82rem;color:var(--house);width:1.9rem;line-height:1.5;letter-spacing:.02em}
+  .qa .qtext{flex:1 1 auto;font-family:var(--display);font-weight:700;font-size:1.06rem;line-height:1.34;letter-spacing:-.006em;color:var(--ink)}
+  .qa .qmark{flex:0 0 auto;width:1.4rem;height:1.4rem;position:relative;align-self:center;border:1px solid var(--hair);border-radius:2px;transition:border-color .18s ease,background .18s ease}
+  .qa .qmark::before,.qa .qmark::after{content:"";position:absolute;background:var(--house);left:50%;top:50%;transform:translate(-50%,-50%)}
+  .qa .qmark::before{width:.62rem;height:2px}
+  .qa .qmark::after{width:2px;height:.62rem;transition:transform .2s ease,opacity .2s ease}
+  .qa[open] .qmark::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+  .qa>summary:hover .qtext{color:var(--house)}
+  .qa>summary:hover .qmark{background:var(--panel);border-color:var(--house)}
+  .qa>summary:focus-visible{outline:2px solid var(--house);outline-offset:3px;border-radius:2px}
+  .qa-body{padding:0 0 1.3rem 2.75rem}
+  .qa-body p{margin:0 0 1em}
+  .qa-body p:last-child{margin-bottom:0}
+  /* No-JS deep-link fallback: reveal a targeted answer even if not opened */
+  .qa:target>.qa-body{display:block}
+  .qa:target>summary .qtext{color:var(--house)}
+
+  /* ---- Pull quote ---- */
+  .pullquote{font-style:italic;color:var(--house);font-size:1.28em;line-height:1.42;text-align:center;margin:2.9rem auto;padding:1.15rem .5rem;border-top:1px solid var(--house);border-bottom:1px solid var(--house);max-width:32rem;clear:both}
+
+  /* ---- Assertions reference ---- */
+  .reference{margin-top:3.6rem;border-top:2px solid var(--house);padding-top:1.6rem}
+  .reference>summary{list-style:none;cursor:pointer;display:flex;gap:.85rem;align-items:baseline;padding:.2rem 0}
+  .reference>summary::-webkit-details-marker{display:none}
+  .reference .rlabel{flex:1 1 auto;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--house)}
+  .reference .rmark{flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:.9rem;color:var(--house)}
+  .reference[open] .rmark{visibility:hidden}
+  .reference>summary:focus-visible{outline:2px solid var(--house);outline-offset:3px;border-radius:2px}
+  .reference .rsub{font-style:italic;color:var(--ink-soft);font-size:.95em;margin:.9rem 0 1.6rem;text-align:left;hyphens:none}
+  .assertions{list-style:none;counter-reset:ax;padding:0;margin:0}
+  .assertions li{counter-increment:ax;position:relative;padding-left:2.7rem;margin:0 0 .95em;text-align:left;line-height:1.6;font-size:.98em}
+  .assertions li::before{content:counter(ax);position:absolute;left:0;top:.02em;font-family:var(--display);font-weight:700;color:var(--house);font-size:.86em;width:2rem;text-align:right}
+
+  /* ---- Pager (back and forth) ---- */
+  .pager{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:space-between;align-items:center;margin:3.4rem 0 0;padding-top:1.4rem;border-top:1px solid var(--hair)}
+  .pager a{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.68rem;font-weight:700;text-decoration:none;color:var(--house);border-bottom:1px solid rgba(139,0,0,.35);padding-bottom:.12rem}
+  .pager a:hover{border-bottom-color:var(--house);color:var(--ink)}
+  .pager .to-top{color:var(--ink-soft);border-bottom-color:var(--hair)}
+
+  /* ---- Colophon ---- */
+  .colophon{margin:3rem 0 1rem;text-align:center;font-family:var(--display);text-transform:uppercase;letter-spacing:.18em;font-size:.62rem;color:var(--ink-soft);line-height:1.9}
+  .colophon .orn{display:block;color:var(--house);font-size:1rem;letter-spacing:0;margin-bottom:.55rem}
+
+  @media (max-width:560px){
+    p,.assertions li{text-align:left}
+    .wrap{padding:1.4rem 1.05rem 3.5rem}
+    .qa-body{padding-left:2rem}
+    .qa .qtext{font-size:1.01rem}
+    .dropcap{font-size:3.1em}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .qa .qmark,.qa .qmark::after{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <nav class="crumb" aria-label="Breadcrumb">
+    <a href="index.html">aminbilal.com</a>
+    <span class="sep">&rsaquo;</span>
+    <span class="here">Physics</span>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <p class="kicker">Physics &middot; A First-Principles Guide</p>
+  <h1 class="title">The Particle Physics Primer</h1>
+  <p class="standfirst">Photons, fermions, bosons, the four forces, energy and mass, and how they combine to produce the material universe &mdash; built step by step, and assuming no prior scientific knowledge.</p>
+  <div class="byline">Amin Bilal</div>
+  <div class="titlerule"></div>
+
+  <p class="opening"><span class="dropcap">W</span>hat follows is a record of a conversation about particle physics, conducted entirely from first principles. No prior scientific knowledge is assumed. The aim is to build, step by step, a working understanding of the fundamental particles, the forces that govern them, the nature of energy and mass, and how these combine to produce the material universe.</p>
+
+  <p class="lede-note">Each question below opens on its own. The twenty-three questions run as a single sequence, in six movements, from light and energy through to the fate of the universe; the fifty key assertions at the foot of the page distil the whole into a standalone reference.</p>
+
+  <!-- ============== CONTENTS ============== -->
+  <nav class="contents" aria-label="Contents">
+    <h2>Contents</h2>
+
+    <div class="toc-group">
+      <p class="mv">I &middot; Light, Mass and Energy</p>
+      <ol>
+        <li><a href="#q01"><span class="tnum">01</span><span class="ttext">What are photons?</span></a></li>
+        <li><a href="#q02"><span class="tnum">02</span><span class="ttext">What is mass?</span></a></li>
+        <li><a href="#q03"><span class="tnum">03</span><span class="ttext">What is energy?</span></a></li>
+        <li><a href="#q04"><span class="tnum">04</span><span class="ttext">What is wave&ndash;particle duality?</span></a></li>
+        <li><a href="#q05"><span class="tnum">05</span><span class="ttext">How can something be real and have no weight?</span></a></li>
+      </ol>
+    </div>
+
+    <div class="toc-group">
+      <p class="mv">II &middot; The Fundamental Particles</p>
+      <ol>
+        <li><a href="#q06"><span class="tnum">06</span><span class="ttext">What are the fundamental particles?</span></a></li>
+        <li><a href="#q07"><span class="tnum">07</span><span class="ttext">How do we know any of this is real?</span></a></li>
+        <li><a href="#q08"><span class="tnum">08</span><span class="ttext">What is charge?</span></a></li>
+      </ol>
+    </div>
+
+    <div class="toc-group">
+      <p class="mv">III &middot; The Four Forces</p>
+      <ol>
+        <li><a href="#q09"><span class="tnum">09</span><span class="ttext">What is the electromagnetic force?</span></a></li>
+        <li><a href="#q10"><span class="tnum">10</span><span class="ttext">What are the four fundamental forces?</span></a></li>
+        <li><a href="#q11"><span class="tnum">11</span><span class="ttext">What property does each force act upon?</span></a></li>
+        <li><a href="#q12"><span class="tnum">12</span><span class="ttext">What are real and virtual photons?</span></a></li>
+        <li><a href="#q13"><span class="tnum">13</span><span class="ttext">What role do bosons play in building matter?</span></a></li>
+      </ol>
+    </div>
+
+    <div class="toc-group">
+      <p class="mv">IV &middot; Matter, Antimatter and Transformation</p>
+      <ol>
+        <li><a href="#q14"><span class="tnum">14</span><span class="ttext">Can fermions be destroyed?</span></a></li>
+        <li><a href="#q15"><span class="tnum">15</span><span class="ttext">What are antiparticles?</span></a></li>
+        <li><a href="#q16"><span class="tnum">16</span><span class="ttext">What does it mean that mass is a form of energy?</span></a></li>
+        <li><a href="#q17"><span class="tnum">17</span><span class="ttext">Can energy create new particles?</span></a></li>
+      </ol>
+    </div>
+
+    <div class="toc-group">
+      <p class="mv">V &middot; Heat and the Quantum Floor</p>
+      <ol>
+        <li><a href="#q18"><span class="tnum">18</span><span class="ttext">What is heat?</span></a></li>
+        <li><a href="#q19"><span class="tnum">19</span><span class="ttext">Can particles ever be perfectly still?</span></a></li>
+        <li><a href="#q20"><span class="tnum">20</span><span class="ttext">How is energy stored in chemical bonds?</span></a></li>
+      </ol>
+    </div>
+
+    <div class="toc-group">
+      <p class="mv">VI &middot; Stars, Everyday Matter and the End of Things</p>
+      <ol>
+        <li><a href="#q21"><span class="tnum">21</span><span class="ttext">Why does the sun not explode instantaneously?</span></a></li>
+        <li><a href="#q22"><span class="tnum">22</span><span class="ttext">What particles do we encounter in everyday life?</span></a></li>
+        <li><a href="#q23"><span class="tnum">23</span><span class="ttext">How will the universe end?</span></a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- ============== I ============== -->
+  <section class="movement" id="s1">
+    <span class="mv-no">Movement I</span>
+    <h2>Light, Mass and Energy</h2>
+  </section>
+
+  <details class="qa" id="q01">
+    <summary><span class="qnum">01</span><span class="qtext">What are photons?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Photons are the fundamental particles of light and all other forms of electromagnetic radiation. They are massless, carry no electric charge, and travel at the speed of light in a vacuum. They exhibit wave&ndash;particle duality &mdash; behaving as waves in some experiments and as discrete particles in others. Photons are classified as bosons, one of the two great families of fundamental particles.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q02">
+    <summary><span class="qnum">02</span><span class="qtext">What is mass?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Mass simply means &lsquo;stuff&rsquo;. A brick has mass, your hand has mass &mdash; they are made of physical material you can weigh. A photon, by contrast, has no mass at all. It is not a tiny ball of stuff. It exists, it is real, but it weighs nothing.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q03">
+    <summary><span class="qnum">03</span><span class="qtext">What is energy?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Energy is the ability to cause change. Wherever something moves, heats up, lights up, breaks apart, or comes together, energy is involved. If nothing has energy, nothing happens. It is not a substance &mdash; it is more like a capacity. Energy comes in different forms: movement, heat, light, chemical bonds, and mass itself.</p>
+      <p>The absolutely unbreakable rule is that the total amount of energy in the universe never changes. It shifts from one form to another endlessly, but the total always stays the same. Nobody knows what energy fundamentally is &mdash; only what it does and how it behaves. It is best thought of as a universal currency that every process in nature trades in.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q04">
+    <summary><span class="qnum">04</span><span class="qtext">What is wave&ndash;particle duality?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Imagine dropping a stone into a pond &mdash; you see ripples spreading out. That is wave-like behaviour. Now imagine throwing a tennis ball at a wall &mdash; it hits one specific spot. That is particle-like behaviour. A photon somehow does both. When light travels through space, it spreads and ripples like a wave. But when it strikes a surface, it arrives at a specific point like a tiny bullet.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q05">
+    <summary><span class="qnum">05</span><span class="qtext">How can something be real and have no weight?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>A shadow is real &mdash; you can see it &mdash; but you cannot weigh it. A sound is real &mdash; you can hear it &mdash; but you cannot put it on a scale. A photon is best thought of not as a &lsquo;thing&rsquo; but as an event &mdash; something that happens, rather than something that sits there. It is energy on the move, and energy does not need to be made of material to be real.</p>
+    </div>
+  </details>
+
+  <p class="pullquote">Energy is the ability to cause change &mdash; the universal currency that every process in nature trades in.</p>
+
+  <!-- ============== II ============== -->
+  <section class="movement" id="s2">
+    <span class="mv-no">Movement II</span>
+    <h2>The Fundamental Particles</h2>
+  </section>
+
+  <details class="qa" id="q06">
+    <summary><span class="qnum">06</span><span class="qtext">What are the fundamental particles?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Everything in the universe is made from a small number of truly fundamental particles &mdash; particles with nothing smaller inside them. These come in two families: fermions and bosons. Fermions are the particles that make up matter. There are twelve, split into six quarks (up, down, charm, strange, top, bottom) and six leptons (electron, muon, tau, and three neutrinos). Bosons are the carriers of forces &mdash; the particles responsible for pushing and pulling. The photon is one of these.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q07">
+    <summary><span class="qnum">07</span><span class="qtext">How do we know any of this is real?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Because we can make these particles do things and then measure what happens. The whole of physics is built on experiments &mdash; actually testing ideas against reality. The electron was discovered in the late 1800s by running electricity through glass tubes and observing what happened. Quarks were predicted mathematically in the 1960s and confirmed by smashing protons apart with high-energy electrons. Every particle has been detected thousands of times, in laboratories all over the world. A discovery is only accepted when it can be repeated.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q08">
+    <summary><span class="qnum">08</span><span class="qtext">What is charge?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Charge is a built-in property that certain particles possess. It is not a substance and not something you can see or touch. It is simply a feature, in the same way a magnet has the feature of attracting metal. Charge comes in two types, labelled positive and negative. The rule is: opposite charges pull towards each other, and same charges push apart. Protons have positive charge; electrons have negative charge; neutrons have no charge at all.</p>
+    </div>
+  </details>
+
+  <!-- ============== III ============== -->
+  <section class="movement" id="s3">
+    <span class="mv-no">Movement III</span>
+    <h2>The Four Forces</h2>
+  </section>
+
+  <details class="qa" id="q09">
+    <summary><span class="qnum">09</span><span class="qtext">What is the electromagnetic force?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>The electromagnetic force is the push or pull between anything that has charge. &lsquo;Electromagnetic&rsquo; is a combined term because electricity and magnetism turned out to be two sides of the same coin. This force works because photons carry it &mdash; when two charged particles push or pull on each other, they are exchanging photons between them.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q10">
+    <summary><span class="qnum">10</span><span class="qtext">What are the four fundamental forces?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>There are exactly four. The electromagnetic force acts on charge, carried by photons. Gravity acts on mass or energy; it is the weakest of the four but feels dominant because the Earth is enormous. The strong force holds quarks together inside protons and neutrons, carried by bosons called gluons. The weak force allows particles to transform from one type to another, carried by W and Z bosons. Everything that happens in the universe is driven by some combination of these four.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q11">
+    <summary><span class="qnum">11</span><span class="qtext">What property does each force act upon?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Each force has its own &lsquo;ticket for entry&rsquo;. The electromagnetic force acts on anything with charge. The strong force acts on anything with colour charge &mdash; a property possessed only by quarks and gluons, with a name that has nothing to do with actual colour. The weak force acts on anything with weak isospin, a property all fermions possess. Gravity acts on anything with mass or energy. If a particle holds the relevant ticket, it feels that force. Neutrinos, for instance, have no charge and no colour charge, so they feel neither the electromagnetic nor the strong force &mdash; which is why they pass through almost everything.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q12">
+    <summary><span class="qnum">12</span><span class="qtext">What are real and virtual photons?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Real photons travel freely through space and can be detected &mdash; they are light. Virtual photons exist only fleetingly during force exchanges between charged particles and cannot be observed. A real photon is like a letter sent through the post; a virtual photon is like a private face-to-face conversation. Virtual photons do not have to obey all the same rules &mdash; they can behave as though they have mass and need not travel at the speed of light.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q13">
+    <summary><span class="qnum">13</span><span class="qtext">What role do bosons play in building matter?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>At every stage of matter being assembled, bosons are the agents making it happen. Gluons bind quarks into protons and neutrons. Gluons also provide the residual force that holds those into nuclei. Photons hold electrons around nuclei to form atoms and enable chemical bonds between atoms. W and Z bosons drive the nuclear reactions in stars that produce the chemical elements. Without bosons, fermions would sit there with no way of interacting with each other.</p>
+    </div>
+  </details>
+
+  <!-- ============== IV ============== -->
+  <section class="movement" id="s4">
+    <span class="mv-no">Movement IV</span>
+    <h2>Matter, Antimatter and Transformation</h2>
+  </section>
+
+  <details class="qa" id="q14">
+    <summary><span class="qnum">14</span><span class="qtext">Can fermions be destroyed?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Yes. Every fermion has a corresponding antiparticle &mdash; identical in every way except that its charge is reversed. When a particle meets its antiparticle, both are destroyed completely and their mass is converted entirely into energy. This is called annihilation, and it happens in hospitals every day: PET scans detect the photons produced when positrons annihilate with electrons inside the body. Fermions can also be transformed into different fermions through the weak force.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q15">
+    <summary><span class="qnum">15</span><span class="qtext">What are antiparticles?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>For every fermion there is a mirror version with opposite charge, giving twenty-four fermions in total rather than twelve. Antimatter is almost entirely absent from the observable universe today. In the early universe, matter and antimatter should have been produced in exactly equal quantities and annihilated each other entirely &mdash; but a tiny surplus of matter survived, roughly one extra particle for every billion pairs. That surplus is everything we see. Why the imbalance existed is one of the greatest unsolved questions in physics.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q16">
+    <summary><span class="qnum">16</span><span class="qtext">What does it mean that mass is a form of energy?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Einstein showed that mass and energy are interchangeable &mdash; two forms of the same thing. A particle with mass is, in a sense, energy that has been bundled up into a tiny, stable package. If enough energy is concentrated in a small enough space, it can transform into mass &mdash; it can become a physical particle that did not exist a moment before. The reverse also works: annihilating particles converts mass back into energy. Mass is an extraordinarily efficient store of energy, which is why nuclear reactions are so much more powerful than chemical reactions.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q17">
+    <summary><span class="qnum">17</span><span class="qtext">Can energy create new particles?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Yes. Energy in sufficient concentration, regardless of what form it is in, can convert into new fermion&ndash;antifermion pairs. This is precisely what happens in particle accelerators. At the Large Hadron Collider, protons are hurled at each other at enormous speeds, and the total mass of the particles that emerge is vastly greater than the mass of the two original protons &mdash; the kinetic energy of their movement has been converted into mass. The Higgs boson, with a mass roughly 130 times that of a proton, was discovered this way.</p>
+    </div>
+  </details>
+
+  <p class="pullquote">A particle with mass is energy that has been bundled up into a tiny, stable package.</p>
+
+  <!-- ============== V ============== -->
+  <section class="movement" id="s5">
+    <span class="mv-no">Movement V</span>
+    <h2>Heat and the Quantum Floor</h2>
+  </section>
+
+  <details class="qa" id="q18">
+    <summary><span class="qnum">18</span><span class="qtext">What is heat?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Heat is not a substance. It is the collective jiggling &mdash; or, to use the proper term, thermal motion &mdash; of a vast number of particles. The faster they jiggle, the hotter something is. The slower they jiggle, the colder. Temperature is a measure of the average speed of this jiggling across a large number of particles. It is meaningless for a single particle &mdash; a single particle simply has movement, not temperature.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q19">
+    <summary><span class="qnum">19</span><span class="qtext">Can particles ever be perfectly still?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>No. At the quantum scale, there is a rule called the uncertainty principle which says you cannot simultaneously know exactly where a particle is and exactly how fast it is moving. If a particle were perfectly still in one fixed spot, you would know both &mdash; and nature forbids this. So every particle must always retain some residual jiggling, called zero-point motion, even at the coldest possible temperature. This has been confirmed by the Casimir effect, the behaviour of liquid helium at near absolute zero, and the Lamb shift in hydrogen.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q20">
+    <summary><span class="qnum">20</span><span class="qtext">How is energy stored in chemical bonds?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>When two atoms come near each other, an electron can be attracted to both nuclei simultaneously. It settles into a shared position between them, falling to a lower energy state than it occupied before. The energy it lost is released &mdash; typically as a photon or as increased jiggling of surrounding particles. The two atoms are now bonded. To break that bond, you must put energy back in. Fossil fuels are ancient sunlight stored this way: photons from the sun were captured by plants millions of years ago, locked into chemical bonds, and remain there until combustion releases them.</p>
+    </div>
+  </details>
+
+  <!-- ============== VI ============== -->
+  <section class="movement" id="s6">
+    <span class="mv-no">Movement VI</span>
+    <h2>Stars, Everyday Matter and the End of Things</h2>
+  </section>
+
+  <details class="qa" id="q21">
+    <summary><span class="qnum">21</span><span class="qtext">Why does the sun not explode instantaneously?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Because fusion is extraordinarily difficult. Protons all have positive charge and repel each other fiercely. Only in the sun&rsquo;s core, under immense pressure and temperature, can they be forced close enough to fuse. Even then, any individual proton waits billions of years on average before successfully fusing with another. The sun shines only because there are so staggeringly many protons that enough fuse at any given moment. It is not a bomb &mdash; it is a slow, controlled burn held in balance between gravity pulling inward and fusion energy pushing outward.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q22">
+    <summary><span class="qnum">22</span><span class="qtext">What particles do we encounter in everyday life?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Three fermions account for essentially everything around you: electrons, up quarks, and down quarks (the latter two always locked inside protons and neutrons). Photons are everywhere &mdash; sunlight, lamp-light, heat, radio waves, Wi-Fi. Gluons are present inside every proton and neutron but never escape. Neutrinos flood through you at billions per second but pass straight through without interacting. The muons, taus, heavier quarks, and heavy bosons play no role in ordinary life.</p>
+    </div>
+  </details>
+
+  <details class="qa" id="q23">
+    <summary><span class="qnum">23</span><span class="qtext">How will the universe end?</span><span class="qmark" aria-hidden="true"></span></summary>
+    <div class="qa-body">
+      <p>Not by losing energy, but by energy spreading out so evenly across such an incomprehensibly vast space that it can no longer drive any process. This state &mdash; called maximum entropy, or the heat death of the universe &mdash; means the energy is all still there, every last bit, but it is so diluted and uniformly distributed that nothing interesting can ever happen again. The final state would be a thin, cold soup of extremely low-energy photons and neutrinos drifting through an enormous, empty void.</p>
+    </div>
+  </details>
+
+  <!-- ============== REFERENCE ============== -->
+  <details class="reference" id="assertions">
+    <summary><span class="rlabel">Appendix &middot; Fifty Key Assertions</span><span class="rmark">Show &rsaquo;</span></summary>
+    <p class="rsub">A summary of the principal claims established in the preceding conversation, presented as a standalone reference.</p>
+    <ol class="assertions">
+      <li>Everything in the universe is made from a small number of fundamental particles &mdash; particles with nothing smaller inside them.</li>
+      <li>Fundamental particles come in two families: fermions and bosons.</li>
+      <li>Fermions are the &lsquo;stuff&rsquo; of the universe &mdash; the particles that make up matter.</li>
+      <li>There are twelve fermions, split into six quarks and six leptons.</li>
+      <li>The six quarks are: up, down, charm, strange, top, and bottom.</li>
+      <li>The six leptons are: electron, muon, tau, and three types of neutrino.</li>
+      <li>Every fermion has a corresponding antiparticle &mdash; identical in mass but with opposite charge &mdash; giving twenty-four fermions in total.</li>
+      <li>When a particle meets its antiparticle, both are destroyed and their mass is converted entirely into energy. This is called annihilation.</li>
+      <li>Energy concentrated in sufficient quantity can create a fermion and its antiparticle as a pair.</li>
+      <li>Bosons are not &lsquo;stuff&rsquo;. They are energy transfer agents that carry forces between fermions.</li>
+      <li>Without bosons, fermions would have no way of interacting with each other and nothing would ever happen.</li>
+      <li>There are four fundamental forces in nature: electromagnetic, gravity, strong, and weak.</li>
+      <li>The electromagnetic force acts between particles that have charge. It is carried by photons.</li>
+      <li>The strong force holds quarks together inside protons and neutrons. It is carried by gluons.</li>
+      <li>The weak force allows particles to transform from one type to another. It is carried by W and Z bosons.</li>
+      <li>Gravity acts on anything with mass or energy. It is believed to be carried by a graviton, which has never been detected.</li>
+      <li>Each force has a corresponding property: charge for electromagnetic, colour charge for strong, weak isospin for weak, and mass or energy for gravity.</li>
+      <li>Charge is a built-in property of fermions. Opposite charges attract; same charges repel.</li>
+      <li>The electromagnetic and weak forces are two aspects of a single electroweak force, visible only at extremely high energies.</li>
+      <li>All four forces may ultimately be different faces of one unified force, but this has not been proven.</li>
+      <li>Protons are not fundamental. They are made of two up quarks and one down quark, held together by gluons.</li>
+      <li>Neutrons are not fundamental. They are made of two down quarks and one up quark, held together by gluons.</li>
+      <li>A photon has no mass, no charge, and always travels at the speed of light. It cannot slow down, speed up, or stop.</li>
+      <li>A photon is created when energy needs to move from one place to another, and is destroyed when absorbed.</li>
+      <li>Light is simply a large number of photons travelling together.</li>
+      <li>Different photons carry different amounts of energy. We perceive these differences as different colours.</li>
+      <li>Visible light is only a tiny fraction of all photons. Radio waves, microwaves, infrared, ultraviolet, X-rays, and gamma rays are all photons.</li>
+      <li>Real photons travel freely and can be detected. Virtual photons exist only fleetingly during force exchanges and cannot be observed.</li>
+      <li>Virtual photons do not have to obey all the same rules as real photons.</li>
+      <li>Mass is energy in a stored, concentrated, bundled-up form.</li>
+      <li>A tiny amount of mass contains an enormous amount of energy, which is why nuclear reactions are vastly more powerful than chemical ones.</li>
+      <li>Energy is the ability to cause change &mdash; the universal currency that every process in nature trades in.</li>
+      <li>Energy can change form but the total amount never changes. This is the law of conservation of energy.</li>
+      <li>Energy can be stored for long periods. Fossil fuels are ancient sunlight stored in chemical bonds for millions of years.</li>
+      <li>Chemical bonds form when electrons are shared between atoms, dropping into lower energy states.</li>
+      <li>Heat is not a substance. It is the collective jiggling of a vast number of particles.</li>
+      <li>Temperature is only meaningful for large collections of particles. A single particle has movement but not temperature.</li>
+      <li>At the quantum scale, particles can never be perfectly still. The uncertainty principle forbids it.</li>
+      <li>Zero-point motion has been confirmed by the Casimir effect, liquid helium behaviour, and the Lamb shift.</li>
+      <li>Thermal jiggling at room temperature is roughly one millionth of the speed of light.</li>
+      <li>Matter is assembled in stages: the strong force binds quarks into protons and neutrons, then into nuclei; the electromagnetic force attaches electrons to form atoms and bonds them into molecules; gravity assembles everything larger.</li>
+      <li>In the early universe, energy and matter were constantly interconverting at extreme temperatures.</li>
+      <li>A tiny imbalance &mdash; one extra matter particle per billion pairs &mdash; survived annihilation and is everything we see today.</li>
+      <li>The universe will end not by losing energy but by energy spreading out to maximum entropy.</li>
+      <li>The final state would be low-energy photons and neutrinos spread across an incomprehensibly vast, cold, empty space.</li>
+      <li>The sun converts mass into energy through nuclear fusion &mdash; an extremely slow, difficult process balanced by gravity.</li>
+      <li>In everyday life, only electrons, up quarks, down quarks, photons, gluons, and neutrinos are encountered.</li>
+      <li>Particle accelerators create new particles by converting the kinetic energy of collisions into mass.</li>
+      <li>Physics does not yet know what energy fundamentally is &mdash; only what it does and how it behaves.</li>
+      <li>The naming conventions of physics were chosen for mathematical convenience, not for clarity.</li>
+    </ol>
+  </details>
+
+  <!-- ============== PAGER ============== -->
+  <nav class="pager" aria-label="Section navigation">
+    <a href="index.html" class="pg-back">&larr; aminbilal.com</a>
+    <a href="#" class="to-top">Back to top</a>
+    <a href="technology.html" class="pg-next">Technology &rarr;</a>
+  </nav>
+
+  <div class="colophon">
+    <span class="orn">&#10038;</span>
+    Amin Bilal &middot; The Particle Physics Primer &middot; a first-principles guide &middot; &copy; 2026
+  </div>
+
+</main>
+
+</body>
+</html>
