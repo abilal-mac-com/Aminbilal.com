@@ -127,16 +127,14 @@
   /* ================= Responsive ================= */
   @media (max-width:760px){
     .layout{flex-direction:column;gap:0;padding:0}
-    .rail{position:static;flex:none;width:auto;max-height:none;overflow:visible;border-right:0;border-bottom:1px solid var(--hair);padding:.9rem 1.05rem .3rem;background:var(--paper)}
+    /* On narrow screens the rail sits ABOVE the content as a full-width
+       vertical list, reusing the wide-layout grid styling (which renders
+       correctly on iPhone) rather than a horizontal strip. The only mobile
+       changes are that the container stops being a flex row and the rail
+       stops being sticky and fixed-width; the nav items fall back to the
+       wide-layout rules. */
+    .rail{position:static;flex:none;width:auto;max-height:none;overflow:visible;border-right:0;border-bottom:1px solid var(--hair);margin:0 0 1.4rem;padding:.9rem 1.05rem 1rem;background:var(--paper)}
     .rail-title{margin-bottom:.6rem}
-    .nav{border-top:0;display:flex;gap:.4rem;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:.6rem}
-    .nav::-webkit-scrollbar{display:none}
-    .nav-item{flex:0 0 auto;display:flex;align-items:baseline;gap:.4rem;border:1px solid var(--hair);border-radius:3px;border-left:1px solid var(--hair);padding:.5rem .7rem;white-space:nowrap}
-    .nav-item .t{font-size:.86rem}
-    .nav-item .num{font-size:.82rem}
-    .nav-item.is-current{border-color:var(--house);border-left-color:var(--house)}
-    .nav-item.is-current .num{font-size:.8rem}
-    .nav-item.is-current .num::after{content:""}
     .main{padding:0 1.05rem 3.5rem}
     .crumb,.panel,.pager,.colophon{max-width:none}
     .qa-body{padding-left:2rem}
