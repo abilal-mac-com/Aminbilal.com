@@ -12,14 +12,17 @@
   ------------------------------------------------------------
   Sits at the site root alongside:
     · technology.html   (the Executive Technology Literacy site)
+    · physics.html      (The Particle Physics Primer)
     · /documents/       (the typeset PDFs used by technology.html)
 
-  The Technology button links out to technology.html.
-  The five remaining sections open an "under preparation" page,
-  addressed by URL hash (#physics, #markets, #pakistan,
-  #diabetes, #placeholder) and served from this same file.
-  To give one a real page later, its label maps to a title in
-  the SUBJECTS object in the script at the foot of the file.
+  The Technology and Physics buttons link out to their own
+  pages (technology.html and physics.html).
+  The four remaining sections open an "under preparation" page,
+  addressed by URL hash (#markets, #pakistan, #diabetes,
+  #placeholder) and served from this same file.
+  To give one a real page later, point its tile at the new file
+  and remove its entry from the SUBJECTS object in the script
+  at the foot of the file.
   ============================================================
 -->
 
@@ -124,7 +127,7 @@
 
       <nav class="tiles" aria-label="Sections">
         <a class="tile" href="technology.html">Technology</a>
-        <a class="tile" href="#physics">Physics</a>
+        <a class="tile" href="physics.html">Physics</a>
         <a class="tile" href="#markets">Markets</a>
         <a class="tile" href="#pakistan">Pakistan</a>
         <a class="tile" href="#diabetes">Diabetes</a>
@@ -152,7 +155,7 @@
 (function(){
   "use strict";
   var SUBJECTS = {
-    physics:'Physics', markets:'Markets', pakistan:'Pakistan',
+    markets:'Markets', pakistan:'Pakistan',
     diabetes:'Diabetes', placeholder:'Placeholder'
   };
   var landing = document.getElementById('landing');
@@ -180,4 +183,3 @@
 </script>
 </body>
 </html>
-
