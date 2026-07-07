@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FBF9F4">
-<meta name="description" content="A first-principles guide to photons, fermions, bosons, the four forces, energy and mass, and the structure of the universe — assuming no prior scientific knowledge.">
+<meta name="description" content="A first-principles guide to photons, fermions, bosons, the four forces, energy and mass, and the great open questions of physics and cosmology — assuming no prior scientific knowledge.">
 <title>The Particle Physics Primer &mdash; Amin Bilal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,6 +101,13 @@
   .qa-body{padding:0 0 1.3rem 2.75rem}
   .qa-body p{margin:0 0 1em}
   .qa-body p:last-child{margin-bottom:0}
+  .qa-body sup{font-size:.72em}
+  .qa-body .lede-word{font-variant:small-caps;letter-spacing:.03em;font-weight:700;color:var(--house)}
+
+  /* ---- Open-questions divider ---- */
+  .openq{font-family:var(--display);text-transform:uppercase;letter-spacing:.2em;font-size:.64rem;font-weight:700;color:var(--house);margin:1.9rem 0 .1rem;display:flex;align-items:center;gap:.9rem}
+  .openq::after{content:"";flex:1;height:1px;background:var(--hair)}
+  .openq + .qa{border-top:1px solid var(--hair)}
 
   /* ---- Assertions list ---- */
   .assertions{list-style:none;counter-reset:ax;padding:0;margin:0}
@@ -175,19 +182,19 @@
         <span class="badge">Six Movements</span>
       </div>
       <h1 class="p-title">The Particle Physics Primer</h1>
-      <p class="p-stand">Photons, fermions, bosons, the four forces, energy and mass, and how they combine to produce the material universe &mdash; built step by step, and assuming no prior scientific knowledge.</p>
+      <p class="p-stand">Photons, fermions, bosons, the four forces, energy and mass, and how they combine to produce the material universe &mdash; followed, in each movement, by the questions that remain unanswered. Built step by step, assuming no prior scientific knowledge.</p>
       <div class="p-rule"></div>
 
       <p class="opening"><span class="dropcap">W</span>hat follows is a record of a conversation about particle physics, conducted entirely from first principles. No prior scientific knowledge is assumed. The aim is to build, step by step, a working understanding of the fundamental particles, the forces that govern them, the nature of energy and mass, and how these combine to produce the material universe.</p>
 
-      <p class="lede-note">The primer runs as a single sequence of twenty-three questions, gathered into the six movements listed to the left &mdash; from light and energy through to the fate of the universe. Select any movement to read it; within each, every question opens on its own. The fifty key assertions at the foot distil the whole into a standalone reference.</p>
+      <p class="lede-note">The primer runs as a single sequence of thirty-two questions, gathered into the six movements listed to the left &mdash; from light and energy through to the fate of the universe. Each movement sets out first what is settled, and closes with the open questions science cannot yet answer. Select any movement to read it; within each, every question opens on its own. The fifty key assertions at the foot distil the settled material into a standalone reference.</p>
     </section>
 
     <!-- ---------- MOVEMENT I ---------- -->
     <section class="panel" id="m1">
       <div class="p-head">
         <p class="p-eyebrow">Movement I</p>
-        <span class="badge">5 Questions</span>
+        <span class="badge">6 Questions</span>
       </div>
       <h1 class="p-title">Light, Mass and Energy</h1>
       <p class="p-stand">The starting materials &mdash; what a photon is, what mass and energy are, and how something can be entirely real yet weigh nothing.</p>
@@ -228,36 +235,54 @@
           <p>A shadow is real &mdash; you can see it &mdash; but you cannot weigh it. A sound is real &mdash; you can hear it &mdash; but you cannot put it on a scale. A photon is best thought of not as a &lsquo;thing&rsquo; but as an event &mdash; something that happens, rather than something that sits there. It is energy on the move, and energy does not need to be made of material to be real.</p>
         </div>
       </details>
+
+      <p class="openq">Open Questions</p>
+
+      <details class="qa" id="q06">
+        <summary><span class="qnum">06</span><span class="qtext">Where does mass come from?</span><span class="qmark" aria-hidden="true"></span></summary>
+        <div class="qa-body">
+          <p><span class="lede-word">Partly answered.</span> The Higgs field confers mass upon the elementary particles, a mechanism confirmed by the discovery of the Higgs boson in 2012. However, the greater part of the mass of ordinary matter resides not in the Higgs but in the binding energy of the quarks and gluons confined within protons and neutrons. Why the fundamental particles carry the particular masses they do &mdash; the pattern of their values &mdash; remains unexplained.</p>
+        </div>
+      </details>
     </section>
 
     <!-- ---------- MOVEMENT II ---------- -->
     <section class="panel" id="m2">
       <div class="p-head">
         <p class="p-eyebrow">Movement II</p>
-        <span class="badge">3 Questions</span>
+        <span class="badge">4 Questions</span>
       </div>
       <h1 class="p-title">The Fundamental Particles</h1>
       <p class="p-stand">The full cast of matter: the twelve fermions, how we came to know they exist, and the property called charge.</p>
       <div class="p-rule"></div>
 
-      <details class="qa" id="q06">
-        <summary><span class="qnum">06</span><span class="qtext">What are the fundamental particles?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q07">
+        <summary><span class="qnum">07</span><span class="qtext">What are the fundamental particles?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Everything in the universe is made from a small number of truly fundamental particles &mdash; particles with nothing smaller inside them. These come in two families: fermions and bosons. Fermions are the particles that make up matter. There are twelve, split into six quarks (up, down, charm, strange, top, bottom) and six leptons (electron, muon, tau, and three neutrinos). Bosons are the carriers of forces &mdash; the particles responsible for pushing and pulling. The photon is one of these.</p>
         </div>
       </details>
 
-      <details class="qa" id="q07">
-        <summary><span class="qnum">07</span><span class="qtext">How do we know any of this is real?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q08">
+        <summary><span class="qnum">08</span><span class="qtext">How do we know any of this is real?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Because we can make these particles do things and then measure what happens. The whole of physics is built on experiments &mdash; actually testing ideas against reality. The electron was discovered in the late 1800s by running electricity through glass tubes and observing what happened. Quarks were predicted mathematically in the 1960s and confirmed by smashing protons apart with high-energy electrons. Every particle has been detected thousands of times, in laboratories all over the world. A discovery is only accepted when it can be repeated.</p>
         </div>
       </details>
 
-      <details class="qa" id="q08">
-        <summary><span class="qnum">08</span><span class="qtext">What is charge?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q09">
+        <summary><span class="qnum">09</span><span class="qtext">What is charge?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Charge is a built-in property that certain particles possess. It is not a substance and not something you can see or touch. It is simply a feature, in the same way a magnet has the feature of attracting metal. Charge comes in two types, labelled positive and negative. The rule is: opposite charges pull towards each other, and same charges push apart. Protons have positive charge; electrons have negative charge; neutrons have no charge at all.</p>
+        </div>
+      </details>
+
+      <p class="openq">Open Questions</p>
+
+      <details class="qa" id="q10">
+        <summary><span class="qnum">10</span><span class="qtext">What is dark matter?</span><span class="qmark" aria-hidden="true"></span></summary>
+        <div class="qa-body">
+          <p><span class="lede-word">Unknown.</span> Approximately 27 per cent of the universe&rsquo;s mass-energy consists of matter that neither emits nor absorbs light and betrays its presence only through gravity &mdash; in the rotation of galaxies, the bending of light by gravitational lensing, and the pattern of the cosmic microwave background. Its existence is not seriously disputed, yet no constituent particle has ever been directly detected. The principal candidates are weakly interacting massive particles (WIMPs) and axions, neither of which has been confirmed.</p>
         </div>
       </details>
     </section>
@@ -266,44 +291,60 @@
     <section class="panel" id="m3">
       <div class="p-head">
         <p class="p-eyebrow">Movement III</p>
-        <span class="badge">5 Questions</span>
+        <span class="badge">7 Questions</span>
       </div>
       <h1 class="p-title">The Four Forces</h1>
       <p class="p-stand">The four forces that govern everything, the property each one acts upon, and the bosons that carry them.</p>
       <div class="p-rule"></div>
 
-      <details class="qa" id="q09">
-        <summary><span class="qnum">09</span><span class="qtext">What is the electromagnetic force?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q11">
+        <summary><span class="qnum">11</span><span class="qtext">What is the electromagnetic force?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>The electromagnetic force is the push or pull between anything that has charge. &lsquo;Electromagnetic&rsquo; is a combined term because electricity and magnetism turned out to be two sides of the same coin. This force works because photons carry it &mdash; when two charged particles push or pull on each other, they are exchanging photons between them.</p>
         </div>
       </details>
 
-      <details class="qa" id="q10">
-        <summary><span class="qnum">10</span><span class="qtext">What are the four fundamental forces?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q12">
+        <summary><span class="qnum">12</span><span class="qtext">What are the four fundamental forces?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>There are exactly four. The electromagnetic force acts on charge, carried by photons. Gravity acts on mass or energy; it is the weakest of the four but feels dominant because the Earth is enormous. The strong force holds quarks together inside protons and neutrons, carried by bosons called gluons. The weak force allows particles to transform from one type to another, carried by W and Z bosons. Everything that happens in the universe is driven by some combination of these four.</p>
         </div>
       </details>
 
-      <details class="qa" id="q11">
-        <summary><span class="qnum">11</span><span class="qtext">What property does each force act upon?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q13">
+        <summary><span class="qnum">13</span><span class="qtext">What property does each force act upon?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Each force has its own &lsquo;ticket for entry&rsquo;. The electromagnetic force acts on anything with charge. The strong force acts on anything with colour charge &mdash; a property possessed only by quarks and gluons, with a name that has nothing to do with actual colour. The weak force acts on anything with weak isospin, a property all fermions possess. Gravity acts on anything with mass or energy. If a particle holds the relevant ticket, it feels that force. Neutrinos, for instance, have no charge and no colour charge, so they feel neither the electromagnetic nor the strong force &mdash; which is why they pass through almost everything.</p>
         </div>
       </details>
 
-      <details class="qa" id="q12">
-        <summary><span class="qnum">12</span><span class="qtext">What are real and virtual photons?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q14">
+        <summary><span class="qnum">14</span><span class="qtext">What are real and virtual photons?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Real photons travel freely through space and can be detected &mdash; they are light. Virtual photons exist only fleetingly during force exchanges between charged particles and cannot be observed. A real photon is like a letter sent through the post; a virtual photon is like a private face-to-face conversation. Virtual photons do not have to obey all the same rules &mdash; they can behave as though they have mass and need not travel at the speed of light.</p>
         </div>
       </details>
 
-      <details class="qa" id="q13">
-        <summary><span class="qnum">13</span><span class="qtext">What role do bosons play in building matter?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q15">
+        <summary><span class="qnum">15</span><span class="qtext">What role do bosons play in building matter?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>At every stage of matter being assembled, bosons are the agents making it happen. Gluons bind quarks into protons and neutrons. Gluons also provide the residual force that holds those into nuclei. Photons hold electrons around nuclei to form atoms and enable chemical bonds between atoms. W and Z bosons drive the nuclear reactions in stars that produce the chemical elements. Without bosons, fermions would sit there with no way of interacting with each other.</p>
+        </div>
+      </details>
+
+      <p class="openq">Open Questions</p>
+
+      <details class="qa" id="q16">
+        <summary><span class="qnum">16</span><span class="qtext">Why is gravity so much weaker than the other forces?</span><span class="qmark" aria-hidden="true"></span></summary>
+        <div class="qa-body">
+          <p><span class="lede-word">Unknown.</span> Gravity is weaker than electromagnetism by a factor of roughly 10<sup>36</sup>, an immense disparity termed the hierarchy problem. No accepted explanation exists. Proposed resolutions include supersymmetry, which posits a partner for every known particle, and the possibility that gravity is diluted across additional spatial dimensions inaccessible to the other forces.</p>
+        </div>
+      </details>
+
+      <details class="qa" id="q17">
+        <summary><span class="qnum">17</span><span class="qtext">How many dimensions are there?</span><span class="qmark" aria-hidden="true"></span></summary>
+        <div class="qa-body">
+          <p><span class="lede-word">Unknown.</span> Three dimensions of space and one of time are directly observed. Whether further dimensions exist &mdash; curled up too small to detect, as string theory proposes &mdash; is entirely untested by experiment, and the question remains open.</p>
         </div>
       </details>
     </section>
@@ -312,37 +353,46 @@
     <section class="panel" id="m4">
       <div class="p-head">
         <p class="p-eyebrow">Movement IV</p>
-        <span class="badge">4 Questions</span>
+        <span class="badge">5 Questions</span>
       </div>
       <h1 class="p-title">Matter, Antimatter and Transformation</h1>
       <p class="p-stand">Antiparticles and annihilation, the equivalence of mass and energy, and how energy alone can bring new particles into being.</p>
       <div class="p-rule"></div>
 
-      <details class="qa" id="q14">
-        <summary><span class="qnum">14</span><span class="qtext">Can fermions be destroyed?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q18">
+        <summary><span class="qnum">18</span><span class="qtext">Can fermions be destroyed?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Yes. Every fermion has a corresponding antiparticle &mdash; identical in every way except that its charge is reversed. When a particle meets its antiparticle, both are destroyed completely and their mass is converted entirely into energy. This is called annihilation, and it happens in hospitals every day: PET scans detect the photons produced when positrons annihilate with electrons inside the body. Fermions can also be transformed into different fermions through the weak force.</p>
         </div>
       </details>
 
-      <details class="qa" id="q15">
-        <summary><span class="qnum">15</span><span class="qtext">What are antiparticles?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q19">
+        <summary><span class="qnum">19</span><span class="qtext">What are antiparticles?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>For every fermion there is a mirror version with opposite charge, giving twenty-four fermions in total rather than twelve. Antimatter is almost entirely absent from the observable universe today. In the early universe, matter and antimatter should have been produced in exactly equal quantities and annihilated each other entirely &mdash; but a tiny surplus of matter survived, roughly one extra particle for every billion pairs. That surplus is everything we see. Why the imbalance existed is one of the greatest unsolved questions in physics.</p>
         </div>
       </details>
 
-      <details class="qa" id="q16">
-        <summary><span class="qnum">16</span><span class="qtext">What does it mean that mass is a form of energy?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q20">
+        <summary><span class="qnum">20</span><span class="qtext">What does it mean that mass is a form of energy?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Einstein showed that mass and energy are interchangeable &mdash; two forms of the same thing. A particle with mass is, in a sense, energy that has been bundled up into a tiny, stable package. If enough energy is concentrated in a small enough space, it can transform into mass &mdash; it can become a physical particle that did not exist a moment before. The reverse also works: annihilating particles converts mass back into energy. Mass is an extraordinarily efficient store of energy, which is why nuclear reactions are so much more powerful than chemical reactions.</p>
         </div>
       </details>
 
-      <details class="qa" id="q17">
-        <summary><span class="qnum">17</span><span class="qtext">Can energy create new particles?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q21">
+        <summary><span class="qnum">21</span><span class="qtext">Can energy create new particles?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Yes. Energy in sufficient concentration, regardless of what form it is in, can convert into new fermion&ndash;antifermion pairs. This is precisely what happens in particle accelerators. At the Large Hadron Collider, protons are hurled at each other at enormous speeds, and the total mass of the particles that emerge is vastly greater than the mass of the two original protons &mdash; the kinetic energy of their movement has been converted into mass. The Higgs boson, with a mass roughly 130 times that of a proton, was discovered this way.</p>
+        </div>
+      </details>
+
+      <p class="openq">Open Questions</p>
+
+      <details class="qa" id="q22">
+        <summary><span class="qnum">22</span><span class="qtext">Why is there more matter than antimatter?</span><span class="qmark" aria-hidden="true"></span></summary>
+        <div class="qa-body">
+          <p><span class="lede-word">Unknown.</span> The Big Bang ought to have produced matter and antimatter in equal measure; had it done so, the two would have annihilated completely, leaving only radiation and no galaxies, stars or observers. The observed dominance of matter &mdash; the baryon asymmetry &mdash; requires a violation of the symmetry between matter and antimatter. Such violation is known to occur, but the amount permitted within the Standard Model of particle physics is far too small to account for the universe we inhabit.</p>
         </div>
       </details>
     </section>
@@ -351,30 +401,46 @@
     <section class="panel" id="m5">
       <div class="p-head">
         <p class="p-eyebrow">Movement V</p>
-        <span class="badge">3 Questions</span>
+        <span class="badge">5 Questions</span>
       </div>
       <h1 class="p-title">Heat and the Quantum Floor</h1>
       <p class="p-stand">What heat really is, why nothing can ever be perfectly still, and how energy is locked away inside chemical bonds.</p>
       <div class="p-rule"></div>
 
-      <details class="qa" id="q18">
-        <summary><span class="qnum">18</span><span class="qtext">What is heat?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q23">
+        <summary><span class="qnum">23</span><span class="qtext">What is heat?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Heat is not a substance. It is the collective jiggling &mdash; or, to use the proper term, thermal motion &mdash; of a vast number of particles. The faster they jiggle, the hotter something is. The slower they jiggle, the colder. Temperature is a measure of the average speed of this jiggling across a large number of particles. It is meaningless for a single particle &mdash; a single particle simply has movement, not temperature.</p>
         </div>
       </details>
 
-      <details class="qa" id="q19">
-        <summary><span class="qnum">19</span><span class="qtext">Can particles ever be perfectly still?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q24">
+        <summary><span class="qnum">24</span><span class="qtext">Can particles ever be perfectly still?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>No. At the quantum scale, there is a rule called the uncertainty principle which says you cannot simultaneously know exactly where a particle is and exactly how fast it is moving. If a particle were perfectly still in one fixed spot, you would know both &mdash; and nature forbids this. So every particle must always retain some residual jiggling, called zero-point motion, even at the coldest possible temperature. This has been confirmed by the Casimir effect, the behaviour of liquid helium at near absolute zero, and the Lamb shift in hydrogen.</p>
         </div>
       </details>
 
-      <details class="qa" id="q20">
-        <summary><span class="qnum">20</span><span class="qtext">How is energy stored in chemical bonds?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q25">
+        <summary><span class="qnum">25</span><span class="qtext">How is energy stored in chemical bonds?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>When two atoms come near each other, an electron can be attracted to both nuclei simultaneously. It settles into a shared position between them, falling to a lower energy state than it occupied before. The energy it lost is released &mdash; typically as a photon or as increased jiggling of surrounding particles. The two atoms are now bonded. To break that bond, you must put energy back in. Fossil fuels are ancient sunlight stored this way: photons from the sun were captured by plants millions of years ago, locked into chemical bonds, and remain there until combustion releases them.</p>
+        </div>
+      </details>
+
+      <p class="openq">Open Questions</p>
+
+      <details class="qa" id="q26">
+        <summary><span class="qnum">26</span><span class="qtext">What is space?</span><span class="qmark" aria-hidden="true"></span></summary>
+        <div class="qa-body">
+          <p><span class="lede-word">Open.</span> General relativity treats space not as a passive stage but as a dynamic geometry that curves and stretches in the presence of matter and energy. Whether space is smooth and continuous down to the smallest scales, or granular and quantised at the Planck length of about 10<sup>&minus;35</sup> metres, cannot be settled without a working theory of quantum gravity &mdash; which physics does not yet possess.</p>
+        </div>
+      </details>
+
+      <details class="qa" id="q27">
+        <summary><span class="qnum">27</span><span class="qtext">Why does time flow only forwards?</span><span class="qmark" aria-hidden="true"></span></summary>
+        <div class="qa-body">
+          <p><span class="lede-word">Unresolved.</span> The fundamental laws of physics are very nearly symmetric with respect to the direction of time, yet experience is emphatically one-way. This &lsquo;arrow of time&rsquo; is generally traced to the second law of thermodynamics &mdash; that entropy, or disorder, increases &mdash; which in turn requires that the universe began in a state of extraordinarily low entropy. Why the early universe was so highly ordered is itself unexplained.</p>
         </div>
       </details>
     </section>
@@ -383,30 +449,46 @@
     <section class="panel" id="m6">
       <div class="p-head">
         <p class="p-eyebrow">Movement VI</p>
-        <span class="badge">3 Questions</span>
+        <span class="badge">5 Questions</span>
       </div>
       <h1 class="p-title">Stars, Everyday Matter and the End of Things</h1>
       <p class="p-stand">Why the sun burns slowly rather than exploding, which particles actually surround us, and how the universe reaches its end.</p>
       <div class="p-rule"></div>
 
-      <details class="qa" id="q21">
-        <summary><span class="qnum">21</span><span class="qtext">Why does the sun not explode instantaneously?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q28">
+        <summary><span class="qnum">28</span><span class="qtext">Why does the sun not explode instantaneously?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Because fusion is extraordinarily difficult. Protons all have positive charge and repel each other fiercely. Only in the sun&rsquo;s core, under immense pressure and temperature, can they be forced close enough to fuse. Even then, any individual proton waits billions of years on average before successfully fusing with another. The sun shines only because there are so staggeringly many protons that enough fuse at any given moment. It is not a bomb &mdash; it is a slow, controlled burn held in balance between gravity pulling inward and fusion energy pushing outward.</p>
         </div>
       </details>
 
-      <details class="qa" id="q22">
-        <summary><span class="qnum">22</span><span class="qtext">What particles do we encounter in everyday life?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q29">
+        <summary><span class="qnum">29</span><span class="qtext">What particles do we encounter in everyday life?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Three fermions account for essentially everything around you: electrons, up quarks, and down quarks (the latter two always locked inside protons and neutrons). Photons are everywhere &mdash; sunlight, lamp-light, heat, radio waves, Wi-Fi. Gluons are present inside every proton and neutron but never escape. Neutrinos flood through you at billions per second but pass straight through without interacting. The muons, taus, heavier quarks, and heavy bosons play no role in ordinary life.</p>
         </div>
       </details>
 
-      <details class="qa" id="q23">
-        <summary><span class="qnum">23</span><span class="qtext">How will the universe end?</span><span class="qmark" aria-hidden="true"></span></summary>
+      <details class="qa" id="q30">
+        <summary><span class="qnum">30</span><span class="qtext">How will the universe end?</span><span class="qmark" aria-hidden="true"></span></summary>
         <div class="qa-body">
           <p>Not by losing energy, but by energy spreading out so evenly across such an incomprehensibly vast space that it can no longer drive any process. This state &mdash; called maximum entropy, or the heat death of the universe &mdash; means the energy is all still there, every last bit, but it is so diluted and uniformly distributed that nothing interesting can ever happen again. The final state would be a thin, cold soup of extremely low-energy photons and neutrinos drifting through an enormous, empty void.</p>
+        </div>
+      </details>
+
+      <p class="openq">Open Questions</p>
+
+      <details class="qa" id="q31">
+        <summary><span class="qnum">31</span><span class="qtext">What is dark energy, and why is the expansion of the universe accelerating?</span><span class="qmark" aria-hidden="true"></span></summary>
+        <div class="qa-body">
+          <p><span class="lede-word">Unknown.</span> A further 68 per cent of the universe is attributed to dark energy, inferred from the accelerating expansion of the cosmos established in 1998 through observations of distant Type&nbsp;Ia supernovae. The simplest description is a cosmological constant &mdash; an energy inherent to empty space &mdash; but the value predicted by quantum field theory exceeds the value observed by some 120 orders of magnitude, a discrepancy known as the vacuum catastrophe. Why the two disagree so violently is unresolved.</p>
+        </div>
+      </details>
+
+      <details class="qa" id="q32">
+        <summary><span class="qnum">32</span><span class="qtext">What is the source of the highest-energy cosmic rays?</span><span class="qmark" aria-hidden="true"></span></summary>
+        <div class="qa-body">
+          <p><span class="lede-word">Largely unknown.</span> The Earth is continually struck by charged particles from space, the most energetic of which carry in excess of 10<sup>20</sup> electronvolts &mdash; energies far beyond the reach of any laboratory accelerator. Candidate origins include active galactic nuclei and gamma-ray bursts, but the precise sources of these ultra-high-energy particles have not been established.</p>
         </div>
       </details>
     </section>
