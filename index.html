@@ -23,6 +23,14 @@
   To give one a real page later, point its tile at the new file
   and remove its entry from the SUBJECTS object in the script
   at the foot of the file.
+
+  Masthead: an "A B" emblem flanked by hairlines, a letter-spaced
+  dateline kicker, the wordmark, an oxblood title-rule, and the
+  handwritten tagline. The tiles form a fixed 3x2 grid (2x3, then
+  a single column, on narrower screens); each carries a leading-
+  zero index and a top accent that fills on hover. The masthead
+  and tiles rise in on load; the whole entrance is disabled under
+  prefers-reduced-motion.
   ============================================================
 -->
 
@@ -41,8 +49,14 @@
   *{ box-sizing:border-box; }
   html{ -webkit-text-size-adjust:100%; }
   body{
-    margin:0; background:var(--cream); color:var(--ink);
+    margin:0; background:var(--cream); color:var(--ink); position:relative;
     font-family:var(--serif); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  /* Faint paper grain, laid over the cream so the field is not wholly flat. */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:.035; mix-blend-mode:multiply;
   }
   a{ color:var(--oxblood); text-decoration:none; }
   [hidden]{ display:none !important; }
@@ -50,45 +64,104 @@
 
   /* -------------------- landing -------------------- */
   .hero{
+    position:relative; z-index:1;
     min-height:100vh; min-height:100svh;
     display:flex; align-items:center; justify-content:center;
     padding:clamp(40px,8vw,90px) clamp(20px,5vw,56px);
     text-align:center;
+    /* A soft warm highlight lifting the top-centre of the field. */
+    background:radial-gradient(1200px 520px at 50% 12%, rgba(255,255,255,.55), rgba(255,255,255,0) 70%);
   }
   .hero-inner{ width:100%; max-width:760px; }
 
+  /* ---- masthead ---- */
+  .masthead{ opacity:0; animation:riseIn .7s cubic-bezier(.2,.7,.2,1) .02s forwards; }
+
+  .emblem{
+    display:inline-flex; align-items:center; gap:.7rem;
+    font-family:var(--serif); font-weight:700; color:var(--oxblood);
+    font-size:1.15rem; letter-spacing:.2em;
+  }
+  .emblem::before, .emblem::after{
+    content:""; width:34px; height:1px; background:var(--rule-strong);
+  }
+
+  .kicker{
+    font-family:var(--sans); text-transform:uppercase; letter-spacing:.3em;
+    font-size:.72rem; font-weight:700; color:var(--soft);
+    margin:1rem 0 .15rem; padding-left:.3em;
+  }
+
   .site-title{
     font-family:var(--serif); font-weight:700; color:var(--ink);
-    font-size:clamp(40px,8.6vw,78px); line-height:1.03; letter-spacing:-.02em; margin:0;
+    font-size:clamp(42px,8.8vw,80px); line-height:1.02; letter-spacing:-.025em; margin:.12em 0 0;
   }
+  .titlerule{ width:74px; height:2px; background:var(--oxblood); opacity:.9; margin:.7rem auto 0; }
   .tagline{
     font-family:var(--hand); color:var(--oxblood); font-weight:600;
-    font-size:clamp(31px,7.4vw,54px); line-height:1; margin:.28em 0 0;
+    font-size:clamp(30px,7vw,52px); line-height:1; margin:.48em 0 0;
   }
 
+  /* ---- tiles ---- */
   .tiles{
-    display:flex; flex-wrap:wrap; justify-content:center; gap:16px;
+    display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px;
     max-width:690px; margin:clamp(40px,6vw,64px) auto 0;
+    counter-reset:t;
   }
   .tile{
-    flex:1 1 185px; max-width:216px; min-height:94px;
+    counter-increment:t;
+    position:relative; overflow:hidden;
+    min-height:104px;
     display:flex; align-items:center; justify-content:center; text-align:center;
-    padding:18px 20px;
+    padding:20px;
     font-family:var(--serif); font-weight:600; font-size:21px; color:var(--oxblood);
-    background:#FFFFFF; border:1px solid rgba(134,24,49,.35); border-radius:5px;
-    transition:background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+    background:#FFFFFF; border:1px solid rgba(134,24,49,.22); border-radius:6px;
+    box-shadow:
+      inset 0 3px 0 var(--oxblood),
+      0 1px 2px rgba(26,26,26,.05),
+      0 8px 22px rgba(26,26,26,.05);
+    opacity:0; animation:riseIn .6s cubic-bezier(.2,.7,.2,1) forwards;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
   }
+  .tile::before{
+    content:counter(t, decimal-leading-zero);
+    position:absolute; top:11px; left:13px;
+    font-family:var(--sans); font-weight:700; font-size:11px; letter-spacing:.12em;
+    color:var(--oxblood); opacity:.75; transition:color .2s ease, opacity .2s ease;
+  }
+  .tile:nth-child(1){ animation-delay:.12s; }
+  .tile:nth-child(2){ animation-delay:.17s; }
+  .tile:nth-child(3){ animation-delay:.22s; }
+  .tile:nth-child(4){ animation-delay:.27s; }
+  .tile:nth-child(5){ animation-delay:.32s; }
+  .tile:nth-child(6){ animation-delay:.37s; }
+
+  /* !important lets the hover lift override the value the entrance
+     animation holds after it finishes (fill-mode: forwards). */
   .tile:hover, .tile:focus-visible{
-    background:var(--oxblood); color:#fff; border-color:var(--oxblood); transform:translateY(-2px);
+    transform:translateY(-3px) !important;
+    background:var(--oxblood); color:#FFFFFF; border-color:var(--oxblood);
+    box-shadow:
+      inset 0 4px 0 rgba(255,255,255,.30),
+      0 14px 30px rgba(108,19,39,.22);
   }
+  .tile:hover::before, .tile:focus-visible::before{ color:var(--cream); opacity:.85; }
+  .tile:focus-visible{ outline:2px solid var(--oxblood); outline-offset:3px; }
 
   .foot{
+    opacity:0; animation:fadeIn .7s ease .5s forwards;
     margin-top:clamp(34px,6vw,54px);
-    font-family:var(--sans); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--grey);
+    font-family:var(--sans); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--grey);
   }
 
+  @keyframes riseIn{ from{ opacity:0; transform:translateY(12px); } to{ opacity:1; transform:none; } }
+  @keyframes fadeIn{ to{ opacity:1; } }
+
+  @media (max-width:680px){ .tiles{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
+  @media (max-width:420px){ .tiles{ grid-template-columns:1fr; } }
+
   /* -------------------- subject (under preparation) -------------------- */
-  #subject{ min-height:100vh; min-height:100svh; display:flex; flex-direction:column; }
+  #subject{ position:relative; z-index:1; min-height:100vh; min-height:100svh; display:flex; flex-direction:column; }
   .subject-top{ padding:clamp(20px,5vw,40px) clamp(20px,5vw,56px) 0; }
   .back{
     font-family:var(--sans); font-weight:700; text-transform:uppercase; letter-spacing:.14em;
@@ -112,7 +185,10 @@
     font-size:clamp(16px,2.4vw,19px); line-height:1.5; margin:1.1em 0 0; max-width:44ch;
   }
 
-  @media (prefers-reduced-motion:reduce){ *{ transition-duration:.001ms !important; } }
+  @media (prefers-reduced-motion:reduce){
+    *{ transition-duration:.001ms !important; }
+    .masthead, .tile, .foot{ animation:none !important; opacity:1 !important; transform:none !important; }
+  }
 </style>
 </head>
 
@@ -122,8 +198,13 @@
 <div id="landing">
   <main class="hero">
     <div class="hero-inner">
-      <h1 class="site-title">Amin&rsquo;s Personal Site</h1>
-      <p class="tagline">A bit of this and a bit of that</p>
+      <div class="masthead">
+        <div class="emblem" aria-hidden="true">A&thinsp;B</div>
+        <p class="kicker">London</p>
+        <h1 class="site-title">Amin&rsquo;s Personal Site</h1>
+        <div class="titlerule" aria-hidden="true"></div>
+        <p class="tagline">A bit of this and a bit of that</p>
+      </div>
 
       <nav class="tiles" aria-label="Sections">
         <a class="tile" href="technology.html">Technology</a>
