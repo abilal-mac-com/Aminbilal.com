@@ -18,15 +18,15 @@
   Sits at the site root alongside:
     · technology.html   (the Executive Technology Literacy site)
     · physics.html      (The Particle Physics Primer)
+    · markets.html      (What Makes Markets Tick)
     · /documents/       (the typeset PDFs used by technology.html)
 
-  The Technology and Physics links open their own pages.
-  Markets, Pakistan, Diabetes and Placeholder open an
-  "under preparation" panel addressed by URL hash (#markets,
-  #pakistan, #diabetes, #placeholder), served from this same
-  file. To give one a real page later, point its link at the new
-  file and remove its entry from the SUBJECTS object in the
-  script at the foot of the file.
+  The Technology, Physics and Markets links open their own pages.
+  Pakistan, Diabetes and Placeholder open an "under preparation"
+  panel addressed by URL hash (#pakistan, #diabetes, #placeholder),
+  served from this same file. To give one a real page later, point
+  its link at the new file and remove its entry from the SUBJECTS
+  object in the script at the foot of the file.
 
   Layout: the landing is a flex column — the row of sections at
   the top, the masthead centred in the space beneath, the name at
@@ -235,7 +235,7 @@
   <nav class="nav" aria-label="Sections">
     <a href="technology.html">Technology</a>
     <a href="physics.html">Physics</a>
-    <a href="#markets">Markets</a>
+    <a href="markets.html">Markets</a>
     <a href="#pakistan">Pakistan</a>
     <a href="#diabetes">Diabetes</a>
     <a href="#placeholder">Placeholder</a>
@@ -270,7 +270,7 @@
 (function(){
   "use strict";
   var SUBJECTS = {
-    markets:'Markets', pakistan:'Pakistan',
+    pakistan:'Pakistan',
     diabetes:'Diabetes', placeholder:'Placeholder'
   };
   var landing = document.getElementById('landing');
