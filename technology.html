@@ -127,6 +127,11 @@
   .lg-dot{ width:9px; height:9px; border-radius:50%; border:1.5px solid var(--crimson); }
   .lg-dot.full{ background:var(--crimson); }
 
+  /* Part Two — rail section divider */
+  .rail-part{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.2em; font-size:11px; color:var(--crimson); padding:20px 12px 10px; margin-top:8px; border-top:1px solid var(--rule-strong); }
+  .rail-part b{ display:block; font-weight:700; }
+  .rail-part i{ display:block; font-family:var(--serif); font-style:italic; text-transform:none; letter-spacing:0; font-size:12.5px; color:var(--grey); margin-top:3px; }
+
   .vh{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 
   /* ---------------- panels ---------------- */
@@ -349,7 +354,7 @@
       <p class="byline">Amin Bilal</p>
       <hr class="masthead-rule">
       <p class="standfirst">What does it take for a senior finance leader to sit across from a Chief Technology Officer and follow the substance of the architecture itself &mdash; not merely the outcomes and the budgets, but the reasoning beneath them? This programme is an attempt to build that understanding, patiently and from first principles, across the ten domains that compose the field.</p>
-      <p class="progress">The Introduction and all ten building blocks are complete. Every block opens to its full Content, Key Takeaways and FAQs; the Introduction, <a href="#block-1">Block One</a> and <a href="#block-7">Block Seven</a> are additionally accompanied by typeset PDFs.</p>
+      <p class="progress">Part One &mdash; the Introduction and all ten building blocks &mdash; is complete, each block opening to its full Content, Key Takeaways, FAQs, Test and Personalities; the Introduction, <a href="#block-1">Block One</a> and <a href="#block-7">Block Seven</a> are additionally accompanied by typeset PDFs. <a href="#applied">Part Two</a>, an applied volume on the enterprise finance estate, is now in preparation and is being written chapter by chapter.</p>
     </div>
   </header>
 
@@ -411,6 +416,58 @@
       <button class="rail-item is-done" role="tab" id="tab-block-10" data-slug="block-10" aria-controls="panel-block-10" aria-selected="false" tabindex="-1">
         <span class="rail-num" aria-hidden="true">10</span>
         <span class="rail-title">Regulatory and Risk Overlay for Financial Services<span class="vh"> — complete</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <div class="rail-part"><b>Part Two</b><i>The Applied Volume</i></div>
+
+      <button class="rail-item is-done" role="tab" id="tab-applied" data-slug="applied" aria-controls="panel-applied" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">&mdash;</span>
+        <span class="rail-title">The Enterprise Finance Estate<span class="vh"> — complete</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <button class="rail-item" role="tab" id="tab-applied-1" data-slug="applied-1" data-kicker="Part Two &middot; Chapter I" aria-controls="panel-applied-1" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">I</span>
+        <span class="rail-title">The Shape of the Estate<span class="vh"> — in preparation</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <button class="rail-item" role="tab" id="tab-applied-2" data-slug="applied-2" data-kicker="Part Two &middot; Chapter II" aria-controls="panel-applied-2" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">II</span>
+        <span class="rail-title">The Core Ledger and Record-to-Report<span class="vh"> — in preparation</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <button class="rail-item" role="tab" id="tab-applied-3" data-slug="applied-3" data-kicker="Part Two &middot; Chapter III" aria-controls="panel-applied-3" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">III</span>
+        <span class="rail-title">The Sub-Ledgers<span class="vh"> — in preparation</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <button class="rail-item" role="tab" id="tab-applied-4" data-slug="applied-4" data-kicker="Part Two &middot; Chapter IV" aria-controls="panel-applied-4" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">IV</span>
+        <span class="rail-title">Measuring the Liabilities<span class="vh"> — in preparation</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <button class="rail-item" role="tab" id="tab-applied-5" data-slug="applied-5" data-kicker="Part Two &middot; Chapter V" aria-controls="panel-applied-5" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">V</span>
+        <span class="rail-title">Planning, Allocation and Consolidation<span class="vh"> — in preparation</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <button class="rail-item" role="tab" id="tab-applied-6" data-slug="applied-6" data-kicker="Part Two &middot; Chapter VI" aria-controls="panel-applied-6" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">VI</span>
+        <span class="rail-title">Disclosure and Regulatory Reporting<span class="vh"> — in preparation</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <button class="rail-item" role="tab" id="tab-applied-7" data-slug="applied-7" data-kicker="Part Two &middot; Chapter VII" aria-controls="panel-applied-7" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">VII</span>
+        <span class="rail-title">The People Estate<span class="vh"> — in preparation</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <button class="rail-item" role="tab" id="tab-applied-8" data-slug="applied-8" data-kicker="Part Two &middot; Chapter VIII" aria-controls="panel-applied-8" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">VIII</span>
+        <span class="rail-title">The Foundation and the Control Estate<span class="vh"> — in preparation</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+      <button class="rail-item" role="tab" id="tab-applied-9" data-slug="applied-9" data-kicker="Part Two &middot; Chapter IX" aria-controls="panel-applied-9" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">IX</span>
+        <span class="rail-title">The Economics of Enterprise Software<span class="vh"> — in preparation</span></span>
         <span class="rail-dot" aria-hidden="true"></span>
       </button>
 
@@ -644,6 +701,211 @@
           <a class="page-btn" href="#block-10/personalities"><span class="pb-dot"></span>Personalities</a>
         </div>
         <nav class="panel-flip" data-flip="block-10"></nav>
+      </section>
+
+      <!-- PART TWO: INTRODUCTION -->
+      <section class="panel" role="tabpanel" id="panel-applied" aria-labelledby="tab-applied" tabindex="0" hidden>
+        <div class="panel-head-row">
+          <p class="panel-eyebrow">Part Two &middot; The Applied Volume</p>
+          <span class="status done">Complete</span>
+        </div>
+        <h2 class="panel-title">The Enterprise Finance Estate</h2>
+        <p class="panel-sub">An introduction to the applied volume and its nine chapters</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p class="lede">Part One reconstructed the substrate &mdash; the durable engineering of distributed systems, data, networks, cloud, security and the rest, the field as it stands beneath any particular firm. Part Two turns from the substrate to what is built upon it: the enterprise application estate that a finance function actually procures, implements and lives with. If Part One was the basic science, this is the clinical practice.</p>
+          <h3 class="prose-head"><span class="prose-num">I</span> From Substrate to Application</h3>
+          <p>Part One taught the field as an informed learner reconstructing it from first principles. Part Two is written from a different vantage. The enterprise finance estate is not a frontier of computer science but a working reality &mdash; the ledgers and sub-ledgers, the consolidation engines, the planning and disclosure platforms, and the master-data and control foundations on which a regulated firm keeps its accounts and files its results. It is the software a Chief Financial Officer signs for, a finance-transformation programme installs, and an auditor examines. The register here is therefore that of the practitioner: less the question of how a technology works in principle than of what it is for, why it was chosen, what it commits the firm to, and where such programmes fail.</p>
+          <h3 class="prose-head"><span class="prose-num">II</span> The Archetype</h3>
+          <p>The estate is taught through a single, deliberately demanding archetype: a United Kingdom life assurance and asset-management group. The choice is not incidental. Such a firm carries, in one balance sheet, very nearly every hard problem an enterprise finance estate must answer &mdash; the valuation of a large book of invested assets, the actuarial measurement of long-dated insurance liabilities under IFRS 17, the striking of a daily net asset value on which policyholders transact, multi-entity consolidation under IAS 21, and a dense regulatory perimeter of Solvency II returns and statutory disclosure. An estate that holds all of these within appetite will hold a simpler firm&rsquo;s problems comfortably; the general lessons are drawn from the demanding case rather than the easy one. The archetype carries no firm&rsquo;s name &mdash; it is a considered design, not a description of any one institution.</p>
+          <h3 class="prose-head"><span class="prose-num">III</span> The Eight Principles</h3>
+          <p>One idea governs the whole. A finance estate is strongest when it is an architecture rather than an accumulation &mdash; when a few decisions, taken deliberately and held consistently, shape everything else. Eight principles recur through the chapters that follow: concentration rather than sprawl, a single spine carrying the core with specialists admitted only where a domain genuinely demands one; a thin and durable ledger that records consequence rather than detail; one system of record for each capability, so there is one version of every number; a one-way flow of data through controlled bridges, from capture to ledger to consolidation to disclosure; governed master data, so every system speaks one chart of accounts; orchestration in place of manual checklists; and control evidenced by construction rather than retrofitted. Chapter I sets these out in full; the remaining chapters are, in large part, those principles worked through system by system.</p>
+          <h3 class="prose-head"><span class="prose-num">IV</span> Substrate and Frontier, Again</h3>
+          <p>The distinction Part One drew between the durable substrate and the current frontier holds here too, in a different form. The durable matter of Part Two is architectural: the discipline of a thin ledger, the separation of measurement from posting, the governance of master data, the shape of a control estate. That reasoning transfers to any firm and any decade. The frontier matter is the vendor landscape &mdash; which product owns which layer, which suite is ascendant, which acquisition has just widened a platform&rsquo;s reach. Named products appear throughout these chapters as worked examples, because a design is easier to understand made concrete; but every such claim is a frontier matter, verified against live sources before it is asserted and expected to date. The architecture is the lesson; the products are the illustration.</p>
+          <h3 class="prose-head"><span class="prose-num">V</span> How Part Two Is Built</h3>
+          <p>Nine chapters follow the estate in the direction the data travels and the control accumulates. The first establishes the shape of the estate and its principles. The next four take it layer by layer &mdash; the core ledger and its record-to-report companions; the treasury, investment and fund sub-ledgers beneath it; the actuarial pipeline and the IFRS 17 bridge by which insurance measurement reaches the books; and the planning, allocation and consolidation of the performance-management layer above. The sixth turns to disclosure, regulatory reporting and management information, the last mile to a filed result. The seventh takes the people estate on the Finance&ndash;HR boundary. The eighth returns to the foundation and the control estate on which the whole design rests, read against its Risk and Control Self-Assessment and the standards that frame it. The ninth steps back from the particular estate to the general economics of enterprise software &mdash; the transferable reasoning beneath any such architecture. Each chapter carries the same five-fold apparatus as Part One: a full Content treatment, its Key Takeaways, a set of FAQs a senior reader might fairly put to the material, a fifty-question Test, and a register of the Personalities who built the field.</p>
+        </div>
+        <nav class="panel-flip" data-flip="applied"></nav>
+      </section>
+
+      <!-- CHAPTER I -->
+      <section class="panel" role="tabpanel" id="panel-applied-1" aria-labelledby="tab-applied-1" tabindex="0" hidden>
+        <div class="panel-head-row"><p class="panel-eyebrow">Part Two &middot; Chapter I</p><span class="status">In preparation</span></div>
+        <h2 class="panel-title">The Shape of the Estate</h2>
+        <p class="panel-sub">The design philosophy of a finance application estate, before any single system</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p>Why a regulated insurer and asset manager runs its finances on a deliberate architecture rather than an accumulation of tools; the eight principles that govern it &mdash; concentration over sprawl, specialists admitted only at the edges, a thin and durable ledger, one record per capability, a one-way flow through controlled bridges, governed master data, orchestration in place of manual checklists, and control evidenced by construction; and the shape those principles produce &mdash; five layers, two boundaries and a single foundation, read in the direction the data actually travels, from capture to ledger to consolidation to disclosure.</p>
+          <p>The grammar of the estate, on which every chapter that follows depends.</p>
+        </div>
+        <div class="panel-nav">
+          <a class="page-btn" href="#applied-1/content"><span class="pb-dot"></span>Content</a>
+          <a class="page-btn" href="#applied-1/key-takeaways"><span class="pb-dot"></span>Key Takeaways</a>
+          <a class="page-btn" href="#applied-1/faqs"><span class="pb-dot"></span>FAQs</a>
+          <a class="page-btn" href="#applied-1/test"><span class="pb-dot"></span>Test</a>
+          <a class="page-btn" href="#applied-1/personalities"><span class="pb-dot"></span>Personalities</a>
+        </div>
+        <nav class="panel-flip" data-flip="applied-1"></nav>
+      </section>
+
+      <!-- CHAPTER II -->
+      <section class="panel" role="tabpanel" id="panel-applied-2" aria-labelledby="tab-applied-2" tabindex="0" hidden>
+        <div class="panel-head-row"><p class="panel-eyebrow">Part Two &middot; Chapter II</p><span class="status">In preparation</span></div>
+        <h2 class="panel-title">The Core Ledger and Record-to-Report</h2>
+        <p class="panel-sub">The thin, durable general ledger and the record-to-report engines around it</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p>The general ledger as the system of record, kept deliberately thin so that it holds accounting consequence rather than transactional detail, and so absorbs a new fund, a new legal entity or a new standard without re-platforming; the multi-ledger structure that carries IFRS and local GAAP in parallel; the governed period close; and the specialists that sit around the ledger &mdash; high-volume reconciliation, intercompany, tax provisioning, procure-to-pay, disbursement and asset-management fee billing &mdash; each admitted because its domain genuinely demands one.</p>
+          <p>The system of record at the centre of the estate.</p>
+        </div>
+        <div class="panel-nav">
+          <a class="page-btn" href="#applied-2/content"><span class="pb-dot"></span>Content</a>
+          <a class="page-btn" href="#applied-2/key-takeaways"><span class="pb-dot"></span>Key Takeaways</a>
+          <a class="page-btn" href="#applied-2/faqs"><span class="pb-dot"></span>FAQs</a>
+          <a class="page-btn" href="#applied-2/test"><span class="pb-dot"></span>Test</a>
+          <a class="page-btn" href="#applied-2/personalities"><span class="pb-dot"></span>Personalities</a>
+        </div>
+        <nav class="panel-flip" data-flip="applied-2"></nav>
+      </section>
+
+      <!-- CHAPTER III -->
+      <section class="panel" role="tabpanel" id="panel-applied-3" aria-labelledby="tab-applied-3" tabindex="0" hidden>
+        <div class="panel-head-row"><p class="panel-eyebrow">Part Two &middot; Chapter III</p><span class="status">In preparation</span></div>
+        <h2 class="panel-title">The Sub-Ledgers: Treasury, Investment and Funds</h2>
+        <p class="panel-sub">The operational books of record that keep the ledger thin</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p>The source systems on the asset and treasury side of the house &mdash; the treasury and cash-management platform that owns intraday liquidity, forecasting and the payment factory; the investment book of record that values the invested assets which dominate the balance sheet and carries the risk analytics an insurer must steer by; and the fund-accounting and NAV authority that strikes the daily unit price on which policyholders and fund investors transact &mdash; each capturing the full detail of its domain and surfacing to the ledger only the summarised consequence.</p>
+          <p>Where the detail lives, so that the ledger need not carry it.</p>
+        </div>
+        <div class="panel-nav">
+          <a class="page-btn" href="#applied-3/content"><span class="pb-dot"></span>Content</a>
+          <a class="page-btn" href="#applied-3/key-takeaways"><span class="pb-dot"></span>Key Takeaways</a>
+          <a class="page-btn" href="#applied-3/faqs"><span class="pb-dot"></span>FAQs</a>
+          <a class="page-btn" href="#applied-3/test"><span class="pb-dot"></span>Test</a>
+          <a class="page-btn" href="#applied-3/personalities"><span class="pb-dot"></span>Personalities</a>
+        </div>
+        <nav class="panel-flip" data-flip="applied-3"></nav>
+      </section>
+
+      <!-- CHAPTER IV -->
+      <section class="panel" role="tabpanel" id="panel-applied-4" aria-labelledby="tab-applied-4" tabindex="0" hidden>
+        <div class="panel-head-row"><p class="panel-eyebrow">Part Two &middot; Chapter IV</p><span class="status">In preparation</span></div>
+        <h2 class="panel-title">Measuring the Liabilities: The Actuarial Pipeline and the IFRS 17 Bridge</h2>
+        <p class="panel-sub">How insurance liabilities are measured, and how the measurement reaches the books</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p>The insurer&rsquo;s measurement pipeline &mdash; policy data from the administration systems, the actuarial engine that computes the fulfilment cash flows, the risk adjustment and the contractual service margin under IFRS 17, the governed orchestration that makes every model run reproducible, and the results store that holds the output; and the single most sensitive join in the estate, the accounting bridge that turns a measured liability into balanced, audited journals &mdash; the deliberate separation of measuring from posting on which an auditable IFRS 17 result depends.</p>
+          <p>The hardest measurement in the group, brought to the ledger with its lineage intact.</p>
+        </div>
+        <div class="panel-nav">
+          <a class="page-btn" href="#applied-4/content"><span class="pb-dot"></span>Content</a>
+          <a class="page-btn" href="#applied-4/key-takeaways"><span class="pb-dot"></span>Key Takeaways</a>
+          <a class="page-btn" href="#applied-4/faqs"><span class="pb-dot"></span>FAQs</a>
+          <a class="page-btn" href="#applied-4/test"><span class="pb-dot"></span>Test</a>
+          <a class="page-btn" href="#applied-4/personalities"><span class="pb-dot"></span>Personalities</a>
+        </div>
+        <nav class="panel-flip" data-flip="applied-4"></nav>
+      </section>
+
+      <!-- CHAPTER V -->
+      <section class="panel" role="tabpanel" id="panel-applied-5" aria-labelledby="tab-applied-5" tabindex="0" hidden>
+        <div class="panel-head-row"><p class="panel-eyebrow">Part Two &middot; Chapter V</p><span class="status">In preparation</span></div>
+        <h2 class="panel-title">Planning, Allocation and Consolidation: The EPM Estate</h2>
+        <p class="panel-sub">The forward view and the group view, on one performance-management estate</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p>The enterprise-performance-management layer above the ledger &mdash; driver-based planning, budgeting and rolling forecasts seeded from ledger actuals so that plan and actual reconcile without manual bridging; the allocation and transfer-pricing engine that carries the cost-to-serve logic the ledger should not; and the consolidation and close platform that applies elimination, translation under IAS 21 and minority interests to produce one group position, built once and reused by every external reader.</p>
+          <p>The forward view and the group view, drawn from the same governed data as the accounts.</p>
+        </div>
+        <div class="panel-nav">
+          <a class="page-btn" href="#applied-5/content"><span class="pb-dot"></span>Content</a>
+          <a class="page-btn" href="#applied-5/key-takeaways"><span class="pb-dot"></span>Key Takeaways</a>
+          <a class="page-btn" href="#applied-5/faqs"><span class="pb-dot"></span>FAQs</a>
+          <a class="page-btn" href="#applied-5/test"><span class="pb-dot"></span>Test</a>
+          <a class="page-btn" href="#applied-5/personalities"><span class="pb-dot"></span>Personalities</a>
+        </div>
+        <nav class="panel-flip" data-flip="applied-5"></nav>
+      </section>
+
+      <!-- CHAPTER VI -->
+      <section class="panel" role="tabpanel" id="panel-applied-6" aria-labelledby="tab-applied-6" tabindex="0" hidden>
+        <div class="panel-head-row"><p class="panel-eyebrow">Part Two &middot; Chapter VI</p><span class="status">In preparation</span></div>
+        <h2 class="panel-title">Disclosure, Regulatory Reporting and Management Information</h2>
+        <p class="panel-sub">The last mile &mdash; the filed report, the supervisory return and the management dashboard</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p>The external layer where the consolidated position becomes a filed document &mdash; the connected-reporting platform that binds the annual report to the consolidation and tags it in Inline XBRL for the filing regime; the regulatory specialist that renders the Solvency II returns and the SFCR from maintained content rather than hand-built spreadsheets; and the governed self-service layer that gives leadership a management view drawn from the same numbers &mdash; every external figure tracing back, by construction, to one consolidated source.</p>
+          <p>Where capture, ledger and consolidation finally become a report.</p>
+        </div>
+        <div class="panel-nav">
+          <a class="page-btn" href="#applied-6/content"><span class="pb-dot"></span>Content</a>
+          <a class="page-btn" href="#applied-6/key-takeaways"><span class="pb-dot"></span>Key Takeaways</a>
+          <a class="page-btn" href="#applied-6/faqs"><span class="pb-dot"></span>FAQs</a>
+          <a class="page-btn" href="#applied-6/test"><span class="pb-dot"></span>Test</a>
+          <a class="page-btn" href="#applied-6/personalities"><span class="pb-dot"></span>Personalities</a>
+        </div>
+        <nav class="panel-flip" data-flip="applied-6"></nav>
+      </section>
+
+      <!-- CHAPTER VII -->
+      <section class="panel" role="tabpanel" id="panel-applied-7" aria-labelledby="tab-applied-7" tabindex="0" hidden>
+        <div class="panel-head-row"><p class="panel-eyebrow">Part Two &middot; Chapter VII</p><span class="status">In preparation</span></div>
+        <h2 class="panel-title">The People Estate and the Finance&ndash;HR Boundary</h2>
+        <p class="panel-sub">The workforce as a system of record, and how its cost reaches Finance</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p>The people estate that sits on the boundary between Finance and HR &mdash; a single book of record for the workforce, HR-owned and consumed by Finance for cost; the United Kingdom pay cycle, with gross-to-net, statutory deductions and Real Time Information to HMRC; expenses and compensation; and the off-payroll and IR35 determinations a British employer must make where the worker data lives &mdash; with payroll, expense and compensation cost posting to the ledger and the plan through controlled interfaces, so that the people cost in the accounts and the people cost in the plan are drawn from one source.</p>
+          <p>One version of the workforce, costed cleanly into the ledger and the plan.</p>
+        </div>
+        <div class="panel-nav">
+          <a class="page-btn" href="#applied-7/content"><span class="pb-dot"></span>Content</a>
+          <a class="page-btn" href="#applied-7/key-takeaways"><span class="pb-dot"></span>Key Takeaways</a>
+          <a class="page-btn" href="#applied-7/faqs"><span class="pb-dot"></span>FAQs</a>
+          <a class="page-btn" href="#applied-7/test"><span class="pb-dot"></span>Test</a>
+          <a class="page-btn" href="#applied-7/personalities"><span class="pb-dot"></span>Personalities</a>
+        </div>
+        <nav class="panel-flip" data-flip="applied-7"></nav>
+      </section>
+
+      <!-- CHAPTER VIII -->
+      <section class="panel" role="tabpanel" id="panel-applied-8" aria-labelledby="tab-applied-8" tabindex="0" hidden>
+        <div class="panel-head-row"><p class="panel-eyebrow">Part Two &middot; Chapter VIII</p><span class="status">In preparation</span></div>
+        <h2 class="panel-title">The Foundation and the Control Estate</h2>
+        <p class="panel-sub">The master data, orchestration and evidenced control on which the estate depends</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p>The cross-cutting foundation beneath every layer &mdash; the master-data platform that governs the chart of accounts and the entity and cost-centre hierarchies, changed once under governance and propagated to every subscribing system; the orchestration that runs the close to a governed schedule; and the governance, risk and compliance platform that holds the risk-and-control matrix, the testing and the attestations &mdash; read against the target-state Risk and Control Self-Assessment that reduces a deliberately hot inherent profile of valuation, actuarial measurement, the IFRS 17 bridge, consolidation and Solvency II reporting to a residual profile within appetite by construction, and against the standards that frame it, from Basel and COSO to the UK Corporate Governance Code.</p>
+          <p>The quiet foundation that makes the estate consistent, and the controls that make it auditable.</p>
+        </div>
+        <div class="panel-nav">
+          <a class="page-btn" href="#applied-8/content"><span class="pb-dot"></span>Content</a>
+          <a class="page-btn" href="#applied-8/key-takeaways"><span class="pb-dot"></span>Key Takeaways</a>
+          <a class="page-btn" href="#applied-8/faqs"><span class="pb-dot"></span>FAQs</a>
+          <a class="page-btn" href="#applied-8/test"><span class="pb-dot"></span>Test</a>
+          <a class="page-btn" href="#applied-8/personalities"><span class="pb-dot"></span>Personalities</a>
+        </div>
+        <nav class="panel-flip" data-flip="applied-8"></nav>
+      </section>
+
+      <!-- CHAPTER IX -->
+      <section class="panel" role="tabpanel" id="panel-applied-9" aria-labelledby="tab-applied-9" tabindex="0" hidden>
+        <div class="panel-head-row"><p class="panel-eyebrow">Part Two &middot; Chapter IX</p><span class="status">In preparation</span></div>
+        <h2 class="panel-title">The Economics and Architecture of Enterprise Software</h2>
+        <p class="panel-sub">The decisions beneath the estate &mdash; build against buy, suite against best-of-breed, and why programmes overrun</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p>The durable, transferable question a finance leader actually faces &mdash; not which product, but which architecture: to build or to buy, to configure or to customise, to concentrate on a single suite or to admit best-of-breed specialists, to run in the cloud or on-premise; the total cost of ownership and the lock-in that outlast the licence; and the reasons enterprise transformation programmes run over, the mismatch between a standardised platform and a firm convinced that it is exceptional &mdash; read as the general economics that the specific estate of the preceding chapters was one considered answer to.</p>
+          <p>The reasoning beneath the architecture &mdash; the knowledge that transfers to any estate.</p>
+        </div>
+        <div class="panel-nav">
+          <a class="page-btn" href="#applied-9/content"><span class="pb-dot"></span>Content</a>
+          <a class="page-btn" href="#applied-9/key-takeaways"><span class="pb-dot"></span>Key Takeaways</a>
+          <a class="page-btn" href="#applied-9/faqs"><span class="pb-dot"></span>FAQs</a>
+          <a class="page-btn" href="#applied-9/test"><span class="pb-dot"></span>Test</a>
+          <a class="page-btn" href="#applied-9/personalities"><span class="pb-dot"></span>Personalities</a>
+        </div>
+        <nav class="panel-flip" data-flip="applied-9"></nav>
       </section>
 
     </div>
@@ -11707,10 +11969,12 @@
     pageView.hidden = false;
 
     var num = numOf(slug), lbl = labelOf(slug);
-    pageView.querySelector('.page-eyebrow').textContent = (num ? 'Building Block '+num+' of 10 \u00B7 ' : '') + lbl;
+    var tabEl = document.getElementById('tab-'+slug);
+    var kicker = tabEl ? tabEl.getAttribute('data-kicker') : '';
+    pageView.querySelector('.page-eyebrow').textContent = kicker ? (kicker + ' \u00B7 ' + lbl) : ((num ? 'Building Block '+num+' of 10 \u00B7 ' : '') + lbl);
     pageView.querySelector('.page-title').textContent = SUBLABEL[sub];
     var crBlock = pageView.querySelector('.cr-block');
-    crBlock.textContent = (num ? num+'. ' : '') + lbl;
+    crBlock.textContent = kicker ? lbl : ((num ? num+'. ' : '') + lbl);
     crBlock.setAttribute('href', '#'+slug);
     pageView.querySelector('.cr-page').textContent = SUBLABEL[sub];
 
