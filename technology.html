@@ -1078,6 +1078,48 @@
         <p>This pattern carries names that appear throughout modern financial-services architecture. The immutable, append-only, ordered sequence of facts is <strong>the log</strong> &mdash; in this architectural sense an event log, not the debugging output that engineers confusingly call by the same word. Storing the events as the source of truth and computing state from them is <strong>event sourcing</strong>. The wider recognition that many systems are better modelled as a stream of events than as a box of current values is the basis of <strong>event-driven architecture</strong>, and the dominant infrastructure for it &mdash; a name that arises in every serious architecture conversation &mdash; is <strong>Apache Kafka</strong>, which is, at bottom, exactly this: a distributed, durable, append-only log that many producers write to and many consumers read from. When a technology leader speaks of &ldquo;moving to an event-driven model on Kafka,&rdquo; this is what is meant, and the first-principles reason it attracts is that it makes the ledger, not the balance, the primitive. Because the log is the truth and state is a computed view of it, one can keep several views of the same events &mdash; one for fast reads, one for analytics, one for regulatory reporting &mdash; each built by replay; separating the write side from the read side in this way is named <strong>CQRS</strong>, but the shape matters more than the acronym: one source of truth, many derived pictures.</p>
         <p>This is also the point at which precision earns or loses the room, because the same DNA underlies the blockchain, and the two are emphatically not the same thing. What a blockchain shares with everything above is that it is an append-only, immutable, ordered log of transactions from which current state is derived; the instinct linking them is therefore correct. What a blockchain <em>adds</em> is a very specific and very expensive assumption: that the participants do not trust one another and there is no central authority. Every system discussed so far is internal to one firm, whose machines trust each other and where a single owner decides what is true; the hard problem there is failure, not malice. A public blockchain solves the strictly harder problem of agreeing the one true order of events among thousands of mutually distrustful, anonymous parties, any of whom may be actively trying to cheat &mdash; to spend the same coin twice, to rewrite history, to forge an entry. That adversarial setting is what forces the machinery people associate with the technology: proof-of-work, which makes forging history ruinously expensive; the chaining of blocks by cryptographic hash, so that altering any past entry invalidates everything after it; and decentralised consensus across the whole network. None of it is needed inside a single firm, because the expensive part is buying trust among adversaries, and within a regulated institution that trust is simply assumed.</p>
         <p>The sentence to be able to say is this: the append-only log is the durable, broadly useful idea, and it is everywhere in finance regardless of crypto; a blockchain is that idea plus a costly mechanism for establishing trust without a central authority &mdash; and inside a regulated firm, which has a central authority by definition and a regulator insisting on one, one usually wants the log <em>without</em> the trustless machinery. This is precisely why the wave of enterprise &ldquo;blockchain for banking&rdquo; projects of roughly 2016 to 2020 largely underdelivered: firms paid the enormous cost of trustless consensus in settings where the participants actually did trust a central operator, buying an expensive solution to a problem they did not have. Where the technology has found genuine traction is exactly where the trust problem is real &mdash; settlement between institutions that do not wish to rely on a single intermediary, and the tokenisation of assets crossing organisational boundaries &mdash; and even there the picture remains unsettled. That current state is the fast-moving frontier layer, and a view on where institutional adoption has actually reached is a matter to verify against live sources rather than to recall.</p>
+        <figure class="fig">
+          <svg viewBox="0 0 640 372" role="img" aria-labelledby="fig-log-t fig-log-d">
+            <title id="fig-log-t">Storing the balance against storing the ledger</title>
+            <desc id="fig-log-d">Two designs for holding an account balance. Storing the balance keeps a single field overwritten in place, so an earlier value of five hundred pounds becoming three hundred pounds destroys the previous figure. Storing the ledger keeps an append-only, ordered, immutable list of events, opened then plus five hundred pounds then minus two hundred pounds, from which the balance of three hundred pounds is replayed rather than stored, and to which further facts are only ever appended.</desc>
+            <defs>
+              <marker id="fig-log-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0 0 L10 5 L0 10 z" fill="#861831"/>
+              </marker>
+            </defs>
+
+            <text class="t-tag" x="40" y="64" font-size="13">STORE THE BALANCE</text>
+            <text class="t-glossy" x="40" y="84" font-size="12">one field, overwritten in place</text>
+            <text class="t-glossy" x="300" y="79" text-anchor="middle" font-size="15">GBP 500</text>
+            <line x1="268" y1="74" x2="332" y2="74" stroke="#5A5A5A" stroke-width="1.2"/>
+            <text class="t-open" x="371" y="63" text-anchor="middle" font-size="10.5">overwrite</text>
+            <line x1="350" y1="74" x2="392" y2="74" stroke="#861831" stroke-width="1.4" marker-end="url(#fig-log-ah)"/>
+            <rect x="398" y="50" width="140" height="48" rx="8" fill="none" stroke="#861831" stroke-width="1.6"/>
+            <text class="t-title" x="468" y="80" text-anchor="middle" font-size="17">GBP 300</text>
+            <text class="t-open" x="468" y="116" text-anchor="middle" font-size="11">the previous value is gone</text>
+
+            <line x1="40" y1="146" x2="600" y2="146" stroke="#D8D5CC" stroke-width="1"/>
+
+            <text class="t-tag" x="40" y="188" font-size="13">STORE THE LEDGER</text>
+            <text class="t-glossy" x="40" y="208" font-size="12">append-only, ordered, immutable</text>
+            <rect x="40"  y="230" width="118" height="48" rx="7" fill="none" stroke="#861831" stroke-width="1.6"/>
+            <text class="t-layer" x="99"  y="259" text-anchor="middle" font-size="13">1 &middot; opened</text>
+            <rect x="172" y="230" width="118" height="48" rx="7" fill="none" stroke="#861831" stroke-width="1.6"/>
+            <text class="t-layer" x="231" y="259" text-anchor="middle" font-size="13">2 &middot; + GBP 500</text>
+            <rect x="304" y="230" width="118" height="48" rx="7" fill="none" stroke="#861831" stroke-width="1.6"/>
+            <text class="t-layer" x="363" y="259" text-anchor="middle" font-size="13">3 &middot; &minus; GBP 200</text>
+            <line x1="424" y1="254" x2="448" y2="254" stroke="#861831" stroke-width="1.4" marker-end="url(#fig-log-ah)"/>
+            <rect x="454" y="230" width="118" height="48" rx="7" fill="none" stroke="#861831" stroke-width="1.4" stroke-dasharray="5 4"/>
+            <text class="t-open" x="513" y="259" text-anchor="middle" font-size="12">append here</text>
+            <line x1="320" y1="292" x2="320" y2="308" stroke="#861831" stroke-width="1.4" marker-end="url(#fig-log-ah)"/>
+            <text class="t-glossy" x="320" y="328" text-anchor="middle" font-size="12.5">the balance is replayed from the log, never stored</text>
+            <text class="t-title" x="320" y="354" text-anchor="middle" font-size="16" fill="#861831">GBP 500 &minus; GBP 200 = GBP 300</text>
+          </svg>
+          <figcaption>
+            <span class="fig-n">Figure 3</span>
+            <span class="fig-c">The ledger, not the balance: overwriting forgets; appending never does, so state can always be replayed.</span>
+          </figcaption>
+        </figure>
         <p class="ct-quote">Store the ledger, not the balance. An append never overwrites, and so it never forgets.</p>
       </div>
     </details>
@@ -1102,6 +1144,43 @@
         <p>The mechanism that defeats it is arithmetic. Permit a group to elect a leader, or to commit a write, only if it can secure the agreement of a strict majority of all the machines in the system &mdash; more than half. Consider what this forbids. The network splits five machines into two groups, in any proportion. A group of three contains a majority and may act; a group of two cannot, and falls silent. Could a break ever produce two groups that each hold a majority? It could not: two groups of three would require six machines, but there are only five, so any partition of five leaves at most one group with three or more. <em>Any two majorities of the same set must overlap in at least one member, and a single machine will never agree to two conflicting things, so two conflicting decisions can never both gather a majority.</em> The minority side is not told to stand down; it cannot assemble the numbers to act, and so it halts by force of arithmetic. Split-brain is not prevented by good behaviour or by detecting the failure &mdash; it is rendered impossible, however cruelly the network breaks. Better to halt than to fork.</p>
         <p>This is the concept of a <strong>quorum</strong>, and it is the same word and the same idea as the W + R &gt; N rule of the consistency spectrum: there, two read-and-write sets were forced to overlap so a reader could not miss the latest write; here, two decision groups are forced to overlap so the system cannot elect two leaders. One principle wearing two hats &mdash; require an overlapping majority, and contradiction becomes impossible &mdash; and it is the foundational technique for safety in the field. A practical corollary follows: distributed systems are almost always built with an <em>odd</em> number of members &mdash; three, five, seven &mdash; because an odd membership guarantees that any split yields exactly one majority side, with no tied stand-off in which neither can act. Five tolerates two failures while keeping a majority of three; three tolerates one. When a technology leader says the cluster needs at least three nodes, or that they run five for quorum, this is the reason.</p>
         <p>Turning the idea into a precise protocol that machines can execute &mdash; handling the votes, the timing, the moment-to-moment question of who leads &mdash; is the work of the consensus algorithms, of which two names suffice. <strong>Paxos</strong>, devised by Leslie Lamport and published in the late 1990s, is the foundational, provably correct algorithm, and it is notoriously difficult to understand and to implement; for a decade and a half it was the answer almost nobody could implement without subtle bugs. <strong>Raft</strong>, published in 2014 by Diego Ongaro and John Ousterhout under the candid title &ldquo;In Search of an Understandable Consensus Algorithm,&rdquo; was designed to be equivalent in power to Paxos but genuinely teachable, breaking the problem into separable parts &mdash; electing a leader, replicating the log, ensuring safety &mdash; so that ordinary engineers can implement it correctly. It won for that reason, and it now sits beneath an enormous amount of the infrastructure a financial firm relies on: it is what <em>etcd</em> uses, the coordination store at the heart of Kubernetes, and what Consul and many modern distributed databases use to elect leaders and agree the order of log entries. The arc thus closes on itself. The abstract problem with which the subject began &mdash; manufacturing agreement among machines that share neither memory nor time &mdash; has a concrete, named, widely deployed answer in the majority quorum, realised by Raft, sitting quietly underneath the everyday machinery of the firm.</p>
+        <figure class="fig">
+          <svg viewBox="0 0 640 320" role="img" aria-labelledby="fig-quo-t fig-quo-d">
+            <title id="fig-quo-t">Quorum under a network partition</title>
+            <desc id="fig-quo-d">Five machines are split by a network partition into a group of three and a group of two. The group of three holds a majority, so it forms a quorum and may act. The group of two has no majority, so it halts. Because a majority is more than half, two majorities of the same set of five must share at least one machine, and no machine will vote for two conflicting things, so two conflicting decisions can never both gather a majority. An odd membership guarantees that any split yields exactly one majority.</desc>
+
+            <text class="t-tag" x="40" y="42" font-size="13">FIVE MACHINES, ONE PARTITION</text>
+
+            <rect x="43"  y="109" width="250" height="82" rx="16" fill="#861831" fill-opacity="0.05" stroke="#861831" stroke-width="1.6"/>
+            <rect x="347" y="109" width="166" height="82" rx="16" fill="none" stroke="#5A5A5A" stroke-width="1.4" stroke-dasharray="5 4"/>
+
+            <line x1="320" y1="88" x2="320" y2="228" stroke="#5A5A5A" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <text class="t-open" x="320" y="80" text-anchor="middle" font-size="11.5">network partition</text>
+
+            <text class="t-tag" x="168" y="100" text-anchor="middle" font-size="12.5">MAJORITY OF 3</text>
+            <text class="t-glossy" x="168" y="212" text-anchor="middle" font-size="12">quorum secured &mdash; may act</text>
+            <text class="t-glossy" x="430" y="100" text-anchor="middle" font-size="12.5" font-weight="700" letter-spacing="0.06em">MINORITY OF 2</text>
+            <text class="t-glossy" x="430" y="212" text-anchor="middle" font-size="12">no majority &mdash; halts</text>
+
+            <circle cx="84"  cy="150" r="27" fill="#861831" fill-opacity="0.08" stroke="#861831" stroke-width="1.8"/>
+            <circle cx="168" cy="150" r="27" fill="#861831" fill-opacity="0.08" stroke="#861831" stroke-width="1.8"/>
+            <circle cx="252" cy="150" r="27" fill="#861831" fill-opacity="0.08" stroke="#861831" stroke-width="1.8"/>
+            <circle cx="388" cy="150" r="27" fill="none" stroke="#5A5A5A" stroke-width="1.6"/>
+            <circle cx="472" cy="150" r="27" fill="none" stroke="#5A5A5A" stroke-width="1.6"/>
+            <text class="t-title" x="84"  y="156" text-anchor="middle" font-size="15" fill="#861831">1</text>
+            <text class="t-title" x="168" y="156" text-anchor="middle" font-size="15" fill="#861831">2</text>
+            <text class="t-title" x="252" y="156" text-anchor="middle" font-size="15" fill="#861831">3</text>
+            <text class="t-glossy" x="388" y="156" text-anchor="middle" font-size="15">4</text>
+            <text class="t-glossy" x="472" y="156" text-anchor="middle" font-size="15">5</text>
+
+            <text class="t-glossy" x="320" y="272" text-anchor="middle" font-size="12.5">3 + 3 would need six machines; there are only five &mdash; a split yields at most one majority</text>
+            <text class="t-glossy" x="320" y="296" text-anchor="middle" font-size="12.5">two majorities must share a machine, and none votes twice &mdash; so two truths cannot both win</text>
+          </svg>
+          <figcaption>
+            <span class="fig-n">Figure 4</span>
+            <span class="fig-c">Quorum: a majority may act, the minority halts by arithmetic, and an odd membership guarantees only one majority can ever form.</span>
+          </figcaption>
+        </figure>
         <p class="ct-quote">Require an overlapping majority, and two truths become arithmetically impossible. Better to halt than to fork.</p>
       </div>
     </details>
@@ -1243,6 +1322,45 @@
         <p>The text is captured by the application running on the device. Before any radio transmission begins, the application encrypts the message using the Signal Protocol &mdash; the same cryptographic foundation that underlies the Signal app and that is now used by many serious messaging products. Encryption uses a key that exists only on the recipient&rsquo;s device, not on the sender&rsquo;s, not on the messaging provider&rsquo;s servers, not on any intermediary. From the moment the sender presses send, the message exists in plain form only on the two endpoints. Everything in between sees only ciphertext.</p>
         <p>The phone next consults a service called the Domain Name System, or DNS &mdash; the internet&rsquo;s address book &mdash; to translate the human-readable name of WhatsApp&rsquo;s server into the numerical address that the network can actually route to. Once the address is known, the message is broken into small numbered packets, each typically no larger than 1,500 bytes, and each wrapped in nested envelopes of progressively wider scope. The innermost envelope is the Signal ciphertext. Around that sits the WhatsApp application protocol. Around that sits TLS, which adds a second layer of transport security between the device and Meta&rsquo;s servers. Around that sits TCP, which manages reliable delivery and retransmission. Around that sits IP, which manages routing. And around that sits a link-layer frame appropriate to whatever physical medium is being traversed at the moment &mdash; Wi-Fi over the home, Ethernet between racks, optical signals on glass.</p>
         <p>This nesting matters for a reason that recurs across the architecture. Each layer is opened only by the appropriate counterparty. The home router opens the link-layer envelope but cannot read the layers within. The internet service provider&rsquo;s routers open the IP envelope to determine where each packet should go but cannot read the layers within. Meta&rsquo;s edge servers open the TLS and application envelopes but cannot open the Signal envelope; they hold ciphertext, queue it for delivery, and forward it to the recipient. Only the recipient&rsquo;s phone, holding the matching Signal key, can open that innermost envelope. This is what end-to-end encryption means in practice. It is not a marketing claim. It is an architectural property of the system, and it has the consequence that no court order to Meta can produce the plaintext of a past message because Meta does not have it.</p>
+        <figure class="fig">
+          <svg viewBox="0 0 640 470" role="img" aria-labelledby="fig-env-t fig-env-d">
+            <title id="fig-env-t">The nested envelopes of a single message</title>
+            <desc id="fig-env-d">A message is wrapped in concentric layers. From the outside in: a link-layer frame opened by the home router; an IP envelope opened by the internet service provider&rsquo;s routers; a TCP layer held between the endpoints; a TLS layer and the WhatsApp application layer, both opened by Meta&rsquo;s edge servers; and at the centre the Signal ciphertext, which only the recipient&rsquo;s phone can open.</desc>
+            <rect x="40"  y="52"  width="560" height="372" rx="14" fill="none" stroke="#861831" stroke-width="2"/>
+            <rect x="64"  y="76"  width="512" height="324" rx="12" fill="none" stroke="#861831" stroke-width="1.6"/>
+            <rect x="88"  y="100" width="464" height="276" rx="10" fill="none" stroke="#861831" stroke-width="1.6"/>
+            <rect x="112" y="124" width="416" height="228" rx="9"  fill="none" stroke="#861831" stroke-width="1.6"/>
+            <rect x="136" y="148" width="368" height="180" rx="8"  fill="none" stroke="#861831" stroke-width="1.6"/>
+            <rect x="160" y="172" width="320" height="132" rx="7"  fill="#861831" fill-opacity="0.05" stroke="#861831" stroke-width="1.8"/>
+            <rect x="51"  y="44" width="122" height="16" fill="#F9F8F3"/>
+            <text class="t-layer" x="56"  y="56.5" font-size="13">Link-layer frame</text>
+            <rect x="423" y="44" width="166" height="16" fill="#F9F8F3"/>
+            <text class="t-open" x="584" y="56.5" text-anchor="end" font-size="12">opened by the home router</text>
+            <rect x="75"  y="68" width="30" height="16" fill="#F9F8F3"/>
+            <text class="t-layer" x="80"  y="80.5" font-size="13">IP</text>
+            <rect x="434" y="68" width="142" height="16" fill="#F9F8F3"/>
+            <text class="t-open" x="560" y="80.5" text-anchor="end" font-size="12">opened by ISP routers</text>
+            <rect x="99"  y="92" width="36" height="16" fill="#F9F8F3"/>
+            <text class="t-layer" x="104" y="104.5" font-size="13">TCP</text>
+            <rect x="430" y="92" width="106" height="16" fill="#F9F8F3"/>
+            <text class="t-open" x="536" y="104.5" text-anchor="end" font-size="12">held end to end</text>
+            <rect x="123" y="116" width="36" height="16" fill="#F9F8F3"/>
+            <text class="t-layer" x="128" y="128.5" font-size="13">TLS</text>
+            <rect x="366" y="116" width="142" height="16" fill="#F9F8F3"/>
+            <text class="t-open" x="512" y="128.5" text-anchor="end" font-size="12">opened by Meta&rsquo;s edge</text>
+            <rect x="147" y="140" width="148" height="16" fill="#F9F8F3"/>
+            <text class="t-layer" x="152" y="152.5" font-size="13">WhatsApp application</text>
+            <rect x="351" y="140" width="142" height="16" fill="#F9F8F3"/>
+            <text class="t-open" x="488" y="152.5" text-anchor="end" font-size="12">opened by Meta&rsquo;s edge</text>
+            <text class="t-title" x="320" y="232" text-anchor="middle" font-size="15">Signal ciphertext</text>
+            <text class="t-glossy" x="320" y="254" text-anchor="middle" font-size="12">the plaintext exists only here</text>
+            <text class="t-open" x="320" y="276" text-anchor="middle" font-size="12" fill="#861831">opened by the recipient&rsquo;s phone alone</text>
+          </svg>
+          <figcaption>
+            <span class="fig-n">Figure 2</span>
+            <span class="fig-c">The journey of a message: each layer is opened only by its rightful counterparty.</span>
+          </figcaption>
+        </figure>
         <p>The packets do not travel as a single convoy. Each is routed independently across whatever network path is available, and they may arrive out of order, take different physical routes through the global network, or be retransmitted because one was dropped along the way. The receiving end reassembles them into the original sequence and the original message. This packet-switched architecture, formalised in the late 1960s and now sixty years old, is the foundation on which the resilience of the internet rests: there is no single pipe between London and New York whose severance halts traffic. Severance of any one pipe simply causes packets to find a different route.</p>
         <p>One further wrinkle is worth naming because it brings a third party onto the path of every iOS message. A WhatsApp message arriving at Meta&rsquo;s server cannot, on its own, wake the recipient&rsquo;s iPhone. iOS does not allow third-party applications arbitrary background privileges; only Apple&rsquo;s own infrastructure can interrupt the device. Meta therefore sends a request to Apple&rsquo;s Push Notification Service, Apple sends a small alert to the recipient&rsquo;s iPhone, the alert wakes WhatsApp, and WhatsApp then collects the queued message from Meta. Apple sits on the path of every push notification ever delivered to an iPhone, and the leverage this gives Apple over the messaging ecosystem is one of the under-appreciated facts of the modern stack.</p>
         <p>The widespread belief that end-to-end encryption has been broken by intelligence services is in important respects misplaced. The Signal Protocol has not been cryptographically defeated; it is among the most thoroughly scrutinised pieces of applied cryptography in the world. What has been compromised, in well-documented cases involving NSO Group&rsquo;s Pegasus and similar tools, is the endpoint device itself, typically through zero-day vulnerabilities that allow remote code execution. Once a phone is owned, the encryption becomes irrelevant: the attacker is reading the screen, capturing the keyboard, and extracting keys from memory, exactly as the legitimate user would. The cryptography is sound; the operating system, the application, and the user are the attack surface. This distinction matters because it tells one where the defensive investment actually belongs.</p>
@@ -4321,6 +4439,43 @@
       <summary class="acc-head"><span class="ct-num">I</span><span class="acc-title">What Is Actually Being Sold</span></summary>
       <div class="acc-body">
         <p>Recall the physical foundation. A hyperscaler&rsquo;s data centre holds hundreds of thousands of servers whose capacity is pooled by virtualisation and parcelled out to millions of tenants. The pre-cloud world ran its own servers at ten to twenty per cent utilisation, because each machine had to be sized for its own busiest hour; the hyperscaler, aggregating millions of workloads whose peaks fall at different moments, runs the same silicon far hotter. That utilisation arbitrage &mdash; buying capacity wholesale, at extraordinary scale, and selling it retail by the second &mdash; is the economic engine of the entire industry, and the source of both its genuine value and its remarkable margins.</p>
+        <figure class="fig">
+          <svg viewBox="0 0 640 376" role="img" aria-labelledby="fig-uti-t fig-uti-d">
+            <title id="fig-uti-t">Utilisation before and after pooling</title>
+            <desc id="fig-uti-d">A single workload must be provisioned for its peak, so its capacity sits mostly idle and is used at only ten to twenty per cent on average. When millions of workloads are pooled, their peaks fall at different moments, so the aggregate demand is smooth and high and the same hardware runs close to its provisioned capacity. The reclaimed idle capacity, sold by the second, is utilisation arbitrage.</desc>
+
+            <text class="t-tag" x="60" y="44" font-size="12.5">ONE WORKLOAD</text>
+            <text class="t-glossy" x="178" y="44" font-size="12">sized for its peak &mdash; idle most of the time</text>
+
+            <line x1="60" y1="60" x2="60" y2="150" stroke="#C7C3B8" stroke-width="1"/>
+            <line x1="60" y1="150" x2="600" y2="150" stroke="#C7C3B8" stroke-width="1"/>
+            <line x1="60" y1="66" x2="600" y2="66" stroke="#5A5A5A" stroke-width="1.2" stroke-dasharray="5 4"/>
+            <polygon points="60,66 600,66 600,137 545,133 500,112 455,132 415,123 375,136 335,128 300,92 270,68 235,131 195,122 150,140 105,133 60,138" fill="#5A5A5A" fill-opacity="0.08"/>
+            <polyline points="60,138 105,133 150,140 195,122 235,131 270,68 300,92 335,128 375,136 415,123 455,132 500,112 545,133 600,137" fill="none" stroke="#861831" stroke-width="1.8"/>
+            <text class="t-open" x="596" y="60" text-anchor="end" font-size="10.5">provisioned capacity</text>
+            <text class="t-glossy" x="430" y="100" text-anchor="middle" font-size="11.5">idle &mdash; paid for, unused</text>
+
+            <line x1="40" y1="198" x2="600" y2="198" stroke="#D8D5CC" stroke-width="1"/>
+
+            <text class="t-tag" x="60" y="232" font-size="12.5">MILLIONS POOLED</text>
+            <text class="t-glossy" x="176" y="232" font-size="12">peaks average out &mdash; the silicon runs hot</text>
+
+            <line x1="60" y1="250" x2="60" y2="340" stroke="#C7C3B8" stroke-width="1"/>
+            <line x1="60" y1="340" x2="600" y2="340" stroke="#C7C3B8" stroke-width="1"/>
+            <line x1="60" y1="256" x2="600" y2="256" stroke="#5A5A5A" stroke-width="1.2" stroke-dasharray="5 4"/>
+            <polygon points="60,256 600,256 600,272 545,266 500,270 440,264 380,268 330,262 280,266 220,270 160,264 110,268 60,274" fill="#5A5A5A" fill-opacity="0.08"/>
+            <polyline points="60,336 110,332 150,300 200,330 260,336 320,338 380,337 440,336 500,335 560,336 600,337" fill="none" stroke="#861831" stroke-opacity="0.35" stroke-width="1"/>
+            <polyline points="60,337 120,336 200,332 280,330 330,302 380,331 440,335 500,336 560,337 600,337" fill="none" stroke="#861831" stroke-opacity="0.35" stroke-width="1"/>
+            <polyline points="60,338 140,337 220,336 300,335 380,332 440,330 490,304 540,330 600,336" fill="none" stroke="#861831" stroke-opacity="0.35" stroke-width="1"/>
+            <polyline points="60,274 110,268 160,264 220,270 280,266 330,262 380,268 440,264 500,270 545,266 600,272" fill="none" stroke="#861831" stroke-width="2.2"/>
+            <text class="t-open" x="596" y="250" text-anchor="end" font-size="10.5">provisioned capacity</text>
+            <text class="t-glossy" x="330" y="360" text-anchor="middle" font-size="11">each workload peaks at a different moment; the pooled sum is smooth</text>
+          </svg>
+          <figcaption>
+            <span class="fig-n">Figure 5</span>
+            <span class="fig-c">Utilisation arbitrage: one workload sits mostly idle, but millions pooled run the same hardware hot &mdash; the reclaimed capacity, sold by the second, is the cloud&rsquo;s economic engine.</span>
+          </figcaption>
+        </figure>
         <p>What the customer receives is not primarily cheaper computing. It is three other things. <strong>Elasticity</strong>: capacity summoned in minutes and released as quickly, so that the quarter-end valuation run can command a thousand machines for four hours and pay for exactly that. <strong>The abolition of capacity planning</strong>: no more eighteen-month procurement cycles sized against guessed demand, with the twin failure modes of stranded capital and turned-away business. And <strong>a catalogue of operated services</strong>: not bare machines but managed databases, queues, identity systems and analytical platforms, each arriving with the hyperscaler&rsquo;s operations staff invisibly included. In accounting terms, the cloud converts capital expenditure into operating expenditure &mdash; a shift with real balance-sheet and agility consequences, though one that should persuade on flexibility grounds rather than on any pretence that renting is inherently cheaper than owning. Often it is not, and Section III is about when.</p>
       </div>
     </details>
