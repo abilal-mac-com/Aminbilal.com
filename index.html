@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Amin's Personal Site</title>
-<meta name="description" content="Amin Bilal — a bit of this and a bit of that.">
+<title>Amin Bilal</title>
+<meta name="description" content="A miscellany of personal essays — a bit of this and a bit of that, pursued in earnest — on markets, physics and whatever else catches my interest.">
 
 <!-- Discoverability: Open Graph, Twitter Card, canonical, author, JSON-LD -->
 <meta name="author" content="Amin Bilal">
@@ -12,16 +12,16 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="aminbilal.com">
 <meta property="og:locale" content="en_GB">
-<meta property="og:title" content="Amin's Personal Site">
-<meta property="og:description" content="Amin Bilal &mdash; a bit of this and a bit of that.">
+<meta property="og:title" content="Amin Bilal">
+<meta property="og:description" content="A miscellany of personal essays &mdash; a bit of this and a bit of that, pursued in earnest &mdash; on markets, physics and whatever else catches my interest.">
 <meta property="og:url" content="https://aminbilal.com/">
 <meta property="og:image" content="https://aminbilal.com/og-home.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Amin Bilal">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Amin's Personal Site">
-<meta name="twitter:description" content="Amin Bilal &mdash; a bit of this and a bit of that.">
+<meta name="twitter:title" content="Amin Bilal">
+<meta name="twitter:description" content="A miscellany of personal essays &mdash; a bit of this and a bit of that, pursued in earnest &mdash; on markets, physics and whatever else catches my interest.">
 <meta name="twitter:image" content="https://aminbilal.com/og-home.png">
 <meta name="twitter:image:alt" content="Amin Bilal">
 <script type="application/ld+json">
@@ -29,7 +29,7 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "aminbilal.com",
-  "description": "Amin Bilal \u2014 a bit of this and a bit of that.",
+  "description": "A miscellany of personal essays \u2014 a bit of this and a bit of that, pursued in earnest \u2014 on markets, physics and whatever else catches my interest.",
   "inLanguage": "en-GB",
   "url": "https://aminbilal.com/",
   "author": {
@@ -322,13 +322,13 @@
     var key = (location.hash || '').replace(/^#/,'').toLowerCase();
     if(Object.prototype.hasOwnProperty.call(SUBJECTS, key)){
       title.textContent = SUBJECTS[key];
-      document.title = SUBJECTS[key] + " — Amin's Personal Site";
+      document.title = SUBJECTS[key] + " — Amin Bilal";
       landing.hidden = true;
       subject.hidden = false;
     } else {
       subject.hidden = true;
       landing.hidden = false;
-      document.title = "Amin's Personal Site";
+      document.title = "Amin Bilal";
     }
     window.scrollTo(0, 0);
   }
