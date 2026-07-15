@@ -1,0 +1,12 @@
+# aminbilal.com
+# All crawlers are permitted to access the entire site, the AI answer-engine
+# retrieval bots included (among them GPTBot, OAI-SearchBot, PerplexityBot,
+# ClaudeBot, Claude-SearchBot, Google-Extended, Bingbot and Applebot-Extended).
+# The wildcard group below already grants them full access, so no per-bot rules
+# are required. Permitting these bots is what makes the site eligible to be
+# read and cited by the answer engines.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://aminbilal.com/sitemap.xml
