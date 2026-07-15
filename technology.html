@@ -299,6 +299,19 @@
     .page-content .pe{ grid-template-columns:40px 1fr; }
     .page-content .pe-body{ padding-left:14px; }
   }
+  /* ---- The Chronology (timeline) ---- */
+  .chron-move{ margin:2.6em 0 0; }
+  .chron-move:first-of-type{ margin-top:1.8em; }
+  .chron-move .chron-span{ font-family:var(--sans); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey); margin:.2em 0 1em; }
+  .chron-list{ border-top:1px solid var(--rule-strong); }
+  .chron-list .chron-row{ display:grid; grid-template-columns:76px 1fr; column-gap:20px; align-items:baseline; padding:.95em 0 .9em; border-bottom:1px solid var(--rule); }
+  .chron-row .chron-year{ font-family:var(--serif); font-weight:600; font-size:18px; color:var(--crimson); font-variant-numeric:lining-nums tabular-nums; letter-spacing:.01em; }
+  .chron-row .chron-event{ font-family:var(--serif); font-size:16.5px; line-height:1.56; color:var(--ink); margin:0; }
+  @media (max-width:560px){
+    .chron-list .chron-row{ grid-template-columns:52px 1fr; column-gap:14px; }
+    .chron-row .chron-year{ font-size:15.5px; }
+    .chron-row .chron-event{ font-size:15.5px; }
+  }
   /* ---- FAQ category headings ---- */
   .page-content h2.faq-cat{
     font-family:var(--serif); font-weight:700; color:var(--ink);
@@ -411,7 +424,7 @@
       <p class="byline">Amin Bilal</p>
       <hr class="masthead-rule">
       <p class="standfirst">What does it take for a senior finance leader to sit across from a Chief Technology Officer and follow the substance of the architecture itself &mdash; not merely the outcomes and the budgets, but the reasoning beneath them? This programme is an attempt to build that understanding, patiently and from first principles, across the ten domains that compose the field.</p>
-      <p class="progress">Part One &mdash; the Introduction and all ten building blocks &mdash; is complete, each block opening to its full Content, Key Takeaways, FAQs, Test and Personalities; the Introduction, <a href="#block-1">Block One</a> and <a href="#block-7">Block Seven</a> are additionally accompanied by typeset PDFs. <a href="#applied">Part Two</a>, an applied volume on the enterprise finance estate, is now in preparation and is being written chapter by chapter.</p>
+      <p class="progress">Part One &mdash; the Introduction and all ten building blocks &mdash; is complete, each block opening to its full Content, Key Takeaways, FAQs, Test and Personalities; the Introduction, <a href="#block-1">Block One</a> and <a href="#block-7">Block Seven</a> are additionally accompanied by typeset PDFs. <a href="#applied">Part Two</a> &mdash; the applied volume on the enterprise finance estate &mdash; is likewise complete across its nine chapters, each carrying the same Content, Key Takeaways, FAQs, Test and Personalities.</p>
     </div>
   </header>
 
@@ -525,6 +538,14 @@
       <button class="rail-item is-done" role="tab" id="tab-applied-9" data-slug="applied-9" data-kicker="Part Two &middot; Chapter IX" aria-controls="panel-applied-9" aria-selected="false" tabindex="-1">
         <span class="rail-num" aria-hidden="true">IX</span>
         <span class="rail-title">The Economics of Enterprise Software<span class="vh"> — complete</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+
+      <div class="rail-part"><b>The Chronology</b><i>The field, in order</i></div>
+
+      <button class="rail-item is-done" role="tab" id="tab-chronology" data-slug="chronology" aria-controls="panel-chronology" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">&mdash;</span>
+        <span class="rail-title">A Timeline of the Field<span class="vh"> &mdash; complete</span></span>
         <span class="rail-dot" aria-hidden="true"></span>
       </button>
 
@@ -963,6 +984,125 @@
           <a class="page-btn" href="#applied-9/personalities"><span class="pb-dot"></span>Personalities</a>
         </div>
         <nav class="panel-flip" data-flip="applied-9"></nav>
+      </section>
+
+      <!-- THE CHRONOLOGY -->
+      <section class="panel" role="tabpanel" id="panel-chronology" aria-labelledby="tab-chronology" tabindex="0" hidden>
+        <div class="panel-head-row">
+          <p class="panel-eyebrow">The Chronology</p>
+          <span class="status done">Complete</span>
+        </div>
+        <h2 class="panel-title">A Timeline of the Field</h2>
+        <p class="panel-sub">Six movements tracing the milestones beneath the whole programme</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p class="lede">The two parts of this programme are arranged by idea rather than by date. This chronology restores the other axis. It sets down, in order, the moments at which the field turned &mdash; the inventions, the papers and the regulations from which the substrate of Part One and the estate of Part Two were assembled &mdash; and, against each, a word on why it belongs here.</p>
+          <p>The account runs in six movements, from the first printed double-entry ledger to the present turn in artificial intelligence. It is deliberately selective: a milestone earns its place only where a later part of the programme rests upon it. Dates mark the moment a thing was first set down or first worked; where a single year holds two turning points, both are recorded.</p>
+
+          <div class="chron-move">
+            <h3 class="prose-head"><span class="prose-num">Movement I</span> Foundations of Computation</h3>
+            <p class="chron-span">1494 &ndash; 1945</p>
+            <div class="chron-list">
+              <div class="chron-row"><span class="chron-year">1494</span><p class="chron-event">Luca Pacioli&rsquo;s <em>Summa de Arithmetica</em> sets double-entry bookkeeping down in print for the first time, giving commerce the self-checking ledger &mdash; debit against credit, the books in balance &mdash; that remains the conceptual spine of every accounting system in Part Two.</p></div>
+              <div class="chron-row"><span class="chron-year">1837</span><p class="chron-event">Charles Babbage designs the Analytical Engine, a mechanical general-purpose computer with a store, a mill and punched-card control &mdash; describing in Victorian brass the separation of memory from processor that every later machine would inherit.</p></div>
+              <div class="chron-row"><span class="chron-year">1843</span><p class="chron-event">Ada Lovelace, annotating Babbage&rsquo;s engine, publishes what is generally taken to be the first algorithm written for a machine, and grasps that such a machine might manipulate symbols and not merely numbers &mdash; the first intimation of software.</p></div>
+              <div class="chron-row"><span class="chron-year">1854</span><p class="chron-event">George Boole&rsquo;s <em>An Investigation of the Laws of Thought</em> reduces logic to an algebra of true and false, supplying &mdash; a century early &mdash; the mathematics on which every digital circuit and every conditional in code would eventually run.</p></div>
+              <div class="chron-row"><span class="chron-year">1890</span><p class="chron-event">Herman Hollerith&rsquo;s electric tabulating machine, built to count the United States census, proves that data processing can be mechanised at scale; the company he founds becomes, in time, IBM.</p></div>
+              <div class="chron-row"><span class="chron-year">1936</span><p class="chron-event">Alan Turing&rsquo;s paper &ldquo;On Computable Numbers&rdquo; defines the universal machine and the limits of computation itself, laying the theoretical foundation for the stored-program computer and for the discipline entire.</p></div>
+              <div class="chron-row"><span class="chron-year">1937</span><p class="chron-event">Claude Shannon&rsquo;s master&rsquo;s thesis shows that Boolean algebra can be realised in electrical switching circuits, welding logic to electronics and making the design of digital hardware a mathematical craft rather than an ad-hoc one.</p></div>
+              <div class="chron-row"><span class="chron-year">1941</span><p class="chron-event">Konrad Zuse completes the Z3 in Berlin, the first working programmable, fully automatic digital computer &mdash; electromechanical still, but the point at which Babbage&rsquo;s vision first actually runs.</p></div>
+            </div>
+          </div>
+
+          <div class="chron-move">
+            <h3 class="prose-head"><span class="prose-num">Movement II</span> The Electronic and Mainframe Era</h3>
+            <p class="chron-span">1945 &ndash; 1970</p>
+            <div class="chron-list">
+              <div class="chron-row"><span class="chron-year">1945</span><p class="chron-event">ENIAC, the first large-scale electronic general-purpose computer, is completed at the University of Pennsylvania &mdash; vacuum tubes in place of relays, running some thousandfold faster; the electronic computer has arrived.</p></div>
+              <div class="chron-row"><span class="chron-year">1945</span><p class="chron-event">John von Neumann&rsquo;s <em>First Draft of a Report on the EDVAC</em> sets down the stored-program architecture &mdash; instructions and data held together in one memory &mdash; the design nearly every computer since has followed.</p></div>
+              <div class="chron-row"><span class="chron-year">1947</span><p class="chron-event">John Bardeen and Walter Brattain build the first transistor at Bell Labs, with William Shockley&rsquo;s junction design following in 1948; the solid-state switch supplants the fragile vacuum tube and becomes the elementary unit of all modern electronics.</p></div>
+              <div class="chron-row"><span class="chron-year">1948</span><p class="chron-event">Claude Shannon&rsquo;s &ldquo;A Mathematical Theory of Communication&rdquo; founds information theory, defining the bit and the ultimate capacity of any channel &mdash; the intellectual root of digital storage, compression, error correction and the networks of Block Seven.</p></div>
+              <div class="chron-row"><span class="chron-year">1951</span><p class="chron-event">LEO, built by the Lyons catering company, runs the first routine business computation &mdash; clerical work, valuations and payroll &mdash; the moment commercial data processing begins, and a distant ancestor of the finance estate.</p></div>
+              <div class="chron-row"><span class="chron-year">1957</span><p class="chron-event">IBM&rsquo;s FORTRAN, the first widely used high-level language, lets programmers write in something near to mathematics rather than machine code, opening the craft beyond a priesthood of specialists.</p></div>
+              <div class="chron-row"><span class="chron-year">1959</span><p class="chron-event">COBOL is defined, the business-data language whose extraordinary longevity means core banking and insurance ledgers &mdash; the very systems of Part Two &mdash; still run on it more than six decades later.</p></div>
+              <div class="chron-row"><span class="chron-year">1964</span><p class="chron-event">IBM&rsquo;s System/360 establishes the mainframe as a compatible family of machines sharing one architecture &mdash; the model of the reliable, backward-compatible transaction engine on which regulated finance still depends.</p></div>
+              <div class="chron-row"><span class="chron-year">1965</span><p class="chron-event">Gordon Moore observes that the transistor count on a chip is doubling on a regular cadence; &ldquo;Moore&rsquo;s Law&rdquo; becomes the metronome of the industry, and the reason the metered cloud of Block Three would one day be affordable.</p></div>
+              <div class="chron-row"><span class="chron-year">1969</span><p class="chron-event">ARPANET carries its first message between two university machines &mdash; the packet-switched network that will grow into the internet; in the same year, work begins on Unix at Bell Labs.</p></div>
+              <div class="chron-row"><span class="chron-year">1970</span><p class="chron-event">Edgar Codd&rsquo;s paper &ldquo;A Relational Model of Data for Large Shared Data Banks&rdquo; proposes organising data as tables queried by content rather than by location &mdash; the idea beneath every relational database and SQL query in Blocks Two and Eight.</p></div>
+            </div>
+          </div>
+
+          <div class="chron-move">
+            <h3 class="prose-head"><span class="prose-num">Movement III</span> Networks, the Database and the Desktop</h3>
+            <p class="chron-span">1970 &ndash; 1990</p>
+            <div class="chron-list">
+              <div class="chron-row"><span class="chron-year">1973</span><p class="chron-event">Robert Metcalfe designs Ethernet at Xerox PARC, the local-area network that will wire the office together; the humble cable standard beneath almost every enterprise network since.</p></div>
+              <div class="chron-row"><span class="chron-year">1974</span><p class="chron-event">Vint Cerf and Bob Kahn publish the design of TCP, the protocol that lets separate networks interconnect into a single &ldquo;internet&rdquo;; their architecture still carries very nearly all the world&rsquo;s traffic, and it is the subject of Block Seven.</p></div>
+              <div class="chron-row"><span class="chron-year">1974</span><p class="chron-event">Donald Chamberlin and Raymond Boyce at IBM devise SEQUEL &mdash; later SQL &mdash; for the System R project, turning Codd&rsquo;s relational model into a working query language and the lingua franca of enterprise data.</p></div>
+              <div class="chron-row"><span class="chron-year">1977</span><p class="chron-event">Rivest, Shamir and Adleman publish RSA, the first practical public-key cryptosystem; the mathematics that lets strangers exchange secrets underlies the TLS, digital signatures and identity of Block Five.</p></div>
+              <div class="chron-row"><span class="chron-year">1977</span><p class="chron-event">SWIFT goes live, giving the world&rsquo;s banks a shared, standardised network for cross-border payment messaging &mdash; the financial-messaging backbone the estate still runs on, and, as Block Five records, a target once its credentials are abused.</p></div>
+              <div class="chron-row"><span class="chron-year">1979</span><p class="chron-event">VisiCalc, the first spreadsheet, appears on the Apple II and becomes the program people buy the computer to run; the analytical tool &mdash; through Lotus 1-2-3 and Excel after it &mdash; that put computation on every finance desk, and the origin of end-user-computing risk.</p></div>
+              <div class="chron-row"><span class="chron-year">1979</span><p class="chron-event">Oracle ships the first commercial relational database, turning Codd&rsquo;s model and SQL into a product; the relational store becomes the default foundation beneath enterprise applications, the finance estate among them.</p></div>
+              <div class="chron-row"><span class="chron-year">1981</span><p class="chron-event">IBM&rsquo;s Personal Computer sets the open, clonable standard that makes the PC a commodity on every desk &mdash; and hands Microsoft the operating-system franchise that will define the era.</p></div>
+              <div class="chron-row"><span class="chron-year">1981</span><p class="chron-event">Michael Bloomberg&rsquo;s new company begins building the terminal that will put real-time market data, analytics and messaging on the trading desk as an always-on service; market data becomes infrastructure &mdash; and a subscription.</p></div>
+              <div class="chron-row"><span class="chron-year">1983</span><p class="chron-event">On the first of January the ARPANET switches wholesale to TCP/IP &mdash; the internet in the modern sense begins &mdash; and in the same year Paul Mockapetris designs the Domain Name System that gives its machines names a person can remember.</p></div>
+              <div class="chron-row"><span class="chron-year">1983</span><p class="chron-event">Richard Stallman launches the GNU Project and the free-software movement, whose copyleft licensing will later underwrite Linux and the open-source foundation on which the entire modern stack rests.</p></div>
+            </div>
+          </div>
+
+          <div class="chron-move">
+            <h3 class="prose-head"><span class="prose-num">Movement IV</span> The Internet, the Web and Open Source</h3>
+            <p class="chron-span">1989 &ndash; 2005</p>
+            <div class="chron-list">
+              <div class="chron-row"><span class="chron-year">1989</span><p class="chron-event">Tim Berners-Lee proposes the World Wide Web at CERN &mdash; hypertext served over the internet &mdash; and releases it to the public in 1991; the interface through which most of humanity would ever meet the network.</p></div>
+              <div class="chron-row"><span class="chron-year">1991</span><p class="chron-event">Linus Torvalds releases the first Linux kernel as a student&rsquo;s hobby; it grows into the operating system of servers, the cloud, phones and the world&rsquo;s market infrastructure &mdash; the standing proof of the open-source method.</p></div>
+              <div class="chron-row"><span class="chron-year">1993</span><p class="chron-event">Mosaic, the first widely used graphical browser, makes the Web usable by everyone; its commercial successor Netscape lights the fuse of the dot-com boom.</p></div>
+              <div class="chron-row"><span class="chron-year">1994</span><p class="chron-event">Netscape develops SSL, the encryption for web traffic whose successor TLS becomes the padlock beneath all electronic commerce and the transport security Block Five assumes.</p></div>
+              <div class="chron-row"><span class="chron-year">1994</span><p class="chron-event">Jeff Bezos founds Amazon to sell books over the young Web; the company that pioneers electronic commerce is also, a decade on, the one that will invent the cloud.</p></div>
+              <div class="chron-row"><span class="chron-year">1998</span><p class="chron-event">Google is founded on the PageRank algorithm, ordering the exploding Web by the link structure between its pages; search becomes the front door to information, and advertising its engine.</p></div>
+              <div class="chron-row"><span class="chron-year">1999</span><p class="chron-event">VMware brings practical virtualisation to commodity servers, letting one machine safely run many; the abstraction of hardware from workload &mdash; matured in its server product of 2001 &mdash; that makes the metered cloud of Block Three possible.</p></div>
+              <div class="chron-row"><span class="chron-year">2001</span><p class="chron-event">Seventeen software developers publish the Agile Manifesto, setting iterative, feedback-driven delivery against the sequential &ldquo;waterfall&rdquo;; the practice at the centre of Block Four, and the answer to the executive&rsquo;s question of why software takes so long.</p></div>
+              <div class="chron-row"><span class="chron-year">2002</span><p class="chron-event">The Sarbanes&ndash;Oxley Act, passed after Enron and WorldCom, makes management personally accountable for internal control over financial reporting &mdash; the law that turned IT general controls and change management into a board-level obligation across the estate.</p></div>
+              <div class="chron-row"><span class="chron-year">2005</span><p class="chron-event">Linus Torvalds writes Git in a matter of weeks to manage Linux&rsquo;s own development; it becomes the universal version-control system &mdash; the append-only ledger of the codebase that Block Four describes.</p></div>
+            </div>
+          </div>
+
+          <div class="chron-move">
+            <h3 class="prose-head"><span class="prose-num">Movement V</span> Cloud, Mobile and the Deep-Learning Spark</h3>
+            <p class="chron-span">2006 &ndash; 2016</p>
+            <div class="chron-list">
+              <div class="chron-row"><span class="chron-year">2006</span><p class="chron-event">Amazon Web Services launches, letting any firm rent storage and computation by the hour; computing becomes a metered utility, and the cloud economics of Block Three begin in earnest.</p></div>
+              <div class="chron-row"><span class="chron-year">2006</span><p class="chron-event">Hadoop, an open-source implementation of Google&rsquo;s MapReduce, makes it possible to store and process data across clusters of commodity machines; &ldquo;big data&rdquo; and the distributed data stack of Block Two arrive.</p></div>
+              <div class="chron-row"><span class="chron-year">2007</span><p class="chron-event">Apple&rsquo;s iPhone puts a networked computer in every pocket, remaking software around mobile-first design and creating the always-connected user the whole later stack assumes.</p></div>
+              <div class="chron-row"><span class="chron-year">2007</span><p class="chron-event">Nvidia releases CUDA, opening the graphics processor to general computation; the parallel hardware that will make deep learning &mdash; and the AI of Block Six &mdash; economically possible.</p></div>
+              <div class="chron-row"><span class="chron-year">2008</span><p class="chron-event">Satoshi Nakamoto&rsquo;s Bitcoin white paper proposes a distributed ledger secured by proof of work; the idea that spawns a decade of blockchain enthusiasm, and the honest question Block One puts of where it genuinely belongs.</p></div>
+              <div class="chron-row"><span class="chron-year">2009</span><p class="chron-event">Fei-Fei Li&rsquo;s ImageNet assembles a vast labelled image dataset whose annual competition will, three years on, ignite the deep-learning revolution.</p></div>
+              <div class="chron-row"><span class="chron-year">2011</span><p class="chron-event">The US Federal Reserve issues SR&nbsp;11-7, the model-risk canon &mdash; inventory, materiality tiering, independent validation, effective challenge; born of the crisis, and the two-decade head start Block Ten says finance holds over AI governance.</p></div>
+              <div class="chron-row"><span class="chron-year">2012</span><p class="chron-event">AlexNet wins the ImageNet competition with a deep convolutional network trained on GPUs, and the deep-learning era begins in earnest; the moment Block Six&rsquo;s technology stops being academic.</p></div>
+              <div class="chron-row"><span class="chron-year">2013</span><p class="chron-event">BCBS&nbsp;239 sets principles for risk-data aggregation &mdash; accuracy, completeness, timeliness, lineage &mdash; born of the crisis-era discovery that great banks could not state their own exposures; the regulation Block Ten calls, honestly, &ldquo;fix your data plumbing&rdquo;.</p></div>
+              <div class="chron-row"><span class="chron-year">2016</span><p class="chron-event">DeepMind&rsquo;s AlphaGo defeats Lee Sedol at Go, a game long thought beyond machines; the public moment that announced deep reinforcement learning had arrived, and the example the wider world remembers.</p></div>
+            </div>
+          </div>
+
+          <div class="chron-move">
+            <h3 class="prose-head"><span class="prose-num">Movement VI</span> The AI, Regulatory and Platform Era</h3>
+            <p class="chron-span">2017 &ndash; present</p>
+            <div class="chron-list">
+              <div class="chron-row"><span class="chron-year">2017</span><p class="chron-event">Eight researchers at Google publish &ldquo;Attention Is All You Need,&rdquo; introducing the Transformer; the architecture beneath every large language model, and the technical root of Block Six.</p></div>
+              <div class="chron-row"><span class="chron-year">2018</span><p class="chron-event">The European Union&rsquo;s General Data Protection Regulation takes effect, giving personal data a compliance regime with real penalties; the law that made data governance a board matter well beyond Europe.</p></div>
+              <div class="chron-row"><span class="chron-year">2020</span><p class="chron-event">OpenAI&rsquo;s GPT-3 shows that simply scaling a Transformer produces startling general language ability; the result that turned scaling from a hypothesis into an industry strategy.</p></div>
+              <div class="chron-row"><span class="chron-year">2022</span><p class="chron-event">ChatGPT places a capable large language model in front of the public, and within months the enterprise question shifts from whether to adopt the technology to how to govern it &mdash; the inflection this programme exists to answer.</p></div>
+              <div class="chron-row"><span class="chron-year">2023</span><p class="chron-event">IFRS&nbsp;17 takes effect, replacing IFRS&nbsp;4 and remaking the measurement of insurance liabilities; the standard whose actuarial pipeline and posting bridge the fourth chapter of Part Two is built around.</p></div>
+              <div class="chron-row"><span class="chron-year">2024</span><p class="chron-event">The PRA&rsquo;s supervisory statement SS1/23 comes into force, extending the model-risk discipline of SR&nbsp;11-7 to UK firms and stating in terms that it covers AI and machine learning; the second line&rsquo;s head start made supervisory expectation.</p></div>
+              <div class="chron-row"><span class="chron-year">2024</span><p class="chron-event">The European Union&rsquo;s Artificial Intelligence Act enters into force, the first comprehensive statutory regime for AI, with a risk-tiered schedule reaching creditworthiness assessment and insurance pricing; the statute Block Six sets against the United Kingdom&rsquo;s principles-based path.</p></div>
+              <div class="chron-row"><span class="chron-year">2024</span><p class="chron-event">The hyperscalers turn to nuclear power for their data centres &mdash; restarting reactors, buying the plants beside them, contracting small modular reactors &mdash; as the electricity demand of AI collides with the grid; the power-and-infrastructure constraint Block Seven records.</p></div>
+              <div class="chron-row"><span class="chron-year">2025</span><p class="chron-event">DORA begins to apply across the EU financial sector, prescribing detailed apparatus for ICT risk, incident reporting, resilience testing and the oversight of critical third-party providers; the regulation that makes &ldquo;assume failure and prove recovery&rdquo; a legal duty with board names attached.</p></div>
+              <div class="chron-row"><span class="chron-year">Now</span><p class="chron-event">Reasoning and autonomy converge: models that deliberate before answering are given tools and set to act across steps and systems, and the executive&rsquo;s task passes from adopting the technology to governing an agent. Here the chronology meets the present, and the reader&rsquo;s own judgement takes over.</p></div>
+            </div>
+          </div>
+
+        </div>
+        <nav class="panel-flip" data-flip="chronology"></nav>
       </section>
 
     </div>
