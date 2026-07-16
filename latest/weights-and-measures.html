@@ -1,1 +1,205 @@
-<>
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weights and Measures &mdash; Amin Bilal</title>
+<meta name="description" content="Open weights, Chinese frontier models and the provenance of machine intelligence &mdash; what a regulated finance function should make of a model it can run but cannot fully audit.">
+
+<!-- Discoverability: Open Graph, Twitter Card, canonical, author, JSON-LD -->
+<meta name="author" content="Amin Bilal">
+<link rel="canonical" href="https://aminbilal.com/latest/weights-and-measures.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="aminbilal.com">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Weights and Measures &mdash; Amin Bilal">
+<meta property="og:description" content="Open weights, Chinese frontier models and the provenance of machine intelligence &mdash; what a regulated finance function should make of a model it can run but cannot fully audit.">
+<meta property="og:url" content="https://aminbilal.com/latest/weights-and-measures.html">
+<meta property="og:image" content="https://aminbilal.com/og-latest.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Latest &mdash; Amin Bilal">
+<meta property="article:published_time" content="2026-07-03">
+<meta property="article:author" content="Amin Bilal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Weights and Measures &mdash; Amin Bilal">
+<meta name="twitter:description" content="Open weights, Chinese frontier models and the provenance of machine intelligence &mdash; what a regulated finance function should make of a model it can run but cannot fully audit.">
+<meta name="twitter:image" content="https://aminbilal.com/og-latest.png">
+<meta name="twitter:image:alt" content="Weights and Measures &mdash; Amin Bilal">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Weights and Measures",
+  "description": "Open weights, Chinese frontier models and the provenance of machine intelligence \u2014 what a regulated finance function should make of a model it can run but cannot fully audit.",
+  "datePublished": "2026-07-03",
+  "dateModified": "2026-07-03",
+  "inLanguage": "en-GB",
+  "url": "https://aminbilal.com/latest/weights-and-measures.html",
+  "mainEntityOfPage": "https://aminbilal.com/latest/weights-and-measures.html",
+  "image": "https://aminbilal.com/og-latest.png",
+  "author": [
+    { "@type": "Person", "name": "Amin Bilal", "sameAs": "https://www.linkedin.com/in/amin-bilal-54047714" },
+    { "@type": "Person", "name": "Claude Opus 4.8" }
+  ],
+  "isPartOf": {
+    "@type": "Blog",
+    "name": "Latest \u2014 Amin Bilal",
+    "url": "https://aminbilal.com/latest/"
+  }
+}
+</script>
+
+<!-- aminbilal.com - Latest - "Weights and Measures" (Artificial Intelligence). Lives in /latest/; internal links use ../ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F9F8F3;
+    --ink:#1A1A1A;
+    --body:#26241F;
+    --crimson:#861831;
+    --crimson-deep:#6C1327;
+    --grey:#5A5A5A;
+    --soft:#4A4843;
+    --rule:#D8D5CC;
+    --rule-strong:#C7C3B8;
+    --serif:'Lora', Georgia, 'Times New Roman', serif;
+    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --wrap:1180px;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--cream); color:var(--body);
+    font-family:var(--serif); font-size:18px; line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+  a{ color:var(--crimson); text-decoration:none; }
+  a:hover{ color:var(--crimson-deep); }
+  hr{ border:0; }
+  [hidden]{ display:none !important; }
+  a:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+
+  /* ---------------- breadcrumb ---------------- */
+  .page-top{ border-bottom:1px solid var(--rule); background:var(--cream); padding:14px 0; }
+  .crumb{ font-family:var(--sans); font-size:12px; letter-spacing:.03em; color:var(--grey); display:flex; flex-wrap:wrap; align-items:center; gap:8px; line-height:1.4; }
+  .crumb a{ color:var(--crimson); font-weight:700; }
+  .crumb a:hover{ color:var(--crimson-deep); text-decoration:underline; }
+  .crumb .sep{ color:var(--rule-strong); }
+  .crumb b{ color:var(--ink); font-weight:700; }
+
+  /* ---------------- article header ---------------- */
+  .art-head{ padding:clamp(48px,8vw,88px) 0 clamp(28px,4vw,44px); border-bottom:1px solid var(--rule); }
+  .art-meta{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin:0 0 18px; }
+  .art-date{ font-family:var(--sans); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey); font-variant-numeric:lining-nums tabular-nums; }
+  .art-tag{ font-family:var(--sans); font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--crimson); border:1px solid rgba(134,24,49,.4); border-radius:2px; padding:3px 10px; }
+  .art-title{ font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(34px,5.6vw,60px); line-height:1.08; letter-spacing:-.014em; margin:0; max-width:20ch; }
+  .art-standfirst{ font-family:var(--serif); font-style:italic; color:var(--soft); font-size:clamp(19px,2.4vw,24px); line-height:1.45; margin:20px 0 0; max-width:60ch; }
+  .art-byline{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.14em; font-size:12.5px; color:var(--ink); margin:24px 0 0; }
+
+  /* ---------------- article body ---------------- */
+  .article{ padding:clamp(30px,5vw,52px) 0 clamp(18px,3vw,32px); }
+  .article-body{ max-width:68ch; font-size:19px; line-height:1.66; }
+  .article-body > p{ margin:0 0 1.15em; }
+  .article-body > p:first-of-type{ margin-top:0; }
+  .article-body em{ font-style:italic; }
+  .article-body strong{ font-weight:700; color:var(--ink); }
+  .article-body a{ border-bottom:1px solid rgba(134,24,49,.32); }
+  .article-body a:hover{ border-color:var(--crimson-deep); }
+  .sub{ font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(21px,2.6vw,26px); line-height:1.2; margin:1.7em 0 .5em; }
+  .pull{ margin:1.6em 0; padding:6px 0 6px 22px; border-left:3px solid var(--crimson); font-family:var(--serif); font-style:italic; font-size:clamp(20px,2.4vw,24px); line-height:1.45; color:var(--ink); }
+  .pull cite{ display:block; font-style:normal; font-family:var(--sans); font-size:13.5px; letter-spacing:.02em; color:var(--grey); margin-top:8px; }
+
+  /* ---------------- foot ---------------- */
+  .article-foot{ max-width:68ch; margin-top:clamp(34px,5vw,50px); padding-top:22px; border-top:1px solid var(--rule); }
+  .back-to-latest{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.04em; color:var(--crimson); }
+  .back-to-latest:hover{ color:var(--crimson-deep); }
+  .site-foot{ border-top:1px solid var(--rule); }
+  .site-foot .wrap{ padding-top:26px; padding-bottom:44px; font-family:var(--sans); font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); }
+  .site-foot a{ color:var(--grey); }
+  .site-foot a:hover{ color:var(--crimson); }
+</style>
+</head>
+<body>
+
+<div class="page-top">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="../index.html">aminbilal.com</a>
+      <span class="sep">&rsaquo;</span>
+      <a href="index.html">Latest</a>
+      <span class="sep">&rsaquo;</span>
+      <b>Weights and Measures</b>
+    </nav>
+  </div>
+</div>
+
+<header class="art-head">
+  <div class="wrap">
+    <div class="art-meta">
+      <span class="art-date">July 2026</span>
+      <span class="art-tag">Artificial Intelligence</span>
+    </div>
+    <h1 class="art-title">Weights and Measures</h1>
+    <p class="art-standfirst">Governments from Rome to Canberra have barred a Chinese AI model from official systems. The bans reach the hosted service, not the model beneath it &mdash; and for a regulated firm, everything turns on that distinction.</p>
+    <p class="art-byline">Amin Bilal in collaboration with Claude Opus 4.8</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="article">
+    <div class="article-body">
+
+      <p>In the last week of January 2025, a laboratory in Hangzhou released a reasoning model that performed within reach of the best American systems and appeared to have been trained at a fraction of their cost. The reaction was not admiration but alarm. Within days DeepSeek had topped the app charts on both sides of the Atlantic; within weeks, governments began to act. Italy blocked the service; Australia barred it from federal devices; Taiwan, South Korea and India followed. In the United States, agencies from the Department of Commerce to NASA removed it from official systems, more than a dozen states did the same, and Congress received a bill with the unimprovable title of the No DeepSeek on Government Devices Act.</p>
+
+      <p>The worry deserves more precision than the coverage gave it. Four distinct claims are habitually run together: jurisdictional &mdash; data sent to the service is stored in China, where the state may compel its surrender; architectural &mdash; its data paths ran to other Chinese firms; operational &mdash; an exposed database, guardrails easily circumvented; and, quieter but more enduring, a question of values &mdash; like its domestic peers, the model deflects on subjects the Chinese state finds sensitive. Notice what the first three share. Each is a claim about a <em>hosted service</em> &mdash; an application that carries a user&rsquo;s words across a border. None is a claim about the model. What was banned in Rome, Canberra and Washington is an application and its data path, not the mathematical object beneath it. The two are separable, and that is the whole point.</p>
+
+      <h2 class="sub">The farm and the kitchen</h2>
+
+      <p>Before the vocabulary, a picture &mdash; aptly chosen, because &ldquo;farm to fork&rdquo; is the language of food traceability, and traceability is precisely the axis on which this debate turns. The training data are the seeds and the soil. The training run is the growing season: the costly, months-long transformation of raw inputs into something harvestable. The weights &mdash; the billions of learned numbers a trained model comes down to &mdash; are the harvested crop: durable, transportable, inert on its own, but the thing of value. The architecture is the recipe card; the runtime is the kitchen, commonplace and free; and the meal is inference, the answer one actually consumes.</p>
+
+      <p>An open-weight release hands you the harvested ingredients and the recipe card &mdash; and kitchens are everywhere &mdash; so you can cook the dish and season it to your taste. What you are not given is the farm: not the seeds, not the field, not the record of how the crop was raised. Here the Chinese question resolves into two things that must be kept apart. You still cook in your own kitchen: the weights run on your premises, nothing you plate is sent back to the farm, and so the data-exfiltration worry &mdash; the one the bans are about &mdash; does not survive self-hosting. But the character of the crop was fixed in a growing season you never saw. The model&rsquo;s silences and slants were impressed on its parameters, and they travel with the weights into your kitchen. The provenance gap is real; it is simply not the data gap, and conflating the two is the central error of the public debate.</p>
+
+      <h2 class="sub">Open weights, not open source</h2>
+
+      <p>That the Chinese frontier is released this way &mdash; open-weight, under permissive licences such as MIT and Apache 2.0 &mdash; is less a cultural preference than a response to constraint. Denied the most advanced American processors by export controls since October 2022, Chinese laboratories were pushed towards efficiency; openness then compounds the strategy, building an ecosystem and goodwill while eroding the position of Western labs that keep their models closed. Inference on the leading open Chinese models can run at a fifth, sometimes a thirtieth, of the cost of the closed Western flagships. And because the models are open-weight, an institution need send nothing to Hangzhou to use them: it downloads the weights and runs them inside its own perimeter. Once downloaded, they are permanent &mdash; no developer in China can revoke, meter or switch them off. The umbilical cord to the foreign service, the very thing the bans concern, has been cut.</p>
+
+      <p>The distinction the trade press blurs is this. Releasing a model open-weight publishes the learned parameters &mdash; closer to a compiled binary than to source code &mdash; while withholding the training data and the code that produced them. &ldquo;Open source&rdquo; is a stronger claim: the Open Source Initiative&rsquo;s AI definition, published in October 2024, requires the freedoms to use, study, modify and redistribute, plus disclosure of the code, the weights and enough information about the training data to recreate an equivalent system &mdash; the farming diary, in the terms of the analogy. Most of what is marketed as open-source AI, Meta&rsquo;s Llama as much as the Chinese frontier, is on inspection only open-weight. The gap is one of verifiability, not usability. Running a model needs only the small architecture file shipped with the weights and a freely available runtime &mdash; not the training code, which at millions of pounds a run almost no recipient could rerun anyway. The difference, in the end, is between what you can <em>do</em> with a model and what you can <em>verify</em> about it.</p>
+
+      <h2 class="sub">What a regulated firm should make of it</h2>
+
+      <p>&ldquo;Should we use Chinese models?&rdquo; is the wrong question, because it collapses three matters a finance function is well practised at keeping apart: where a thing is deployed, where it came from, and what one is permitted to do with it. Disentangled, the decision becomes tractable.</p>
+
+      <p>On deployment, the gravest concern dissolves under self-hosting. For a firm bound by data-residency and operational-resilience obligations &mdash; the Prudential Regulation Authority&rsquo;s expectations, the EU&rsquo;s Digital Operational Resilience Act, domestic data-protection law &mdash; an open-weight model run inside the perimeter is, on this axis, more tractable than a closed model reached only through a foreign interface. The data never leaves; and because downloaded weights cannot be revoked, vendor-withdrawal risk does not arise.</p>
+
+      <p>On provenance, self-hosting cures nothing. Model-risk discipline does not care where a model was made. The PRA&rsquo;s supervisory statement SS1/23, which expressly reaches artificial-intelligence and machine-learning models, and the SR&nbsp;11-7 canon that governs the same territory in the United States, require that any model bearing on a material decision be inventoried, validated, monitored and owned &mdash; and opaque provenance makes each of these harder.</p>
+
+      <p>Who, inside a firm, does this fall to? Not the team that deploys the model but the second line of defence: independent model-risk management, whose job is to challenge what the first line builds, with internal audit assuring the framework as a whole. Validating a model of undisclosed provenance, though, inverts the usual method. The build cannot be reproduced, because the data and training code are withheld; validation becomes empirical rather than constructive &mdash; characterising what the model <em>does</em> rather than certifying how it was made. In practice that means pre-defined scenario suites drawn from the intended use; deliberate probing of the known failure modes &mdash; embedded content restrictions, bias, susceptibility to prompt injection; adversarial red-teaming; and benchmarking against a trusted reference or human judgement. The format confers one advantage a closed service never grants: with the weights in hand, the validator can inspect the model&rsquo;s internals, pin the exact version under test, and rerun any check at will &mdash; no vendor can silently update the artefact beneath the audit.</p>
+
+      <p>The test should also fit the use &mdash; the proportionality model-risk frameworks already demand. A customer-portal voice assistant and an investment-screening model do not warrant the same scrutiny. For the assistant, the exposure is in what the model <em>says</em>: conversational red-teaming, confirming that political slants and refusals do not surface in the channel, checking guardrails, testing for hallucination and the leakage of sensitive data into a reply &mdash; a conduct and Consumer Duty lens. For the investment or credit screen, the exposure is in the <em>decisions</em> the model shapes: bias and fairness across customer groups, stability under stress, back-testing against realised outcomes and, above all, explainability &mdash; whether a model whose origins cannot be inspected can discharge the duty to explain a material decision at all. The embedded restrictions that are a shrug in a coding assistant, and a nuisance in a customer channel, may be disqualifying in a lending decision. The machinery is the same; its depth is calibrated to materiality.</p>
+
+      <p>Set against the provenance burden is a genuine benefit: by letting a firm run a model itself, on infrastructure of its choosing, open weights reduce reliance on any single provider &mdash; real diversification at a moment when supervisors are naming concentration in model and infrastructure supply as a systemic concern.</p>
+
+      <p>The measured conclusion is that open weights are a real instrument for regulated finance, precisely because of the distinction drawn here: they let an institution separate the useful artefact from its untrusted origin &mdash; take the crop into its own kitchen while declining to trust the farm. But the same distinction forbids the opposite error. <em>Open is not audited.</em> The weights carry their farm with them, in behaviours no one specified to you and no one can fully show you; a model of undisclosed provenance that bears on a regulated outcome must be validated, contained and governed with that uncertainty in full view.</p>
+
+      <p>There is an older instinct in this profession that fits the moment exactly. Long before there was a model to weigh, finance turned on weights and measures &mdash; verifying the quantity, certifying the standard, trusting no consignment further than it could be tested. The open-weight era does not retire that instinct. It restores it. A downloaded model is a consignment of uncertain origin: immensely useful, freely portable, and to be trusted precisely as far as it can be measured &mdash; and no further.</p>
+
+    </div>
+
+    <div class="article-foot">
+      <a class="back-to-latest" href="index.html"><span aria-hidden="true">&larr;</span> Back to Latest</a>
+    </div>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap"><a href="../index.html">Amin Bilal</a></div>
+</footer>
+
+</body>
+</html>
