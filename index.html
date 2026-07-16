@@ -50,17 +50,18 @@
   handwritten tagline hold the centre.
 
   Sits at the site root alongside:
+    · latest.html       (Latest — dated writing across all sections)
     · technology.html   (the Executive Technology Literacy site)
     · physics.html      (The Particle Physics Primer)
     · markets.html      (What Makes Markets Tick)
     · /documents/       (the typeset PDFs used by technology.html)
 
-  The Technology, Physics and Markets links open their own pages.
-  Pakistan, Diabetes and Placeholder open an "under preparation"
-  panel addressed by URL hash (#pakistan, #diabetes, #placeholder),
-  served from this same file. To give one a real page later, point
-  its link at the new file and remove its entry from the SUBJECTS
-  object in the script at the foot of the file.
+  Latest, Technology, Physics and Markets links open their own pages.
+  Pakistan and Diabetes open an "under preparation" panel addressed
+  by URL hash (#pakistan, #diabetes), served from this same file.
+  To give one a real page later, point its link at the new file and
+  remove its entry from the SUBJECTS object in the script at the
+  foot of the file.
 
   Layout: the landing is a flex column — the row of sections at
   the top, the masthead centred in the space beneath, the name at
@@ -162,6 +163,16 @@
   .nav a:hover, .nav a:focus-visible{ opacity:1 !important; transform:translateY(-1px) !important; }
   .nav a:hover::after, .nav a:focus-visible::after{ width:100%; }
   .nav a:focus-visible{ outline:2px solid #fff; outline-offset:5px; border-radius:1px; }
+  /* ---- "Latest" set apart: first in the row, divided from the standing sections, persistently underlined ---- */
+  .nav a.nav-latest{
+    font-weight:700;
+    padding-right:clamp(.7rem,2.2vw,1.35rem);
+    border-right:1px solid rgba(255,255,255,.4);
+  }
+  .nav a.nav-latest::after{ width:100%; }
+  @media (max-width:560px){
+    .nav a.nav-latest{ border-right:none; padding-right:0; }
+  }
 
   /* ---- centre masthead ---- */
   .hero{
@@ -274,12 +285,12 @@
 <!-- ===================== LANDING ===================== -->
 <div id="landing">
   <nav class="nav" aria-label="Sections">
+    <a class="nav-latest" href="latest.html">Latest</a>
     <a href="technology.html">Technology</a>
     <a href="physics.html">Physics</a>
     <a href="markets.html">Markets</a>
     <a href="#pakistan">Pakistan</a>
     <a href="#diabetes">Diabetes</a>
-    <a href="#placeholder">Placeholder</a>
   </nav>
 
   <main class="hero">
@@ -312,7 +323,7 @@
   "use strict";
   var SUBJECTS = {
     pakistan:'Pakistan',
-    diabetes:'Diabetes', placeholder:'Placeholder'
+    diabetes:'Diabetes'
   };
   var landing = document.getElementById('landing');
   var subject = document.getElementById('subject');
