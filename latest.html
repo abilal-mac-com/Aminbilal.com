@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Latest &mdash; Amin Bilal</title>
+<meta name="description" content="Dated writing on technology, markets, physics and the intersections between them &mdash; newest first.">
+
+<!-- Discoverability: Open Graph, Twitter Card, canonical, author, JSON-LD -->
+<meta name="author" content="Amin Bilal">
+<link rel="canonical" href="https://aminbilal.com/latest.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="aminbilal.com">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Latest &mdash; Amin Bilal">
+<meta property="og:description" content="Dated writing on technology, markets, physics and the intersections between them &mdash; newest first.">
+<meta property="og:url" content="https://aminbilal.com/latest.html">
+<meta property="og:image" content="https://aminbilal.com/og-latest.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Latest &mdash; Amin Bilal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Latest &mdash; Amin Bilal">
+<meta name="twitter:description" content="Dated writing on technology, markets, physics and the intersections between them &mdash; newest first.">
+<meta name="twitter:image" content="https://aminbilal.com/og-latest.png">
+<meta name="twitter:image:alt" content="Latest &mdash; Amin Bilal">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Latest \u2014 Amin Bilal",
+  "description": "Dated writing on technology, markets, physics and the intersections between them.",
+  "inLanguage": "en-GB",
+  "url": "https://aminbilal.com/latest.html",
+  "author": {
+    "@type": "Person",
+    "name": "Amin Bilal",
+    "sameAs": "https://www.linkedin.com/in/amin-bilal-54047714"
+  }
+}
+</script>
+
+<!--
+  ============================================================
+  aminbilal.com - Latest (dated writing, newest first)
+  ------------------------------------------------------------
+  A peer of technology.html / markets.html / physics.html,
+  linked from the landing nav (index.html). One stream across
+  all sections; each entry is tagged with its domain.
+
+  External dependencies:
+    · Lora, from Google Fonts (one <link> below).
+    · Share image, expected at the site root:  og-latest.png (1200x630)
+
+  ADDING A PIECE
+    Individual articles live in the sibling folder /latest/.
+    Copy the ENTRY TEMPLATE in the stream below, fill it in,
+    and place it at the TOP of .stream (newest first). Remove
+    the .stream-empty block once the first piece is in place.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F9F8F3;
+    --ink:#1A1A1A;
+    --body:#26241F;
+    --crimson:#861831;
+    --crimson-deep:#6C1327;
+    --grey:#5A5A5A;
+    --soft:#4A4843;
+    --rule:#D8D5CC;
+    --rule-strong:#C7C3B8;
+    --serif:'Lora', Georgia, 'Times New Roman', serif;
+    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --wrap:1180px;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--cream); color:var(--body);
+    font-family:var(--serif); font-size:18px; line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+  a{ color:var(--crimson); text-decoration:none; }
+  a:hover{ color:var(--crimson-deep); }
+  hr{ border:0; }
+  [hidden]{ display:none !important; }
+  a:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+
+  /* ---------------- breadcrumb ---------------- */
+  .page-top{ border-bottom:1px solid var(--rule); background:var(--cream); padding:14px 0; }
+  .crumb{ font-family:var(--sans); font-size:12px; letter-spacing:.03em; color:var(--grey); display:flex; flex-wrap:wrap; align-items:center; gap:8px; line-height:1.4; }
+  .crumb a{ color:var(--crimson); font-weight:700; }
+  .crumb a:hover{ color:var(--crimson-deep); text-decoration:underline; }
+  .crumb .sep{ color:var(--rule-strong); }
+  .crumb b{ color:var(--ink); font-weight:700; }
+
+  /* ---------------- masthead ---------------- */
+  .eyebrow{ font-family:var(--sans); font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--crimson); font-size:12px; margin:0; }
+  .masthead{ padding:clamp(52px,9vw,104px) 0 clamp(34px,5vw,56px); border-bottom:1px solid var(--rule); }
+  .masthead-title{ font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(44px,8.5vw,84px); line-height:1.0; letter-spacing:-.015em; margin:20px 0 0; }
+  .masthead-sub{ font-family:var(--serif); font-style:italic; color:var(--grey); font-size:clamp(19px,2.6vw,25px); line-height:1.4; margin:18px 0 0; max-width:40ch; }
+  .byline{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.2em; font-size:12.5px; color:var(--ink); margin:26px 0 0; }
+  .masthead-rule{ width:62px; height:3px; background:var(--crimson); margin:26px 0 0; }
+  .standfirst{ font-family:var(--serif); font-size:clamp(18px,2.1vw,21px); line-height:1.62; color:var(--soft); margin:26px 0 0; max-width:66ch; }
+
+  /* ---------------- the stream ---------------- */
+  .stream{ padding:clamp(30px,5vw,56px) 0 clamp(30px,5vw,52px); max-width:74ch; }
+  .piece{ padding:clamp(24px,3.4vw,34px) 0; border-top:1px solid var(--rule); }
+  .piece:first-child{ border-top:0; padding-top:0; }
+  .piece-meta{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin:0 0 11px; }
+  .piece-date{ font-family:var(--sans); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey); font-variant-numeric:lining-nums tabular-nums; }
+  .piece-tag{ font-family:var(--sans); font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--crimson); border:1px solid rgba(134,24,49,.4); border-radius:2px; padding:3px 9px; }
+  .piece-title{ font-family:var(--serif); font-weight:700; font-size:clamp(24px,3.4vw,32px); line-height:1.12; letter-spacing:-.01em; margin:0; }
+  .piece-title a{ color:var(--ink); }
+  .piece-title a:hover{ color:var(--crimson); }
+  .piece-standfirst{ font-family:var(--serif); font-size:clamp(17px,1.9vw,19.5px); line-height:1.55; color:var(--soft); margin:10px 0 0; max-width:64ch; }
+  .piece-more{ display:inline-block; font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.05em; color:var(--crimson); margin-top:13px; }
+  .piece-more:hover{ color:var(--crimson-deep); }
+
+  /* empty state - shown until the first piece is added */
+  .stream-empty{ padding:clamp(16px,3vw,32px) 0; }
+  .stream-empty p{ font-family:var(--serif); font-style:italic; color:var(--grey); font-size:clamp(18px,2.2vw,21px); line-height:1.5; margin:0; max-width:54ch; }
+
+  /* ---------------- footer ---------------- */
+  .site-foot{ border-top:1px solid var(--rule); }
+  .site-foot .wrap{ padding-top:26px; padding-bottom:44px; font-family:var(--sans); font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); }
+  .site-foot a{ color:var(--grey); }
+  .site-foot a:hover{ color:var(--crimson); }
+</style>
+</head>
+<body>
+
+<div class="page-top">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a class="crumb-site" href="index.html">aminbilal.com</a>
+      <span class="sep">&rsaquo;</span>
+      <b>Latest</b>
+    </nav>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Dated Writing, Across the Sections</p>
+    <h1 class="masthead-title">Latest</h1>
+    <p class="masthead-sub">Short pieces on what is moving in technology, markets and the sciences &mdash; and where they meet.</p>
+    <p class="byline">Amin Bilal</p>
+    <hr class="masthead-rule">
+    <p class="standfirst">A running series of short essays and notes, published as matters develop &mdash; weighted towards artificial intelligence, but ranging across markets, physics and the places the fields overlap. Each piece stands on its own, and the newest sit at the top.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="stream" aria-label="Latest writing">
+
+    <!-- ENTRY TEMPLATE - newest first. Copy this block, fill it in, and place it at the TOP of the stream.
+    <article class="piece">
+      <div class="piece-meta">
+        <span class="piece-date">16 July 2026</span>
+        <span class="piece-tag">Technology</span>
+      </div>
+      <h2 class="piece-title"><a href="latest/some-slug.html">The headline of the piece</a></h2>
+      <p class="piece-standfirst">A single sentence of standfirst that sets up the argument.</p>
+      <a class="piece-more" href="latest/some-slug.html">Read &rsaquo;</a>
+    </article>
+    -->
+
+    <div class="stream-empty">
+      <p>The first pieces are being written and will appear here shortly.</p>
+    </div>
+
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap"><a href="index.html">Amin Bilal</a></div>
+</footer>
+
+</body>
+</html>
