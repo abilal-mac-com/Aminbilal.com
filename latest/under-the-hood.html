@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Under the Hood &mdash; Amin Bilal</title>
+<meta name="description" content="A map of the AI field in mid-2026: the frontier three, the fast-followers, the open-weight insurgency &mdash; and the efficiency engineering under the hood that the headlines never cover.">
+
+<!-- Discoverability: Open Graph, Twitter Card, canonical, author, JSON-LD -->
+<meta name="author" content="Amin Bilal">
+<link rel="canonical" href="https://aminbilal.com/latest/under-the-hood.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="aminbilal.com">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Under the Hood &mdash; Amin Bilal">
+<meta property="og:description" content="A map of the AI field in mid-2026: the frontier three, the fast-followers, the open-weight insurgency &mdash; and the efficiency engineering under the hood that the headlines never cover.">
+<meta property="og:url" content="https://aminbilal.com/latest/under-the-hood.html">
+<meta property="og:image" content="https://aminbilal.com/og-latest.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Latest &mdash; Amin Bilal">
+<meta property="article:published_time" content="2026-07-17">
+<meta property="article:author" content="Amin Bilal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Under the Hood &mdash; Amin Bilal">
+<meta name="twitter:description" content="A map of the AI field in mid-2026: the frontier three, the fast-followers, the open-weight insurgency &mdash; and the efficiency engineering under the hood that the headlines never cover.">
+<meta name="twitter:image" content="https://aminbilal.com/og-latest.png">
+<meta name="twitter:image:alt" content="Under the Hood &mdash; Amin Bilal">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Under the Hood",
+  "description": "A map of the AI field in mid-2026: the frontier three, the fast-followers, the open-weight insurgency \u2014 and the efficiency engineering under the hood that the headlines never cover.",
+  "datePublished": "2026-07-17",
+  "dateModified": "2026-07-17",
+  "inLanguage": "en-GB",
+  "url": "https://aminbilal.com/latest/under-the-hood.html",
+  "mainEntityOfPage": "https://aminbilal.com/latest/under-the-hood.html",
+  "image": "https://aminbilal.com/og-latest.png",
+  "author": [
+    { "@type": "Person", "name": "Amin Bilal", "sameAs": "https://www.linkedin.com/in/amin-bilal-54047714" },
+    { "@type": "Person", "name": "Claude Fable 5" }
+  ],
+  "isPartOf": {
+    "@type": "Blog",
+    "name": "Latest \u2014 Amin Bilal",
+    "url": "https://aminbilal.com/latest/"
+  }
+}
+</script>
+
+<!-- aminbilal.com - Latest - "Under the Hood" (Artificial Intelligence). Lives in /latest/; internal links use ../ for the root, index.html for the hub -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F9F8F3;
+    --ink:#1A1A1A;
+    --body:#26241F;
+    --crimson:#861831;
+    --crimson-deep:#6C1327;
+    --grey:#5A5A5A;
+    --soft:#4A4843;
+    --rule:#D8D5CC;
+    --rule-strong:#C7C3B8;
+    --serif:'Lora', Georgia, 'Times New Roman', serif;
+    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --wrap:1180px;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--cream); color:var(--body);
+    font-family:var(--serif); font-size:18px; line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+  a{ color:var(--crimson); text-decoration:none; }
+  a:hover{ color:var(--crimson-deep); }
+  hr{ border:0; }
+  [hidden]{ display:none !important; }
+  a:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+
+  /* ---------------- breadcrumb ---------------- */
+  .page-top{ border-bottom:1px solid var(--rule); background:var(--cream); padding:14px 0; }
+  .crumb{ font-family:var(--sans); font-size:12px; letter-spacing:.03em; color:var(--grey); display:flex; flex-wrap:wrap; align-items:center; gap:8px; line-height:1.4; }
+  .crumb a{ color:var(--crimson); font-weight:700; }
+  .crumb a:hover{ color:var(--crimson-deep); text-decoration:underline; }
+  .crumb .sep{ color:var(--rule-strong); }
+  .crumb b{ color:var(--ink); font-weight:700; }
+
+  /* ---------------- article header ---------------- */
+  .art-head{ padding:clamp(48px,8vw,88px) 0 clamp(28px,4vw,44px); border-bottom:1px solid var(--rule); }
+  .art-meta{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin:0 0 18px; }
+  .art-date{ font-family:var(--sans); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey); font-variant-numeric:lining-nums tabular-nums; }
+  .art-tag{ font-family:var(--sans); font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--crimson); border:1px solid rgba(134,24,49,.4); border-radius:2px; padding:3px 10px; }
+  .art-title{ font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(34px,5.6vw,60px); line-height:1.08; letter-spacing:-.014em; margin:0; max-width:20ch; }
+  .art-standfirst{ font-family:var(--serif); font-style:italic; color:var(--soft); font-size:clamp(19px,2.4vw,24px); line-height:1.45; margin:20px 0 0; max-width:60ch; }
+  .art-byline{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.14em; font-size:12.5px; color:var(--ink); margin:24px 0 0; }
+
+  /* ---------------- article body ---------------- */
+  .article{ padding:clamp(30px,5vw,52px) 0 clamp(18px,3vw,32px); }
+  .article-body{ max-width:68ch; font-size:19px; line-height:1.66; }
+  .article-body > p{ margin:0 0 1.15em; }
+  .article-body > p:first-of-type{ margin-top:0; }
+  .article-body em{ font-style:italic; }
+  .article-body strong{ font-weight:700; color:var(--ink); }
+  .article-body a{ border-bottom:1px solid rgba(134,24,49,.32); }
+  .article-body a:hover{ border-color:var(--crimson-deep); }
+  .sub{ font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(21px,2.6vw,26px); line-height:1.2; margin:1.7em 0 .5em; }
+  .pull{ margin:1.6em 0; padding:6px 0 6px 22px; border-left:3px solid var(--crimson); font-family:var(--serif); font-style:italic; font-size:clamp(20px,2.4vw,24px); line-height:1.45; color:var(--ink); }
+  .pull cite{ display:block; font-style:normal; font-family:var(--sans); font-size:13.5px; letter-spacing:.02em; color:var(--grey); margin-top:8px; }
+
+  /* ---------------- foot ---------------- */
+  .article-foot{ max-width:68ch; margin-top:clamp(34px,5vw,50px); padding-top:22px; border-top:1px solid var(--rule); }
+  .back-to-latest{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.04em; color:var(--crimson); }
+  .back-to-latest:hover{ color:var(--crimson-deep); }
+  .site-foot{ border-top:1px solid var(--rule); }
+  .site-foot .wrap{ padding-top:26px; padding-bottom:44px; font-family:var(--sans); font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); }
+  .site-foot a{ color:var(--grey); }
+  .site-foot a:hover{ color:var(--crimson); }
+</style>
+</head>
+<body>
+
+<div class="page-top">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="../index.html">aminbilal.com</a>
+      <span class="sep">&rsaquo;</span>
+      <a href="index.html">Latest</a>
+      <span class="sep">&rsaquo;</span>
+      <b>Under the Hood</b>
+    </nav>
+  </div>
+</div>
+
+<header class="art-head">
+  <div class="wrap">
+    <div class="art-meta">
+      <span class="art-date">July 2026</span>
+      <span class="art-tag">Artificial Intelligence</span>
+    </div>
+    <h1 class="art-title">Under the Hood</h1>
+    <p class="art-standfirst">The press reports artificial intelligence as a single race with a single finish line. Walk the paddock, though, and the field is running several races at once &mdash; and the most consequential engineering is happening on the axes the headlines never cover.</p>
+    <p class="art-byline">Amin Bilal in collaboration with Claude Fable 5</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="article">
+    <div class="article-body">
+
+      <p>Ask a general reader who makes artificial intelligence and you will get two names, perhaps three, and a ranking: who is cleverest this month. The framing is understandable &mdash; a race is legible, and it has protagonists &mdash; but for anyone deciding what to actually build on, it obscures more than it reveals. The field is better understood not as a podium but as a market with segments: a dozen serious laboratories on three continents, optimising for materially different things. Knowing the players, and what each is actually playing for, is the first piece of literacy; seeing past the frontier to the quieter engineering beneath it is the second.</p>
+
+      <h2 class="sub">The visible frontier</h2>
+
+      <p>The race the press does cover is real, and three laboratories trade its lead. Anthropic&rsquo;s Claude, OpenAI&rsquo;s GPT and Google&rsquo;s Gemini have alternated at the top of the independent rankings for two years, and all three have refreshed their flagships within the past eight weeks: Anthropic&rsquo;s Claude Fable 5, announced in June, introduced a new Mythos-class tier above its established Opus, Sonnet and Haiku lines; OpenAI&rsquo;s GPT-5.6 arrived in July in three variants &mdash; Sol the flagship, Terra the intermediate, Luna the fast and cheap; and Google used its I/O conference to launch Gemini 3.5, pitched squarely at agentic work atop its Pro, Deep Think and Flash tiers. Behind them runs a well-funded fast-follower: xAI, whose Grok 4.5, released in July, was pitched by Elon Musk as comparable to Anthropic&rsquo;s Opus-class models but faster and cheaper &mdash; and whichever way one weighs that claim, independent testing now places it among the top handful of models on composite intelligence indices. A firm that dismissed Grok in 2024 is entitled to a second look in 2026.</p>
+
+      <p>One marker of where the frontier has reached deserves note: it now arrives with government attention. OpenAI staggered GPT-5.6&rsquo;s public release while US government partners assessed the models&rsquo; safety &mdash; capability in biology and cybersecurity being the stated concern &mdash; and Anthropic&rsquo;s most capable tier, Mythos 5, is restricted to approved programmes rather than offered for general use. The frontier is no longer merely a leaderboard; it is becoming a regulated altitude.</p>
+
+      <h2 class="sub">The open-weight insurgency</h2>
+
+      <p>Beneath the closed frontier runs the open-weight field &mdash; models whose parameters can be downloaded and self-hosted, the territory <a href="weights-and-measures.html">an earlier piece in this series</a> mapped. Its geography has shifted in a way few predicted. Meta, which lit the open-weight fire, has gone quiet: its Llama 4 models of April 2025 remain the current generation as of mid-2026, the promised flagship Behemoth has never shipped, with reporting pointing to a delayed or paused launch over capability concerns, and the company&rsquo;s frontier attention has reportedly moved to a closed line of models. The pioneer has paused while the field it created runs on.</p>
+
+      <p>Europe&rsquo;s sole frontier laboratory, Mistral of Paris, is running a different race altogether. Its flagship Large 3, released in December 2025 under the permissive Apache 2.0 licence, is the largest open-weight mixture-of-experts model from a major lab, priced far beneath the American flagships &mdash; and if independent evaluations place it well behind the closed frontier on the hardest reasoning tests, that rather misses what it is for. For firms with European data-residency requirements, Mistral is frequently the default shortlist; sovereignty and cost are the product, and a larger successor entered early access in July on the back of a multi-billion-euro data-centre buildout.</p>
+
+      <p>It is the Chinese laboratories, though, that now set the open-weight pace, each with a distinct franchise. DeepSeek&rsquo;s V4 line is the cheapest capable generalist; Alibaba&rsquo;s Qwen is the most widely adopted base for building on; Zhipu&rsquo;s GLM leads the Chinese field on coding; and Moonshot&rsquo;s Kimi K2.6 is engineered for long agentic runs &mdash; the last of these currently the strongest open-weight model on composite indices, ahead of anything American labs have published openly. Baidu&rsquo;s Ernie completes the set with a different headline entirely: Ernie 5.1, released in May, claims flagship-class performance at roughly six per cent of the pre-training cost of comparable models. Chinese laboratories now hold most of the top open-weight positions, with the best of them trailing the top proprietary models by single digits on composite benchmarks &mdash; a gap that has closed faster than most forecasts allowed.</p>
+
+      <h2 class="sub">Under the hood</h2>
+
+      <p>All of which is still, in the end, one race &mdash; capability &mdash; measured two ways. The thesis of this piece is that it is not the only race being run, and for most enterprise purposes not the decisive one. Beneath the frontier, the industry&rsquo;s engineering effort has swung toward a different set of axes: cost per token, latency, model size, specialisation, deployability, and the efficiency of training itself.</p>
+
+      <p>The first evidence is hiding in plain sight: every frontier laboratory runs an efficiency line beneath its flagship. Anthropic&rsquo;s Haiku, Google&rsquo;s Flash and its open-weight Gemma family, OpenAI&rsquo;s Luna and mini tiers and its open gpt-oss models &mdash; these are not afterthoughts but volume products, the models that actually carry most production traffic, at a fraction of flagship prices. The flagship is the shop window; the small tiers are the shop.</p>
+
+      <p>The clearer evidence is two American giants entering the field this spring precisely there, rather than at the frontier. Nvidia &mdash; the company that sells the industry its hardware &mdash; now publishes serious models of its own: the Nemotron 3 family, in Nano, Super and Ultra sizes, open models aimed squarely at agentic systems, engineered above all for throughput &mdash; the Ultra model, announced at Computex in June, is the most capable American open-weight model and serves at several times the speed of comparable Chinese peers. The strategic logic is transparent and sound: models tuned to run agents cheaply and fast make the silicon beneath them more valuable. Microsoft, meanwhile, used its Build conference to unveil MAI, a family of seven in-house models each specialised for a single capability &mdash; reasoning, coding, image generation, transcription and voice &mdash; trained from scratch on its own silicon, and deliberately sized: its reasoning flagship competes, in Microsoft&rsquo;s own framing, in the medium weight class, punching above it. Neither company is trying to out-frontier the frontier. Both are betting that the right-sized specialist, cheap to run and easy to place, is where the enterprise money is.</p>
+
+      <p>Run the eye back across the whole field and the same grammar recurs: sparse mixture-of-experts designs that activate a fraction of their parameters per token; hybrid architectures and aggressive low-precision formats built for inference speed; Baidu&rsquo;s six-per-cent training claim; Mistral&rsquo;s small reasoning models; task-specialists for code and voice. The industry&rsquo;s unit of progress is quietly changing &mdash; from parameters to performance per pound, per millisecond, per watt.</p>
+
+      <h2 class="sub">Reading the map</h2>
+
+      <p>For a finance function, the practical conclusions fall out directly. The first is that the market now has genuine segments, and the buyer&rsquo;s question is which segment a workload belongs to &mdash; not which champion to back. <a href="horses-for-courses.html">This column argued last time</a> that capability belongs to the whole assembly and that there is no model best at everything; the map above is that argument&rsquo;s supply side. The frontier tier exists for the hardest problems: deep research, complex agentic work, the tasks where failure is expensive and capability is the binding constraint. The under-the-hood tier &mdash; the Haikus and Flashes, the Nemotrons and MAIs, the efficient Chinese open models &mdash; exists for the volume: classification, extraction, summarisation, the everyday work where cost per completed task, latency and governability decide. A firm that routes its volume through a frontier flagship is overpaying for headroom it does not use; one that gives its hardest problems to a budget tier has underbuilt.</p>
+
+      <p>The second conclusion is that optionality is real and increasing. On every axis &mdash; closed frontier, open weights, efficiency, specialisation, sovereignty &mdash; there are now multiple credible suppliers on more than one continent. For a sector whose supervisors have begun naming concentration in model supply as a systemic concern, that plurality is not a curiosity; it is a risk-management resource, there to be used.</p>
+
+      <p>The race the press reports is real, and it matters. But it is one race of several, and the quietest ones &mdash; cheaper, smaller, faster, closer to the metal &mdash; are where most of the field&rsquo;s engineering now lives, and where most enterprise value will be captured. The buyer&rsquo;s edge is not picking the winner of the race everyone is watching. It is knowing which race their workload is actually running &mdash; and noticing how much of the field is under the hood.</p>
+
+    </div>
+
+    <div class="article-foot">
+      <a class="back-to-latest" href="index.html"><span aria-hidden="true">&larr;</span> Back to Latest</a>
+    </div>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap"><a href="../index.html">Amin Bilal</a></div>
+</footer>
+
+</body>
+</html>
