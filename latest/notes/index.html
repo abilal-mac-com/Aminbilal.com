@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes &mdash; Amin Bilal</title>
+<meta name="description" content="Short, dated, sourced &mdash; a register of genuinely noteworthy developments in technology, markets and the sciences, telegraphed as they happen.">
+
+<!-- Discoverability: Open Graph, Twitter Card, canonical, author, JSON-LD -->
+<meta name="author" content="Amin Bilal">
+<link rel="canonical" href="https://aminbilal.com/latest/notes/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="aminbilal.com">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Notes &mdash; Amin Bilal">
+<meta property="og:description" content="Short, dated, sourced &mdash; a register of genuinely noteworthy developments in technology, markets and the sciences, telegraphed as they happen.">
+<meta property="og:url" content="https://aminbilal.com/latest/notes/">
+<meta property="og:image" content="https://aminbilal.com/og-notes.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Notes &mdash; Amin Bilal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Notes &mdash; Amin Bilal">
+<meta name="twitter:description" content="Short, dated, sourced &mdash; a register of genuinely noteworthy developments in technology, markets and the sciences, telegraphed as they happen.">
+<meta name="twitter:image" content="https://aminbilal.com/og-notes.png">
+<meta name="twitter:image:alt" content="Notes &mdash; Amin Bilal">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Notes \u2014 Amin Bilal",
+  "description": "Short, dated, sourced \u2014 a register of genuinely noteworthy developments in technology, markets and the sciences.",
+  "inLanguage": "en-GB",
+  "url": "https://aminbilal.com/latest/notes/",
+  "author": {
+    "@type": "Person",
+    "name": "Amin Bilal",
+    "sameAs": "https://www.linkedin.com/in/amin-bilal-54047714"
+  },
+  "isPartOf": {
+    "@type": "Blog",
+    "name": "Latest \u2014 Amin Bilal",
+    "url": "https://aminbilal.com/latest/"
+  }
+}
+</script>
+
+<!--
+  ============================================================
+  aminbilal.com - Latest - Notes (the register's archive)
+  ------------------------------------------------------------
+  Lives in /latest/notes/. Link grammar: site root ../../index.html,
+  Latest hub ../index.html, note pages are siblings (slug.html).
+
+  ADDING A NOTE
+    1. The note page itself lives beside this file (slug.html).
+    2. Copy the ENTRY TEMPLATE in the ledger below and place it
+       at the TOP of the current month's .note-list.
+    3. New month: copy the MONTH TEMPLATE, place it at the TOP
+       of .ledger, and put the entry inside it.
+    4. Then refresh the three-line ledger on the Latest hub
+       (../index.html) and add the note to /sitemap.xml.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F9F8F3;
+    --ink:#1A1A1A;
+    --body:#26241F;
+    --crimson:#861831;
+    --crimson-deep:#6C1327;
+    --grey:#5A5A5A;
+    --soft:#4A4843;
+    --rule:#D8D5CC;
+    --rule-strong:#C7C3B8;
+    --serif:'Lora', Georgia, 'Times New Roman', serif;
+    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --wrap:1180px;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--cream); color:var(--body);
+    font-family:var(--serif); font-size:18px; line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+  a{ color:var(--crimson); text-decoration:none; }
+  a:hover{ color:var(--crimson-deep); }
+  hr{ border:0; }
+  [hidden]{ display:none !important; }
+  a:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+
+  /* ---------------- breadcrumb ---------------- */
+  .page-top{ border-bottom:1px solid var(--rule); background:var(--cream); padding:14px 0; }
+  .crumb{ font-family:var(--sans); font-size:12px; letter-spacing:.03em; color:var(--grey); display:flex; flex-wrap:wrap; align-items:center; gap:8px; line-height:1.4; }
+  .crumb a{ color:var(--crimson); font-weight:700; }
+  .crumb a:hover{ color:var(--crimson-deep); text-decoration:underline; }
+  .crumb .sep{ color:var(--rule-strong); }
+  .crumb b{ color:var(--ink); font-weight:700; }
+
+  /* ---------------- masthead ---------------- */
+  .eyebrow{ font-family:var(--sans); font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--crimson); font-size:12px; margin:0; }
+  .masthead{ padding:clamp(46px,8vw,88px) 0 clamp(30px,4.6vw,48px); border-bottom:1px solid var(--rule); }
+  .masthead-title{ font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(40px,7.5vw,72px); line-height:1.0; letter-spacing:-.015em; margin:18px 0 0; }
+  .masthead-sub{ font-family:var(--serif); font-style:italic; color:var(--grey); font-size:clamp(18px,2.4vw,23px); line-height:1.4; margin:16px 0 0; max-width:44ch; }
+  .byline{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.2em; font-size:12.5px; color:var(--ink); margin:24px 0 0; }
+  .masthead-rule{ width:62px; height:3px; background:var(--crimson); margin:24px 0 0; }
+  .standfirst{ font-family:var(--serif); font-size:clamp(17.5px,2vw,20px); line-height:1.62; color:var(--soft); margin:24px 0 0; max-width:64ch; }
+
+  /* ---------------- the ledger ---------------- */
+  .ledger{ padding:clamp(28px,4.6vw,50px) 0 clamp(28px,4.6vw,48px); max-width:74ch; }
+  .month{ padding:clamp(18px,2.8vw,26px) 0; border-top:1px solid var(--rule); }
+  .month:first-child{ border-top:0; padding-top:0; }
+  .month-h{ font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--grey); margin:0 0 4px; }
+  .note-list{ list-style:none; margin:0; padding:0; }
+  .note-line{ border-top:1px solid var(--rule); }
+  .note-list .note-line:first-child{ border-top:0; }
+  .note-line a{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding:13px 0; color:inherit; }
+  .nl-date{ font-family:var(--sans); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey); font-variant-numeric:lining-nums tabular-nums; min-width:74px; }
+  .nl-tag{ font-family:var(--sans); font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--crimson); border:1px solid rgba(134,24,49,.4); border-radius:2px; padding:3px 9px; }
+  .nl-title{ font-family:var(--serif); font-weight:600; font-size:clamp(16.5px,2vw,18.5px); line-height:1.3; color:var(--ink); }
+  .note-line a:hover .nl-title{ color:var(--crimson); }
+
+  /* ---------------- foot ---------------- */
+  .ledger-foot{ max-width:74ch; margin-top:clamp(8px,1.6vw,14px); padding-top:20px; border-top:1px solid var(--rule); }
+  .back-to-latest{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.04em; color:var(--crimson); }
+  .back-to-latest:hover{ color:var(--crimson-deep); }
+  .site-foot{ border-top:1px solid var(--rule); }
+  .site-foot .wrap{ padding-top:26px; padding-bottom:44px; font-family:var(--sans); font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); }
+  .site-foot a{ color:var(--grey); }
+  .site-foot a:hover{ color:var(--crimson); }
+</style>
+</head>
+<body>
+
+<div class="page-top">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="../../index.html">aminbilal.com</a>
+      <span class="sep">&rsaquo;</span>
+      <a href="../index.html">Latest</a>
+      <span class="sep">&rsaquo;</span>
+      <b>Notes</b>
+    </nav>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Short, Dated, Sourced</p>
+    <h1 class="masthead-title">Notes</h1>
+    <p class="masthead-sub">A register of what is genuinely noteworthy, telegraphed as it happens.</p>
+    <p class="byline">Amin Bilal</p>
+    <hr class="masthead-rule">
+    <p class="standfirst">Brief entries recording developments worth a senior reader&rsquo;s minute &mdash; each dated, each sourced, and each standing as of its dateline. Where a development bears on one of the longer essays, the note says so. The essays remain the architecture; these are the running annotations.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="ledger" aria-label="All notes, newest first">
+
+    <!-- MONTH TEMPLATE - newest month first. Copy this block and place it at the TOP of .ledger.
+    <section class="month">
+      <h2 class="month-h">Month 2026</h2>
+      <ul class="note-list">
+      </ul>
+    </section>
+    -->
+
+    <!-- ENTRY TEMPLATE - newest first within the month. Copy this block and place it at the TOP of the month's .note-list.
+      <li class="note-line">
+        <a href="some-slug.html">
+          <span class="nl-date">20 July</span>
+          <span class="nl-tag">Artificial Intelligence</span>
+          <span class="nl-title">The title of the note</span>
+        </a>
+      </li>
+    -->
+
+    <section class="month">
+      <h2 class="month-h">July 2026</h2>
+      <ul class="note-list">
+        <li class="note-line">
+          <a href="kimi-k3.html">
+            <span class="nl-date">20 July</span>
+            <span class="nl-tag">Artificial Intelligence</span>
+            <span class="nl-title">Kimi K3, Weighed</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+  </section>
+
+  <div class="ledger-foot">
+    <a class="back-to-latest" href="../index.html">&lsaquo; Latest</a>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap"><a href="../../index.html">Amin Bilal</a></div>
+</footer>
+
+</body>
+</html>
