@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOTE-TITLE &mdash; Amin Bilal</title>
+<meta name="description" content="ONE-LINE-DESCRIPTION">
+
+<!-- Discoverability: Open Graph, Twitter Card, canonical, author, JSON-LD -->
+<meta name="author" content="Amin Bilal">
+<link rel="canonical" href="https://aminbilal.com/latest/notes/some-slug.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="aminbilal.com">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="NOTE-TITLE &mdash; Amin Bilal">
+<meta property="og:description" content="ONE-LINE-DESCRIPTION">
+<meta property="og:url" content="https://aminbilal.com/latest/notes/some-slug.html">
+<meta property="og:image" content="https://aminbilal.com/og-notes.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Notes &mdash; Amin Bilal">
+<meta property="article:published_time" content="YYYY-MM-DD">
+<meta property="article:author" content="Amin Bilal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NOTE-TITLE &mdash; Amin Bilal">
+<meta name="twitter:description" content="ONE-LINE-DESCRIPTION">
+<meta name="twitter:image" content="https://aminbilal.com/og-notes.png">
+<meta name="twitter:image:alt" content="NOTE-TITLE &mdash; Amin Bilal">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "NOTE-TITLE",
+  "description": "ONE-LINE-DESCRIPTION",
+  "datePublished": "YYYY-MM-DD",
+  "dateModified": "YYYY-MM-DD",
+  "articleSection": "Notes",
+  "inLanguage": "en-GB",
+  "url": "https://aminbilal.com/latest/notes/some-slug.html",
+  "mainEntityOfPage": "https://aminbilal.com/latest/notes/some-slug.html",
+  "image": "https://aminbilal.com/og-notes.png",
+  "author": [
+    { "@type": "Person", "name": "Amin Bilal", "sameAs": "https://www.linkedin.com/in/amin-bilal-54047714" },
+    { "@type": "Person", "name": "CLAUDE-MODEL" }
+  ],
+  "isPartOf": {
+    "@type": "Blog",
+    "name": "Latest \u2014 Amin Bilal",
+    "url": "https://aminbilal.com/latest/"
+  }
+}
+</script>
+
+<!--
+  ============================================================
+  aminbilal.com - Latest - Notes - NOTE TEMPLATE
+  ------------------------------------------------------------
+  To publish a note:
+
+  1. Copy this file to slug.html (lowercase, hyphenated) in
+     /latest/notes/. Never deploy the template's placeholders.
+
+  2. Replace every CAPITALISED placeholder:
+       NOTE-TITLE            the note's title
+       ONE-LINE-DESCRIPTION  one sentence, kept IDENTICAL across
+                             description, og:description,
+                             twitter:description and the standfirst
+       YYYY-MM-DD            ISO publication date (meta + JSON-LD)
+       DD Month YYYY         the dateline, e.g. 20 July 2026
+       DOMAIN-TAG            e.g. Artificial Intelligence, Markets
+       CLAUDE-MODEL          the model that actually drafted the
+                             note - verify identity at build time,
+                             never assume from earlier work
+       some-slug             this file's final name, in canonical,
+                             og:url and both JSON-LD urls
+
+  3. Body: three to five short paragraphs, each opening with a
+     bold lead-in label; verdict-led where possible. The house
+     pattern for a model release - What it is / How good,
+     independently / Good in what sense / The caveats / Verdict -
+     is an example, not a requirement. Figures precise and
+     web-verified on the day. Character discipline: entities
+     (&mdash; &rsquo; &ldquo;) in HTML; \u2014 escapes inside the
+     JSON-LD block, never HTML entities there.
+
+  4. Sources: three to six, primary wherever possible - the
+     evaluator, the filing, the announcement - each with a date.
+
+  5. The rest of the deploy set, every time:
+       - entry at the TOP of the current month in index.html
+         beside this file (new month: copy the MONTH TEMPLATE
+         there first);
+       - the three-line ledger on the Latest hub, ../index.html;
+       - a <url> block in /sitemap.xml;
+       - after deployment, run the LinkedIn Post Inspector on
+         the new URL to refresh the card.
+
+  Link grammar from this folder: site root ../../index.html,
+  Latest hub ../index.html, essays ../slug.html, notes archive
+  index.html.
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F9F8F3;
+    --ink:#1A1A1A;
+    --body:#26241F;
+    --crimson:#861831;
+    --crimson-deep:#6C1327;
+    --grey:#5A5A5A;
+    --soft:#4A4843;
+    --rule:#D8D5CC;
+    --rule-strong:#C7C3B8;
+    --serif:'Lora', Georgia, 'Times New Roman', serif;
+    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --wrap:1180px;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--cream); color:var(--body);
+    font-family:var(--serif); font-size:18px; line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+  a{ color:var(--crimson); text-decoration:none; }
+  a:hover{ color:var(--crimson-deep); }
+  hr{ border:0; }
+  [hidden]{ display:none !important; }
+  a:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+
+  /* ---------------- breadcrumb ---------------- */
+  .page-top{ border-bottom:1px solid var(--rule); background:var(--cream); padding:14px 0; }
+  .crumb{ font-family:var(--sans); font-size:12px; letter-spacing:.03em; color:var(--grey); display:flex; flex-wrap:wrap; align-items:center; gap:8px; line-height:1.4; }
+  .crumb a{ color:var(--crimson); font-weight:700; }
+  .crumb a:hover{ color:var(--crimson-deep); text-decoration:underline; }
+  .crumb .sep{ color:var(--rule-strong); }
+  .crumb b{ color:var(--ink); font-weight:700; }
+
+  /* ---------------- note header (article grammar, reduced scale) ---------------- */
+  .art-head{ padding:clamp(42px,7vw,72px) 0 clamp(24px,3.6vw,38px); border-bottom:1px solid var(--rule); }
+  .art-meta{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin:0 0 16px; }
+  .art-date{ font-family:var(--sans); font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey); font-variant-numeric:lining-nums tabular-nums; }
+  .note-chip{ font-family:var(--sans); font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--cream); background:var(--crimson); border-radius:2px; padding:4px 10px; }
+  .art-tag{ font-family:var(--sans); font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--crimson); border:1px solid rgba(134,24,49,.4); border-radius:2px; padding:3px 10px; }
+  .art-title{ font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(30px,4.8vw,46px); line-height:1.1; letter-spacing:-.012em; margin:0; max-width:24ch; }
+  .art-standfirst{ font-family:var(--serif); font-style:italic; color:var(--soft); font-size:clamp(18px,2.2vw,21px); line-height:1.5; margin:16px 0 0; max-width:60ch; }
+  .art-byline{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.14em; font-size:12.5px; color:var(--ink); margin:22px 0 0; }
+
+  /* ---------------- note body ---------------- */
+  .article{ padding:clamp(28px,4.6vw,46px) 0 clamp(18px,3vw,32px); }
+  .article-body{ max-width:66ch; font-size:18.5px; line-height:1.66; }
+  .article-body > p{ margin:0 0 1.15em; }
+  .article-body > p:first-of-type{ margin-top:0; }
+  .article-body em{ font-style:italic; }
+  .article-body strong{ font-weight:700; color:var(--ink); }
+  .article-body a{ border-bottom:1px solid rgba(134,24,49,.32); }
+  .article-body a:hover{ border-color:var(--crimson-deep); }
+
+  /* ---------------- sources ---------------- */
+  .note-sources{ max-width:66ch; margin-top:clamp(26px,4vw,38px); padding-top:18px; border-top:1px solid var(--rule); }
+  .note-sources h2{ font-family:var(--sans); font-weight:700; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--grey); margin:0 0 10px; }
+  .note-sources ul{ list-style:none; margin:0; padding:0; }
+  .note-sources li{ font-family:var(--sans); font-size:13.5px; line-height:1.7; color:var(--soft); }
+  .note-sources li a{ font-weight:700; }
+
+  /* ---------------- foot ---------------- */
+  .article-foot{ max-width:66ch; margin-top:clamp(28px,4.4vw,42px); padding-top:20px; border-top:1px solid var(--rule); display:flex; gap:18px; flex-wrap:wrap; }
+  .back-to-latest{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.04em; color:var(--crimson); }
+  .back-to-latest:hover{ color:var(--crimson-deep); }
+  .site-foot{ border-top:1px solid var(--rule); }
+  .site-foot .wrap{ padding-top:26px; padding-bottom:44px; font-family:var(--sans); font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); }
+  .site-foot a{ color:var(--grey); }
+  .site-foot a:hover{ color:var(--crimson); }
+</style>
+</head>
+<body>
+
+<div class="page-top">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb">
+      <a href="../../index.html">aminbilal.com</a>
+      <span class="sep">&rsaquo;</span>
+      <a href="../index.html">Latest</a>
+      <span class="sep">&rsaquo;</span>
+      <a href="index.html">Notes</a>
+      <span class="sep">&rsaquo;</span>
+      <b>NOTE-TITLE</b>
+    </nav>
+  </div>
+</div>
+
+<header class="art-head">
+  <div class="wrap">
+    <div class="art-meta">
+      <span class="art-date">As of DD Month YYYY</span>
+      <span class="note-chip">Note</span>
+      <span class="art-tag">DOMAIN-TAG</span>
+    </div>
+    <h1 class="art-title">NOTE-TITLE</h1>
+    <p class="art-standfirst">ONE-LINE-DESCRIPTION</p>
+    <p class="art-byline">Amin Bilal in collaboration with CLAUDE-MODEL</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="article">
+    <div class="article-body">
+
+      <p><strong>LEAD-IN.</strong> OPENING-PARAGRAPH &mdash; what happened, dated, with the one precision that most readers will miss.</p>
+
+      <p><strong>LEAD-IN.</strong> MIDDLE-PARAGRAPH &mdash; the independent evidence, figures exact.</p>
+
+      <p><strong>Verdict.</strong> CLOSING-PARAGRAPH &mdash; the judgement, its qualification, and where it bears on one of the essays, the cross-reference (for example <a href="../under-the-hood.html"><em>Under the Hood</em></a>).</p>
+
+    </div>
+
+    <aside class="note-sources" aria-label="Sources">
+      <h2>Sources</h2>
+      <ul>
+        <li><a href="https://example.com/">SOURCE-NAME</a>, DD Month YYYY</li>
+        <li><a href="https://example.com/">SOURCE-NAME</a>, DD Month YYYY</li>
+        <li><a href="https://example.com/">SOURCE-NAME</a>, DD Month YYYY</li>
+      </ul>
+    </aside>
+
+    <div class="article-foot">
+      <a class="back-to-latest" href="index.html">&lsaquo; All notes</a>
+      <a class="back-to-latest" href="../index.html">Latest</a>
+    </div>
+  </article>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap"><a href="../../index.html">Amin Bilal</a></div>
+</footer>
+
+</body>
+</html>
