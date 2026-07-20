@@ -57,6 +57,13 @@
     Copy the ENTRY TEMPLATE in the stream below, fill it in,
     and place it at the TOP of .stream (newest first). Remove
     the .stream-empty block once the first piece is in place.
+
+  ADDING A NOTE (ledger)
+    Note pages live in /latest/notes/ (template and archive
+    there). After publishing one, copy the LEDGER TEMPLATE in
+    the ledger below to the TOP of .ledger-list and keep only
+    the THREE most recent lines - older notes remain listed in
+    notes/index.html. Then add the note to /sitemap.xml.
   ============================================================
 -->
 
@@ -110,6 +117,21 @@
   .masthead-rule{ width:62px; height:3px; background:var(--crimson); margin:26px 0 0; }
   .standfirst{ font-family:var(--serif); font-size:clamp(18px,2.1vw,21px); line-height:1.62; color:var(--soft); margin:26px 0 0; max-width:66ch; }
 
+  /* ---------------- notes ledger ---------------- */
+  .notes-ledger{ max-width:74ch; padding:clamp(18px,3vw,28px) 0 clamp(14px,2.4vw,22px); border-bottom:1px solid var(--rule); }
+  .ledger-head{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin:0 0 4px; }
+  .ledger-eyebrow{ font-family:var(--sans); font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--crimson); font-size:12px; margin:0; }
+  .ledger-all{ font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.05em; color:var(--crimson); }
+  .ledger-all:hover{ color:var(--crimson-deep); }
+  .ledger-list{ list-style:none; margin:0; padding:0; }
+  .ledger-line{ border-top:1px solid var(--rule); }
+  .ledger-list .ledger-line:first-child{ border-top:0; }
+  .ledger-line a{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding:11px 0; color:inherit; }
+  .ll-date{ font-family:var(--sans); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey); font-variant-numeric:lining-nums tabular-nums; }
+  .ll-chip{ font-family:var(--sans); font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--cream); background:var(--crimson); border-radius:2px; padding:3px 9px; }
+  .ll-title{ font-family:var(--serif); font-weight:600; font-size:clamp(16.5px,2vw,18.5px); line-height:1.3; color:var(--ink); }
+  .ledger-line a:hover .ll-title{ color:var(--crimson); }
+
   /* ---------------- the stream ---------------- */
   .stream{ padding:clamp(30px,5vw,56px) 0 clamp(30px,5vw,52px); max-width:74ch; }
   .piece{ padding:clamp(24px,3.4vw,34px) 0; border-top:1px solid var(--rule); }
@@ -159,6 +181,34 @@
 </header>
 
 <main class="wrap">
+  <section class="notes-ledger" aria-label="Recent notes">
+    <div class="ledger-head">
+      <p class="ledger-eyebrow">Notes</p>
+      <a class="ledger-all" href="notes/index.html">All notes &rsaquo;</a>
+    </div>
+    <ul class="ledger-list">
+
+      <!-- LEDGER TEMPLATE - newest first; keep only the three most recent lines.
+      <li class="ledger-line">
+        <a href="notes/some-slug.html">
+          <span class="ll-date">20 July 2026</span>
+          <span class="ll-chip">Note</span>
+          <span class="ll-title">The title of the note</span>
+        </a>
+      </li>
+      -->
+
+      <li class="ledger-line">
+        <a href="notes/kimi-k3.html">
+          <span class="ll-date">20 July 2026</span>
+          <span class="ll-chip">Note</span>
+          <span class="ll-title">Kimi K3, Weighed</span>
+        </a>
+      </li>
+
+    </ul>
+  </section>
+
   <section class="stream" aria-label="Latest writing">
 
     <!-- ENTRY TEMPLATE - newest first. Copy this block, fill it in, and place it at the TOP of the stream.
