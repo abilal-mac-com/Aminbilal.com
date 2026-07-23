@@ -46,11 +46,7 @@
   aminbilal.com — programme site (single self-contained file)
   ------------------------------------------------------------
   External dependencies:
-    · Lora, from Google Fonts (one <link> below).
-    · Typeset PDFs, expected in a sibling folder /documents/:
-        documents/the-whole-before-the-parts.pdf
-        documents/neither-memory-nor-time.pdf
-        documents/from-keypad-to-cloud.pdf
+    · Lora, Caveat and Architects Daughter, from Google Fonts (one <link> below).
 
   NAVIGATION MODEL (all URL-hash driven, back/forward safe)
     #                      → home (Introduction shown)
@@ -73,7 +69,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;600;700&family=Architects+Daughter&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -299,6 +295,10 @@
     .page-content .pe{ grid-template-columns:40px 1fr; }
     .page-content .pe-body{ padding-left:14px; }
   }
+  /* ---- The Map (sheet) ---- */
+  .map-sheet{ margin-top:6px; }
+  .map-sheet svg{ width:100%; height:auto; display:block; }
+
   /* ---- The Chronology (timeline) ---- */
   .chron-move{ margin:2.6em 0 0; }
   .chron-move:first-of-type{ margin-top:1.8em; }
@@ -549,6 +549,14 @@
         <span class="rail-dot" aria-hidden="true"></span>
       </button>
 
+      <div class="rail-part"><b>The Map</b><i>The field, on one sheet</i></div>
+
+      <button class="rail-item is-done" role="tab" id="tab-map" data-slug="map" aria-controls="panel-map" aria-selected="false" tabindex="-1">
+        <span class="rail-num" aria-hidden="true">&mdash;</span>
+        <span class="rail-title">AI on One Page<span class="vh"> &mdash; complete</span></span>
+        <span class="rail-dot" aria-hidden="true"></span>
+      </button>
+
     </nav>
 
     <div class="panels">
@@ -577,12 +585,6 @@
           <h3 class="prose-head"><span class="prose-num">V</span> The Order of Study</h3>
           <p>The blocks are numbered for reference, not for marching order, and study proceeds along the lines of dependency and readiness. The traverse of <a href="#block-7">networks</a> was taken first, as the most concrete point of entry to the field; <a href="#block-1">systems architecture</a> followed, as the conceptual spine to which the rest of the field attaches; the remaining domains were then taken in the order their dependencies suggested, <a href="#block-8">databases and storage</a> first among them. The whole is designed to be worked through over many months; the reward is not fluency at next week&rsquo;s meeting but understanding that still holds five years from now.</p>
         </div>
-        <div class="panel-nav">
-          <a class="pdf-btn" href="documents/the-whole-before-the-parts.pdf">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
-            Read the typeset PDF
-          </a>
-        </div>
         <nav class="panel-flip" data-flip="introduction"></nav>
       </section>
 
@@ -602,7 +604,6 @@
           <a class="page-btn" href="#block-1/faqs"><span class="pb-dot"></span>FAQs</a>
           <a class="page-btn" href="#block-1/test"><span class="pb-dot"></span>Test</a>
           <a class="page-btn" href="#block-1/personalities"><span class="pb-dot"></span>Personalities</a>
-          <a class="pdf-btn" href="documents/neither-memory-nor-time.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Read the typeset PDF</a>
         </div>
         <nav class="panel-flip" data-flip="block-1"></nav>
       </section>
@@ -719,7 +720,6 @@
           <a class="page-btn" href="#block-7/faqs"><span class="pb-dot"></span>FAQs</a>
           <a class="page-btn" href="#block-7/test"><span class="pb-dot"></span>Test</a>
           <a class="page-btn" href="#block-7/personalities"><span class="pb-dot"></span>Personalities</a>
-          <a class="pdf-btn" href="documents/from-keypad-to-cloud.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Read the typeset PDF</a>
         </div>
         <nav class="panel-flip" data-flip="block-7"></nav>
       </section>
@@ -1103,6 +1103,219 @@
 
         </div>
         <nav class="panel-flip" data-flip="chronology"></nav>
+      </section>
+
+      <!-- THE MAP -->
+      <section class="panel" role="tabpanel" id="panel-map" aria-labelledby="tab-map" tabindex="0" hidden>
+        <div class="panel-head-row">
+          <p class="panel-eyebrow">The Map</p>
+          <span class="status done">July 2026 edition</span>
+        </div>
+        <h2 class="panel-title">AI on One Page</h2>
+        <p class="panel-sub">The field&rsquo;s main ideas as standalone statements, hand-drawn on a single sheet</p>
+        <hr class="panel-rule">
+        <div class="prose">
+          <p class="lede">Every idea that matters in the AI half of this programme &mdash; and in the essays that extend it &mdash; set down in plain English on one hand-drawn sheet. Read it before the material as a map of what is coming, or return to it afterwards as consolidation. The sheet is revised as the field moves, and carries its edition date in the corner.</p>
+        </div>
+        <div class="map-sheet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1684 1310" font-family="Architects Daughter" role="img" aria-label="A hand-drawn mind map of the main ideas in artificial intelligence, as covered on aminbilal.com">
+<rect width="1684" height="1310" fill="#F9F8F3"/>
+<path d="M 26.0 26.0 L 298.8 24.9 L 571.3 26.7 L 841.9 25.7 L 1113.8 24.7 L 1384.5 25.2 L 1658.0 26.0" fill="none" stroke="#C7C3B8" stroke-width="1.7" stroke-linecap="round" opacity="0.9"/>
+<path d="M 1658.0 26.0 L 1657.6 236.3 L 1657.1 445.8 L 1656.6 655.7 L 1657.3 865.0 L 1658.1 1073.3 L 1658.0 1284.0" fill="none" stroke="#C7C3B8" stroke-width="1.7" stroke-linecap="round" opacity="0.9"/>
+<path d="M 1658.0 1284.0 L 1384.8 1284.9 L 1112.4 1285.1 L 842.7 1284.9 L 571.3 1284.3 L 296.9 1285.5 L 26.0 1284.0" fill="none" stroke="#C7C3B8" stroke-width="1.7" stroke-linecap="round" opacity="0.9"/>
+<path d="M 26.0 1284.0 L 25.5 1074.5 L 24.9 863.8 L 24.7 655.3 L 26.1 445.7 L 26.5 236.4 L 26.0 26.0" fill="none" stroke="#C7C3B8" stroke-width="1.7" stroke-linecap="round" opacity="0.9"/>
+<path d="M 32.0 32.0 L 302.5 31.8 L 570.5 31.1 L 841.2 31.5 L 1110.5 32.5 L 1381.9 32.5 L 1652.0 32.0" fill="none" stroke="#C7C3B8" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+<path d="M 1652.0 32.0 L 1653.4 238.5 L 1650.9 448.7 L 1652.9 653.5 L 1651.1 863.4 L 1650.4 1069.2 L 1652.0 1278.0" fill="none" stroke="#C7C3B8" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+<path d="M 1652.0 1278.0 L 1381.8 1278.8 L 1113.5 1278.6 L 840.4 1277.9 L 571.8 1277.9 L 302.5 1276.9 L 32.0 1278.0" fill="none" stroke="#C7C3B8" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+<path d="M 32.0 1278.0 L 33.4 1070.6 L 32.6 861.6 L 31.5 654.9 L 31.8 446.3 L 33.3 238.2 L 32.0 32.0" fill="none" stroke="#C7C3B8" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+<text x="60" y="125" font-size="29" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">What it is</tspan></text>
+<path d="M 58.0 132.0 L 81.0 133.4 L 107.1 131.8 L 130.0 134.2 L 150.0 135.5 L 176.0 134.0" fill="none" stroke="#861831" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+<text x="60" y="160" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Grown from examples, not built from rules.</tspan></text>
+<path d="M 46.0 155.0 L 49.4 155.1 L 55.0 155.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="188" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#861831">Fitted, not deterministic:</tspan><tspan fill="#1A1A1A"> ask twice, get two answers.</tspan></text>
+<path d="M 46.0 183.0 L 50.8 182.6 L 55.0 183.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="216" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">It predicts the next word &#8212; everything else emerges.</tspan></text>
+<path d="M 46.0 211.0 L 50.7 210.7 L 55.0 211.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="244" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">It reads and writes in tokens, fragments of words</tspan></text>
+<path d="M 46.0 239.0 L 50.9 240.1 L 55.0 239.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="260" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; and you pay by the token.</tspan></text>
+<text x="60" y="288" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Not a database: nothing is looked up.</tspan></text>
+<path d="M 46.0 283.0 L 51.1 283.5 L 55.0 283.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="316" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Brilliant here, poor there &#8212; and hard to predict which.</tspan></text>
+<path d="M 46.0 311.0 L 49.6 311.8 L 55.0 311.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<path d="M 44.0 140.0 L 44.5 169.2 L 44.8 196.9 L 43.1 226.2 L 44.6 254.5 L 43.8 284.6 L 44.0 312.0" fill="none" stroke="#5A5A5A" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+<text x="60" y="367" font-size="29" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">How it thinks</tspan></text>
+<path d="M 58.0 374.0 L 88.3 375.8 L 117.5 372.9 L 147.6 373.4 L 180.7 375.7 L 210.8 376.0" fill="none" stroke="#861831" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+<text x="60" y="402" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Newer models think before answering</tspan></text>
+<path d="M 46.0 397.0 L 49.9 396.8 L 55.0 397.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="418" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; drafting and checking in private.</tspan></text>
+<text x="60" y="446" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">More thinking time buys better answers on hard problems.</tspan></text>
+<path d="M 46.0 441.0 L 51.1 441.9 L 55.0 441.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="474" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Thinking is billed: a hard question</tspan></text>
+<path d="M 46.0 469.0 L 49.3 469.9 L 55.0 469.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="490" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">can cost fifty times a simple one.</tspan></text>
+<text x="60" y="518" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Someone must decide how much thinking each task deserves.</tspan></text>
+<path d="M 46.0 513.0 L 50.2 513.2 L 55.0 513.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="546" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Its visible reasoning is an explanation, not a guarantee.</tspan></text>
+<path d="M 46.0 541.0 L 49.4 540.5 L 55.0 541.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<path d="M 44.0 382.0 L 45.7 410.0 L 45.0 433.6 L 42.3 463.0 L 43.9 488.8 L 42.7 515.2 L 44.0 542.0" fill="none" stroke="#5A5A5A" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+<text x="60" y="597" font-size="29" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">Agents &#38; harnesses</tspan></text>
+<path d="M 58.0 604.0 L 102.1 606.7 L 140.8 602.9 L 183.5 603.3 L 226.5 604.5 L 268.8 606.0" fill="none" stroke="#861831" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+<text x="60" y="632" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">A harness is everything wrapped around the model:</tspan></text>
+<path d="M 46.0 627.0 L 51.0 627.8 L 55.0 627.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="648" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">tools, data, checks.</tspan></text>
+<text x="60" y="676" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">An agent is a model allowed to act </tspan><tspan fill="#5A5A5A">&#8212; search, write, run, click.</tspan></text>
+<path d="M 46.0 671.0 L 49.9 671.2 L 55.0 671.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="704" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#861831">Most of the value lives in the wrapping,</tspan></text>
+<path d="M 46.0 699.0 L 50.2 698.1 L 55.0 699.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="720" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">not the model choice.</tspan></text>
+<text x="60" y="748" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">A demo is easy; a dependable deployment is the work.</tspan></text>
+<path d="M 46.0 743.0 L 50.6 742.6 L 55.0 743.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="776" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">In careful trials, AI sometimes slows experts down</tspan></text>
+<path d="M 46.0 771.0 L 51.6 771.0 L 55.0 771.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="792" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; measure, don&#8217;t assume.</tspan></text>
+<text x="60" y="820" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">A human still signs: responsibility</tspan></text>
+<path d="M 46.0 815.0 L 50.8 815.8 L 55.0 815.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="836" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">cannot be delegated to software.</tspan></text>
+<path d="M 44.0 612.0 L 43.3 650.3 L 43.1 686.8 L 42.7 721.9 L 44.7 760.3 L 44.0 795.5 L 44.0 832.0" fill="none" stroke="#5A5A5A" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+<text x="60" y="887" font-size="29" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">Open v closed</tspan></text>
+<path d="M 58.0 894.0 L 87.0 892.0 L 120.1 893.9 L 148.0 895.2 L 181.7 897.9 L 210.8 896.0" fill="none" stroke="#861831" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+<text x="60" y="922" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Some labs publish models to download; </tspan><tspan fill="#5A5A5A">others rent access only.</tspan></text>
+<path d="M 46.0 917.0 L 50.0 917.6 L 55.0 917.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="950" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Open weights is not open source:</tspan></text>
+<path d="M 46.0 945.0 L 50.7 945.4 L 55.0 945.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="966" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">the finished model, not how it was made.</tspan></text>
+<text x="60" y="994" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Chinese labs now lead the open field,</tspan></text>
+<path d="M 46.0 989.0 L 51.2 988.6 L 55.0 989.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="1010" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">months behind the frontier.</tspan></text>
+<text x="60" y="1038" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Free to download is not free to run </tspan><tspan fill="#5A5A5A">&#8212; nor automatically safe.</tspan></text>
+<path d="M 46.0 1033.0 L 50.5 1032.5 L 55.0 1033.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="60" y="1066" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Who made it, where it runs, what the licence allows:</tspan></text>
+<path d="M 46.0 1061.0 L 50.5 1060.9 L 55.0 1061.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="74" y="1082" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">three separate questions.</tspan></text>
+<path d="M 44.0 902.0 L 45.1 930.1 L 42.5 959.3 L 42.7 991.7 L 42.3 1020.9 L 42.2 1049.6 L 44.0 1078.0" fill="none" stroke="#5A5A5A" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+<text x="1024" y="125" font-size="29" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">Choosing &#38; proving</tspan></text>
+<path d="M 1022.0 132.0 L 1064.7 131.9 L 1106.3 132.5 L 1149.5 135.5 L 1192.2 135.2 L 1232.8 134.0" fill="none" stroke="#861831" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+<text x="1024" y="160" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">&#8220;Which model is best?&#8221; has no single answer.</tspan></text>
+<path d="M 1010.0 155.0 L 1014.2 154.2 L 1019.0 155.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="188" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">League tables measure someone else&#8217;s task, not yours.</tspan></text>
+<path d="M 1010.0 183.0 L 1015.5 182.8 L 1019.0 183.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="216" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Benchmarks leak into training data: scores can be memorised.</tspan></text>
+<path d="M 1010.0 211.0 L 1014.1 210.4 L 1019.0 211.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="244" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#861831">The only test that counts:</tspan><tspan fill="#1A1A1A"> your data, your definition of right.</tspan></text>
+<path d="M 1010.0 239.0 L 1014.8 239.6 L 1019.0 239.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="272" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Judge cost per completed task, not price per token.</tspan></text>
+<path d="M 1010.0 267.0 L 1014.1 267.9 L 1019.0 267.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="300" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">How you ask, and what you show it, changes everything.</tspan></text>
+<path d="M 1010.0 295.0 L 1014.8 295.8 L 1019.0 295.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<path d="M 1008.0 140.0 L 1009.0 167.0 L 1007.9 193.7 L 1007.3 216.8 L 1007.3 243.2 L 1009.3 269.3 L 1008.0 296.0" fill="none" stroke="#5A5A5A" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+<text x="1024" y="351" font-size="29" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">Failure &#38; trust</tspan></text>
+<path d="M 1022.0 358.0 L 1058.1 359.8 L 1094.6 357.2 L 1127.3 359.6 L 1160.7 358.0 L 1198.0 360.0" fill="none" stroke="#861831" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+<text x="1024" y="386" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">It states falsehoods fluently: hallucination</tspan></text>
+<path d="M 1010.0 381.0 L 1015.6 380.7 L 1019.0 381.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1038" y="402" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">is structural, not a passing bug.</tspan></text>
+<text x="1024" y="430" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">As errors grow rarer, they grow more trusted</tspan></text>
+<path d="M 1010.0 425.0 L 1015.3 425.3 L 1019.0 425.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1038" y="446" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; the dangerous kind.</tspan></text>
+<text x="1024" y="474" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Anything it reads can carry hidden instructions for it.</tspan></text>
+<path d="M 1010.0 469.0 L 1014.6 469.3 L 1019.0 469.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="502" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Set it a test and it may learn to cheat the test.</tspan></text>
+<path d="M 1010.0 497.0 L 1013.5 497.7 L 1019.0 497.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="530" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">People over-trust confident machines.</tspan></text>
+<path d="M 1010.0 525.0 L 1015.3 525.6 L 1019.0 525.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="558" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Design as if any single answer may be wrong.</tspan></text>
+<path d="M 1010.0 553.0 L 1013.7 551.8 L 1019.0 553.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<path d="M 1008.0 366.0 L 1009.1 398.7 L 1008.5 427.6 L 1006.8 458.2 L 1007.7 492.7 L 1006.6 521.1 L 1008.0 554.0" fill="none" stroke="#5A5A5A" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+<text x="1024" y="609" font-size="29" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">The money</tspan></text>
+<path d="M 1022.0 616.0 L 1045.0 614.5 L 1066.7 614.8 L 1085.5 617.0 L 1109.4 615.6 L 1128.4 618.0" fill="none" stroke="#861831" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+<text x="1024" y="644" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Training a frontier model: a one-off project costing billions.</tspan></text>
+<path d="M 1010.0 639.0 L 1014.6 638.8 L 1019.0 639.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="672" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Running one: a meter that never stops.</tspan></text>
+<path d="M 1010.0 667.0 L 1013.5 668.1 L 1019.0 667.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="700" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Promised savings arrive slowly; the token bill arrives monthly.</tspan></text>
+<path d="M 1010.0 695.0 L 1014.0 694.7 L 1019.0 695.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="728" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">The build-out&#8217;s constraint is electricity, not chips.</tspan></text>
+<path d="M 1010.0 723.0 L 1014.2 721.9 L 1019.0 723.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="756" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">A real revolution can still be a bad investment</tspan></text>
+<path d="M 1010.0 751.0 L 1015.0 751.2 L 1019.0 751.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1038" y="772" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">at the wrong price.</tspan></text>
+<path d="M 1008.0 624.0 L 1007.7 649.6 L 1009.6 673.1 L 1009.2 697.0 L 1008.7 720.8 L 1007.5 744.3 L 1008.0 768.0" fill="none" stroke="#5A5A5A" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+<text x="1024" y="823" font-size="29" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">Where it&#8217;s heading</tspan></text>
+<path d="M 1022.0 830.0 L 1061.8 830.7 L 1108.6 829.3 L 1147.6 832.2 L 1193.0 832.6 L 1232.8 832.0" fill="none" stroke="#861831" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+<text x="1024" y="858" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Capability has climbed a straight line for five years</tspan></text>
+<path d="M 1010.0 853.0 L 1015.0 853.5 L 1019.0 853.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1038" y="874" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; and hasn&#8217;t bent.</tspan></text>
+<text x="1024" y="902" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Toddler to research mathematician, in five years.</tspan></text>
+<path d="M 1010.0 897.0 L 1013.8 896.0 L 1019.0 897.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="930" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">In parts of mathematics, already past the best humans.</tspan></text>
+<path d="M 1010.0 925.0 L 1013.9 925.8 L 1019.0 925.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1024" y="958" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">The makers restrict their own strongest models</tspan></text>
+<path d="M 1010.0 953.0 L 1014.2 952.7 L 1019.0 953.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<text x="1038" y="974" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; a tell worth reading.</tspan></text>
+<text x="1024" y="1002" font-size="17" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Serious objections dispute the timing, not the destination.</tspan></text>
+<path d="M 1010.0 997.0 L 1013.9 996.8 L 1019.0 997.0" fill="none" stroke="#5A5A5A" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+<path d="M 1008.0 838.0 L 1007.3 863.2 L 1007.1 892.1 L 1007.1 916.9 L 1008.1 945.2 L 1007.4 970.6 L 1008.0 998.0" fill="none" stroke="#5A5A5A" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+<text x="1136" y="1068" font-size="46" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">When, not if.</tspan></text>
+<ellipse cx="842" cy="470" rx="152" ry="92" fill="none" stroke="#1A1A1A" stroke-width="2.6" opacity="1.0" transform="rotate(-2.2 842 470)"/>
+<ellipse cx="842" cy="470" rx="152" ry="92" fill="none" stroke="#1A1A1A" stroke-width="2.6" opacity="0.35" transform="rotate(1.8 842 470)"/>
+<text x="842" y="496" font-size="118" font-family="Caveat" font-weight="700" text-anchor="middle"><tspan fill="#1A1A1A">AI</tspan></text>
+<text x="842" y="598" font-size="27" font-family="Caveat" font-weight="600" text-anchor="middle"><tspan fill="#861831">writes what is plausible,</tspan></text>
+<text x="842" y="630" font-size="27" font-family="Caveat" font-weight="600" text-anchor="middle"><tspan fill="#861831">not what is guaranteed true.</tspan></text>
+<text x="692" y="690" font-size="24" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">The rules</tspan></text>
+<path d="M 690.0 696.0 L 713.6 696.4 L 735.6 695.8 L 755.0 697.0 L 778.4 698.0" fill="none" stroke="#861831" stroke-width="2.0" stroke-linecap="round" opacity="0.85"/>
+<text x="692" y="718" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Regulators already police models</tspan></text>
+<path d="M 682.0 714.0 L 684.1 714.0 L 688.0 714.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="732" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; AI joins the rulebook, not escapes it.</tspan></text>
+<text x="692" y="754" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Every model goes on an inventory,</tspan></text>
+<path d="M 682.0 750.0 L 685.0 750.2 L 688.0 750.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="768" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">with a named senior owner.</tspan></text>
+<text x="692" y="790" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Validate the deployment,</tspan></text>
+<path d="M 682.0 786.0 L 685.7 786.4 L 688.0 786.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="804" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">not the black box &#8212; your tests, logged.</tspan></text>
+<text x="692" y="826" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">High-risk uses carry the most duties</tspan></text>
+<path d="M 682.0 822.0 L 684.2 822.1 L 688.0 822.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="840" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; Europe by statute, Britain by stretch.</tspan></text>
+<text x="692" y="862" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Whoever trained it, the firm that</tspan></text>
+<path d="M 682.0 858.0 L 685.5 858.3 L 688.0 858.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="876" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">deploys it answers for it.</tspan></text>
+<path d="M 680.0 702.0 L 679.0 735.7 L 681.4 771.3 L 679.5 803.7 L 681.4 838.9 L 680.0 873.0" fill="none" stroke="#5A5A5A" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>
+<text x="692" y="918" font-size="24" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">Making it yours</tspan></text>
+<path d="M 690.0 924.0 L 727.2 925.0 L 762.9 924.2 L 799.9 924.7 L 836.0 926.0" fill="none" stroke="#861831" stroke-width="2.0" stroke-linecap="round" opacity="0.85"/>
+<text x="692" y="946" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">It knows nothing of your firm</tspan></text>
+<path d="M 682.0 942.0 L 684.2 941.4 L 688.0 942.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="960" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; closing that gap is the real work.</tspan></text>
+<text x="692" y="982" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">First rung, prompting: instructions</tspan></text>
+<path d="M 682.0 978.0 L 684.5 977.5 L 688.0 978.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="996" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">and examples, free and powerful.</tspan></text>
+<text x="692" y="1018" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Show it your own documents (RAG):</tspan></text>
+<path d="M 682.0 1014.0 L 685.6 1014.9 L 688.0 1014.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="1032" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">grounded answers that cite their sources.</tspan></text>
+<text x="692" y="1054" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Fine-tuning teaches style and skill,</tspan></text>
+<path d="M 682.0 1050.0 L 685.7 1050.8 L 688.0 1050.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="1068" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">not facts.</tspan></text>
+<text x="692" y="1090" font-size="14" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">Almost no one should train their own</tspan></text>
+<path d="M 682.0 1086.0 L 685.2 1086.5 L 688.0 1086.0" fill="none" stroke="#5A5A5A" stroke-width="1.0" stroke-linecap="round" opacity="0.7"/>
+<text x="704" y="1104" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; own the wrapping, rent the model.</tspan></text>
+<path d="M 680.0 930.0 L 679.8 964.1 L 680.1 997.2 L 679.0 1031.5 L 679.4 1067.1 L 680.0 1101.0" fill="none" stroke="#5A5A5A" stroke-width="1.2" stroke-linecap="round" opacity="0.55"/>
+<path d="M 408.0 1166.0 L 560.7 1167.6 L 711.5 1167.5 L 862.2 1168.4 L 1014.3 1165.7 L 1163.9 1166.7 L 1318.4 1166.1 L 1466.8 1168.2 L 1620.0 1168.0" fill="none" stroke="#C7C3B8" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
+<text x="408" y="1188" font-size="22" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#861831">The working vocabulary</tspan></text>
+<text x="408" y="1214" font-size="13.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">token</tspan><tspan fill="#5A5A5A"> &#8212; a fragment of a word</tspan><tspan fill="#C7C3B8">  &#183;  </tspan><tspan fill="#1A1A1A">context window</tspan><tspan fill="#5A5A5A"> &#8212; its working memory</tspan><tspan fill="#C7C3B8">  &#183;  </tspan><tspan fill="#1A1A1A">weights</tspan><tspan fill="#5A5A5A"> &#8212; what training fixed</tspan><tspan fill="#C7C3B8">  &#183;  </tspan><tspan fill="#1A1A1A">inference</tspan><tspan fill="#5A5A5A"> &#8212; the model answering</tspan></text>
+<text x="408" y="1236" font-size="13.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#1A1A1A">prompt</tspan><tspan fill="#5A5A5A"> &#8212; what you ask, and how</tspan><tspan fill="#C7C3B8">  &#183;  </tspan><tspan fill="#1A1A1A">RAG</tspan><tspan fill="#5A5A5A"> &#8212; showing it your documents</tspan><tspan fill="#C7C3B8">  &#183;  </tspan><tspan fill="#1A1A1A">harness</tspan><tspan fill="#5A5A5A"> &#8212; everything wrapped around it</tspan><tspan fill="#C7C3B8">  &#183;  </tspan><tspan fill="#1A1A1A">agent</tspan><tspan fill="#5A5A5A"> &#8212; a model allowed to act</tspan></text>
+<path d="M 408.0 1250.0 L 560.4 1251.8 L 712.2 1251.8 L 862.9 1252.0 L 1015.1 1249.2 L 1164.6 1250.4 L 1317.8 1250.7 L 1467.3 1253.3 L 1620.0 1252.0" fill="none" stroke="#C7C3B8" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
+<text x="1620" y="1288" font-size="30" font-family="Caveat" font-weight="600" text-anchor="end"><tspan fill="#861831">Build what lasts; rent what changes.</tspan></text>
+<path d="M 60.0 1176.0 L 135.9 1175.8 L 211.7 1175.5 L 289.3 1176.2 L 366.0 1176.0" fill="none" stroke="#4A4843" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+<path d="M 366.0 1176.0 L 365.2 1199.2 L 365.0 1224.2 L 364.7 1249.1 L 366.0 1272.0" fill="none" stroke="#4A4843" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+<path d="M 366.0 1272.0 L 290.8 1271.1 L 213.2 1270.8 L 137.7 1270.7 L 60.0 1272.0" fill="none" stroke="#4A4843" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+<path d="M 60.0 1272.0 L 60.3 1249.1 L 59.3 1222.8 L 59.9 1200.7 L 60.0 1176.0" fill="none" stroke="#4A4843" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+<path d="M 60.0 1210.0 L 135.8 1211.1 L 212.0 1209.8 L 289.9 1210.6 L 366.0 1210.0" fill="none" stroke="#C7C3B8" stroke-width="1.0" stroke-linecap="round" opacity="0.9"/>
+<text x="74" y="1201" font-size="20" font-family="Caveat" font-weight="700" text-anchor="start"><tspan fill="#1A1A1A">THE MAP</tspan></text>
+<text x="178" y="1200" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">&#8212; AI on one page</tspan></text>
+<text x="74" y="1232" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#861831">aminbilal.com</tspan></text>
+<text x="74" y="1256" font-size="14.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#4A4843">As drawn: July 2026</tspan></text>
+<text x="218" y="1256" font-size="12.5" font-family="Architects Daughter" font-weight="400" text-anchor="start"><tspan fill="#5A5A5A">A. Bilal, with Claude Fable 5</tspan></text>
+</svg>
+        </div>
+        <nav class="panel-flip" data-flip="map"></nav>
       </section>
 
     </div>
