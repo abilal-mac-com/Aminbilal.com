@@ -284,6 +284,8 @@
   .page-content .tq-a b{ color:var(--crimson-deep); }
 
   /* ----- Test engine (script-only enhancement; the store markup above is untouched) ----- */
+  .page-content .tq-rubric{ font-family:var(--sans); font-size:13px; line-height:1.55; letter-spacing:.01em; color:var(--soft); margin:0 0 .9em; }
+  .page-content .tq-rubric b{ color:var(--crimson); font-weight:700; }
   .page-content .tq-bar{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; border:1px solid var(--rule); background:#F3F1E9; padding:12px 16px; margin:0 0 1.3em; }
   .page-content .tq-bar.tq-bar-foot{ margin:1.3em 0 0; }
   .page-content .tq-bar .tq-count{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.03em; color:var(--ink); flex:1; }
@@ -21289,6 +21291,11 @@
     }
     var barTop = barEl('');
     var barFoot = barEl('tq-bar-foot');
+    var rub = document.createElement('p');
+    rub.className = 'tq-rubric';
+    rub.innerHTML = 'Two ways to take it: open the <b>Answer</b> beneath each question as you go, ' +
+      'or attempt the lot, then press <b>Mark my paper</b> to be scored and corrected in one pass.';
+    tqs[0].parentNode.insertBefore(rub, tqs[0]);
     tqs[0].parentNode.insertBefore(barTop, tqs[0]);
     var lastTq = tqs[tqs.length - 1];
     lastTq.parentNode.insertBefore(barFoot, lastTq.nextSibling);
