@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quotes &mdash; Amin Bilal</title>
+<meta name="description" content="A commonplace book: notable quotations, grouped by theme, with attribution carried only as far as the evidence goes.">
+<meta name="author" content="Amin Bilal">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Quotes &mdash; Amin Bilal">
+<meta property="og:description" content="A commonplace book: notable quotations, grouped by theme, with attribution carried only as far as the evidence goes.">
+<meta property="og:url" content="https://aminbilal.com/quotes.html">
+<meta property="og:image" content="https://aminbilal.com/og-quotes.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quotes &mdash; Amin Bilal">
+<meta name="twitter:description" content="A commonplace book: notable quotations, grouped by theme, with attribution carried only as far as the evidence goes.">
+<meta name="twitter:image" content="https://aminbilal.com/og-quotes.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Quotes",
+  "description": "A commonplace book: notable quotations, grouped by theme, with attribution carried only as far as the evidence goes.",
+  "inLanguage": "en-GB",
+  "url": "https://aminbilal.com/quotes.html",
+  "mainEntityOfPage": "https://aminbilal.com/quotes.html",
+  "author": {
+    "@type": "Person",
+    "name": "Amin Bilal",
+    "sameAs": "https://www.linkedin.com/in/amin-bilal-54047714"
+  }
+}
+</script>
+
+<!--
+  ============================================================
+  aminbilal.com - quotes.html (the commonplace book)
+  ------------------------------------------------------------
+  DESTINATION: quotes.html at the repository root, deployed
+  after og-quotes.png and before the index.html nav change.
+
+  A commonplace book in the old manner: quotations grouped by
+  head, ordered by argument within each head. The page is
+  deliberately script-free (Plausible analytics aside) - it is
+  a document, and works identically with scripting disabled.
+
+  THE SOURCING BAR (binding on every future entry)
+    - Web-verify each quotation on the day of insertion.
+    - Attribution is carried only as far as the evidence goes:
+      author, work and year where they exist; adages carried
+      honestly as adages; famous misattributions corrected in
+      the provenance line, never repeated in the attribution.
+    - Anything unverifiable is excluded, however beloved.
+    - Song lyrics are excluded entirely.
+
+  ADDING A QUOTE
+    Copy an <article class="q"> block within the right section
+    (or add a <section> with its own id + .head, and a matching
+    anchor in the .toc row). Keep the character rules: entities
+    (&mdash; &rsquo; &ldquo; &rdquo; &middot;) in markup;
+    source otherwise pure ASCII. Curly quotes around quoted
+    speech inside a quotation; no quotation marks around the
+    quotations themselves. Then bump this page's lastmod in
+    /sitemap.xml and redeploy both.
+
+  Sections: #understanding  #markets  #work  #history
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F9F8F3;
+    --ink:#1A1A1A;
+    --body:#26241F;
+    --crimson:#861831;
+    --crimson-deep:#6C1327;
+    --grey:#5A5A5A;
+    --soft:#4A4843;
+    --rule:#D8D5CC;
+    --rule-strong:#C7C3B8;
+    --serif:'Lora', Georgia, 'Times New Roman', serif;
+    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--cream); color:var(--body);
+    font-family:var(--serif); font-size:17px; line-height:1.6;
+  }
+  a{ color:var(--crimson); }
+  a:hover{ color:var(--crimson-deep); }
+
+  .top{ max-width:760px; margin:0 auto; padding:26px 22px 0; }
+  .back{
+    font-family:var(--sans); font-weight:700; font-size:12.5px;
+    letter-spacing:.06em; text-transform:uppercase;
+    color:var(--grey); text-decoration:none;
+  }
+  .back:hover{ color:var(--crimson); }
+
+  .mast{ max-width:760px; margin:0 auto; padding:44px 22px 8px; }
+  .kicker{
+    font-family:var(--sans); font-weight:700; font-size:13px;
+    letter-spacing:.3em; text-transform:uppercase; color:var(--crimson);
+    margin:0 0 14px;
+  }
+  h1{
+    font-family:var(--serif); font-weight:600; color:var(--ink);
+    font-size:clamp(40px,7vw,56px); line-height:1.05; margin:0;
+    letter-spacing:-.012em;
+  }
+  .titlerule{ width:76px; height:3px; background:var(--crimson); margin:22px 0; }
+  .stand{
+    font-size:19px; line-height:1.55; color:var(--soft);
+    margin:0 0 26px; max-width:640px;
+  }
+  .toc{
+    font-family:var(--sans); font-weight:700; font-size:12.5px;
+    letter-spacing:.06em; text-transform:uppercase;
+    display:flex; flex-wrap:wrap; gap:6px 12px; align-items:baseline;
+    border-top:1px solid var(--rule-strong); padding-top:16px;
+  }
+  .toc a{ text-decoration:none; }
+  .toc span{ color:var(--rule-strong); }
+
+  .wrap{ max-width:760px; margin:0 auto; padding:8px 22px 30px; }
+  section{ margin-top:44px; }
+  .head{
+    font-family:var(--sans); font-weight:700; font-size:14px;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--crimson);
+    border-bottom:1px solid var(--rule-strong);
+    padding-bottom:10px; margin:0 0 4px;
+  }
+  .q{ border-top:1px solid var(--rule); padding:26px 0 22px; }
+  section .q:first-of-type{ border-top:none; }
+  .q blockquote{ margin:0; }
+  .q blockquote p{
+    margin:0; font-family:var(--serif); font-weight:500;
+    font-size:22px; line-height:1.5; color:var(--ink);
+  }
+  .attr{
+    font-family:var(--sans); font-weight:700; font-size:13px;
+    letter-spacing:.05em; color:var(--ink); margin:14px 0 0;
+  }
+  .attr .dot{ color:var(--crimson); padding:0 2px; }
+  .prov{
+    font-family:var(--sans); font-weight:400; font-size:13px;
+    line-height:1.55; color:var(--grey); margin:6px 0 0; max-width:620px;
+  }
+
+  .foot{
+    max-width:760px; margin:26px auto 0; padding:18px 22px 40px;
+    border-top:1px solid var(--rule-strong);
+    font-family:var(--sans); font-size:12.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--grey);
+  }
+
+  @media (prefers-reduced-motion:reduce){ *{ scroll-behavior:auto !important; } }
+  html{ scroll-behavior:smooth; }
+</style>
+
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa--HaR7sS_MuJb_jLlfRJDT.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+</head>
+
+<body>
+
+<div class="top">
+  <a class="back" href="index.html"><span aria-hidden="true">&larr;</span>&nbsp;Amin&rsquo;s Personal Site</a>
+</div>
+
+<header class="mast">
+  <p class="kicker">Commonplace</p>
+  <h1>Quotes</h1>
+  <div class="titlerule" aria-hidden="true"></div>
+  <p class="stand">A commonplace book, kept in the old manner: passages that stopped me, grouped by head and ordered by argument &mdash; checked before they are believed. Attribution is carried only as far as the evidence goes.</p>
+  <nav class="toc" aria-label="Sections">
+    <a href="#understanding">Understanding</a><span>&middot;</span>
+    <a href="#markets">Markets and Money</a><span>&middot;</span>
+    <a href="#work">Work and Leadership</a><span>&middot;</span>
+    <a href="#history">History</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+<section id="understanding">
+  <h2 class="head">Understanding</h2>
+
+  <article class="q">
+    <blockquote><p>You can outsource your thinking but you cannot outsource your understanding.</p></blockquote>
+    <p class="attr">kache (@yacineMTB) <span class="dot">&middot;</span> February 2026</p>
+    <p class="prov">Amplified by Andrej Karpathy, who credited its author &mdash; and to whom the line is already widely misattributed.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>In my whole life, I have known no wise people (over a broad subject matter area) who didn&rsquo;t read all the time &mdash; none, zero. You&rsquo;d be amazed at how much Warren reads &mdash; and at how much I read. My children laugh at me. They think I&rsquo;m a book with a couple of legs sticking out.</p></blockquote>
+    <p class="attr">Charles T. Munger <span class="dot">&middot;</span> Poor Charlie&rsquo;s Almanack, 2005</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>Look for people who have lots of great questions. Smart people are the ones who ask the most thoughtful questions, as opposed to thinking they have all the answers. Great questions are a much better indicator of future success than great answers.</p></blockquote>
+    <p class="attr">Ray Dalio <span class="dot">&middot;</span> Principles, 2017</p>
+  </article>
+</section>
+
+<section id="markets">
+  <h2 class="head">Markets and Money</h2>
+
+  <article class="q">
+    <blockquote><p>Everything is liquid at the right price.</p></blockquote>
+    <p class="attr">Trading-floor adage <span class="dot">&middot;</span> origin untraced</p>
+    <p class="prov">Kin to the older dealers&rsquo; saying that everything is for sale at the right price; no coiner found as of 25 July 2026.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>The market can stay irrational longer than you can stay solvent.</p></blockquote>
+    <p class="attr">A. Gary Shilling <span class="dot">&middot;</span> by 1986</p>
+    <p class="prov">In print by 1986 and closely associated with Shilling, its likely coiner; routinely lent to Keynes, an ascription for which the evidence is very weak.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>The investor who says, &ldquo;This time is different,&rdquo; when in fact it&rsquo;s virtually a repeat of an earlier situation, has uttered among the four most costly words in the annals of investing.</p></blockquote>
+    <p class="attr">Sir John Templeton <span class="dot">&middot;</span> 16 Rules for Investment Success, 1993</p>
+    <p class="prov">The famous &ldquo;four most dangerous words&rdquo; is the popular compression; this is the documented sentence. See the essay <a href="latest/this-time-is-different.html">This Time Is Different</a>.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>In the short run, the market is a voting machine but in the long run, it is a weighing machine.</p></blockquote>
+    <p class="attr">Warren Buffett, after Benjamin Graham <span class="dot">&middot;</span> Berkshire Hathaway letters, from 1987</p>
+    <p class="prov">Security Analysis (1934) calls the market a voting machine rather than a weighing machine &mdash; never the couplet; the short-run/long-run form is Buffett&rsquo;s, credited by him to Graham&rsquo;s classroom.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>We simply attempt to be fearful when others are greedy and to be greedy only when others are fearful.</p></blockquote>
+    <p class="attr">Warren Buffett <span class="dot">&middot;</span> Letter to Berkshire Hathaway shareholders, 1986</p>
+    <p class="prov">The first written form; the bare imperative &ldquo;be fearful when others are greedy&hellip;&rdquo; is the later popular compression.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>It&rsquo;s only when the tide goes out that you learn who&rsquo;s been swimming naked.</p></blockquote>
+    <p class="attr">Warren Buffett <span class="dot">&middot;</span> Letter to Berkshire Hathaway shareholders, 1992</p>
+    <p class="prov">Resurfaced in the 2001 and 2007 letters; usually quoted in paraphrase.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>&ldquo;How did you go bankrupt?&rdquo; &ldquo;Two ways. Gradually and then suddenly.&rdquo;</p></blockquote>
+    <p class="attr">Ernest Hemingway <span class="dot">&middot;</span> The Sun Also Rises, 1926</p>
+    <p class="prov">Mike Campbell&rsquo;s answer to Bill Gorton; &ldquo;gradually, then suddenly&rdquo; is the popular trim.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>They mistook leverage for genius.</p></blockquote>
+    <p class="attr">Steve Eisman <span class="dot">&middot;</span> 2018</p>
+    <p class="prov">On Wall Street before 2008; kin lines circulate unattributed &mdash; &ldquo;you thought you were buying genius; all you got was leverage.&rdquo;</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>The whole secret to winning big in the stock market is not to be right all the time, but to lose the least amount possible when you&rsquo;re wrong.</p></blockquote>
+    <p class="attr">William J. O&rsquo;Neil <span class="dot">&middot;</span> How to Make Money in Stocks, 1988</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>Being wrong is acceptable, but staying wrong is totally unacceptable.</p></blockquote>
+    <p class="attr">Mark Minervini <span class="dot">&middot;</span> in Jack D. Schwager&rsquo;s Stock Market Wizards, 2001</p>
+    <p class="prov">The line is the interviewee&rsquo;s, not the interviewer&rsquo;s &mdash; habitually credited to Schwager, whose book records it.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>I never buy at the bottom and I always sell too soon.</p></blockquote>
+    <p class="attr">Baron Rothschild&rsquo;s recipe, retold in Reminiscences of a Stock Operator <span class="dot">&middot;</span> Edwin Lef&egrave;vre, 1923</p>
+    <p class="prov">Reminiscences is Lef&egrave;vre&rsquo;s fictionalisation of Jesse Livermore, to whom the book is habitually misattributed; its narrator retells the old Bourse anecdote.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>There is a powerful case for the market mechanism, but it is not that markets are perfect; it is that in a world dominated by imperfect understanding, markets provide an efficient feedback mechanism for evaluating the results of one&rsquo;s decisions and correcting mistakes.</p></blockquote>
+    <p class="attr">George Soros</p>
+    <p class="prov">His Popperian case for markets &mdash; error-correction, not perfection; the sentence circulates across his own quote records without a settled first locus, as of 25 July 2026.</p>
+  </article>
+</section>
+
+<section id="work">
+  <h2 class="head">Work and Leadership</h2>
+
+  <article class="q">
+    <blockquote><p>The supreme art of war is to subdue the enemy without fighting.</p></blockquote>
+    <p class="attr">Sun Tzu <span class="dot">&middot;</span> The Art of War</p>
+    <p class="prov">A common English rendering; Lionel Giles (1910) has &ldquo;supreme excellence consists in breaking the enemy&rsquo;s resistance without fighting&rdquo;.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>Remember too that your time is your one finite resource, and when you say &ldquo;yes&rdquo; to one thing you are inevitably saying &ldquo;no&rdquo; to another.</p></blockquote>
+    <p class="attr">Andrew S. Grove <span class="dot">&middot;</span> High Output Management, 1983</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>The sad news is, nobody owes you a career. Your career is literally your business. You own it as a sole proprietor. &hellip; You need to accept ownership of your career, your skills and the timing of your moves. Nobody else can do that for you.</p></blockquote>
+    <p class="attr">Andrew S. Grove <span class="dot">&middot;</span> Only the Paranoid Survive, 1996</p>
+    <p class="prov">Abridged.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>Find something you enjoy doing and give it everything you&rsquo;ve got, and the money will take care of itself.</p></blockquote>
+    <p class="attr">Peter Lynch <span class="dot">&middot;</span> Learn to Earn, 1995</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>It doesn&rsquo;t make sense to hire smart people and then tell them what to do; we hire smart people so they can tell us what to do.</p></blockquote>
+    <p class="attr">Steve Jobs</p>
+    <p class="prov">The circulated polish; the documented statement is his 1996 Fresh Air interview &mdash; &ldquo;we hire people to tell us what to do &hellip; their job is to figure out what to do and tell us&rdquo;.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>There&rsquo;s a temptation in our networked age to think that ideas can be developed by email and iChat. That&rsquo;s crazy. Creativity comes from spontaneous meetings, from random discussions. You run into someone, you ask what they&rsquo;re doing, you say &ldquo;wow,&rdquo; and soon you&rsquo;re cooking up all sorts of ideas.</p></blockquote>
+    <p class="attr">Steve Jobs <span class="dot">&middot;</span> in Walter Isaacson&rsquo;s Steve Jobs, 2011</p>
+    <p class="prov">On the design of the Pixar building.</p>
+  </article>
+</section>
+
+<section id="history">
+  <h2 class="head">History</h2>
+
+  <article class="q">
+    <blockquote><p>History never repeats itself, but it rhymes.</p></blockquote>
+    <p class="attr">Modern adage <span class="dot">&middot;</span> commonly misattributed to Mark Twain</p>
+    <p class="prov">Earliest strong match: Theodor Reik, 1965. Twain, who died in 1910, was first credited in 1970.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>History never repeats itself, but the Kaleidoscopic combinations of the pictured present often seem to be constructed out of the broken fragments of antique legends.</p></blockquote>
+    <p class="attr">Mark Twain &amp; Charles Dudley Warner <span class="dot">&middot;</span> The Gilded Age, 1874</p>
+    <p class="prov">What Twain actually wrote &mdash; the sentence the adage is forever mistaken for.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>Those who cannot adjust to change will be swept aside by it. Those who recognize change and react accordingly will benefit.</p></blockquote>
+    <p class="attr">Jim Rogers <span class="dot">&middot;</span> A Gift to My Children, 2009</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>Not one country in existence today has had the same borders and government for as long as two hundred years. The world will continue changing.</p></blockquote>
+    <p class="attr">Jim Rogers <span class="dot">&middot;</span> A Gift to My Children, 2009</p>
+  </article>
+</section>
+
+</main>
+
+<footer class="foot">Amin Bilal</footer>
+
+</body>
+</html>
