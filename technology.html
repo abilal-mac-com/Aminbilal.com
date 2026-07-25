@@ -283,6 +283,25 @@
   .page-content .tq-a{ margin:.7em 0 .1em; }
   .page-content .tq-a b{ color:var(--crimson-deep); }
 
+  /* ----- Test engine (script-only enhancement; the store markup above is untouched) ----- */
+  .page-content .tq-bar{ display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; border:1px solid var(--rule); background:#F3F1E9; padding:12px 16px; margin:0 0 1.3em; }
+  .page-content .tq-bar.tq-bar-foot{ margin:1.3em 0 0; }
+  .page-content .tq-bar .tq-count{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.03em; color:var(--ink); flex:1; }
+  .page-content .tq-bar button{ font-family:var(--sans); font-weight:700; font-size:12px; letter-spacing:.06em; text-transform:uppercase; padding:8px 16px; border-radius:2px; cursor:pointer; border:1px solid var(--crimson); background:var(--crimson); color:var(--cream); }
+  .page-content .tq-bar button.tq-reset{ background:transparent; color:var(--crimson); }
+  .page-content .tq-bar button:disabled{ opacity:.4; cursor:default; }
+  .page-content .tq-bar button:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+  .page-content ol.tq-opts li label{ display:block; cursor:pointer; margin-left:-30px; padding-left:30px; }
+  .page-content ol.tq-opts li input[type="radio"]{ position:absolute; opacity:0; width:1px; height:1px; margin:0; }
+  .page-content ol.tq-opts li.sel{ background:#EFEBDF; box-shadow:inset 3px 0 0 var(--crimson); }
+  .page-content ol.tq-opts li:has(input:focus-visible){ outline:2px solid var(--crimson); outline-offset:2px; }
+  .page-content .tq.marked ol.tq-opts li label{ cursor:default; }
+  .page-content .tq.marked ol.tq-opts li.hit{ background:#EFEBDF; box-shadow:inset 3px 0 0 var(--crimson); font-weight:600; }
+  .page-content .tq.marked ol.tq-opts li.miss{ background:#F2E3E6; box-shadow:inset 3px 0 0 var(--crimson-deep); text-decoration:line-through; text-decoration-color:var(--crimson-deep); text-decoration-thickness:1px; }
+  .page-content .tq-verdict{ font-family:var(--sans); font-weight:700; font-size:12px; letter-spacing:.05em; text-transform:uppercase; margin:.55em 0 .35em; }
+  .page-content .tq-verdict.good{ color:var(--crimson); }
+  .page-content .tq-verdict.bad{ color:var(--crimson-deep); }
+
   /* ----- Personalities (register) pages ----- */
   .page-content .pe{ display:grid; grid-template-columns:56px 1fr; border-top:1px solid var(--rule); padding:1.35em 0 1.25em; }
   .page-content .pe:last-of-type{ border-bottom:1px solid var(--rule); }
@@ -21236,6 +21255,7 @@
     var body = pageView.querySelector('.page-content');
     var html = contentFor(slug, sub);
     body.innerHTML = html ? html : PREP;
+    if(sub === 'test'){ enhanceTest(body); }
 
     var back = pageView.querySelector('.back-to-block');
     back.setAttribute('href', '#'+slug);
@@ -21252,6 +21272,128 @@
     art.classList.remove('enter'); void art.offsetWidth; art.classList.add('enter');
     window.scrollTo(0,0);
     art.focus({preventScroll:true});
+  }
+
+  /* ---------- interactive test engine (enhancement only; stores stay book-true) ---------- */
+  function enhanceTest(root){
+    var tqs = root.querySelectorAll('.tq');
+    if(!tqs.length) return;
+
+    function barEl(cls){
+      var b = document.createElement('div');
+      b.className = 'tq-bar' + (cls ? ' ' + cls : '');
+      b.innerHTML = '<span class="tq-count"></span>' +
+        '<button type="button" class="tq-mark">Mark my paper</button>' +
+        '<button type="button" class="tq-reset">Start again</button>';
+      return b;
+    }
+    var barTop = barEl('');
+    var barFoot = barEl('tq-bar-foot');
+    tqs[0].parentNode.insertBefore(barTop, tqs[0]);
+    var lastTq = tqs[tqs.length - 1];
+    lastTq.parentNode.insertBefore(barFoot, lastTq.nextSibling);
+
+    var marked = false;
+
+    /* Each option gains a label carrying a visually hidden radio; the
+       crimson letter markers are CSS counters and remain untouched. */
+    Array.prototype.forEach.call(tqs, function(tq, qi){
+      var ansB = tq.querySelector('.tq-a b');
+      var m = ansB ? /Correct:\s*([A-D])/.exec(ansB.textContent) : null;
+      tq.setAttribute('data-ans', m ? m[1] : '');
+      Array.prototype.forEach.call(tq.querySelectorAll('ol.tq-opts > li'), function(li){
+        var lab = document.createElement('label');
+        var input = document.createElement('input');
+        input.type = 'radio'; input.name = 'tq-' + qi;
+        lab.appendChild(input);
+        while(li.firstChild){ lab.appendChild(li.firstChild); }
+        li.appendChild(lab);
+      });
+    });
+
+    function setCount(markup){
+      Array.prototype.forEach.call(root.querySelectorAll('.tq-count'), function(el){ el.innerHTML = markup; });
+    }
+    function refresh(){
+      var done = 0;
+      Array.prototype.forEach.call(tqs, function(tq){
+        if(tq.querySelector('input:checked')) done++;
+      });
+      setCount(done + ' of ' + tqs.length + ' answered');
+    }
+
+    root.addEventListener('change', function(e){
+      if(marked || !e.target || e.target.type !== 'radio') return;
+      var li = e.target.closest('li'), ol = e.target.closest('ol');
+      if(!li || !ol) return;
+      Array.prototype.forEach.call(ol.children, function(s){ s.classList.remove('sel'); });
+      li.classList.add('sel');
+      refresh();
+    });
+
+    root.addEventListener('click', function(e){
+      var btn = e.target.closest('button');
+      if(!btn) return;
+      if(btn.classList.contains('tq-mark') && !marked){ mark(); }
+      else if(btn.classList.contains('tq-reset')){ reset(); }
+    });
+
+    function mark(){
+      marked = true;
+      var score = 0, blank = 0;
+      Array.prototype.forEach.call(tqs, function(tq){
+        var ans = tq.getAttribute('data-ans');
+        var lis = tq.querySelectorAll('ol.tq-opts > li');
+        var chosen = '';
+        Array.prototype.forEach.call(lis, function(li, i){
+          li.classList.remove('sel');
+          var r = li.querySelector('input');
+          if(r){ r.disabled = true; if(r.checked){ chosen = String.fromCharCode(65 + i); } }
+          if(String.fromCharCode(65 + i) === ans){ li.classList.add('hit'); }
+        });
+        var det = tq.querySelector('details.tq-ans');
+        var v = document.createElement('p');
+        v.className = 'tq-verdict';
+        if(chosen === ans){
+          score++;
+          v.classList.add('good'); v.innerHTML = 'Correct.';
+        } else {
+          v.classList.add('bad');
+          if(chosen){
+            Array.prototype.forEach.call(lis, function(li, i){
+              if(String.fromCharCode(65 + i) === chosen){ li.classList.add('miss'); }
+            });
+            v.innerHTML = 'Incorrect &mdash; the answer is ' + ans + '.';
+          } else {
+            blank++;
+            v.innerHTML = 'Not attempted &mdash; the answer is ' + ans + '.';
+          }
+          if(det){ det.open = true; }
+        }
+        tq.classList.add('marked');
+        tq.insertBefore(v, det || null);
+      });
+      var pc = Math.round(100 * score / tqs.length);
+      setCount('Score ' + score + ' of ' + tqs.length + ' &middot; ' + pc + '%' + (blank ? ' &middot; ' + blank + ' not attempted' : ''));
+      Array.prototype.forEach.call(root.querySelectorAll('.tq-mark'), function(b){ b.disabled = true; });
+    }
+
+    function reset(){
+      marked = false;
+      Array.prototype.forEach.call(tqs, function(tq){
+        tq.classList.remove('marked');
+        var v = tq.querySelector('.tq-verdict'); if(v){ v.parentNode.removeChild(v); }
+        var det = tq.querySelector('details.tq-ans'); if(det){ det.open = false; }
+        Array.prototype.forEach.call(tq.querySelectorAll('ol.tq-opts > li'), function(li){
+          li.classList.remove('sel','hit','miss');
+          var r = li.querySelector('input'); if(r){ r.checked = false; r.disabled = false; }
+        });
+      });
+      Array.prototype.forEach.call(root.querySelectorAll('.tq-mark'), function(b){ b.disabled = false; });
+      refresh();
+    }
+
+    refresh();
   }
 
   /* ---------- router ---------- */
