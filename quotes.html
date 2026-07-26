@@ -45,6 +45,9 @@
   head, ordered by argument within each head. The page is
   deliberately script-free (Plausible analytics aside) - it is
   a document, and works identically with scripting disabled.
+  The heads are native details/summary accordions, closed by
+  default; no script is involved. For a printed copy, open the
+  sections first - closed folds do not print.
 
   THE SOURCING BAR (binding on every future entry)
     - Web-verify each quotation on the day of insertion.
@@ -63,7 +66,9 @@
     source otherwise pure ASCII. Curly quotes around quoted
     speech inside a quotation; no quotation marks around the
     quotations themselves. Then bump this page's lastmod in
-    /sitemap.xml and redeploy both.
+    /sitemap.xml and redeploy both. Also advance the count shown in the section's
+    summary bar - the verification suite asserts that summary
+    counts equal entry counts.
 
   Sections: #understanding  #markets  #work  #history
   ============================================================
@@ -120,25 +125,23 @@
     font-size:19px; line-height:1.55; color:var(--soft);
     margin:0 0 26px; max-width:640px;
   }
-  .toc{
-    font-family:var(--sans); font-weight:700; font-size:12.5px;
-    letter-spacing:.06em; text-transform:uppercase;
-    display:flex; flex-wrap:wrap; gap:6px 12px; align-items:baseline;
-    border-top:1px solid var(--rule-strong); padding-top:16px;
-  }
-  .toc a{ text-decoration:none; }
-  .toc span{ color:var(--rule-strong); }
-
   .wrap{ max-width:760px; margin:0 auto; padding:8px 22px 30px; }
-  section{ margin-top:44px; }
-  .head{
+  .sec{ border-top:1px solid var(--rule-strong); }
+  .sec:last-of-type{ border-bottom:1px solid var(--rule-strong); }
+  .sec > summary{
     font-family:var(--sans); font-weight:700; font-size:14px;
     letter-spacing:.22em; text-transform:uppercase; color:var(--crimson);
-    border-bottom:1px solid var(--rule-strong);
-    padding-bottom:10px; margin:0 0 4px;
+    padding:18px 2px; margin:0; cursor:pointer;
+    display:flex; align-items:baseline; gap:12px; list-style:none;
   }
+  .sec > summary::-webkit-details-marker{ display:none; }
+  .sec > summary:focus-visible{ outline:2px solid var(--crimson); outline-offset:2px; }
+  .sec > summary .n{ font-size:12px; letter-spacing:.08em; color:var(--grey); }
+  .sec > summary::after{ content:"+"; margin-left:auto; font-size:17px; letter-spacing:0; }
+  .sec[open] > summary::after{ content:"\2013"; }
+  .fold{ padding:2px 0 14px; }
   .q{ border-top:1px solid var(--rule); padding:26px 0 22px; }
-  section .q:first-of-type{ border-top:none; }
+  .fold > .q:first-of-type{ border-top:none; }
   .q blockquote{ margin:0; }
   .q blockquote p{
     margin:0; font-family:var(--serif); font-weight:500;
@@ -184,18 +187,13 @@
   <h1>Quotes</h1>
   <div class="titlerule" aria-hidden="true"></div>
   <p class="stand">A commonplace book, kept in the old manner: passages that stopped me, grouped by head and ordered by argument &mdash; checked before they are believed. Attribution is carried only as far as the evidence goes.</p>
-  <nav class="toc" aria-label="Sections">
-    <a href="#understanding">Understanding</a><span>&middot;</span>
-    <a href="#markets">Markets and Money</a><span>&middot;</span>
-    <a href="#work">Work and Leadership</a><span>&middot;</span>
-    <a href="#history">History</a>
-  </nav>
 </header>
 
 <main class="wrap">
 
-<section id="understanding">
-  <h2 class="head">Understanding</h2>
+<details class="sec" id="understanding">
+  <summary>Understanding <span class="n">26</span></summary>
+  <div class="fold">
 
   <article class="q">
     <blockquote><p>You can outsource your thinking but you cannot outsource your understanding.</p></blockquote>
@@ -226,6 +224,12 @@
   </article>
 
   <article class="q">
+    <blockquote><p>The seeker after truth is not one who studies the writings of the ancients and, following his natural disposition, puts his trust in them, but rather the one who suspects his faith in them and questions what he gathers from them, the one who submits to argument and demonstration, and not to the sayings of a human being whose nature is fraught with all kinds of imperfection and deficiency.</p></blockquote>
+    <p class="attr">Ibn al-Haytham <span class="dot">&middot;</span> Doubts Concerning Ptolemy, early 11th century</p>
+    <p class="prov">A. I. Sabra&rsquo;s rendering of the Shukuk; the passage continues that the investigator&rsquo;s duty is to make himself &ldquo;an enemy of all that he reads&rdquo;.</p>
+  </article>
+
+  <article class="q">
     <blockquote><p>The most exciting phrase to hear in science, the one that heralds new discoveries, is not &ldquo;Eureka!&rdquo; but &ldquo;That&rsquo;s funny&hellip;&rdquo;</p></blockquote>
     <p class="attr">Attributed to Isaac Asimov</p>
     <p class="prov">Unevidenced in his writing; the earliest trace is the Unix fortune file of 1987. A 1965 ancestor by Gordon Rattray Taylor has the scientist muttering &ldquo;That&rsquo;s odd&rdquo;.</p>
@@ -241,6 +245,40 @@
     <blockquote><p>If you try and take a cat apart to see how it works, the first thing you have on your hands is a non-working cat.</p></blockquote>
     <p class="attr">Douglas Adams <span class="dot">&middot;</span> The Salmon of Doubt, 2002</p>
     <p class="prov">From his 1998 talk &ldquo;Is there an artificial God?&rdquo;, collected posthumously.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>We ourselves (one single species) have taken over vast tracts of the inhabitable surface of the planet. Surely, we should allow those other creatures we share the planet with to retain some part of their ancient heritage.</p></blockquote>
+    <p class="attr">David Attenborough</p>
+    <p class="prov">Widely carried under his name; a primary record is unpinned as of 25 July 2026.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>The question is, are we happy to suppose that our grandchildren may never be able to see an elephant except in a picture book?</p></blockquote>
+    <p class="attr">David Attenborough</p>
+    <p class="prov">Often attributed across the conservation literature; primary unpinned.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>We often talk of saving the planet, but the truth is that we must do these things to save ourselves. With or without us, the wild will return.</p></blockquote>
+    <p class="attr">David Attenborough <span class="dot">&middot;</span> A Life on Our Planet, 2020</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>There is grandeur in this view of life, with its several powers, having been originally breathed into a few forms or into one; and that, whilst this planet has gone cycling on according to the fixed law of gravity, from so simple a beginning endless forms most beautiful and most wonderful have been, and are being, evolved.</p></blockquote>
+    <p class="attr">Charles Darwin <span class="dot">&middot;</span> On the Origin of Species, 1859</p>
+    <p class="prov">The closing sentence of the first edition; from the second, Darwin added &ldquo;by the Creator&rdquo; after &ldquo;breathed&rdquo;.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>Nature never did betray<br>The heart that loved her.</p></blockquote>
+    <p class="attr">William Wordsworth <span class="dot">&middot;</span> Lines Written a Few Miles above Tintern Abbey, 1798</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>&rsquo;Tis better to have loved and lost<br>Than never to have loved at all.</p></blockquote>
+    <p class="attr">Alfred, Lord Tennyson <span class="dot">&middot;</span> In Memoriam A.H.H., 1850</p>
+    <p class="prov">Canto 27; popularly mislaid onto Shakespeare.</p>
   </article>
 
   <article class="q">
@@ -266,14 +304,50 @@
   </article>
 
   <article class="q">
+    <blockquote><p>The first principle is that you must not fool yourself &mdash; and you are the easiest person to fool.</p></blockquote>
+    <p class="attr">Richard P. Feynman <span class="dot">&middot;</span> Caltech commencement address, 1974</p>
+    <p class="prov">From &ldquo;Cargo Cult Science&rdquo;.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>All animals are equal, but some animals are more equal than others.</p></blockquote>
+    <p class="attr">George Orwell <span class="dot">&middot;</span> Animal Farm, 1945</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>In a time of universal deceit, telling the truth is a revolutionary act.</p></blockquote>
+    <p class="attr">Attributed to George Orwell</p>
+    <p class="prov">Found nowhere in his writings; the ascription surfaces decades after his death in 1950 and circulates without a source.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>It is common enough for writers to find that, in the very act of writing, they express ideas and beliefs which they never knew they had; a deeper level of their personality is revealed, a level hidden until then from conscious awareness.</p></blockquote>
+    <p class="attr">Charles Le Gai Eaton <span class="dot">&middot;</span> Islam and the Destiny of Man, 1985</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>In the eyes of history, religious toleration is the highest evidence of culture in a people.</p></blockquote>
+    <p class="attr">Marmaduke Pickthall <span class="dot">&middot;</span> the Madras lectures, 1927</p>
+    <p class="prov">The opening sentence of his lecture &ldquo;Tolerance&rdquo;, collected as The Cultural Side of Islam.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>What is the character and general structure of the universe in which we live? Is there a permanent element in the constitution of this universe? How are we related to it? What place do we occupy in it, and what is the kind of conduct that befits the place we occupy? These questions are common to religion, philosophy, and higher poetry.</p></blockquote>
+    <p class="attr">Muhammad Iqbal <span class="dot">&middot;</span> The Reconstruction of Religious Thought in Islam, 1930</p>
+    <p class="prov">The opening sentences of the first lecture.</p>
+  </article>
+
+  <article class="q">
     <blockquote><p>When my information changes, I alter my conclusions. What do you do, sir?</p></blockquote>
     <p class="attr">Attributed to John Maynard Keynes</p>
     <p class="prov">No contemporary record; the chain runs through Paul Samuelson&rsquo;s recollections &mdash; 1970 on Meet the Press, then crediting Keynes in 1978 and in the 1983 Keynes Centenary piece that carries this wording. Churchill attracts it too.</p>
   </article>
-</section>
+  </div>
+</details>
 
-<section id="markets">
-  <h2 class="head">Markets and Money</h2>
+<details class="sec" id="markets">
+  <summary>Markets and Money <span class="n">26</span></summary>
+  <div class="fold">
 
   <article class="q">
     <blockquote><p>Everything is liquid at the right price.</p></blockquote>
@@ -309,6 +383,12 @@
     <blockquote><p>In the short run, the market is a voting machine but in the long run, it is a weighing machine.</p></blockquote>
     <p class="attr">Warren Buffett, after Benjamin Graham <span class="dot">&middot;</span> Berkshire Hathaway letters, from 1987</p>
     <p class="prov">Security Analysis (1934) calls the market a voting machine rather than a weighing machine &mdash; never the couplet; the short-run/long-run form is Buffett&rsquo;s, credited by him to Graham&rsquo;s classroom.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>But this long run is a misleading guide to current affairs. In the long run we are all dead.</p></blockquote>
+    <p class="attr">John Maynard Keynes <span class="dot">&middot;</span> A Tract on Monetary Reform, 1923</p>
+    <p class="prov">The documented Keynes at last. The next sentence &mdash; economists set themselves &ldquo;too easy, too useless a task&rdquo; if they can only say the ocean will one day be flat again &mdash; is the point the compression strips.</p>
   </article>
 
   <article class="q">
@@ -382,6 +462,11 @@
   </article>
 
   <article class="q">
+    <blockquote><p>The art of economics consists in looking not merely at the immediate but at the longer effects of any act or policy; it consists in tracing the consequences of that policy not merely for one group but for all groups.</p></blockquote>
+    <p class="attr">Henry Hazlitt <span class="dot">&middot;</span> Economics in One Lesson, 1946</p>
+  </article>
+
+  <article class="q">
     <blockquote><p>Inflation is always and everywhere a monetary phenomenon in the sense that it is and can be produced only by a more rapid increase in the quantity of money than in output.</p></blockquote>
     <p class="attr">Milton Friedman <span class="dot">&middot;</span> The Counter-Revolution in Monetary Theory, 1970</p>
   </article>
@@ -405,18 +490,38 @@
   </article>
 
   <article class="q">
+    <blockquote><p>Lenin is said to have declared that the best way to destroy the Capitalist System was to debauch the currency.</p></blockquote>
+    <p class="attr">John Maynard Keynes <span class="dot">&middot;</span> The Economic Consequences of the Peace, 1919</p>
+    <p class="prov">No such statement has ever been traced in Lenin&rsquo;s works &mdash; the attribution is itself the artefact. Keynes proceeds: &ldquo;Lenin was certainly right.&rdquo;</p>
+  </article>
+
+  <article class="q">
     <blockquote><p>I have good news and bad news. The good news is we will all soon be billionaires. The bad news is that by the time that day comes, the dollar will be so devalued that your billions may not purchase your weekly groceries.</p></blockquote>
     <p class="attr">Jarod Kintz <span class="dot">&middot;</span> A Memoir of Memories and Memes</p>
   </article>
-</section>
+  </div>
+</details>
 
-<section id="work">
-  <h2 class="head">Work and Leadership</h2>
+<details class="sec" id="work">
+  <summary>Work and Leadership <span class="n">11</span></summary>
+  <div class="fold">
 
   <article class="q">
     <blockquote><p>The supreme art of war is to subdue the enemy without fighting.</p></blockquote>
     <p class="attr">Sun Tzu <span class="dot">&middot;</span> The Art of War</p>
     <p class="prov">A common English rendering; Lionel Giles (1910) has &ldquo;supreme excellence consists in breaking the enemy&rsquo;s resistance without fighting&rdquo;.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>If it were done when &rsquo;tis done, then &rsquo;twere well<br>It were done quickly.</p></blockquote>
+    <p class="attr">William Shakespeare <span class="dot">&middot;</span> Macbeth, I.vii</p>
+    <p class="prov">Macbeth reasoning himself toward the deed &mdash; and the deed is regicide; as much a caution about momentum as a spur to despatch.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>Plans are worthless, but planning is everything.</p></blockquote>
+    <p class="attr">Dwight D. Eisenhower <span class="dot">&middot;</span> 1957</p>
+    <p class="prov">Remarks to the National Defense Executive Reserve Conference, 14 November 1957, where he credits it onward &mdash; &ldquo;a statement I heard long ago in the Army&rdquo;.</p>
   </article>
 
   <article class="q">
@@ -454,14 +559,28 @@
   </article>
 
   <article class="q">
+    <blockquote><p>In God we trust; all others must bring data.</p></blockquote>
+    <p class="attr">Attributed to W. Edwards Deming</p>
+    <p class="prov">No evidence he said it: by 1978 the pathologist Edwin R. Fisher was already calling it &ldquo;a well-recognized cliche in scientific circles&rdquo; before Congress, and the Deming link stems from an unattributed epigraph in Mary Walton&rsquo;s 1986 book on him.</p>
+  </article>
+
+  <article class="q">
     <blockquote><p>Both optimists and pessimists contribute to our society. The optimist invents the airplane and the pessimist the parachute.</p></blockquote>
     <p class="attr">Gil Stern <span class="dot">&middot;</span> by 1967</p>
     <p class="prov">The American humorist&rsquo;s printed form; ascriptions to George Bernard Shaw and to G. B. Stern arose by initials drift from Gil Stern. A 1939 Rotarian ancestor by W. H. H. MacKellar paired the steam boiler with the safety valve.</p>
   </article>
-</section>
+  </div>
+</details>
 
-<section id="history">
-  <h2 class="head">History</h2>
+<details class="sec" id="history">
+  <summary>History <span class="n">7</span></summary>
+  <div class="fold">
+
+  <article class="q">
+    <blockquote><p>Oppression ruins society, while the ruin of society leads to the weakening and destruction of the State.</p></blockquote>
+    <p class="attr">Ibn Khaldun <span class="dot">&middot;</span> The Muqaddimah, 1377</p>
+    <p class="prov">From the chapter that injustice brings about the ruin of civilisation; translations vary.</p>
+  </article>
 
   <article class="q">
     <blockquote><p>History never repeats itself, but it rhymes.</p></blockquote>
@@ -476,6 +595,17 @@
   </article>
 
   <article class="q">
+    <blockquote><p>Those who cannot remember the past are condemned to repeat it.</p></blockquote>
+    <p class="attr">George Santayana <span class="dot">&middot;</span> The Life of Reason, 1905</p>
+    <p class="prov">Routinely mangled to &ldquo;learn from history&rdquo; and lent to Churchill.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>History is, indeed, little more than the register of the crimes, follies, and misfortunes of mankind.</p></blockquote>
+    <p class="attr">Edward Gibbon <span class="dot">&middot;</span> The Decline and Fall of the Roman Empire, 1776</p>
+  </article>
+
+  <article class="q">
     <blockquote><p>Those who cannot adjust to change will be swept aside by it. Those who recognize change and react accordingly will benefit.</p></blockquote>
     <p class="attr">Jim Rogers <span class="dot">&middot;</span> A Gift to My Children, 2009</p>
   </article>
@@ -484,7 +614,8 @@
     <blockquote><p>Not one country in existence today has had the same borders and government for as long as two hundred years. The world will continue changing.</p></blockquote>
     <p class="attr">Jim Rogers <span class="dot">&middot;</span> A Gift to My Children, 2009</p>
   </article>
-</section>
+  </div>
+</details>
 
 </main>
 
