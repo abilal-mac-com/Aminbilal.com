@@ -43,11 +43,13 @@
 
   A commonplace book in the old manner: quotations grouped by
   head, ordered by argument within each head. The page is
-  deliberately script-free (Plausible analytics aside) - it is
-  a document, and works identically with scripting disabled.
-  The heads are native details/summary accordions, closed by
-  default; no script is involved. For a printed copy, open the
-  sections first - closed folds do not print.
+  a document first: with scripting disabled it works in full,
+  native details/summary accordions closed by default. One small
+  first-party script injects a close-section control at each
+  fold's foot; without scripts the control simply never appears.
+  Plausible analytics aside, that is the page's only script. For
+  a printed copy, open the sections first - closed folds do not
+  print.
 
   THE SOURCING BAR (binding on every future entry)
     - Web-verify each quotation on the day of insertion.
@@ -140,6 +142,15 @@
   .sec > summary::after{ content:"+"; margin-left:auto; font-size:17px; letter-spacing:0; }
   .sec[open] > summary::after{ content:"\2013"; }
   .fold{ padding:2px 0 14px; }
+  .fold-close{
+    display:block; margin:10px 0 8px; padding:8px 16px;
+    font-family:var(--sans); font-weight:700; font-size:12px;
+    letter-spacing:.06em; text-transform:uppercase;
+    color:var(--crimson); background:transparent;
+    border:1px solid var(--crimson); border-radius:2px; cursor:pointer;
+  }
+  .fold-close:hover{ color:var(--cream); background:var(--crimson); }
+  .fold-close:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
   .q{ border-top:1px solid var(--rule); padding:26px 0 22px; }
   .fold > .q:first-of-type{ border-top:none; }
   .q blockquote{ margin:0; }
@@ -192,7 +203,7 @@
 <main class="wrap">
 
 <details class="sec" id="understanding">
-  <summary>Understanding <span class="n">26</span></summary>
+  <summary>Understanding <span class="n">28</span></summary>
   <div class="fold">
 
   <article class="q">
@@ -224,9 +235,21 @@
   </article>
 
   <article class="q">
+    <blockquote><p>We do not think that we know a thing until we are acquainted with its primary conditions or first principles, and have carried our analysis as far as its simplest elements.</p></blockquote>
+    <p class="attr">Aristotle <span class="dot">&middot;</span> Physics, Book I</p>
+    <p class="prov">The Hardie&ndash;Gaye rendering of the treatise&rsquo;s opening &mdash; where the phrase begins; translations vary.</p>
+  </article>
+
+  <article class="q">
     <blockquote><p>The seeker after truth is not one who studies the writings of the ancients and, following his natural disposition, puts his trust in them, but rather the one who suspects his faith in them and questions what he gathers from them, the one who submits to argument and demonstration, and not to the sayings of a human being whose nature is fraught with all kinds of imperfection and deficiency.</p></blockquote>
     <p class="attr">Ibn al-Haytham <span class="dot">&middot;</span> Doubts Concerning Ptolemy, early 11th century</p>
     <p class="prov">A. I. Sabra&rsquo;s rendering of the Shukuk; the passage continues that the investigator&rsquo;s duty is to make himself &ldquo;an enemy of all that he reads&rdquo;.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>Boil things down to their fundamental truths and reason up from there, as opposed to reasoning by analogy.</p></blockquote>
+    <p class="attr">Elon Musk <span class="dot">&middot;</span> TED interview, 2013</p>
+    <p class="prov">On first-principles reasoning &mdash; &ldquo;a physics way of looking at the world&rdquo; &mdash; in conversation with Chris Anderson; reasoning by analogy, he adds, is copying what others do with slight variations.</p>
   </article>
 
   <article class="q">
@@ -503,7 +526,7 @@
 </details>
 
 <details class="sec" id="work">
-  <summary>Work and Leadership <span class="n">11</span></summary>
+  <summary>Work and Leadership <span class="n">12</span></summary>
   <div class="fold">
 
   <article class="q">
@@ -522,6 +545,12 @@
     <blockquote><p>Plans are worthless, but planning is everything.</p></blockquote>
     <p class="attr">Dwight D. Eisenhower <span class="dot">&middot;</span> 1957</p>
     <p class="prov">Remarks to the National Defense Executive Reserve Conference, 14 November 1957, where he credits it onward &mdash; &ldquo;a statement I heard long ago in the Army&rdquo;.</p>
+  </article>
+
+  <article class="q">
+    <blockquote><p>As to methods there may be a million and then some, but principles are few. The man who grasps principles can successfully select his own methods. The man who tries methods, ignoring principles, is sure to have trouble.</p></blockquote>
+    <p class="attr">Harrington Emerson <span class="dot">&middot;</span> 1911</p>
+    <p class="prov">The efficiency engineer, addressing the clothiers&rsquo; convention, reported July 1911; a 1921 Collier&rsquo;s advertisement signed only &ldquo;EMERSON&rdquo; handed the line to Ralph Waldo, who never said it.</p>
   </article>
 
   <article class="q">
@@ -621,5 +650,21 @@
 
 <footer class="foot">Amin Bilal</footer>
 
+<script>
+(function(){
+  "use strict";
+  Array.prototype.forEach.call(document.querySelectorAll('details.sec'), function(d){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'fold-close';
+    b.textContent = 'Close section';
+    b.addEventListener('click', function(){
+      d.open = false;
+      d.scrollIntoView({ block: 'start' });
+    });
+    d.querySelector('.fold').appendChild(b);
+  });
+})();
+</script>
 </body>
 </html>
