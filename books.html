@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Books &mdash; Amin Bilal</title>
+<meta name="description" content="Eighty-three books on eleven shelves, from markets and empire to cosmology and the classics, each with a short case for why it earned its place in a personal library.">
+<meta name="author" content="Amin Bilal">
+
+<link rel="canonical" href="https://aminbilal.com/books.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="aminbilal.com">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Books &mdash; Amin Bilal">
+<meta property="og:description" content="Eighty-three books on eleven shelves, from markets and empire to cosmology and the classics, each with a short case for why it earned its place in a personal library.">
+<meta property="og:url" content="https://aminbilal.com/books.html">
+<meta property="og:image" content="https://aminbilal.com/og-books.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Books &mdash; Amin Bilal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Books &mdash; Amin Bilal">
+<meta name="twitter:description" content="Eighty-three books on eleven shelves, from markets and empire to cosmology and the classics, each with a short case for why it earned its place in a personal library.">
+<meta name="twitter:image" content="https://aminbilal.com/og-books.png">
+<meta name="twitter:image:alt" content="Books &mdash; Amin Bilal">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Books",
+  "description": "Eighty-three books on eleven shelves, from markets and empire to cosmology and the classics, each with a short case for why it earned its place in a personal library.",
+  "inLanguage": "en-GB",
+  "url": "https://aminbilal.com/books.html",
+  "mainEntityOfPage": "https://aminbilal.com/books.html",
+  "author": {
+    "@type": "Person",
+    "name": "Amin Bilal",
+    "sameAs": "https://www.linkedin.com/in/amin-bilal-54047714"
+  }
+}
+</script>
+
+<!--
+  ============================================================
+  aminbilal.com - books.html (the library register)
+  ------------------------------------------------------------
+  DESTINATION: books.html at the repository root, deployed
+  after og-books.png and before the index.html nav change
+  (Books replaces the Diabetes placeholder; Pakistan remains)
+  and the sitemap addition.
+
+  A register of the books found personally useful, on eleven
+  shelves. The page is a document first: with scripting
+  disabled it works in full - a double accordion of native
+  details/summary elements, closed by default. The outer fold
+  is the shelf; the inner fold is the book, opening to a short
+  review. One small first-party script injects a close-shelf
+  control at each fold's foot; without scripts the control
+  simply never appears. Plausible analytics aside, that is the
+  page's only script. For a printed copy, open the folds
+  first - closed folds do not print.
+
+  EDITORIAL RULES
+    - Admission is personal utility, then transmissibility:
+      the book must have earned its keep, and a reader must be
+      able to use it.
+    - Reviews are three sentences at the ceiling, written from
+      use, never from position. Bibliography lives on the
+      summary line, not in the review.
+    - Bibliographic details are web-verified on the day of
+      insertion. Translators and editions are named where they
+      change the reader's experience.
+
+  ADDING A BOOK
+    Copy a <details class="book"> block within the right shelf
+    (or add a <details class="sec"> with its own id and
+    summary). Keep the character rules: entities (&mdash;
+    &rsquo; &ldquo; &rdquo; &egrave; &euml; &ograve;) in
+    markup; source otherwise pure ASCII. Then advance the
+    count in the shelf's summary bar - the verification suite
+    asserts that summary counts equal entry counts - and bump
+    this page's lastmod in /sitemap.xml and redeploy both.
+
+  Shelves: #these-islands #universe #empire #markets #trade
+           #crashes #money #management #faith #inherited
+           #subcontinent
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:#F9F8F3;
+    --ink:#1A1A1A;
+    --body:#26241F;
+    --crimson:#861831;
+    --crimson-deep:#6C1327;
+    --grey:#5A5A5A;
+    --soft:#4A4843;
+    --rule:#D8D5CC;
+    --rule-strong:#C7C3B8;
+    --serif:'Lora', Georgia, 'Times New Roman', serif;
+    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--cream); color:var(--body);
+    font-family:var(--serif); font-size:17px; line-height:1.6;
+  }
+  a{ color:var(--crimson); }
+  a:hover{ color:var(--crimson-deep); }
+
+  .top{ max-width:760px; margin:0 auto; padding:26px 22px 0; }
+  .back{
+    font-family:var(--sans); font-weight:700; font-size:12.5px;
+    letter-spacing:.06em; text-transform:uppercase;
+    color:var(--grey); text-decoration:none;
+  }
+  .back:hover{ color:var(--crimson); }
+
+  .mast{ max-width:760px; margin:0 auto; padding:44px 22px 8px; }
+  .kicker{
+    font-family:var(--sans); font-weight:700; font-size:13px;
+    letter-spacing:.3em; text-transform:uppercase; color:var(--crimson);
+    margin:0 0 14px;
+  }
+  h1{
+    font-family:var(--serif); font-weight:600; color:var(--ink);
+    font-size:clamp(40px,7vw,56px); line-height:1.05; margin:0;
+    letter-spacing:-.012em;
+  }
+  .titlerule{ width:76px; height:3px; background:var(--crimson); margin:22px 0; }
+  .stand{
+    font-size:19px; line-height:1.55; color:var(--soft);
+    margin:0 0 26px; max-width:640px;
+  }
+  .wrap{ max-width:760px; margin:0 auto; padding:8px 22px 30px; }
+
+  .opening{ max-width:640px; margin:0 0 36px; }
+  .opening p{ margin:0 0 15px; }
+  .pull{
+    font-family:var(--serif); font-style:italic; color:var(--crimson);
+    font-size:clamp(22px,3.4vw,28px); line-height:1.4; text-align:center;
+    margin:28px 0; padding:20px 0;
+    border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+  }
+
+  .sec{ border-top:1px solid var(--rule-strong); }
+  .sec:last-of-type{ border-bottom:1px solid var(--rule-strong); }
+  .sec > summary{
+    font-family:var(--sans); font-weight:700; font-size:14px;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--crimson);
+    padding:18px 2px; margin:0; cursor:pointer;
+    display:flex; align-items:baseline; gap:12px; list-style:none;
+  }
+  .sec > summary::-webkit-details-marker{ display:none; }
+  .sec > summary:focus-visible{ outline:2px solid var(--crimson); outline-offset:2px; }
+  .sec > summary .n{ font-size:12px; letter-spacing:.08em; color:var(--grey); }
+  .sec > summary::after{ content:"+"; margin-left:auto; font-size:17px; letter-spacing:0; }
+  .sec[open] > summary::after{ content:"\2013"; }
+  .fold{ padding:2px 0 14px; }
+  .fold-close{
+    display:block; margin:10px 0 8px; padding:8px 16px;
+    font-family:var(--sans); font-weight:700; font-size:12px;
+    letter-spacing:.06em; text-transform:uppercase;
+    color:var(--crimson); background:transparent;
+    border:1px solid var(--crimson); border-radius:2px; cursor:pointer;
+  }
+  .fold-close:hover{ color:var(--cream); background:var(--crimson); }
+  .fold-close:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+
+  .intro{ font-style:italic; color:var(--soft); max-width:640px; padding:4px 2px 8px; }
+  .intro p{ margin:0 0 12px; }
+  .intro p:last-child{ margin-bottom:0; }
+
+  .book{ border-top:1px solid var(--rule); }
+  .fold > .book:first-of-type{ border-top:none; }
+  .book > summary{
+    list-style:none; cursor:pointer; padding:14px 2px;
+    display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+  }
+  .book > summary::-webkit-details-marker{ display:none; }
+  .book > summary::after{
+    content:"+"; margin-left:auto; font-family:var(--sans);
+    font-size:15px; color:var(--crimson);
+  }
+  .book[open] > summary::after{ content:"\2013"; }
+  .book > summary:focus-visible{ outline:2px solid var(--crimson); outline-offset:2px; }
+  .t{ font-family:var(--serif); font-weight:600; font-size:18px; color:var(--ink); }
+  .by{ font-family:var(--sans); font-size:13px; color:var(--grey); letter-spacing:.02em; }
+  .rev{ margin:2px 0 18px; }
+  .rev p{
+    margin:0; max-width:640px; color:var(--body);
+    border-left:2px solid var(--crimson); padding-left:16px;
+  }
+
+  .foot{
+    max-width:760px; margin:26px auto 0; padding:18px 22px 40px;
+    border-top:1px solid var(--rule-strong);
+    font-family:var(--sans); font-size:12.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--grey);
+  }
+
+  @media (prefers-reduced-motion:reduce){ *{ scroll-behavior:auto !important; } }
+  html{ scroll-behavior:smooth; }
+</style>
+
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa--HaR7sS_MuJb_jLlfRJDT.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+</head>
+<body>
+
+<div class="top">
+  <a class="back" href="index.html"><span aria-hidden="true">&larr;</span>&nbsp;Amin&rsquo;s Personal Site</a>
+</div>
+
+<header class="mast">
+  <p class="kicker">The Library</p>
+  <h1>Books</h1>
+  <div class="titlerule" aria-hidden="true"></div>
+  <p class="stand">The books I have found personally useful, arranged on eleven shelves with a short case for each &mdash; beginning with the house that sagged under the weight of its library.</p>
+</header>
+
+<main class="wrap">
+
+<div class="opening">
+  <p>When I was in my twenties I worked in the Risk department at JP Morgan. My boss&rsquo;s boss was Andy Threadgold, the Chief Risk Officer &mdash; an Englishman, and more particularly a Yorkshireman, running the function out of New York. He was several rungs above me and never once behaved as though he knew it, which is the only reason someone that junior felt able to ask him about his house.</p>
+  <p>One afternoon Andy mentioned he had to leave early. A surveyor was coming: the house was timber-framed, and something structural had begun to go wrong. I asked him a few weeks later how it had turned out. He gave me the diagnosis in four words.</p>
+  <p class="pull">&ldquo;It was the books.&rdquo;</p>
+  <p>The house had three storeys and the top one was given over entirely to his library. The collection had grown heavy enough to bow the frame beneath it. The remedy was straightforward &mdash; move the library to the ground floor and let the earth take the weight.</p>
+  <p>What stayed with me was not the engineering but what Andy said next: that he owned a great many books he had not yet read, and kept them precisely so that they would be there when the mood arrived.</p>
+  <p>I found that enchanting, and I have run my own library on the same principle ever since &mdash; on a considerably smaller scale, and so far without troubling a surveyor.</p>
+  <p>I buy a great many books, but I am not a serial reader. I do not finish one and reach straight for the next. The shelves accumulate against some future appetite, and when the mood comes I take something down and read it.</p>
+  <p>Every book gets a fair hearing. Some are set aside at a tenth. Others make it a third of the way. The rest I read to the end. Only a few earn their place back on the shelf. Everything else &mdash; abandoned early, or finished and found wanting &mdash; goes to the British Heart Foundation.</p>
+  <p>Which leaves the question of whether a physical library is worth keeping at all, now that a Kindle holds a thousand volumes and a model will summarise any of them on request.</p>
+  <p>My answer is yes, emphatically &mdash; with two qualifications. The shelves need clearing out rather more often than they once did. And some categories have lost their claim to permanent residence: a travel guide, in particular, has no business occupying space it will never again deserve.</p>
+  <p>What follows are the books that earned theirs.</p>
+</div>
+
+<details class="sec" id="these-islands">
+  <summary>These islands <span class="n">5</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>I live in London and walk over a good deal of what follows. These are the books that made the country stranger to me rather than more familiar &mdash; each takes a version of England one is handed and declines to leave it intact.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">A Survey of London</span> <span class="by">John Stow, 1598</span></summary>
+    <div class="rev"><p>A tailor by trade and an antiquary by obsession, Stow walked Elizabethan London ward by ward and set down what he found &mdash; and, more insistently, what had already been pulled down. The Great Fire destroyed most of what he described seventy years later, leaving this the last eyewitness record of the medieval city. It is also a sustained complaint about development, which makes it oddly current.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The English and Their History</span> <span class="by">Robert Tombs, 2014</span></summary>
+    <div class="rev"><p>A single volume carrying the English from the Anglo-Saxons to the present is an absurd undertaking, and Tombs &mdash; a Cambridge historian whose actual field is France &mdash; brings to it the detachment of a man who has spent a career studying the country from across the Channel. His argument is that the English have persistently misremembered themselves, most often as being in decline. Long, but never dutiful.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Orient Isle</span> <span class="by">Jerry Brotton, 2016</span></summary>
+    <div class="rev"><p>Excommunicated by Rome and shut out of Catholic Europe, Elizabeth&rsquo;s England turned to Morocco, the Ottomans and Persia &mdash; trading, negotiating, and contemplating alliance against Spain. Brotton reconstructs an entanglement that later centuries found it convenient to forget, down to the Moroccan ambassador who spent six months at court and is often proposed as a model for Othello. It dissolves the notion that England and Islam met only lately.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Those Damned Rebels</span> <span class="by">Michael Pearson, 1972</span></summary>
+    <div class="rev"><p>Built entirely from British sources &mdash; officers&rsquo; journals, dispatches from colonial governors, the correspondence of ministers in London &mdash; the Revolution here is a war the British believed they were winning almost until the moment they lost it. Bunker Hill reads as a minor reverse, New York and Philadelphia as decisive gains. The lesson is not really about the British: it is that every war has another side, holding the same events in an entirely different shape. It reached me as a bride&rsquo;s favour from an American friend, which was a choice of some grace.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">England&rsquo;s 100 Best Views</span> <span class="by">Simon Jenkins, 2013</span></summary>
+    <div class="rev"><p>Jenkins makes a case that sounds eccentric until stated plainly: a view is as much a work of collective creation as a cathedral, and as deserving of protection. The hundred entries are a ranked survey, opinionated and frequently contestable, and better for it. Useful as a list, though the polemic in the introduction is the real book.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="universe">
+  <summary>The universe, and how we came to know it <span class="n">6</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>Given my time again I would have been a cosmologist. I was not, and this is therefore an amateur&rsquo;s shelf &mdash; assembled by someone who wanted the subject badly enough to find the books that make it passable without a physicist&rsquo;s training.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">Six Easy Pieces</span> <span class="by">Richard Feynman, 1994</span></summary>
+    <div class="rev"><p>Drawn from the opening lectures Feynman gave to Caltech undergraduates in the early sixties, these six chapters were selected because they survive without the mathematics. What they preserve is the man thinking aloud &mdash; atoms, energy, gravitation, quantum behaviour &mdash; with a physicist&rsquo;s refusal to let a comfortable analogy stand in for an accurate one. The best available demonstration that clarity and rigour are the same discipline, not opposing ones. A cousin reading for a doctorate in astrophysics at EPFL in Lausanne pressed the name on me as a teenager; it took thirty years to act on, and rather less than a chapter to see he had been right.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">&ldquo;What Do You Care What Other People Think?&rdquo;</span> <span class="by">Richard Feynman, 1988</span></summary>
+    <div class="rev"><p>The companion to <em>Surely You&rsquo;re Joking</em>, and the graver of the two. It holds the account of Arline, the first wife he lost to tuberculosis in his twenties, alongside his work on the Challenger inquiry, where he established that the O-rings had failed by dropping one into iced water in front of the cameras. Two demonstrations of the same principle: that the answer is worth more than anyone&rsquo;s comfort, including your own.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">To Explain the World</span> <span class="by">Steven Weinberg, 2015</span></summary>
+    <div class="rev"><p>Weinberg&rsquo;s argument is that the ancients were not doing bad science but something else entirely, and that the interesting question is how the discipline was invented rather than who anticipated whom. He is unfashionably willing to judge &mdash; Plato fares badly, the medieval Arabic astronomers rather well &mdash; which makes it a more combative book than most histories of science. Written by a Nobel laureate late in life, with the confidence that implies.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">After the First Three Minutes</span> <span class="by">Thanu Padmanabhan, 1998</span></summary>
+    <div class="rev"><p>Where Weinberg&rsquo;s famous earlier book stopped at the opening moments, Padmanabhan takes up everything after: how matter clumped, how galaxies and stars assembled from an almost featureless beginning. He declines the usual popular-science bargain of trading accuracy for accessibility, introducing the underlying concepts rather than gesturing at them, and asks real attention in return. It demands more than anything else on this shelf but no mathematics &mdash; I came to it without a physics training and was never lost, only slowed.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Astrophysics for People in a Hurry</span> <span class="by">Neil deGrasse Tyson, 2017</span></summary>
+    <div class="rev"><p>Short chapters, written for readers with no time and no background, covering the large structure of things &mdash; dark matter, dark energy, the chemistry that makes us and the stars the same material. Tyson&rsquo;s gift is compression without condescension. It will not satisfy anyone who has read Padmanabhan, and is not meant to.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">We Have No Idea</span> <span class="by">Jorge Cham and Daniel Whiteson, 2017</span></summary>
+    <div class="rev"><p>A physicist and a cartoonist take the opposite approach to every other book on this shelf, cataloguing not what is known but what is not &mdash; which, given that ordinary matter accounts for around five per cent of the universe, is most of it. The cartoons carry real explanatory weight rather than decorating the text, and it is genuinely funny. Its more serious service is the discipline it enforces: separating what is probable from what is merely speculative, a habit worth carrying well beyond physics.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="empire">
+  <summary>Empire, borders, and the century that redrew them <span class="n">10</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>History is always messier than it is later portrayed. My son, then about seven, came home from school and asked a question that began: &ldquo;When we ruled India&hellip;&rdquo; &mdash; a perfectly ordinary formulation for a British-born child who had just been taught the subject in a British classroom. What struck me was the &ldquo;we&rdquo;. It was doing more work than he knew: his family stands on both sides of that sentence, and the century that brought us to London had shaped him before he was born. Wanting to give him an honest account rather than a partisan one, I went looking &mdash; and found these books especially useful.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">The Silk Roads</span> <span class="by">Peter Frankopan, 2015</span></summary>
+    <div class="rev"><p>Frankopan&rsquo;s contention is that the centre of the world has for most of history lain not in Europe but along the belt running from the eastern Mediterranean to the Himalayas, and that European dominance is a recent and partly accidental episode. Twenty-five chapters carry the argument from Persia to the present day. Corrective rather than comprehensive, and best read as a deliberate counterweight to the history one was taught at school.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">1913</span> <span class="by">Charles Emmerson, 2013</span></summary>
+    <div class="rev"><p>Hindsight has flattened 1913 into a prelude &mdash; doomed summer parties, gathering clouds. Emmerson refuses the framing and tours the world&rsquo;s cities as they actually were that year: London, Vienna and Constantinople, but also Detroit, Buenos Aires, Bombay and Tokyo, each still expecting a future that never arrived. The effect is to restore contingency to a year that has been robbed of it.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">To Hell and Back</span> <span class="by">Ian Kershaw, 2015</span></summary>
+    <div class="rev"><p>Kershaw, whose biography of Hitler set the standard for the subject, here takes on the whole continent across thirty-five years in which it came close to destroying itself. The organising question is how a civilisation of that sophistication produced two industrial wars and a genocide within a single lifetime. His answer resists any single cause, and that refusal is what convinces.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Fall of the Ottomans</span> <span class="by">Eugene Rogan, 2015</span></summary>
+    <div class="rev"><p>Western accounts have long treated the Middle Eastern theatre of the Great War as a sideshow with a romantic lead. Rogan, working from Turkish and Arabic sources alongside European ones, restores it as a front that came near to deciding the war &mdash; Gallipoli, the surrender at Kut, the Armenian genocide, the Arab Revolt. The empire that died there shaped everything that came after.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">A Line in the Sand</span> <span class="by">James Barr, 2011</span></summary>
+    <div class="rev"><p>The received account of Sykes-Picot has Britain and France dividing the Levant between them as partners. Barr&rsquo;s archival work shows something closer to a thirty-year covert war in which each undermined the other continuously, to the point of French intelligence funding Zionist paramilitaries against British forces in Palestine. Allies in Europe, enemies everywhere south of it.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Punjab</span> <span class="by">Rajmohan Gandhi, 2013</span></summary>
+    <div class="rev"><p>Three centuries of the undivided province, from Mughal decline through Ranjit Singh&rsquo;s Sikh empire and British annexation to the line that cut it in half. Gandhi &mdash; grandson of the Mahatma, and a serious historian in his own right &mdash; gives Punjab a history of its own rather than treating it as a casualty of someone else&rsquo;s story. Essential background to everything the 1947 books take as read.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Indian Summer</span> <span class="by">Alex von Tunzelmann, 2007</span></summary>
+    <div class="rev"><p>The end of the Raj told through the handful of people who negotiated it: the Mountbattens, Nehru, Jinnah, Gandhi. Von Tunzelmann treats the personalities as causes rather than colour &mdash; including the relationship between Edwina Mountbatten and Nehru &mdash; and partition emerges as the product of exhaustion, haste and private feeling rather than of policy. Her first book, and remarkably assured for one.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Shattered Lands</span> <span class="by">Sam Dalrymple, 2025</span></summary>
+    <div class="rev"><p>Partition, in the usual telling, means 1947 and two countries. Dalrymple counts five, beginning with Burma&rsquo;s separation in 1937 and the detachment of Aden and the Gulf states, running through 1947 and the absorption of princely India, and closing with Bangladesh in 1971 &mdash; by which the Indian Empire had become twelve nations. Built on archives and interviews in eight languages, and it resets the frame entirely.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Wild Swans</span> <span class="by">Jung Chang, 1991</span></summary>
+    <div class="rev"><p>Three generations of women: a grandmother given as concubine to a warlord, a mother who rose within the Communist Party, and Chang herself, a Red Guard at fourteen before the Cultural Revolution turned on her family. The century arrives through a household rather than a chronology, which is why it achieves what no political history of China quite manages. Still banned on the mainland.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Prisoners of Geography</span> <span class="by">Tim Marshall, 2015</span></summary>
+    <div class="rev"><p>Ten maps, and the argument that leaders enjoy far less latitude than they appear to: Russia&rsquo;s want of a warm-water port, the North European Plain down which every invasion has funnelled, China&rsquo;s dependence on the Tibetan plateau. Marshall spent decades as a foreign correspondent and writes with a reporter&rsquo;s economy. Deterministic to a fault, and useful precisely because it is.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="markets">
+  <summary>Markets, and how to think in them <span class="n">11</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>My first job at JP Morgan was as product controller for the Deutsche Mark interest rate swap desk. I was not trading anything; I was signing off the desk&rsquo;s numbers and explaining, every day, why it had made or lost what it had &mdash; which turns out to be an unusually good seat from which to learn. The desk&rsquo;s lead trader was Michael Platt, who left in 2000 to found BlueCrest and became one of the most successful hedge fund managers this country has produced. A number of the books below reached me through him. This remains an observer&rsquo;s shelf rather than a practitioner&rsquo;s &mdash; the observation was simply made from close range.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">The Intelligent Investor</span> <span class="by">Benjamin Graham, 1949</span></summary>
+    <div class="rev"><p>The distinction between investment and speculation is Graham&rsquo;s, and everything else follows from it: the margin of safety, and Mr Market, the manic-depressive business partner who turns up daily offering to buy or sell at a different price. Graham taught Buffett at Columbia, which accounts for a good deal of the book&rsquo;s afterlife. The arithmetic has dated; the definitions have not.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Fifty Years in Wall Street</span> <span class="by">Henry Clews, 1908</span></summary>
+    <div class="rev"><p>Born in Staffordshire and arrived in New York around 1850, Clews financed the Union during the Civil War, helped organise the committee that brought down the Tweed Ring, and advised President Grant &mdash; then wrote it down. This is the expanded successor to his earlier <em>Twenty-Eight Years in Wall Street</em>, covering the gold corner of 1869 and the panics that followed. What startles is how fully formed the pathologies already were.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Reminiscences of a Stock Operator</span> <span class="by">Edwin Lef&egrave;vre, 1923</span></summary>
+    <div class="rev"><p>Thinly disguised as one Larry Livingston, the trader here is Jesse Livermore, and the book has passed between practitioners for a century because the recognition is immediate. Bucket shops and ticker tape are long gone; the impulse to average down a losing position is not. Read it for what it exposes about temperament rather than for anything it claims about markets.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Market Wizards</span> <span class="by">Jack D. Schwager, 1989</span></summary>
+    <div class="rev"><p>Schwager&rsquo;s method is to ask rather than to theorise, and the interviews &mdash; Paul Tudor Jones, Richard Dennis, Ed Seykota, Michael Marcus, Bruce Kovner &mdash; establish something awkward. The methods are mutually contradictory. Trend-followers and fundamentalists both made fortunes, and what they hold in common is not an approach but a ferocity about cutting losses.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The New Market Wizards</span> <span class="by">Jack D. Schwager, 1992</span></summary>
+    <div class="rev"><p>The second volume widens the field to options traders, currency dealers and the early quantitative shops, and Schwager asks sharper questions, having learned from the first round what actually distinguishes his subjects. The commonality that only glimmered in 1989 becomes explicit: each of them thinks first about what happens when they are wrong. Taken as a pair, the books argue that method is negotiable and discipline is not.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">One Up on Wall Street</span> <span class="by">Peter Lynch, 1989</span></summary>
+    <div class="rev"><p>Lynch ran Fidelity&rsquo;s Magellan fund for thirteen years and argues, persuasively, that the amateur holds an advantage no professional can: you meet products, shops and services long before any analyst writes them up. The method is to buy what you already understand, then do the work that justifies it. His taxonomy of companies &mdash; stalwarts, cyclicals, turnarounds, fast growers &mdash; remains a serviceable frame.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">How to Make Money in Stocks</span> <span class="by">William J. O&rsquo;Neil, 1988</span></summary>
+    <div class="rev"><p>Where Graham hunts for what is cheap, O&rsquo;Neil hunts for what is already rising, and the CAN SLIM system is unapologetically technical: earnings acceleration, relative strength, chart formations, institutional sponsorship, and a rule to cut any position at a seven or eight per cent loss. O&rsquo;Neil founded <em>Investor&rsquo;s Business Daily</em> and had the data to test himself. Diametrically opposed to Graham &mdash; which is why both are here.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Berkshire Hathaway Letters to Shareholders</span> <span class="by">Warren Buffett, compiled by Max Olson</span></summary>
+    <div class="rev"><p>Chronological order is what makes a compilation worth more than an anthology: read in sequence, the letters become the record of one mind working across six decades and revising itself in public. The errors are conceded at the time rather than in retrospect, which is rarer than it sounds. Graham&rsquo;s student, showing his working.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Most Important Thing</span> <span class="by">Howard Marks, 2011</span></summary>
+    <div class="rev"><p>Distilled from the memos Marks has written to Oaktree&rsquo;s clients for thirty years, this is a book about the calibration of confidence rather than the selection of shares. His central move is what he terms second-level thinking &mdash; not &ldquo;this is a good company&rdquo; but &ldquo;is it better than the price already assumes&rdquo;. He is also unusual in refusing to accept that risk and volatility are the same thing.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Psychology of Money</span> <span class="by">Morgan Housel, 2020</span></summary>
+    <div class="rev"><p>Short chapters, each built round a story rather than a model, on the proposition that doing well with money depends far less on intelligence than on behaviour &mdash; and that a great deal of any outcome is luck nobody cares to admit to. Housel&rsquo;s interest is in why sensible people make ruinous decisions. The least technical book on this shelf, and the likeliest to alter what a reader actually does.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">A Gift to My Children</span> <span class="by">Jim Rogers, 2009</span></summary>
+    <div class="rev"><p>Addressed to his two young daughters and barely a hundred pages, this is the least conventional entry here &mdash; a set of instructions for living, of which investing forms one part. Rogers, who co-founded the Quantum Fund with Soros and appears as a subject in <em>Market Wizards</em>, counsels learning Mandarin, seeing the world at first hand, and distrusting received opinion. Aphoristic, occasionally hectoring, short enough to reread.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="trade">
+  <summary>The trade, as it tells itself <span class="n">5</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>What these five have in common is access. Each takes you inside a firm or a market at a particular moment &mdash; the Salomon trading floor, the RJR boardroom, the handful of desks that saw 2008 coming &mdash; and shows what was actually going on there in a way no textbook manages. For a reader with no experience of any of it, that texture is the quickest route to understanding how markets behave rather than how they are described. For anyone who was present for some part of it, they land differently again. That they are also the industry narrating itself is not a defect: how a trade chooses to tell its own story is information too.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">Supermoney</span> <span class="by">&lsquo;Adam Smith&rsquo; (George J. W. Goodman), 1972</span></summary>
+    <div class="rev"><p>The pseudonym belonged to George Goodman &mdash; Harvard, then Oxford as a Rhodes Scholar &mdash; who borrowed the economist&rsquo;s name for his market writing. The book is an autopsy of the go-go years, and its lasting curiosity is the chapter in which the author travels to Omaha to meet an obscure fund manager named Warren Buffett; this was the wider investment world&rsquo;s first introduction to him. Goodman writes considerably better prose than the subject usually attracts.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Liar&rsquo;s Poker</span> <span class="by">Michael Lewis, 1989</span></summary>
+    <div class="rev"><p>Lewis spent three years on Salomon Brothers&rsquo; trading floor in the eighties and wrote it up as a cautionary account of an industry he considered to have lost its senses. Undergraduates read it as a recruitment brochure and wrote to him asking how they might get in. The gap between what a book intends and what it achieves is rarely so instructive &mdash; and it effectively invented the genre that follows.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Barbarians at the Gate</span> <span class="by">Bryan Burrough and John Helyar, 1989</span></summary>
+    <div class="rev"><p>Two <em>Wall Street Journal</em> reporters reconstructed the 1988 fight for RJR Nabisco from hundreds of interviews, and the result reads like a novel while being nothing of the kind. Ross Johnson&rsquo;s corporate air force and the smokeless cigarette nobody wanted are in there because they happened, not because the narrative required them. Still the clearest demonstration available of what borrowed money does to the judgement of otherwise capable people.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">A Hedge Fund Tale of Reach and Grasp</span> <span class="by">Barton Biggs, 2010</span></summary>
+    <div class="rev"><p>Biggs built Morgan Stanley&rsquo;s research department and later ran a macro fund, and chose fiction for this: a rags-to-riches arc running from the late nineties into the wreckage of 2008, told through an invented insider. The novel form let him say things a memoir could not, about the industry and about what money does to those who make it. The title is Browning &mdash; a man&rsquo;s reach should exceed his grasp, or what&rsquo;s a heaven for.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Big Short</span> <span class="by">Michael Lewis, 2010</span></summary>
+    <div class="rev"><p>The difficulty with writing about synthetic collateralised debt obligations is that nobody will read it, and Lewis&rsquo;s solution was to find the handful of people who had bet against them: a reclusive physician turned fund manager, a permanently affronted money manager, two amateurs operating out of a garage. Structuring the crisis around outsiders makes the machinery legible without simplifying it. A masterclass in construction, twenty-one years after <em>Liar&rsquo;s Poker</em>.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="crashes">
+  <summary>Crashes, and the people left holding them <span class="n">8</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>Three of these are memoirs by the officials who were in the room &mdash; a Federal Reserve chairman during the Great Inflation, another during 2008, and the Treasury Secretary beside him. Read together they are a study in decisions taken without good options and without time. The rest supply what no memoir can: the pattern the participants were standing inside of and could not see whole.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">Manias, Panics and Crashes</span> <span class="by">Charles P. Kindleberger, 1978</span></summary>
+    <div class="rev"><p>Kindleberger takes Hyman Minsky&rsquo;s proposition that stability itself breeds instability and tests it against four centuries of evidence, from tulips through railways to Latin American debt. The sequence never varies &mdash; displacement, boom, euphoria, distress, revulsion &mdash; while the particulars never repeat, which is how each generation persuades itself that its own case is different. The only book here written before the events the others describe, and it anticipated their shape.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">1929</span> <span class="by">Andrew Ross Sorkin, 2025</span></summary>
+    <div class="rev"><p>Sorkin brings to the Great Crash the method that made <em>Too Big to Fail</em>: archival research turned into character-driven narrative, the first half moving month by month through 1929 towards October. Charles Mitchell of National City Bank takes personal loans to buy stock in his own bank and steady the market &mdash; a decision that eventually destroys him. Published in 2025, with the parallels left for the reader to draw.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Keeping At It</span> <span class="by">Paul Volcker with Christine Harper, 2018</span></summary>
+    <div class="rev"><p>Volcker broke the Great Inflation by taking American interest rates to around twenty per cent and absorbing the consequences, which included farmers driving tractors to the Federal Reserve building and parking them there. Written at ninety-one, the memoir concerns public service as a vocation rather than monetary technique, and the discipline of doing the unpopular thing deliberately. Dry, unsparing, and entirely without self-congratulation.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Courage to Act</span> <span class="by">Ben Bernanke, 2015</span></summary>
+    <div class="rev"><p>An academic who had spent his career studying the Depression found himself running the Federal Reserve through the nearest thing to it, a coincidence improbable enough to justify the book on its own. Bernanke is at his most useful explaining how the unprecedented interventions of 2008 followed directly from his own conclusions about 1929. Read alongside Sorkin, the line between the two becomes visible.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Stress Test</span> <span class="by">Timothy Geithner, 2014</span></summary>
+    <div class="rev"><p>Geithner ran the New York Fed and then the Treasury, and made the calls least forgivable to the public: rescue the institutions, decline to punish them, absorb the fury. His argument is that Old Testament justice and financial stability were genuinely incompatible, and that he chose the second knowing exactly what it would cost him. The most defensive of the three memoirs, and the most honest about having had no good options.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Great Reflation</span> <span class="by">J. Anthony Boeckh, 2010</span></summary>
+    <div class="rev"><p>Written by the long-standing editor of the Bank Credit Analyst in the immediate aftermath, before anyone knew how the rescue would turn out. Boeckh&rsquo;s subject is the wall of money created to halt the collapse, and what it would do to asset prices, to debt, and to the returns available on safe cash over the decade following. Half analysis and half period piece, and valuable now precisely because you know what he did not.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Only Game in Town</span> <span class="by">Mohamed El-Erian, 2016</span></summary>
+    <div class="rev"><p>El-Erian&rsquo;s subject is not the crisis but its long aftermath: central banks left carrying economic policy alone, because the political institutions that ought to have shared the burden declined to. He argues the arrangement was always temporary, and that the world had arrived at a T-junction leading either to renewed growth or to something considerably worse. Written from the top of PIMCO, and stronger on diagnosis than on remedy.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Principles for Dealing with the Changing World Order</span> <span class="by">Ray Dalio, 2021</span></summary>
+    <div class="rev"><p>Dalio pulls back furthest of anyone here: five centuries of reserve currencies, empires and debt cycles, running from the Dutch through the British to the American, on the argument that the sequence is legible and one&rsquo;s position within it locatable. The research is substantial and the charts are seductive. It is also the most schematic book on the shelf, and the determinism warrants rather more resistance than its confidence invites.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="money">
+  <summary>Money, and what economists make of it <span class="n">7</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>I arrived at JP Morgan with an engineering degree, a chartered accountancy qualification and an A-level in economics, and found that none of the three explained what I was watching. I could attribute every penny of the desk&rsquo;s P&amp;L to the rate moves that had caused it, and had no real idea why those rates had moved. Closing that gap took years of reading, and these are the books that did most of the work.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">Money in One Lesson</span> <span class="by">Gavin Jackson</span></summary>
+    <div class="rev"><p>A good many people who work in finance could not actually say what money is, and Jackson closes that gap in under two hundred pages. He builds from cases rather than theory &mdash; the Irish bank strike of the 1970s, when a country carried on transacting in cheques nobody could clear, and the inflation that overtook West Africa&rsquo;s cowrie currency. The title echoes Hazlitt deliberately; the politics do not.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Other People&rsquo;s Money</span> <span class="by">John Kay, 2015</span></summary>
+    <div class="rev"><p>Kay&rsquo;s charge is that finance has grown far past its social function: lending to firms and individuals, which most people assume is the principal business of a bank, amounts to roughly three per cent of the total, while secondary-market dealing accounts for the bulk. He is not an outsider throwing stones &mdash; he chaired the government&rsquo;s review of UK equity markets and believes in good banks. He simply does not see many.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">We Need to Talk About Inflation</span> <span class="by">Stephen D. King, 2023</span></summary>
+    <div class="rev"><p>King, HSBC&rsquo;s senior economic adviser and not the novelist, published this while central banks were still describing the inflation of 2021 and 2022 as transitory. His argument is that a generation of policymakers had never encountered the thing at first hand, and that the historical record was available to anyone who cared to consult it. Written in evident irritation, which sharpens it rather than spoiling it.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Future of Money</span> <span class="by">Eswar Prasad, 2021</span></summary>
+    <div class="rev"><p>Prasad ran the IMF&rsquo;s China division and now teaches at Cornell, which places him usefully between the crypto evangelists and the debunkers. His subject is what digital money does to central banking: state-issued digital currencies, private stablecoins, the plausible end of physical cash, and what each would mean for privacy and for monetary control. Even-handed to a degree that will satisfy neither camp.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Undercover Economist</span> <span class="by">Tim Harford, 2005</span></summary>
+    <div class="rev"><p>Harford begins with something mundane &mdash; the price of a cappuccino, the queue at the supermarket, the second-hand car nobody will buy &mdash; and works outwards until the reader has absorbed scarcity power, price discrimination and asymmetric information without having noticed. The closing chapters turn the same apparatus on why poor countries remain poor. The better teaching book of the two that appeared that year.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Freakonomics</span> <span class="by">Steven D. Levitt and Stephen J. Dubner, 2005</span></summary>
+    <div class="rev"><p>Levitt&rsquo;s real subject is method rather than economics: what happens when incentive analysis is turned on questions economists had never claimed &mdash; cheating among sumo wrestlers, what estate agents do when selling their own houses, the naming of children. It taught a generation to ask what the incentives actually are, which is its durable contribution. Several findings have been contested since, the chapter on crime most vigorously of all.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Inside the Economist&rsquo;s Mind</span> <span class="by">Paul A. Samuelson and William A. Barnett (eds), 2007</span></summary>
+    <div class="rev"><p>Extended conversations with the eminent, conducted by fellow economists rather than by journalists, which yields a candour interviews of this kind rarely reach. What emerges is how personal the discipline has been: who taught whom, which argument was settled in which seminar, and what each man now believes he got wrong. The only book here about economists rather than economics, and the most quietly humbling.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="management">
+  <summary>Management &amp; Psychology <span class="n">8</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>A sports agent, a Silicon Valley founder, a venture capitalist, a hedge fund manager, a biographer, a Florentine diplomat, a Roman senator and a Swiss psychiatrist. There is no unified theory here, and I distrust the books that offer one &mdash; management writing is the worst-served shelf in this library, most of it a single observation inflated to three hundred pages. What holds these eight together is not a method but a subject: people, and what they actually do rather than what the org chart says they will.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">How to Run a Country</span> <span class="by">Cicero, edited and translated by Philip Freeman, 2012</span></summary>
+    <div class="rev"><p>Freeman assembles Cicero&rsquo;s political writing and correspondence into a short guide, and the discomfort is how little of it needs updating: on demagogues, on the purchase of influence, on the impossibility of persuading anyone of what they have already decided not to believe. Cicero was proscribed and killed for the positions he took. The advice carries that weight.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Prince</span> <span class="by">Niccol&ograve; Machiavelli, 1532</span></summary>
+    <div class="rev"><p>Written in exile after torture, and addressed to a Medici in the hope of employment that never came, it argues that a ruler who insists on being good among people who are not will be destroyed &mdash; and that this is a fact about the world rather than a preference. The notoriety is largely deserved and slightly misplaced: he is describing what works, not commending it. Set against Cicero on the same shelf, the disagreement is total, and choosing between them is most of political philosophy.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Modern Man in Search of a Soul</span> <span class="by">Carl Jung, 1933</span></summary>
+    <div class="rev"><p>The usual point of entry to Jung, being essays rather than system: dream analysis, the break with Freud, the archetypes, and the argument that the second half of a life poses questions the first half never had to answer. His clinical claim was that a good proportion of his patients past middle age were not ill in any diagnosable sense but suffering from a loss of meaning. Whether that is medicine is arguable. That it describes something real is harder to deny.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">What They Don&rsquo;t Teach You at Harvard Business School</span> <span class="by">Mark H. McCormack, 1984</span></summary>
+    <div class="rev"><p>McCormack founded IMG on a handshake with Arnold Palmer and built sports management into an industry, none of it from a framework. His subject is reading people &mdash; what a man&rsquo;s office tells you before he opens his mouth, why the first concession determines everything after it, when silence outperforms argument. Dated in its particulars and entirely sound on the thing it is actually about.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Hard Thing About Hard Things</span> <span class="by">Ben Horowitz, 2014</span></summary>
+    <div class="rev"><p>Most management writing describes the company that is working. Horowitz, who nearly lost Loudcloud more than once before selling it and founding a venture firm, writes about the other case: demoting a friend, cutting a third of the staff, deciding whether to tell people the truth when the truth will make them leave. His distinction between the peacetime and the wartime chief executive entered the language because it was needed.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Principles</span> <span class="by">Ray Dalio, 2017</span></summary>
+    <div class="rev"><p>Dalio&rsquo;s ambition is to set down the operating system he ran Bridgewater on &mdash; radical transparency, an idea meritocracy, decisions weighted towards those who have been right before. Whether judgement can be codified this way is the open question, and accounts of how the culture felt from the inside are markedly less admiring than the book. Best read as an attempt at something genuinely difficult rather than as an instruction manual.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Measure What Matters</span> <span class="by">John Doerr, 2018</span></summary>
+    <div class="rev"><p>One technique, demonstrated at length: objectives and key results, which Doerr took from Andy Grove at Intel and carried to Google in 1999, when the company was still small enough to fit in a room. The discipline lies in the separation &mdash; what you are trying to achieve, stated apart from how you would know whether you had. Repetitive by the fourth case study, and the most directly implementable book here.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Elon Musk</span> <span class="by">Walter Isaacson, 2023</span></summary>
+    <div class="rev"><p>Two years of access produced something closer to documentation than to argument, which is simultaneously the book&rsquo;s virtue and the complaint most often levelled at it. What emerges is a method &mdash; question every requirement, delete the part, then optimise &mdash; applied without much regard to whom it costs, and Isaacson declines to tell you what to make of that. Here as evidence rather than as advice.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="faith">
+  <summary>Faith <span class="n">2</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>The shortest shelf here, and deliberately so. Most of what I read on this subject would mean very little to a reader standing outside it, and there is no purpose in recommending books that cannot travel. These two can. Both were written in English by British converts, for readers looking in from outside &mdash; rarer than it sounds, and precisely why they work.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">Pilgrimage to Mecca</span> <span class="by">Lady Evelyn Cobbold, 1934</span></summary>
+    <div class="rev"><p>Daughter of the 7th Earl of Dunmore, Cobbold spent childhood winters in Algiers, slipping out of the family villa to visit mosques and picking up Arabic as she went. In 1933, at sixty-five, she became the first Muslim woman born in Britain to perform the Hajj, and the account supplies what no male pilgrim could &mdash; the domestic life of women in the holy cities. Called by some the mother of Scottish Islam, she left one of the earliest first-hand records of a British Muslim life, written when there were almost none and read now in a country where there are millions.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Islam and the Destiny of Man</span> <span class="by">Charles Le Gai Eaton, 1985</span></summary>
+    <div class="rev"><p>Raised agnostic, Eaton embraced Islam after writing a study of Eastern religion commissioned by T. S. Eliot &mdash; in Egypt in 1951, and he later spent more than twenty years advising the Islamic Cultural Centre in London. He writes for a reader who begins where he began, setting out the theology beneath a faith practised by well over a billion people, which is rarely the part a Western reader encounters first. Some of his positions sit awkwardly with strict Sunni orthodoxy; the book earns its place for the exposition rather than for the doctrine.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="inherited">
+  <summary>The books that came down to me <span class="n">18</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>My paternal grandfather read at Oxford a little over a century ago, when very few Indians did, and built a library around what he found there. My father did not simply inherit it. He added to it, and then he taught from it &mdash; hours of my youth were spent being walked through these books, and he would relay as he went the arguments those same passages had provoked between him and his own father.</p>
+    <p>Three generations of one family arguing about Dickens and Shakespeare, the last two of them doing so long after the Empire that brought the books had gone. That makes it a choice rather than a circumstance, and I am proud of it.</p>
+    <p>Other shelves here record what that Empire cost. Both things are true and I see no need to reconcile them. History has never dealt in clean inheritances.</p>
+    <p>I did not do the books justice at the time. I was too young, and they were waiting for a reader who had not yet arrived. I have been going back to them for some years now, and these are the ones that survived the return.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">Macbeth</span> <span class="by">William Shakespeare, c.1606</span></summary>
+    <div class="rev"><p>The shortest of the tragedies and much the fastest: Duncan is dead by the second act, which leaves three more for a man to live inside what he has done. Where <em>Hamlet</em> defers the deed until the final scene, Shakespeare puts it early and makes the play about the aftermath &mdash; the sleeplessness, the hallucination, the accelerating necessity of further killing. Macbeth is not a monster when we meet him, which is the whole of the difficulty. It is my favourite Shakespeare, and the one I return to most.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Lyrical Ballads</span> <span class="by">William Wordsworth and Samuel Taylor Coleridge, 1798</span></summary>
+    <div class="rev"><p>Published anonymously, opening with Coleridge&rsquo;s <em>Ancient Mariner</em> and closing with Wordsworth&rsquo;s lines above Tintern Abbey &mdash; two poets doing precisely opposite things, one making the supernatural credible, the other making the ordinary strange. The argument was that poetry should be written in the language people actually speak, about lives nobody had previously thought worth the trouble. English Romanticism begins here, in a thin volume that attracted very little notice at the time.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Selected Poems</span> <span class="by">Percy Bysshe Shelley</span></summary>
+    <div class="rev"><p>Expelled from Oxford at eighteen for a pamphlet on atheism, and drowned off the Italian coast at twenty-nine, Shelley compressed a career into eleven years. The lyrics are what survive in general reading &mdash; and &ldquo;Ozymandias&rdquo;, fourteen lines on a shattered statue in the desert still boasting of works that no longer exist, is the most economical thing anyone has written about empire. Set against the other shelves here, those fourteen lines do a great deal of work.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Man and Superman</span> <span class="by">George Bernard Shaw, 1903</span></summary>
+    <div class="rev"><p>A drawing-room comedy with a philosophical treatise concealed inside it: the third act abandons the plot altogether for a debate in hell between Don Juan, the Devil and the Commander, and runs so long that it is usually cut and occasionally staged on its own. Shaw&rsquo;s conceit is that the woman does the pursuing and the man&rsquo;s resistance is futile. Read it for the argument &mdash; the play around it is the delivery mechanism.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Pride and Prejudice</span> <span class="by">Jane Austen, 1813</span></summary>
+    <div class="rev"><p>The marriage plot is the machinery; the subject is the revision of judgement, since both principals are comprehensively wrong about each other and must be brought to see it. Austen&rsquo;s technical contribution was free indirect style &mdash; the narrator borrowing a character&rsquo;s voice without announcing the loan &mdash; which is why the irony lands without anyone needing to point at it. The economics are never far away: entailment, income, and what became of unmarried daughters.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Pickwick Papers</span> <span class="by">Charles Dickens, 1836</span></summary>
+    <div class="rev"><p>Begun at twenty-four as text to accompany sporting prints, and transformed when Sam Weller arrived in the fourth instalment and sales went from hundreds to tens of thousands. It is episodic rather than plotted &mdash; a club of amiable innocents touring England and misunderstanding it &mdash; and the funniest thing Dickens wrote. The debtors&rsquo; prison chapters darken it late, which is the first sign of the novelist he was going to become.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Count of Monte Cristo</span> <span class="by">Alexandre Dumas, 1844</span></summary>
+    <div class="rev"><p>Wrongful imprisonment, fourteen years in a fortress, an escape, a fortune, and a revenge conducted so patiently that its victims do not recognise it until it has finished. Dumas was the grandson of an enslaved woman in Saint-Domingue, which made him a man of colour in Restoration Paris &mdash; rather to the point in a novel about a man stripped of his name. His collaborator Auguste Maquet did more of the work than the title page admits.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Jane Eyre</span> <span class="by">Charlotte Bront&euml;, 1847</span></summary>
+    <div class="rev"><p>Published under a man&rsquo;s name because a woman&rsquo;s would have been read differently, and narrated in a first person so direct that it still startles &mdash; the reader is addressed, argued with, and made complicit. Jane has no money, no family and no standing, which in 1847 left almost nothing to bargain with except refusal. The madwoman in the attic has since generated a literature of its own, a good deal of it hostile to Charlotte&rsquo;s handling.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">War and Peace</span> <span class="by">Leo Tolstoy, 1869</span></summary>
+    <div class="rev"><p>Five families carried through Napoleon&rsquo;s invasion, and beneath the novel an argument: that history is not made by great men issuing orders but by the accumulated motion of everyone below them, and that generals mostly discover afterwards what they are supposed to have decided. Tolstoy denied it was a novel at all. The scale is the point &mdash; nothing shorter could have made the case.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Middlemarch</span> <span class="by">George Eliot, 1871</span></summary>
+    <div class="rev"><p>A provincial town rendered whole &mdash; the doctor with reforming ambitions, the young woman who marries a scholar believing that service to his work will constitute a life, and the small debts and vanities that undo them both. Eliot&rsquo;s subject is how large intentions get worn down by circumstances too ordinary to fight. Woolf&rsquo;s verdict, that it is one of the few English novels written for grown-up people, has never been improved on.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Around the World in Eighty Days</span> <span class="by">Jules Verne, 1872</span></summary>
+    <div class="rev"><p>Fogg&rsquo;s wager only works because the Suez Canal had opened three years earlier and the Indian railways had been built &mdash; the novel runs entirely on imperial infrastructure, and is in that sense a document of what the nineteenth century had just made possible. The plot is a timetable with a man attached. The reversal at the end, turning on a day gained crossing the Pacific, is among the most satisfying in Victorian fiction.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Far from the Madding Crowd</span> <span class="by">Thomas Hardy, 1874</span></summary>
+    <div class="rev"><p>Bathsheba Everdene inherits a farm and runs it herself, which in 1874 was the startling part, and three men want her for three incompatible reasons. It introduced Wessex, and the agricultural detail is exact because Hardy had grown up among it &mdash; the sheep-washing and the storm over the ricks are not scenery. Almost alone among his major novels, it permits an ending that is not a punishment.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Brothers Karamazov</span> <span class="by">Fyodor Dostoevsky, 1880</span></summary>
+    <div class="rev"><p>A father is murdered and each of his sons is implicated in a different way &mdash; the sensualist, the rationalist, the novice monk &mdash; so that the question of who did it becomes a question about which way of living in the world is answerable. The Grand Inquisitor chapter, in which Christ returns and is arrested by the Church, is regularly extracted and read on its own. His last book, finished months before he died.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">Kim</span> <span class="by">Rudyard Kipling, 1901</span></summary>
+    <div class="rev"><p>An orphaned Irish soldier&rsquo;s son, native to the Lahore bazaar and passing unremarked through it, is drawn simultaneously into a Tibetan lama&rsquo;s search for a sacred river and into British intelligence work &mdash; and the novel refuses to choose between them. The Keeper of the Images in the opening chapter is Kipling&rsquo;s own father, curator of the Lahore Museum, which makes this a book about inheritance in more than one sense. Edward Said, generally unsparing about Kipling, held it to be both a great work of art and inescapably a work of imperialism. He was right on both counts.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Hound of the Baskervilles</span> <span class="by">Arthur Conan Doyle, 1902</span></summary>
+    <div class="rev"><p>Written after Conan Doyle had killed Holmes off, and set before the fall at Reichenbach, which makes it a return rather than a resurrection. Holmes is absent for a third of it and Watson carries Dartmoor alone &mdash; and the absence is the making of the thing, since the Gothic only works while the rational man is elsewhere. The best-constructed story in the canon.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">A Passage to India</span> <span class="by">E. M. Forster, 1924</span></summary>
+    <div class="rev"><p>An English visitor accuses an Indian doctor of assault in the Marabar Caves, and the trial that follows exposes what everyone in the station already knew about who would be believed. Forster had served as private secretary to a maharaja and writes the English community with more contempt than he writes anyone else. The closing pages are the ones that stay &mdash; a friendship that both men want, and the ground itself, in the end, refusing it.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Code of the Woosters</span> <span class="by">P. G. Wodehouse, 1938</span></summary>
+    <div class="rev"><p>Nothing whatever is at stake &mdash; a silver cow-creamer, a policeman&rsquo;s helmet, an engagement nobody wants &mdash; and the prose is the entire reason one returns. Wodehouse builds sentences that arrive at the joke on the final word, with the timing of a man who has counted the syllables. Roderick Spode, the amateur dictator whose followers wear black shorts because the shirts had run out, is Mosley &mdash; and the mockery is the most political thing on this shelf by a distance.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The Collected Short Stories</span> <span class="by">W. Somerset Maugham</span></summary>
+    <div class="rev"><p>Maugham&rsquo;s colonial stories are not about the colonies; they are about what the colonies did to the British posted there. A rubber planter thirty miles from another European, a district officer&rsquo;s wife, too much whisky and too little to do &mdash; and then the letter, the shot, the thing that cannot be undone. He worked as an intelligence agent in the Great War and had an ear for the confession made to a stranger, which is the form half of these take.</p></div>
+  </details>
+  </div>
+</details>
+
+<details class="sec" id="subcontinent">
+  <summary>The subcontinent, in English <span class="n">3</span></summary>
+  <div class="fold">
+  <div class="intro">
+    <p>English arrived in the subcontinent as an instrument of administration and stayed to become a literature. These three write in the language that governed their grandparents, and have made of it something its exporters never anticipated. Coming after the Empire shelf and after my grandfather&rsquo;s library, they close a circuit rather than opening a new subject.</p>
+  </div>
+
+  <details class="book">
+    <summary><span class="t">From Heaven Lake</span> <span class="by">Vikram Seth, 1983</span></summary>
+    <div class="rev"><p>Seth was a graduate student in economics at Stanford, doing fieldwork in Nanjing, when he decided to hitchhike home to Delhi &mdash; overland through Xinjiang and Tibet, on a route almost no foreigner was then permitted. His Chinese was good enough that he travelled as something other than a tourist, which is what makes the book unusual: the encounters are conversations rather than observations. His first, and an improbable opening to a career that later produced a novel written in sonnets and another running to thirteen hundred pages.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">The God of Small Things</span> <span class="by">Arundhati Roy, 1997</span></summary>
+    <div class="rev"><p>The catastrophe is disclosed almost at once, so the subject is not the event but the slow accumulation of small permissions and refusals that made it inevitable. Roy trained as an architect and the construction shows: the narrative circles a single afternoon in Kerala for three hundred pages, tightening on each pass. Her prose invents its own grammar as it goes, which some readers find mannered and others find is the only way those two children could have been rendered at all.</p></div>
+  </details>
+  <details class="book">
+    <summary><span class="t">How to Get Filthy Rich in Rising Asia</span> <span class="by">Mohsin Hamid, 2013</span></summary>
+    <div class="rev"><p>Written entirely in the second person and framed as a self-help manual &mdash; move to the city, get an education, avoid idealists &mdash; so that the reader is conscripted into a life running from a village childhood to wealth and then to its unwinding. The device could easily have been a gimmick; instead the imperative mood turns into complicity what would otherwise be sympathy. Nobody in it is named, including you.</p></div>
+  </details>
+  </div>
+</details>
+
+</main>
+
+<footer class="foot">Amin Bilal</footer>
+
+<script>
+(function(){
+  "use strict";
+  Array.prototype.forEach.call(document.querySelectorAll('details.sec'), function(d){
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'fold-close';
+    b.textContent = 'Close shelf';
+    b.addEventListener('click', function(){
+      d.open = false;
+      d.scrollIntoView({ block: 'start' });
+    });
+    d.querySelector('.fold').appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

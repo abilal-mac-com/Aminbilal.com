@@ -54,12 +54,14 @@
     · technology.html   (the Executive Technology Literacy site)
     · physics.html      (The Particle Physics Primer)
     · markets.html      (What Makes Markets Tick)
+    · quotes.html       (Quotes — the commonplace book)
+    · books.html        (Books — the library register)
     · /documents/       (the typeset PDFs used by technology.html)
 
-  Latest, Technology, Physics and Markets links open their own pages.
-  Pakistan and Diabetes open an "under preparation" panel addressed
-  by URL hash (#pakistan, #diabetes), served from this same file.
-  To give one a real page later, point its link at the new file and
+  Latest, Technology, Physics, Markets, Quotes and Books links open
+  their own pages. Pakistan opens an "under preparation" panel
+  addressed by URL hash (#pakistan), served from this same file.
+  To give it a real page later, point its link at the new file and
   remove its entry from the SUBJECTS object in the script at the
   foot of the file.
 
@@ -159,6 +161,7 @@
   .nav a:nth-child(4){ animation-delay:.34s; }
   .nav a:nth-child(5){ animation-delay:.40s; }
   .nav a:nth-child(6){ animation-delay:.46s; }
+  .nav a:nth-child(7){ animation-delay:.52s; }
   /* !important overrides the opacity the entrance animation holds (fill:forwards) */
   .nav a:hover, .nav a:focus-visible{ opacity:1 !important; transform:translateY(-1px) !important; }
   .nav a:hover::after, .nav a:focus-visible::after{ width:100%; }
@@ -290,8 +293,8 @@
     <a href="physics.html">Physics</a>
     <a href="markets.html">Markets</a>
     <a href="quotes.html">Quotes</a>
+    <a href="books.html">Books</a>
     <a href="#pakistan">Pakistan</a>
-    <a href="#diabetes">Diabetes</a>
   </nav>
 
   <main class="hero">
@@ -323,8 +326,7 @@
 (function(){
   "use strict";
   var SUBJECTS = {
-    pakistan:'Pakistan',
-    diabetes:'Diabetes'
+    pakistan:'Pakistan'
   };
   var landing = document.getElementById('landing');
   var subject = document.getElementById('subject');
