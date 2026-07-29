@@ -86,12 +86,6 @@
   a:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
 
   /* ---------------- breadcrumb ---------------- */
-  .page-top{ border-bottom:1px solid var(--rule); background:var(--cream); padding:14px 0; }
-  .crumb{ font-family:var(--sans); font-size:12px; letter-spacing:.03em; color:var(--grey); display:flex; flex-wrap:wrap; align-items:center; gap:8px; line-height:1.4; }
-  .crumb a{ color:var(--crimson); font-weight:700; }
-  .crumb a:hover{ color:var(--crimson-deep); text-decoration:underline; }
-  .crumb .sep{ color:var(--rule-strong); }
-  .crumb b{ color:var(--ink); font-weight:700; }
 
   /* ---------------- article header ---------------- */
   .art-head{ padding:clamp(48px,8vw,88px) 0 clamp(28px,4vw,44px); border-bottom:1px solid var(--rule); }
@@ -119,10 +113,30 @@
   .article-foot{ max-width:68ch; margin-top:clamp(34px,5vw,50px); padding-top:22px; border-top:1px solid var(--rule); }
   .back-to-latest{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.04em; color:var(--crimson); }
   .back-to-latest:hover{ color:var(--crimson-deep); }
-  .site-foot{ border-top:1px solid var(--rule); }
-  .site-foot .wrap{ padding-top:26px; padding-bottom:44px; font-family:var(--sans); font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); }
-  .site-foot a{ color:var(--grey); }
-  .site-foot a:hover{ color:var(--crimson); }
+  /* ---- masthead band, foot band (July 2026 restyle) ---- */
+  .band{ background:var(--crimson); border-bottom:3px solid var(--crimson-deep); }
+  .band-inner{ display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; padding-top:13px; padding-bottom:13px; }
+  .wordmark{ font-family:var(--serif); font-weight:600; font-size:17px;
+             color:var(--cream); text-decoration:none; margin-right:auto; white-space:nowrap; }
+  .band nav{ display:flex; flex-wrap:wrap; gap:6px 18px; }
+  .band nav a{ font-family:var(--sans); font-weight:700; font-size:12px;
+               letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
+               opacity:.85; text-decoration:none; }
+  .band nav a:hover{ opacity:1; }
+  .band nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
+  .band nav a[aria-current="page"]{ opacity:1; border-bottom:2px solid var(--cream); padding-bottom:2px; }
+
+  .footband{ background:var(--crimson); border-top:3px solid var(--crimson-deep);
+             margin-top:34px; text-align:center; padding:26px 22px 34px; }
+  .footband .name{ font-family:var(--serif); font-weight:600; font-size:16px;
+                   color:var(--cream); text-decoration:none; letter-spacing:.02em; }
+  .footband nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; margin-top:14px; }
+  .footband nav a{ font-family:var(--sans); font-weight:700; font-size:11.5px;
+                   letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
+                   opacity:.8; text-decoration:none; }
+  .footband nav a:hover{ opacity:1; }
+  .footband nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
+
 </style>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa--HaR7sS_MuJb_jLlfRJDT.js"></script>
@@ -133,17 +147,20 @@
 </head>
 <body>
 
-<div class="page-top">
-  <div class="wrap">
-    <nav class="crumb" aria-label="Breadcrumb">
-      <a href="../index.html">aminbilal.com</a>
-      <span class="sep">&rsaquo;</span>
-      <a href="index.html">Latest</a>
-      <span class="sep">&rsaquo;</span>
-      <b>Under the Hood</b>
+<!-- ============================================================ SITE BAND (July 2026 restyle) ============================================================ -->
+<header class="band">
+  <div class="wrap band-inner">
+    <a class="wordmark" href="../index.html">Amin Bilal</a>
+    <nav aria-label="Sections">
+      <a href="../latest/" aria-current="page">Latest</a>
+      <a href="../technology.html">Technology</a>
+      <a href="../physics.html">Physics</a>
+      <a href="../markets.html">Markets</a>
+      <a href="../quotes.html">Quotes</a>
+      <a href="../books.html">Books</a>
     </nav>
   </div>
-</div>
+</header>
 
 <header class="art-head">
   <div class="wrap">
@@ -203,8 +220,16 @@
   </article>
 </main>
 
-<footer class="site-foot">
-  <div class="wrap"><a href="../index.html">Amin Bilal</a></div>
+<footer class="footband">
+  <a class="name" href="../index.html">Amin Bilal</a>
+  <nav aria-label="Footer sections">
+    <a href="../latest/">Latest</a>
+    <a href="../technology.html">Technology</a>
+    <a href="../physics.html">Physics</a>
+    <a href="../markets.html">Markets</a>
+    <a href="../quotes.html">Quotes</a>
+    <a href="../books.html">Books</a>
+  </nav>
 </footer>
 
 </body>
