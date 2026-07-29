@@ -80,6 +80,13 @@
     counts equal entry counts.
 
   Sections: #understanding  #markets  #work  #history
+
+  DRESS (July 2026 site restyle)
+    The page opens with the crimson masthead band (wordmark
+    returning to the landing page; six section links; current
+    page marked) and closes with the reversed foot band. The
+    section mark (the comma pair) sits above the kicker. All
+    of it is CSS and inline SVG - no external requests.
   ============================================================
 -->
 
@@ -109,14 +116,6 @@
   }
   a{ color:var(--crimson); }
   a:hover{ color:var(--crimson-deep); }
-
-  .top{ max-width:760px; margin:0 auto; padding:26px 22px 0; }
-  .back{
-    font-family:var(--sans); font-weight:700; font-size:12.5px;
-    letter-spacing:.06em; text-transform:uppercase;
-    color:var(--grey); text-decoration:none;
-  }
-  .back:hover{ color:var(--crimson); }
 
   .mast{ max-width:760px; margin:0 auto; padding:44px 22px 8px; }
   .kicker{
@@ -175,12 +174,33 @@
     line-height:1.55; color:var(--grey); margin:6px 0 0; max-width:620px;
   }
 
-  .foot{
-    max-width:760px; margin:26px auto 0; padding:18px 22px 40px;
-    border-top:1px solid var(--rule-strong);
-    font-family:var(--sans); font-size:12.5px; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--grey);
-  }
+  /* ---- masthead band, section mark, foot band (July 2026 restyle) ---- */
+  .band{ background:var(--crimson); border-bottom:3px solid var(--crimson-deep); }
+  .band-inner{ max-width:760px; margin:0 auto; padding:13px 22px;
+               display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; }
+  .wordmark{ font-family:var(--serif); font-weight:600; font-size:17px;
+             color:var(--cream); text-decoration:none; margin-right:auto; white-space:nowrap; }
+  .band nav{ display:flex; flex-wrap:wrap; gap:6px 18px; }
+  .band nav a{ font-family:var(--sans); font-weight:700; font-size:12px;
+               letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
+               opacity:.85; text-decoration:none; }
+  .band nav a:hover{ opacity:1; }
+  .band nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
+  .band nav a[aria-current="page"]{ opacity:1; border-bottom:2px solid var(--cream); padding-bottom:2px; }
+
+  .mark{ color:var(--crimson); margin:0 0 12px; }
+  .mark svg{ display:block; }
+
+  .footband{ background:var(--crimson); border-top:3px solid var(--crimson-deep);
+             margin-top:34px; text-align:center; padding:26px 22px 34px; }
+  .footband .name{ font-family:var(--serif); font-weight:600; font-size:16px;
+                   color:var(--cream); text-decoration:none; letter-spacing:.02em; }
+  .footband nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; margin-top:14px; }
+  .footband nav a{ font-family:var(--sans); font-weight:700; font-size:11.5px;
+                   letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
+                   opacity:.8; text-decoration:none; }
+  .footband nav a:hover{ opacity:1; }
+  .footband nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
 
   @media (prefers-reduced-motion:reduce){ *{ scroll-behavior:auto !important; } }
   html{ scroll-behavior:smooth; }
@@ -196,11 +216,22 @@
 
 <body>
 
-<div class="top">
-  <a class="back" href="index.html"><span aria-hidden="true">&larr;</span>&nbsp;Amin&rsquo;s Personal Site</a>
-</div>
+<header class="band">
+  <div class="band-inner">
+    <a class="wordmark" href="index.html">Amin Bilal</a>
+    <nav aria-label="Sections">
+      <a href="latest/">Latest</a>
+      <a href="technology.html">Technology</a>
+      <a href="physics.html">Physics</a>
+      <a href="markets.html">Markets</a>
+      <a href="quotes.html" aria-current="page">Quotes</a>
+      <a href="books.html">Books</a>
+    </nav>
+  </div>
+</header>
 
 <header class="mast">
+  <div class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.2" cy="9.8" r="2.1"/><path d="M10.3 10.1 C10.3 13 9.2 15 7.2 16.6"/><circle cx="14.8" cy="9.8" r="2.1"/><path d="M16.9 10.1 C16.9 13 15.8 15 13.8 16.6"/></svg></div>
   <p class="kicker">Commonplace</p>
   <h1>Quotes</h1>
   <div class="titlerule" aria-hidden="true"></div>
@@ -655,7 +686,17 @@
 
 </main>
 
-<footer class="foot">Amin Bilal</footer>
+<footer class="footband">
+  <a class="name" href="index.html">Amin Bilal</a>
+  <nav aria-label="Footer sections">
+    <a href="latest/">Latest</a>
+    <a href="technology.html">Technology</a>
+    <a href="physics.html">Physics</a>
+    <a href="markets.html">Markets</a>
+    <a href="quotes.html">Quotes</a>
+    <a href="books.html">Books</a>
+  </nav>
+</footer>
 
 <script>
 (function(){
