@@ -127,6 +127,13 @@
     color:var(--soft); margin:26px 0 0; max-width:66ch;
   }
   .progress{ font-family:var(--sans); font-size:14.5px; line-height:1.6; color:var(--grey); margin:18px 0 0; max-width:66ch; }
+  /* ---- showcase: the programme applied ---- */
+  .showcase{ margin:0 auto 70px; padding:26px 28px 24px; border:1px solid var(--rule-strong); background:#FFFEFA; }
+  .showcase-title{ font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(26px,3.6vw,38px); line-height:1.1; margin:10px 0 0; }
+  .showcase-sub{ font-family:var(--serif); color:var(--soft); font-size:17.5px; line-height:1.6; margin:12px 0 0; max-width:74ch; }
+  .showcase-cta{ margin:18px 0 2px; }
+  .showcase-cta a{ display:inline-block; font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--crimson); border:1px solid rgba(134,24,49,.45); padding:9px 15px; border-radius:2px; text-decoration:none; transition:background .18s ease, color .18s ease; }
+  .showcase-cta a:hover{ background:var(--crimson); color:var(--cream); }
   .progress a{ font-weight:700; border-bottom:1px solid rgba(134,24,49,.3); }
 
   /* ---------------- series (rail + panels) ---------------- */
@@ -487,7 +494,7 @@
       <p class="byline">Amin Bilal in collaboration with Claude Opus 4.8 and Claude Fable 5</p>
       <hr class="masthead-rule">
       <p class="standfirst">What does it take for a senior finance leader to sit across from a Chief Technology Officer and follow the substance of the architecture itself &mdash; not merely the outcomes and the budgets, but the reasoning beneath them? This programme is an attempt to build that understanding, patiently and from first principles, across the ten domains that compose the field.</p>
-      <p class="progress">Part One &mdash; the Introduction and all ten building blocks &mdash; is complete, each block opening to its full Content, Key Takeaways, FAQs, Test and Personalities; the Introduction, <a href="#block-1">Block One</a> and <a href="#block-7">Block Seven</a> are additionally accompanied by typeset PDFs. <a href="#applied">Part Two</a> &mdash; the applied volume on the enterprise finance estate &mdash; is likewise complete across its nine chapters, each carrying the same Content, Key Takeaways, FAQs, Test and Personalities.</p>
+      <p class="progress">Part One &mdash; the Introduction and all ten building blocks &mdash; is complete, each block opening to its full Content, Key Takeaways, FAQs, Test and Personalities; the Introduction, <a href="#block-1">Block One</a> and <a href="#block-7">Block Seven</a> are additionally accompanied by typeset PDFs. <a href="#applied">Part Two</a> &mdash; the applied volume on the enterprise finance estate &mdash; is likewise complete across its nine chapters, each carrying the same Content, Key Takeaways, FAQs, Test and Personalities. A companion showcase &mdash; <a href="finance-architecture.html">Finance Application Architecture</a> &mdash; draws the estate that volume describes as a single worked reference.</p>
     </div>
   </header>
 
@@ -1383,6 +1390,14 @@
 
     </div>
   </main>
+
+  <!-- ===== Showcase - the programme applied (annexe: finance-architecture.html) ===== -->
+  <section class="wrap showcase" aria-label="The programme applied">
+    <p class="panel-eyebrow">The Programme, Applied</p>
+    <h2 class="showcase-title">Finance Application Architecture</h2>
+    <p class="showcase-sub">A worked reference architecture for a UK life assurance and asset-management group &mdash; the estate the applied volume describes, drawn as one plate, with its companion narrative and fourteen platform notes.</p>
+    <p class="showcase-cta"><a href="finance-architecture.html">Open the architecture &rsaquo;</a></p>
+  </section>
 </div>
 
 <!-- ============================================================ PAGE VIEW (Content / Key Takeaways / FAQs) ============================================================ -->

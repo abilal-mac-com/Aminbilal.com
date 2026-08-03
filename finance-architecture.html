@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finance Application Architecture &mdash; Amin Bilal</title>
+<meta name="description" content="A worked reference architecture for a UK life assurance and asset management group: five layers, two boundaries and one foundation, with fourteen platform notes, from capture through ledger and consolidation to disclosure.">
+
+<!-- Discoverability: Open Graph, Twitter Card, canonical, author, JSON-LD -->
+<meta name="author" content="Amin Bilal">
+<link rel="canonical" href="https://aminbilal.com/finance-architecture.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="aminbilal.com">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Finance Application Architecture &mdash; Amin Bilal">
+<meta property="og:description" content="A worked reference architecture for a UK life assurance and asset management group: five layers, two boundaries and one foundation, with fourteen platform notes, from capture through ledger and consolidation to disclosure.">
+<meta property="og:url" content="https://aminbilal.com/finance-architecture.html">
+<meta property="og:image" content="https://aminbilal.com/og-finance-architecture.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Finance Application Architecture &mdash; Amin Bilal">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Finance Application Architecture &mdash; Amin Bilal">
+<meta name="twitter:description" content="A worked reference architecture for a UK life assurance and asset management group: five layers, two boundaries and one foundation, with fourteen platform notes, from capture through ledger and consolidation to disclosure.">
+<meta name="twitter:image" content="https://aminbilal.com/og-finance-architecture.png">
+<meta name="twitter:image:alt" content="Finance Application Architecture &mdash; Amin Bilal">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Finance Application Architecture \u2014 Amin Bilal",
+  "description": "A worked reference architecture for a UK life assurance and asset management group: five layers, two boundaries and one foundation, with fourteen platform notes, from capture through ledger and consolidation to disclosure.",
+  "inLanguage": "en-GB",
+  "url": "https://aminbilal.com/finance-architecture.html",
+  "mainEntityOfPage": "https://aminbilal.com/finance-architecture.html",
+  "author": [
+    { "@type": "Person", "name": "Amin Bilal", "sameAs": "https://www.linkedin.com/in/amin-bilal-54047714" },
+    { "@type": "Person", "name": "Claude Opus" },
+    { "@type": "Person", "name": "Claude Fable" }
+  ]
+}
+</script>
+
+<!-- aminbilal.com - Finance Application Architecture - annexe to Executive Technology Literacy. Self-contained; lives at the site root beside technology.html -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@400;600;700&family=Architects+Daughter&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F9F8F3;
+    --ink:#1A1A1A;
+    --body:#26241F;
+    --crimson:#861831;
+    --crimson-deep:#6C1327;
+    --grey:#5A5A5A;
+    --soft:#4A4843;
+    --rule:#D8D5CC;
+    --rule-strong:#C7C3B8;
+    --serif:'Lora', Georgia, 'Times New Roman', serif;
+    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --wrap:1180px;
+  }
+  *{ box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    margin:0; background:var(--cream); color:var(--body);
+    font-family:var(--serif); font-size:18px; line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+  a{ color:var(--crimson); text-decoration:none; }
+  a:hover{ color:var(--crimson-deep); }
+  hr{ border:0; }
+  [hidden]{ display:none !important; }
+
+  a:focus-visible, button:focus-visible, .rail-item:focus-visible,
+  .pdf-btn:focus-visible, .page-btn:focus-visible, .flip:focus-visible,
+  .panel:focus-visible, .page-body:focus-visible{
+    outline:2px solid var(--crimson); outline-offset:3px;
+  }
+
+  .eyebrow{
+    font-family:var(--sans); font-weight:700; text-transform:uppercase;
+    letter-spacing:.22em; color:var(--crimson); font-size:12px; margin:0;
+  }
+
+  /* ---------------- masthead ---------------- */
+  .masthead{ padding:clamp(52px,9vw,104px) 0 clamp(34px,5vw,56px); border-bottom:1px solid var(--rule); }
+  .masthead-title{
+    font-family:var(--serif); font-weight:700; color:var(--ink);
+    font-size:clamp(44px,8.5vw,84px); line-height:1.0; letter-spacing:-.015em; margin:20px 0 0;
+  }
+  .masthead-sub{
+    font-family:var(--serif); font-style:italic; color:var(--grey);
+    font-size:clamp(19px,2.6vw,25px); line-height:1.4; margin:18px 0 0; max-width:34ch;
+  }
+  .byline{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.2em; font-size:12.5px; color:var(--ink); margin:26px 0 0; }
+  .masthead-rule{ width:62px; height:3px; background:var(--crimson); margin:26px 0 0; }
+  .standfirst{
+    font-family:var(--serif); font-size:clamp(18px,2.1vw,21px); line-height:1.62;
+    color:var(--soft); margin:26px 0 0; max-width:66ch;
+  }
+  .progress{ font-family:var(--sans); font-size:14.5px; line-height:1.6; color:var(--grey); margin:18px 0 0; max-width:66ch; }
+  .progress a{ font-weight:700; border-bottom:1px solid rgba(134,24,49,.3); }
+
+  /* ---- content-page accordions ---- */
+  .page-content details.acc{ border-top:1px solid var(--rule); }
+  .page-content details.acc:last-of-type{ border-bottom:1px solid var(--rule); }
+  .page-content summary.acc-head{
+    font-family:var(--serif); font-weight:700; color:var(--ink);
+    font-size:clamp(21px,2.8vw,26px); line-height:1.2;
+    display:flex; align-items:baseline; gap:14px;
+    padding:.85em 0 .8em; cursor:pointer; list-style:none;
+  }
+  .page-content summary.acc-head::-webkit-details-marker{ display:none; }
+  .page-content summary.acc-head .acc-title{ flex:1; }
+  .page-content summary.acc-head::after{
+    content:"+"; font-family:var(--sans); font-weight:400; font-size:24px;
+    color:var(--crimson); line-height:1; align-self:center;
+    transition:transform .22s ease; margin-left:12px;
+  }
+  .page-content details.acc[open] > summary.acc-head::after{ transform:rotate(45deg); }
+  .page-content summary.acc-head:hover .acc-title{ color:var(--crimson-deep); }
+  .page-content summary.acc-head:focus-visible{ outline:2px solid var(--crimson); outline-offset:4px; }
+  .page-content .acc-body{ padding:.15em 0 1.35em; }
+  .page-content .acc-body > p:first-child{ margin-top:.2em; }
+
+
+  /* ---- masthead band, section mark, foot band (July 2026 restyle) ---- */
+  .band{ background:var(--crimson); border-bottom:3px solid var(--crimson-deep); }
+  .band-inner{ display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; padding-top:13px; padding-bottom:13px; }
+  .wordmark{ font-family:var(--serif); font-weight:600; font-size:17px;
+             color:var(--cream); text-decoration:none; margin-right:auto; white-space:nowrap; }
+  .band nav{ display:flex; flex-wrap:wrap; gap:6px 18px; }
+  .band nav a{ font-family:var(--sans); font-weight:700; font-size:12px;
+               letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
+               opacity:.85; text-decoration:none; }
+  .band nav a:hover{ opacity:1; }
+  .band nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
+  .band nav a[aria-current="page"]{ opacity:1; border-bottom:2px solid var(--cream); padding-bottom:2px; }
+
+  .mark{ color:var(--crimson); margin:0 0 12px; }
+  .mark svg{ display:block; }
+
+  .footband{ background:var(--crimson); border-top:3px solid var(--crimson-deep);
+             margin-top:34px; text-align:center; padding:26px 22px 34px; }
+  .footband .name{ font-family:var(--serif); font-weight:600; font-size:16px;
+                   color:var(--cream); text-decoration:none; letter-spacing:.02em; }
+  .footband nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; margin-top:14px; }
+  .footband nav a{ font-family:var(--sans); font-weight:700; font-size:11.5px;
+                   letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
+                   opacity:.8; text-decoration:none; }
+  .footband nav a:hover{ opacity:1; }
+  .footband nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
+  .footband .tag{ font-family:var(--sans); font-size:11.5px; letter-spacing:.04em;
+                  color:var(--cream); opacity:.75; margin:16px 0 0; }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  }
+
+  /* ---------------- figures (inline SVG diagrams) ---------------- */
+  .fig{ margin:2.6em auto 2.2em; max-width:640px; }
+  .fig svg{ display:block; width:100%; height:auto; }
+  .fig figcaption{
+    font-family:var(--sans); font-size:12.5px; color:var(--grey);
+    text-align:center; margin-top:14px; line-height:1.5;
+  }
+  .fig .fig-n{ font-weight:700; text-transform:uppercase; letter-spacing:.18em; color:var(--crimson); }
+  .fig .fig-c{ display:block; font-family:var(--serif); font-style:italic; font-size:15px; color:var(--soft); margin-top:5px; }
+  .fig .t-title{ font-family:var(--serif); font-weight:600; fill:var(--ink); }
+  .fig .t-layer{ font-family:var(--serif); font-weight:400; fill:var(--ink); }
+  .fig .t-glossy{ font-family:var(--sans); font-weight:400; fill:var(--grey); }
+  .fig .t-tag{ font-family:var(--sans); font-weight:700; fill:var(--crimson); letter-spacing:.06em; }
+  .fig .t-open{ font-family:var(--sans); font-weight:400; font-style:italic; fill:var(--grey); }
+
+
+  /* ---- finance-architecture page ---- */
+  .crumb{ font-family:var(--sans); font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin:0 0 22px; }
+  .crumb a{ color:var(--crimson); border-bottom:1px solid rgba(134,24,49,.3); }
+  .jump{ font-family:var(--sans); font-size:13px; letter-spacing:.02em; color:var(--grey); margin:22px 0 0; }
+  .jump a{ font-weight:700; color:var(--crimson); border-bottom:1px solid rgba(134,24,49,.3); }
+  .arch-block{ margin:56px 0 0; }
+  .sec-intro .sec-note{ color:var(--soft); margin:10px 0 0; }
+  .legend{ font-family:var(--sans); font-size:12px; letter-spacing:.05em; color:var(--grey); margin:16px 0 18px; display:flex; flex-wrap:wrap; gap:8px 22px; align-items:center; }
+  .legend .lg{ display:inline-flex; align-items:center; gap:7px; }
+  .chip{ display:inline-block; width:12px; height:12px; border:1px solid rgba(0,0,0,.15); }
+  .z-core{ background:var(--crimson); }
+  .z-ins{ background:#B08D2E; }
+  .z-hr{ background:#E7E4DA; }
+  .z-plat{ background:#8F8B80; }
+  .lg-note{ font-style:italic; }
+  .plate-grid{ display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:26px; align-items:start; }
+  .plate{ border:1px solid var(--rule-strong); background:#FFFEFA; padding:14px; }
+  .uparrow{ text-align:center; color:var(--crimson); font-size:13px; line-height:1; padding:6px 0; }
+  .layer-band{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:7px 12px; }
+  .layer-band .lb-title{ font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.09em; text-transform:uppercase; }
+  .layer-band .lb-strap{ font-family:var(--serif); font-style:italic; font-size:12.5px; white-space:nowrap; }
+  .layer-band.z-core{ color:var(--cream); } .layer-band.z-core .lb-strap{ color:rgba(249,248,243,.85); }
+  .layer-band.z-ins{ color:#2A230D; } .layer-band.z-ins .lb-strap{ color:rgba(42,35,13,.8); }
+  .layer-band.z-hr{ color:var(--ink); } .layer-band.z-hr .lb-strap{ color:var(--grey); }
+  .layer-band.z-plat{ color:var(--cream); } .layer-band.z-plat .lb-strap{ color:rgba(249,248,243,.85); }
+  .cells{ display:grid; gap:8px; margin:8px 0 2px; }
+  .cols-1{ grid-template-columns:1fr; }
+  .cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .cols-3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .cols-4{ grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .cell{ border:1px solid var(--rule-strong); background:var(--cream); padding:9px 11px 10px; }
+  .cell .cap{ display:block; font-family:var(--sans); font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--grey); }
+  .cell .sys{ display:block; font-family:var(--serif); font-weight:700; font-size:14.5px; color:var(--ink); margin-top:3px; line-height:1.25; }
+  .cells.pipeline{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+  .pipeline .cell{ flex:1 1 150px; }
+  .c-ins{ background:#F6EFD8; border-color:#CDB878; }
+  .parrow{ color:var(--crimson); font-weight:700; font-size:16px; }
+  .to-gl{ font-family:var(--serif); font-size:12.5px; color:var(--soft); }
+  .commentary{ background:#F6EFD8; border:1px solid #CDB878; padding:18px 20px 16px; }
+  .com-title{ font-family:var(--serif); font-weight:700; font-size:21px; color:var(--crimson); margin:0; }
+  .com-sub{ font-family:var(--serif); font-style:italic; color:var(--grey); font-size:13.5px; margin:2px 0 0; }
+  .com-rule{ border:0; border-top:1px solid #CDB878; margin:12px 0; }
+  .commentary p{ font-family:var(--serif); font-size:14.5px; line-height:1.56; color:var(--soft); margin:.55em 0 0; }
+  .commentary p.com-head{ font-family:var(--sans); font-weight:700; font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--crimson); margin:1em 0 0; }
+  .commentary p.com-close{ margin-top:1.1em; }
+  .plate-foot{ display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; font-family:var(--sans); font-size:11.5px; color:var(--grey); border-top:1px solid var(--rule); margin-top:16px; padding-top:10px; }
+  .pf-right{ font-family:var(--serif); }
+  .sec-band{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; padding:8px 14px; margin:0 0 10px; }
+  .sec-band .sb-title{ font-family:var(--sans); font-weight:700; font-size:13px; letter-spacing:.09em; text-transform:uppercase; margin:0; }
+  .sec-band .sb-strap{ font-family:var(--serif); font-style:italic; font-size:13px; }
+  .sec-band.z-core{ color:var(--cream); } .sec-band.z-core .sb-strap{ color:rgba(249,248,243,.85); }
+  .sec-band.z-ins{ color:#2A230D; } .sec-band.z-ins .sb-strap{ color:rgba(42,35,13,.8); }
+  .sec-band.z-hr{ color:var(--ink); } .sec-band.z-hr .sb-strap{ color:var(--grey); }
+  .sec-band.z-plat{ color:var(--cream); } .sec-band.z-plat .sb-strap{ color:rgba(249,248,243,.85); }
+  .sec-strapline{ font-family:var(--sans); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--grey); margin:0 0 14px; }
+  .arch-block > p{ margin:0 0 1.05em; }
+  .twocol{ columns:2; column-gap:46px; }
+  .twocol p{ margin:0 0 1.05em; break-inside:avoid; }
+  .twocol p:first-child{ margin-top:0; }
+  #companion .sec-band{ margin-top:34px; }
+  ol.principles{ list-style:none; counter-reset:pr; margin:6px 0 0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 34px; }
+  ol.principles li{ counter-increment:pr; position:relative; padding-left:36px; }
+  ol.principles li::before{ content:counter(pr) "."; position:absolute; left:0; top:.05em; font-family:var(--sans); font-weight:700; color:var(--crimson); font-size:15px; }
+  ol.principles b{ color:var(--ink); }
+  .pn-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin:4px 0 26px; scroll-margin-top:14px; }
+  .pn-tab{ font-family:var(--sans); font-weight:700; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--crimson); background:transparent; border:1px solid rgba(134,24,49,.45); padding:8px 13px; border-radius:2px; cursor:pointer; transition:background .18s ease, color .18s ease; }
+  .pn-tab:hover, .pn-tab.active{ background:var(--crimson); color:var(--cream); }
+  .pn-tab:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+  .pn-panel{ border-top:1px solid var(--rule); padding-top:4px; scroll-margin-top:14px; }
+  .pn-panel[hidden]{ display:none; }
+  .pn-title{ display:flex; justify-content:space-between; align-items:baseline; gap:14px; flex-wrap:wrap; font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(21px,2.8vw,26px); line-height:1.2; margin:.65em 0 .35em; }
+  .pn-ptag{ font-family:var(--sans); font-weight:700; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--grey); white-space:nowrap; }
+  .pn-return-row{ margin:.4em 0 0; }
+  .pn-return{ font-family:var(--sans); font-weight:700; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--crimson); background:transparent; border:1px solid rgba(134,24,49,.45); padding:7px 14px; border-radius:2px; cursor:pointer; transition:background .18s ease, color .18s ease; }
+  .pn-return:hover{ background:var(--crimson); color:var(--cream); }
+  .pn-lede{ margin:0 0 .9em; color:var(--soft); }
+  .pn-label{ font-family:var(--sans); font-weight:700; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--crimson); margin:1.35em 0 .4em; display:flex; justify-content:space-between; gap:14px; align-items:baseline; flex-wrap:wrap; }
+  .pn-strap{ font-family:var(--serif); font-weight:400; font-size:12.5px; font-style:italic; letter-spacing:0; text-transform:none; color:var(--grey); }
+  .acc-body{ columns:2; column-gap:46px; }
+  .acc-body p{ margin:0 0 1.05em; break-inside:avoid; }
+  .acc-body h3.pn-label{ break-after:avoid; break-inside:avoid; }
+  .acc-body p.pn-lede, .acc-body p.pn-sources{ column-span:all; }
+  .acc-body p.pn-sources{ font-family:var(--sans); font-size:11.5px; color:var(--grey); line-height:1.55; border-top:1px solid var(--rule); padding-top:10px; margin-top:1.2em; }
+  .src-line{ color:var(--soft); margin:0 0 .6em; }
+  @media (max-width:900px){
+    .plate-grid{ grid-template-columns:1fr; }
+    .cols-3,.cols-4{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    ol.principles{ grid-template-columns:1fr; }
+    .twocol, .acc-body{ columns:1; }
+    .layer-band .lb-strap,.sec-band .sb-strap{ display:none; }
+  }
+  @media (max-width:540px){
+    .cols-2,.cols-3,.cols-4{ grid-template-columns:1fr; }
+    .plate{ padding:10px; }
+    .layer-band{ flex-wrap:wrap; padding:6px 10px; }
+    .layer-band .lb-title{ font-size:11px; letter-spacing:.06em; }
+    .parrow{ display:none; }
+    .cells.pipeline .cell{ flex:1 1 100%; }
+    .to-gl{ width:100%; text-align:right; }
+    .sec-band{ flex-wrap:wrap; padding:7px 11px; }
+    .sec-band .sb-title{ font-size:11.5px; letter-spacing:.07em; }
+    .pn-tabs{ display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:6px; }
+    .pn-tab{ padding:9px 8px; font-size:11px; }
+    .commentary{ padding:14px 14px 12px; }
+  }
+</style>
+<script async src="https://plausible.io/js/pa--HaR7sS_MuJb_jLlfRJDT.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+</head>
+<body>
+
+<header class="band">
+  <div class="wrap band-inner">
+    <a class="wordmark" href="index.html">Amin Bilal</a>
+    <nav aria-label="Sections">
+      <a href="latest/">Latest</a>
+      <a href="technology.html" aria-current="page">Technology</a>
+      <a href="physics.html">Physics</a>
+      <a href="markets.html">Markets</a>
+      <a href="quotes.html">Quotes</a>
+      <a href="books.html">Books</a>
+      <a href="football/">Football</a>
+    </nav>
+  </div>
+</header>
+
+
+  <header class="masthead">
+    <div class="wrap">
+      <p class="crumb"><a href="technology.html">&larr; Part of Executive Technology Literacy</a></p>
+      <p class="eyebrow">The Programme, Applied &middot; A Worked Reference Architecture</p>
+      <h1 class="masthead-title">Finance Application<br>Architecture</h1>
+      <p class="masthead-sub">The application stack of a UK life assurance and asset-management group, drawn by data-flow layer &mdash; capture &rsaquo; ledger &rsaquo; consolidation &rsaquo; disclosure.</p>
+      <p class="byline">Amin Bilal in collaboration with Claude Opus and Fable</p>
+      <hr class="masthead-rule">
+      <p class="standfirst">A worked reference design for the office of the Group Chief Financial Officer: fourteen major platforms across five layers, two boundaries and one foundation, with the reasoning for each selection. It illustrates what good looks like for an archetypal firm of this shape, assembled from public sources &mdash; it depicts no particular company&rsquo;s estate.</p>
+      <p class="jump">On this page: <a href="#plate">the plate</a> &middot; <a href="#principles">eight principles</a> &middot; <a href="#companion">the companion, layer by layer</a> &middot; <a href="#notes">fourteen platform notes</a> &middot; <a href="#sources">sources</a></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section id="plate" class="arch-block">
+      <div class="sec-intro">
+        <p class="page-eyebrow">The Plate</p>
+        <p class="sec-note">The proposed application stack by data-flow layer. The plate is drawn with disclosure at the top and the foundation at the base; the data runs upward &mdash; capture, then ledger, then consolidation, then disclosure.</p>
+        <p class="legend"><span class="lg"><i class="chip z-core"></i>core</span> <span class="lg"><i class="chip z-ins"></i>insurance / actuarial</span> <span class="lg"><i class="chip z-hr"></i>HR boundary</span> <span class="lg"><i class="chip z-plat"></i>platform</span> <span class="lg lg-note">&Dagger; business / ops-owned (Finance consumes)</span></p>
+      </div>
+
+      <div class="plate-grid">
+        <div class="plate">
+
+          <div class="layer">
+            <div class="layer-band z-core"><span class="lb-title">Layer 5 &mdash; Disclosure &amp; Regulatory Reporting</span><span class="lb-strap">external &middot; statutory &middot; regulatory outputs</span></div>
+            <div class="cells cols-3">
+              <div class="cell"><span class="cap">External / Statutory Reporting</span><span class="sys">Workiva (Wdesk)</span></div>
+              <div class="cell"><span class="cap">Regulatory &amp; Liquidity Reporting</span><span class="sys">CCH Tagetik</span></div>
+              <div class="cell"><span class="cap">Management Information / BI</span><span class="sys">Microsoft Power BI</span></div>
+            </div>
+          </div>
+
+          <div class="uparrow" aria-hidden="true">&#9650;</div>
+
+          <div class="layer">
+            <div class="layer-band z-core"><span class="lb-title">Layer 4 &mdash; Consolidation &amp; Group Reporting</span><span class="lb-strap">elimination &middot; group view</span></div>
+            <div class="cells cols-1">
+              <div class="cell"><span class="cap">Consolidation</span><span class="sys">Oracle FCCS</span></div>
+            </div>
+          </div>
+
+          <div class="uparrow" aria-hidden="true">&#9650;</div>
+
+          <div class="layer">
+            <div class="layer-band z-core"><span class="lb-title">Layer 3 &mdash; Planning &amp; Management Accounting</span><span class="lb-strap">forward-looking &middot; internal view</span></div>
+            <div class="cells cols-2">
+              <div class="cell"><span class="cap">Planning, Budgeting &amp; Forecasting</span><span class="sys">Oracle EPM Planning</span></div>
+              <div class="cell"><span class="cap">Cost Allocation &amp; Transfer Pricing</span><span class="sys">Oracle PCMCS</span></div>
+            </div>
+          </div>
+
+          <div class="uparrow" aria-hidden="true">&#9650;</div>
+
+          <div class="layer">
+            <div class="layer-band z-core"><span class="lb-title">Layer 2 &mdash; Core Ledger &amp; Record-to-Report</span><span class="lb-strap">system of record</span></div>
+            <div class="cells cols-4">
+              <div class="cell"><span class="cap">General Ledger</span><span class="sys">Oracle Fusion ERP</span></div>
+              <div class="cell"><span class="cap">Reconciliations</span><span class="sys">AutoRek</span></div>
+              <div class="cell"><span class="cap">Intercompany</span><span class="sys">Oracle Intercompany</span></div>
+              <div class="cell"><span class="cap">Tax &mdash; Accounting &amp; Provisioning</span><span class="sys">Oracle TRCS</span></div>
+            </div>
+          </div>
+
+          <div class="uparrow" aria-hidden="true">&#9650;</div>
+
+          <div class="layer">
+            <div class="layer-band z-core"><span class="lb-title">Layer 1 &mdash; Financial Sub-ledgers / Source Systems</span><span class="lb-strap">sub-ledgers &rsaquo; general ledger</span></div>
+            <div class="cells cols-4">
+              <div class="cell"><span class="cap">Procure-to-Pay</span><span class="sys">Oracle Procurement Cloud</span></div>
+              <div class="cell"><span class="cap">Payments / Disbursements</span><span class="sys">Oracle Payments</span></div>
+              <div class="cell"><span class="cap">Revenue Management &amp; Billing</span><span class="sys">RevPort</span></div>
+              <div class="cell"><span class="cap">Project Accounting</span><span class="sys">Oracle Project Financials</span></div>
+            </div>
+            <div class="cells cols-3">
+              <div class="cell"><span class="cap">Treasury &amp; Cash Management</span><span class="sys">Kyriba</span></div>
+              <div class="cell"><span class="cap">Investment / Asset Accounting</span><span class="sys">BlackRock Aladdin</span></div>
+              <div class="cell"><span class="cap">Fund Accounting / NAV</span><span class="sys">FIS InvestOne</span></div>
+            </div>
+          </div>
+
+          <div class="uparrow" aria-hidden="true">&#9650;</div>
+
+          <div class="layer">
+            <div class="layer-band z-ins"><span class="lb-title">Layer 1 &middot; Insurance &mdash; Actuarial Sub-ledger Domain</span><span class="lb-strap">WTW Unify orchestration &middot; pipeline &rsaquo; GL</span></div>
+            <div class="cells pipeline">
+              <div class="cell c-ins"><span class="cap">Policy Data &Dagger;</span><span class="sys">BaNCS &middot; Sonata &middot; WTW</span></div>
+              <div class="parrow" aria-hidden="true">&rarr;</div>
+              <div class="cell c-ins"><span class="cap">Actuarial Engine</span><span class="sys">WTW RAFM</span></div>
+              <div class="parrow" aria-hidden="true">&rarr;</div>
+              <div class="cell c-ins"><span class="cap">Results Datastore</span><span class="sys">In-house (Azure)</span></div>
+              <div class="parrow" aria-hidden="true">&rarr;</div>
+              <div class="cell c-ins"><span class="cap">IFRS 17 Engine</span><span class="sys">Oracle Accounting Hub</span></div>
+              <div class="to-gl"><em>to General Ledger</em></div>
+            </div>
+          </div>
+
+          <div class="uparrow" aria-hidden="true">&#9650;</div>
+
+          <div class="layer">
+            <div class="layer-band z-hr"><span class="lb-title">Boundary &mdash; Finance / HR &mdash; People Estate</span><span class="lb-strap">HR-owned; feeds Finance for cost</span></div>
+            <div class="cells cols-4">
+              <div class="cell"><span class="cap">Payroll</span><span class="sys">Workday</span></div>
+              <div class="cell"><span class="cap">Travel &amp; Expense</span><span class="sys">Egencia &middot; Workday Exp.</span></div>
+              <div class="cell"><span class="cap">Bonus / Compensation</span><span class="sys">Workday Adv. Comp.</span></div>
+              <div class="cell"><span class="cap">Workforce Reporting</span><span class="sys">Workday</span></div>
+            </div>
+          </div>
+
+          <div class="uparrow" aria-hidden="true">&#9650;</div>
+
+          <div class="layer">
+            <div class="layer-band z-plat"><span class="lb-title">Platform &mdash; Foundation &mdash; Cross-cutting</span><span class="lb-strap">serves every layer above</span></div>
+            <div class="cells cols-3">
+              <div class="cell"><span class="cap">Reference / Master Data Mgmt</span><span class="sys">Oracle EDM</span></div>
+              <div class="cell"><span class="cap">Orchestration &amp; Workflow</span><span class="sys">Oracle EPM Task Manager</span></div>
+              <div class="cell"><span class="cap">Financial Controls &amp; Attestation</span><span class="sys">MetricStream</span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <aside class="commentary">
+          <p class="com-title">Commentary</p>
+          <p class="com-sub">why this architecture works</p>
+          <hr class="com-rule">
+          <p>This is a strategic architecture, not a list of tools. It places a few enterprise platforms at the core and calls on specialists only where a domain truly demands them.</p>
+          <p class="com-head">Concentration, not sprawl</p>
+          <p>The finance spine runs on one Oracle EPM and ERP estate, with Microsoft for data, Workday for people and WTW for actuarial. Fewer platforms mean fewer interfaces, lower run cost and a single upgrade path.</p>
+          <p class="com-head">Specialists at the edge</p>
+          <p>Actuarial modelling, investment and fund accounting, treasury, reconciliation and controls each keep a best-in-class system, rather than stretching a generalist platform into work it does poorly.</p>
+          <p class="com-head">One owner, clean lineage</p>
+          <p>Each capability has a single system of record, and data moves one way &mdash; capture to ledger to consolidation to disclosure. That gives the auditable lineage a regulated insurer depends on.</p>
+          <p class="com-head">Built to scale and to govern</p>
+          <p>Measurement is kept out of the ledger, so the GL stays thin and durable, and cloud platforms absorb new books, new rules and IFRS 17 without re-platforming.</p>
+          <p class="com-close"><em>A few strategic bets, a clear flow of data, and specialists only where they earn their place.</em></p>
+        </aside>
+      </div>
+
+      <p class="plate-foot"><span>Sources: APQC Process Classification Framework, &lsquo;Manage Financial Resources&rsquo;; IFRS 17, effective 1 January 2023 (IASB).</span><span class="pf-right"><em>Data flow: capture &rsaquo; ledger &rsaquo; consolidation &rsaquo; disclosure</em></span></p>
+    </section>
+    <section id="principles" class="arch-block">
+      <div class="sec-band z-core"><h2 class="sb-title">Design Philosophy &mdash; The Architecture in Eight Principles</h2></div>
+      <ol class="principles">
+        <li><b>Concentration, not sprawl.</b> A single Oracle ERP and EPM spine carries the core, with Microsoft for data, Workday for people and WTW for actuarial &mdash; a handful of platforms doing most of the work.</li>
+        <li><b>Specialists at the edge.</b> Actuarial modelling, investment and fund accounting, treasury, reconciliation and controls each keep a best-in-class system rather than stretching a generalist into work it does poorly.</li>
+        <li><b>A thin, durable ledger.</b> Measurement is held upstream and downstream, so the general ledger records consequence rather than detail and absorbs new books and rules without re-platforming.</li>
+        <li><b>One record per capability.</b> Each capability has a single system of record, so there is one version of every number and no duplicated entry.</li>
+        <li><b>A one-way flow of data.</b> Information travels from capture to ledger to consolidation to disclosure, entering the books only through controlled bridges.</li>
+        <li><b>Governed master data.</b> A single master-data spine owns the chart of accounts and the hierarchies, which is what makes clean, auditable lineage possible.</li>
+        <li><b>Orchestrated, not manual.</b> Workflow fabrics drive the actuarial pipeline and the close, replacing manual checklists with governed, audited runs.</li>
+        <li><b>Evidenced control.</b> Controls, testing and attestation are designed across finance, so the architecture is auditable by construction rather than by retrofit.</li>
+      </ol>
+    </section>
+
+    <section id="companion" class="arch-block">
+      <div class="sec-band z-core"><h2 class="sb-title">The Shape of the Architecture</h2><span class="sb-strap">layers &middot; direction of flow</span></div>
+      <p class="sec-strapline">Five layers &middot; two boundaries &middot; one foundation</p>
+      <div class="twocol">
+      <p>The plate is drawn in layers and numbered from the top down, yet the data runs the other way: capture at the bottom, then ledger, then consolidation, then disclosure at the top. These notes follow the direction of travel rather than the numbering, working up from the source systems to the external outputs before turning to the two boundaries and the foundation that sit alongside. The aim is to explain not only what each component is, but why it was chosen and how it connects to the components above and below it.</p>
+      <p>Five core layers carry the main flow. Beneath the financial sub-ledgers sits a second, parallel Layer 1 for the insurer&rsquo;s actuarial measurement, because a life and pensions business has a measurement problem that an asset manager does not. Two zones sit to the side rather than in the upward flow: the people estate on the Finance&ndash;HR boundary, which is owned by HR and feeds Finance for cost, and the cross-cutting platform foundation, which serves every layer at once. Throughout, the same discipline recurs &mdash; measurement and detail are kept out of the ledger, each capability is owned once, and the connections between systems are deliberate.</p>
+
+      </div>
+      <div class="sec-band z-core"><h2 class="sb-title">Layer 1 &mdash; Financial Sub-ledgers / Source Systems</h2><span class="sb-strap">sub-ledgers &rsaquo; general ledger</span></div>
+      <p class="sec-strapline">Treasury &amp; cash management &middot; investment / asset accounting &middot; fund accounting / NAV</p>
+      <div class="twocol">
+      <p>This layer holds the operational books of record on the investment and treasury side of the house. Each system captures the full granularity of its own domain and posts only the summarised accounting consequence upward to the ledger, which is the discipline that keeps the general ledger thin. <b>Kyriba</b> is the treasury and cash-management platform: cash positioning and visibility across accounts, bank connectivity, liquidity and cash-flow forecasting, payment-factory functions and financial-risk management for foreign-exchange and interest-rate exposure. It is chosen as a specialist because treasury activity &mdash; intraday balances, bank-statement reconciliation, in-house banking, debt and investment instruments &mdash; carries a level of operational detail that a general ledger should never absorb; Kyriba holds that detail and surfaces to the ledger only the resulting cash and accounting entries.</p>
+      <p><b>BlackRock Aladdin</b> serves as the investment book of record for the group&rsquo;s asset portfolios, maintaining positions, market and model valuations, income, accruals and corporate actions across asset classes, together with the risk analytics for which the platform is best known. For a life and asset-management group the invested-asset base is the single largest driver of the balance sheet, so the choice of a dedicated, institution-grade investment system rather than a ledger asset module is deliberate and material. <b>FIS InvestOne</b> completes the layer as the fund-accounting and NAV engine, striking daily and periodic valuations and maintaining fund-level books of record for pooled, unitised and unit-linked funds. The two sit side by side &mdash; Aladdin the investment book of record, InvestOne the fund-accounting and NAV authority &mdash; and both feed the ledger and the actuarial pipeline downstream, each admitted because the domain demands it.</p>
+
+      </div>
+      <div class="sec-band z-ins"><h2 class="sb-title">Layer 1 &middot; Insurance &mdash; Actuarial Sub-ledger Domain</h2><span class="sb-strap">WTW Unify orchestration &middot; pipeline &rsaquo; GL</span></div>
+      <p class="sec-strapline">Policy data &middot; actuarial engine &middot; results datastore &middot; IFRS 17 engine</p>
+      <div class="twocol">
+      <p>This is the insurer&rsquo;s measurement pipeline, and it is orchestrated end to end by <b>WTW Unify</b>, the workflow and governance fabric that coordinates data collection, calculation execution, result review and the hand-off to accounting, with version control, effective-dating and a full audit trail over every run. Policy data originates in the core policy-administration systems &mdash; <b>TCS BaNCS</b> and <b>Sonata</b> &mdash; which hold policyholder records, premiums, claims and unit administration for the in-force life, annuity and pensions book. The plate marks these business- and operations-owned (&Dagger;): Finance consumes the data they produce rather than owning the systems, a boundary that keeps responsibility for policy administration with the operational areas that run it.</p>
+      <p>The actuarial engine is <b>WTW RiskAgility Financial Modeller (RAFM)</b>, which carries the IFRS 17 calculation across the Building Block, Variable Fee and Premium Allocation approaches &mdash; contractual service margin, risk adjustment, discounting and the roll-forwards that explain movement period to period. Its outputs land in an in-house <b>results datastore on Microsoft Azure</b>, consistent with the Microsoft-for-data axis that runs through the wider estate. The IFRS 17 engine is <b>Oracle Accounting Hub</b>, which applies accounting rules to those model results and posts the resulting journals into the Fusion ledger. This is the same sub-ledger-accounting role described in the General Ledger briefing, and it is the single most important bridge in the architecture: it gives IFRS 17 one controlled, auditable point of entry to the books, so that a measurement standard of considerable complexity resolves into journals through a governed gateway rather than a patchwork of feeds.</p>
+
+      </div>
+      <div class="sec-band z-core"><h2 class="sb-title">Layer 2 &mdash; Core Ledger &amp; Record-to-Report</h2><span class="sb-strap">system of record</span></div>
+      <p class="sec-strapline">General ledger &middot; reconciliations &middot; intercompany &middot; tax &middot; procure-to-pay &middot; payments &middot; revenue &amp; billing &middot; project accounting</p>
+      <div class="twocol">
+      <p>The system of record is the <b>Oracle Fusion ERP General Ledger</b>, and it is kept deliberately thin. Measurement happens upstream, in the actuarial and asset sub-ledgers, and downstream, in cost allocation and consolidation; the ledger itself records accounting consequence rather than transactional detail. Its embedded Essbase balances cube updates on posting, which is why a Fusion ledger can serve both transactional accounting and management reporting from the same place, without a separate reporting warehouse, while primary, secondary and reporting ledgers carry local GAAP and IFRS in parallel off a single set of source transactions. The result is a ledger that is durable and auditable, and that can absorb new books and new rules without being re-platformed.</p>
+      <p>Around the ledger sit its record-to-report companions, each chosen as a specialist. <b>AutoRek</b> is the reconciliations platform &mdash; a financial-services engine built for high-volume, controls-driven reconciliation, with insurance-specific content spanning premium and claims cash, bordereaux and reinsurance &mdash; preferred to generic ledger reconciliation precisely because the insurance reconciliation problem is large and regulated. <b>Oracle Intercompany</b> generates the due-to and due-from postings that keep legal entities individually in balance, with automated balancing and settlement, and <b>Oracle TRCS</b> handles current and deferred tax accounting and provisioning under IAS 12, integrated with the close and kept distinct from transactional and indirect tax.</p>
+      <p>The operational modules complete the layer and keep the procure-to-pay and revenue cycles on the same estate. <b>Oracle Procurement Cloud</b> runs requisition to purchase order to invoice, with supplier management alongside, and <b>Oracle Payments</b> orchestrates disbursement across BACS, CHAPS, Faster Payments and SWIFT. <b>RevPort</b> is the revenue-management and billing platform &mdash; a Broadridge solution purpose-built for asset managers that automates fee calculation, accruals, invoicing and general-ledger posting for complex, multi-currency fee arrangements &mdash; selected as a specialist for asset-management fee billing rather than a generic order-to-cash engine. <b>Oracle Project Financials</b> provides project costing, billing and capitalisation, principally for the internal change and transformation programmes through which a finance function of this size renews itself.</p>
+      </div>
+      <div class="sec-band z-core"><h2 class="sb-title">Layer 3 &mdash; Planning &amp; Management Accounting</h2><span class="sb-strap">forward-looking &middot; internal view</span></div>
+      <p class="sec-strapline">Planning, budgeting &amp; forecasting &middot; cost allocation &amp; transfer pricing</p>
+      <div class="twocol">
+      <p>This is the forward-looking, internal-management layer, and it runs on the Oracle EPM estate so that planning and the ledger share a single platform lineage. <b>Oracle EPM Planning</b> delivers driver-based financial, workforce and capital planning, rolling forecasts and scenario analysis, all seeded from ledger actuals so that plan and actual reconcile without manual bridging. <b>Oracle PCMCS</b> &mdash; Profitability and Cost Management Cloud Service &mdash; performs the overhead and cost-to-serve allocations, the profitability analysis by product, channel and fund, and the internal transfer pricing that a multi-line insurer and asset manager needs in order to understand where it makes and loses money. Holding allocation modelling here, deliberately outside the ledger, is one of the architectural choices that allows the general ledger to stay thin: the cost engine carries the driver logic and the iteration, and the ledger receives only the resulting allocated balances.</p>
+      <p>Planning here is not a standalone silo. Workforce planning draws its starting headcount and cost from the Workday actuals that cross the HR boundary, capital planning ties to the project portfolio in Oracle Project Financials, and every plan version reconciles to the ledger through the shared EPM platform, with Smart View giving the finance team an Excel surface onto the same multidimensional data. The effect is a forward view that is connected to the actual books rather than maintained apart from them.</p>
+
+      </div>
+      <div class="sec-band z-core"><h2 class="sb-title">Layer 4 &mdash; Consolidation &amp; Group Reporting</h2><span class="sb-strap">elimination &middot; group view</span></div>
+      <p class="sec-strapline">Consolidation</p>
+      <div class="twocol">
+      <p><b>Oracle FCCS</b> &mdash; Financial Consolidation and Close Cloud Service &mdash; provides multi-entity consolidation with elimination entries, currency translation under IAS 21, minority interests and group statutory output. The General Ledger briefing is explicit on the point that true multi-entity consolidation &mdash; eliminations, minority interests and cross-border restatement beyond what ledger translation offers &mdash; belongs in the EPM family rather than in the ledger itself, and FCCS is the natural expression of that principle here. It supplies the elimination and group-view machinery on top of a thin general ledger, takes its balances from the same Oracle estate that produces them, and feeds the disclosure layer above with a consolidated group position that is built once and reused.</p>
+      <p>Consolidation is also where the close is brought to a head. FCCS carries the close calendar for the group reporting cycle, applies the elimination and ownership rules consistently period on period, and collects the supplemental, non-transactional data &mdash; the disclosures and notes that do not originate as journals &mdash; that the statutory accounts require. From there a single consolidated position flows upward into Workiva for the annual report and into CCH Tagetik for the regulatory returns, so that one group number serves every external audience rather than being assembled differently for each.</p>
+
+      </div>
+      <div class="sec-band z-core"><h2 class="sb-title">Layer 5 &mdash; Disclosure &amp; Regulatory Reporting</h2><span class="sb-strap">external &middot; statutory &middot; regulatory outputs</span></div>
+      <p class="sec-strapline">External / statutory reporting &middot; regulatory &amp; liquidity reporting &middot; management information / BI</p>
+      <div class="twocol">
+      <p>The external layer separates statutory, regulatory and management outputs, and gives each to the tool best suited to it. <b>Workiva (Wdesk)</b> is the connected-reporting and disclosure-management platform for the annual report and statutory accounts: controlled, collaborative authoring with data linkage back to the consolidation, full version history and iXBRL/ESEF tagging for filing. <b>CCH Tagetik</b> is selected specifically for regulatory and liquidity reporting &mdash; Solvency II Quantitative Reporting Templates and the SFCR, IFRS 17 disclosure and liquidity returns &mdash; on the strength of its pre-built regulatory starter kits, which encode the templates and rules so that they need not be built from scratch.</p>
+      <p>The division of labour in this layer is deliberate. Oracle EPM runs core financial planning and group consolidation, while CCH Tagetik is deployed narrowly for insurance regulatory content &mdash; a specialist admitted at the edge even within the reporting layer, rather than a second general platform competing with the Oracle estate. <b>Microsoft Power BI</b> completes the layer with management dashboards and self-service business intelligence, drawing on the same governed data and closing the Microsoft-for-data axis that begins with the Azure results store in the actuarial pipeline. Statutory, regulatory and management readers are thus each served by a fit-for-purpose tool, from a single, consolidated source of truth.</p>
+      <p>What unites the disclosure layer is that every external number traces back to the same consolidated source. Workiva links its narrative and figures to the consolidation rather than to re-keyed spreadsheets, CCH Tagetik draws the regulatory templates from the same governed data, and Power BI reports from it rather than from extracts of unknown vintage. The tagging, the version history and the linkage are what make the annual report and the regulatory returns defensible under audit, and what allow a late change in the numbers to flow through to every output without manual re-statement.</p>
+
+      </div>
+      <div class="sec-band z-hr"><h2 class="sb-title">Boundary &mdash; Finance / HR &mdash; People Estate</h2><span class="sb-strap">HR-owned; feeds Finance for cost</span></div>
+      <p class="sec-strapline">Payroll &middot; travel &amp; expense &middot; bonus / compensation &middot; workforce reporting</p>
+      <div class="twocol">
+      <p>The people estate sits on the boundary between Finance and HR: it is HR-owned and runs on <b>Workday</b>, and it feeds Finance for cost. <b>Workday Payroll</b> provides gross-to-net with HMRC Real Time Information; <b>Workday Expenses</b>, with <b>Egencia</b> for travel booking, captures and reimburses travel and expense; <b>Workday Advanced Compensation</b> administers the merit, bonus and equity cycles; and Workday&rsquo;s workforce reporting supplies the headcount and cost data on which workforce planning depends. The boundary marker on the plate is a governance statement as much as a technical one: Workday is the single book of record for people data, and Finance consumes payroll cost, headcount and compensation accruals from it rather than re-keying them, so that there is one version of the workforce and one set of numbers flowing into the ledger and the plan.</p>
+      <p>The boundary is also where two governance regimes meet cleanly. Contingent and outsourced labour is administered on the HR side, with the IR35 and off-payroll determinations that the United Kingdom requires handled where the worker data lives, and Finance receives the resulting cost rather than the underlying employment detail. Payroll, expense and compensation accruals post to the ledger through controlled interfaces on the established cadence, so that the people cost in the accounts and the people cost in the plan are drawn from the same source and reconcile by construction.</p>
+
+      </div>
+      <div class="sec-band z-plat"><h2 class="sb-title">Platform &mdash; Foundation &mdash; Cross-cutting</h2><span class="sb-strap">serves every layer above</span></div>
+      <p class="sec-strapline">Reference / master data management &middot; orchestration &amp; workflow &middot; financial controls &amp; attestation</p>
+      <div class="twocol">
+      <p>Beneath every layer sit three cross-cutting capabilities on which the rest of the architecture depends. <b>Oracle EDM</b> &mdash; Enterprise Data Management Cloud &mdash; governs the chart of accounts and the entity, cost-centre and other hierarchies across the estate, providing the single, controlled master data without which clean lineage is impossible; when the chart changes, it changes once, under governance, and propagates. <b>Oracle EPM Task Manager</b> runs the close calendar &mdash; tasks, dependencies, owners and SLA monitoring &mdash; across ledgers and entities, and is the finance-close counterpart to Unify&rsquo;s orchestration of the actuarial domain. <b>MetricStream</b> provides the governance, risk and compliance layer &mdash; controls libraries, testing, attestation and the risk register &mdash; sitting across the whole of finance to evidence that controls are designed and operating, which is what turns a well-built architecture into an auditable one.</p>
+      <p>Taken together, the three platform capabilities are what allow the rest of the architecture to behave as a single system rather than a set of connected products. Master data flows from EDM so that every layer speaks the same chart of accounts and the same hierarchy; orchestration from Task Manager and Unify ensures that the actuarial pipeline and the financial close run to a governed schedule with dependencies enforced; and MetricStream provides the evidence &mdash; the tested controls and the attestations &mdash; that an auditor or a regulator will ask to see. None of the three keeps a ledger or models a liability, but without them the lineage on which the whole design rests could not be demonstrated.</p>
+
+      </div>
+      <div class="sec-band z-core"><h2 class="sb-title">Why It Hangs Together</h2><span class="sb-strap">lineage &middot; governance &middot; scale</span></div>
+      <p class="sec-strapline">Measurement out of the ledger &middot; one-way posting &middot; master data &middot; orchestration &middot; controls</p>
+      <div class="twocol">
+      <p>Three properties give the architecture its coherence and its auditability. First, measurement is held outside the ledger &mdash; in RAFM, Aladdin, InvestOne, PCMCS and FCCS &mdash; so that the general ledger stays thin and can absorb new books, new entities and IFRS 17 without re-platforming. Second, data moves in one direction and enters the ledger through controlled bridges, chiefly Oracle Accounting Hub for IFRS 17 postings, which gives end-to-end lineage from first capture to final disclosure. Third, the foundation enforces consistency through one master-data spine in EDM, two orchestration fabrics &mdash; Unify for the actuarial domain and Task Manager for the close &mdash; and one controls platform in MetricStream. Running that spine on a single Oracle ERP and EPM estate keeps interfaces and upgrade paths to a minimum, and specialists are admitted only where a domain genuinely demands them. The result is not a collection of tools but a system: a clear flow of data, a single owner for each capability, and the auditable lineage on which a regulated insurer depends.</p>
+      <p>The same properties are what let the estate change without disruption. A new fund, a new legal entity or a new reporting requirement is absorbed by the layer that owns it &mdash; a sub-ledger, a consolidation rule, a disclosure template &mdash; rather than by re-cutting the general ledger, and a new regulatory return is a configuration of CCH Tagetik rather than a new system. Concentration on a single Oracle estate keeps the upgrade path and the interface count low, which is what makes an architecture of this size maintainable over years rather than merely buildable once.</p>
+      <p>Read against the plate, the companion makes in prose the argument that the diagram makes in boxes: that a regulated insurer&rsquo;s finance estate is strongest when measurement, record-keeping and reporting are kept distinct, when each is owned in exactly one place, and when the connections between them are few, deliberate and governed.</p>
+      </div>
+    </section>
+    <section id="notes" class="arch-block">
+      <div class="sec-band z-core"><h2 class="sb-title">Platform Notes &mdash; The Major Systems, One Note Each</h2><span class="sb-strap">fourteen notes &middot; top of the stack to foundation</span></div>
+      <div class="twocol">
+      <p>Each note takes a single major platform &mdash; one that carries the Oracle spine, drives the balance sheet or the regulated measurement, or forms the cross-cutting foundation on which lineage depends &mdash; and reads it against the eight principles of the design. Fourteen notes in all, ordered from the disclosure layer down through consolidation, planning, the core ledger and the source systems to the foundation. The supporting second-tier specialists are named within these pages but reserved for a later volume.</p>
+      </div>
+
+      <div class="page-content">
+
+      <nav class="pn-tabs" aria-label="Platform notes">
+        <button class="pn-tab" type="button" data-pn="pn-1" aria-controls="pn-1" aria-expanded="false">Workiva (Wdesk)</button>
+        <button class="pn-tab" type="button" data-pn="pn-2" aria-controls="pn-2" aria-expanded="false">CCH Tagetik</button>
+        <button class="pn-tab" type="button" data-pn="pn-3" aria-controls="pn-3" aria-expanded="false">Microsoft Power BI</button>
+        <button class="pn-tab" type="button" data-pn="pn-4" aria-controls="pn-4" aria-expanded="false">Oracle FCCS &mdash; Consolidation</button>
+        <button class="pn-tab" type="button" data-pn="pn-5" aria-controls="pn-5" aria-expanded="false">Oracle EPM Planning</button>
+        <button class="pn-tab" type="button" data-pn="pn-6" aria-controls="pn-6" aria-expanded="false">Oracle Fusion ERP &mdash; General Ledger</button>
+        <button class="pn-tab" type="button" data-pn="pn-7" aria-controls="pn-7" aria-expanded="false">Oracle Accounting Hub (IFRS 17)</button>
+        <button class="pn-tab" type="button" data-pn="pn-8" aria-controls="pn-8" aria-expanded="false">BlackRock Aladdin</button>
+        <button class="pn-tab" type="button" data-pn="pn-9" aria-controls="pn-9" aria-expanded="false">FIS InvestOne</button>
+        <button class="pn-tab" type="button" data-pn="pn-10" aria-controls="pn-10" aria-expanded="false">Kyriba</button>
+        <button class="pn-tab" type="button" data-pn="pn-11" aria-controls="pn-11" aria-expanded="false">WTW RAFM</button>
+        <button class="pn-tab" type="button" data-pn="pn-12" aria-controls="pn-12" aria-expanded="false">Workday</button>
+        <button class="pn-tab" type="button" data-pn="pn-13" aria-controls="pn-13" aria-expanded="false">Oracle EDM</button>
+        <button class="pn-tab" type="button" data-pn="pn-14" aria-controls="pn-14" aria-expanded="false">MetricStream</button>
+      </nav>
+
+      <section class="pn-panel" id="pn-1">
+        <h3 class="pn-title"><span class="pn-name">Workiva (Wdesk)</span><span class="pn-ptag">Layer 5 &middot; Disclosure</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of the disclosure layer &mdash; the platform that turns the consolidated group position into the filed annual report</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 5 &middot; external &amp; statutory &middot; the last mile</span></h4>
+          <p>Workiva (NYSE: WK) is the connected-reporting and disclosure-management platform at the top of the stack; where the companion gives it a single paragraph, this note opens the box. It sits in Layer 5, owning the annual report and the statutory accounts, alongside CCH Tagetik for regulatory and liquidity returns and Power BI for management information. It keeps no ledger and measures nothing: its work is the last mile, where the consolidated group position &mdash; drawn here from Oracle FCCS &mdash; becomes a filed, tagged, audit-ready document. Originating as Wdesk in 2008 and now used by several thousand listed and regulated organisations, it is the market reference for disclosure management, and the platform on which the first Inline XBRL report accepted by the US SEC was filed.</p>
+          <h4 class="pn-label">The Linked-Data Model <span class="pn-strap">one source &middot; change once &middot; no re-keying</span></h4>
+          <p>The platform&rsquo;s defining mechanism is linking. A figure is held once, at source, and linked to every place it appears &mdash; the primary statements, the notes, the narrative, the board pack, the results announcement &mdash; so that changing it at source updates every linked instance, across hundreds or thousands of locations, in seconds; both data points and narrative may be linked in this way. Numbers are not re-typed from spreadsheets of uncertain vintage but pulled, on a schedule, from the systems that own them: through the platform&rsquo;s data layer and its connectors, balances flow from the general ledger and the consolidation &mdash; the Oracle estate and FCCS here &mdash; and refresh in place. This is precisely the discipline the companion describes: the report is bound to the consolidation, not to re-keyed extracts, so a late change reaches every output without manual restatement.</p>
+          <h4 class="pn-label">Control, Version &amp; Audit <span class="pn-strap">permissions &middot; history &middot; trace to source</span></h4>
+          <p>Because the report is a single living document rather than a chain of emailed files, control is intrinsic. Many authors work at once &mdash; finance on the statements, legal on the risk factors, investor relations on the narrative &mdash; within one version, with permissions set as finely as a page, a section or a single data point, so that segregation of duties holds within the drafting itself. Every change is captured with full version history and blacklines for comparison, and a complete audit trail lets a reviewer, an auditor or a regulator trace any figure to its source inside the platform rather than chase evidence by hand. A configurable workflow carries the document through its states &mdash; draft, in review, ready to file &mdash; recording review and sign-off as they occur.</p>
+          <h4 class="pn-label">Tagging &amp; Filing &mdash; The UK Context <span class="pn-strap">iXBRL &middot; UKSEF / ESEF &middot; FCA NSM</span></h4>
+          <p>For a UK-listed group the binding requirement is structured digital filing. Under the FCA&rsquo;s Disclosure Guidance and Transparency Rules (DTR 4.1), issuers with securities admitted to trading on UK-regulated markets must prepare the annual financial report in XHTML and tag it in Inline XBRL &mdash; the primary statements and the notes &mdash; and file it to the FCA&rsquo;s National Storage Mechanism; this has been mandatory for financial years beginning on or after 1 January 2021. Workiva tags in the same environment in which the report is drafted, designed and reviewed, so the data never leaves the platform, and it supports both the ESEF taxonomy and the FRC&rsquo;s UKSEF extension, which adds the UK-specific items &mdash; Streamlined Energy and Carbon Reporting among them &mdash; required by the FCA and Companies House. It also produces the iXBRL needed for HMRC corporation-tax returns, mandatory since 2011, with the validation, roll-forward and taxonomy-update routines that keep tagging consistent from one period to the next.</p>
+          <h4 class="pn-label">Adoption &amp; Assurance <span class="pn-strap">scale &middot; auditor familiarity &middot; adviser ecosystem</span></h4>
+          <p>Beyond its features, the platform&rsquo;s incumbency is itself part of the case. It is the most widely adopted disclosure-management tool among large listed companies, so auditors and advisers already work within it, and a mature alliance ecosystem &mdash; PwC and the other major firms among them &mdash; supports statutory, sustainability and transaction reporting on the platform. Because assurance providers trace evidence directly in the same environment in which the report is built, review is quicker and audit friction lower. For a regulated insurer whose filing obligations change little from year to year, that assurance-readiness, and the breadth of expertise available in the market, are practical advantages a less-established tool could not match.</p>
+          <h4 class="pn-label">Beyond the Annual Report <span class="pn-strap">sustainability &middot; controls &middot; AI &middot; the architectural fit</span></h4>
+          <p>The same platform reaches past the statutory accounts. It hosts sustainability and integrated reporting against the CSRD and ISSB regimes &mdash; strengthened by the 2024 acquisition of the Sustain.Life carbon-accounting engine &mdash; so that financial and non-financial disclosure can share one governed source and one assurance trail; it supports SOX-style controls and internal-audit work; and generative AI is now embedded for drafting, benchmarking and summarising narrative such as the management commentary. Read against the eight principles, Workiva is a specialist admitted at the edge of the reporting layer, doing one thing well and leaving measurement and consolidation to the layers below. Its contribution to lineage is decisive: it is where capture, ledger and consolidation finally become a filed document, bound to FCCS rather than to a parallel set of spreadsheets &mdash; a report and a statutory filing that are auditable by construction. One caveat of placement: in this architecture the Solvency II Quantitative Reporting Templates sit deliberately with CCH Tagetik, not here.</p>
+          <p class="pn-sources">Sources: FCA, Disclosure Guidance and Transparency Rules DTR 4.1 and Filing structured annual financial reports (National Storage Mechanism); FRC, UKSEF taxonomy; HMRC, Inline XBRL for Company Tax Returns; Workiva product documentation and ESEF/UKSEF solution pages; corporate facts per Workiva Inc. (NYSE: WK).</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-2">
+        <h3 class="pn-title"><span class="pn-name">CCH Tagetik</span><span class="pn-ptag">Layer 5 &middot; Regulatory</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of Layer 5 &mdash; the regulatory, liquidity and Solvency II engine for a regulated insurer</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 5 &middot; regulatory &middot; a specialist at the edge</span></h4>
+          <p>CCH Tagetik (Wolters Kluwer) carries the regulatory half of Layer 5: it produces the Solvency II returns, the SFCR, the IFRS 17 disclosures and the liquidity reporting a regulated insurer must file. It sits alongside Workiva, which owns the annual report and statutory accounts, and Power BI, which owns management information, and is admitted narrowly &mdash; a specialist at the edge even within the reporting layer, rather than a second general platform competing with the Oracle estate. Its purpose is to take the consolidated group position from Oracle FCCS and render it into the dense, rules-bound regulatory templates that prudential supervision requires, with the calculations and disclosures those standards demand.</p>
+          <h4 class="pn-label">Pre-Built Regulatory Content <span class="pn-strap">starter kits &middot; templates &middot; rules</span></h4>
+          <p>The reason a specialist is chosen here is content. CCH Tagetik ships pre-built regulatory starter kits that encode the templates, taxonomies and calculation rules &mdash; for Solvency II, IFRS 17 and related regimes &mdash; so they need not be built from scratch or maintained by hand as rules change. The Solvency II Quantitative Reporting Templates, the SFCR narrative and the supervisory returns are delivered as governed, repeatable processes rather than bespoke spreadsheets, and the vendor maintains them as regulation evolves. For a regulated insurer this turns a perennial, high-risk reporting burden into the configuration of a maintained platform.</p>
+          <h4 class="pn-label">A Finance Platform Beneath <span class="pn-strap">CPM &middot; data &middot; workflow &middot; audit</span></h4>
+          <p>Beneath the regulatory content sits a full corporate-performance-management platform: a governed data layer, a calculation engine, workflow with ownership and review, and an audit trail across the process. Numbers are drawn from the same governed source as the rest of the estate rather than re-keyed, transformations are transparent, and the returns carry the version history and sign-off that supervision expects. The platform also offers IFRS 17 measurement and disclosure content, but in this architecture that measurement is owned upstream &mdash; RAFM and the Accounting Hub &mdash; and CCH Tagetik is deployed specifically for the regulatory and liquidity output.</p>
+          <h4 class="pn-label">Solvency II &amp; The UK Regime <span class="pn-strap">PRA &middot; QRTs &middot; SFCR &middot; liquidity</span></h4>
+          <p>For a UK insurer the regulatory perimeter is the PRA&rsquo;s Solvency II regime &mdash; now diverging from the EU as Solvency UK &mdash; together with the SFCR, the regular supervisory return and liquidity reporting. CCH Tagetik&rsquo;s value is that these are pre-modelled and kept current: the QRTs, the disclosures and the returns are produced from the consolidated figures to the supervisor&rsquo;s templates, with the tagging and validation the filing requires. As the UK rules move away from the inherited EU text, a maintained regulatory platform absorbs the change as a content update rather than a rebuild &mdash; which is precisely why the burden was given to a specialist.</p>
+          <h4 class="pn-label">Drawn From One Source <span class="pn-strap">FCCS &middot; governed data &middot; no re-keying</span></h4>
+          <p>What unites CCH Tagetik with the rest of the layer is that every regulatory number traces back to the same consolidated source. It draws the templates from the governed data produced by FCCS rather than from re-keyed extracts, so the regulatory return, the annual report in Workiva and the management view in Power BI all rest on one group position. A late change in the numbers flows through to the returns without manual restatement, and the supervisor sees figures that reconcile to the accounts by construction. The specialist is admitted at the edge, but it is wired to the same single source of truth.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">a maintained specialist, narrowly deployed</span></h4>
+          <p>Read against the eight principles, CCH Tagetik is a specialist admitted only where the domain demands it: regulatory and liquidity reporting is a content-heavy, fast-changing problem that a generalist platform would serve poorly. It owns one capability, draws from the single consolidated source, and keeps measurement upstream. Its contribution is that the most template-bound, rule-driven outputs in the group &mdash; the Solvency II QRTs and the SFCR &mdash; are produced from maintained content rather than hand-built each cycle. A new return or a changed rule becomes a configuration of CCH Tagetik rather than a new system, which is what keeps the estate maintainable.</p>
+          <p class="pn-sources">Sources: CCH Tagetik / Wolters Kluwer documentation (regulatory starter kits; Solvency II and IFRS 17 content; the underlying CPM platform); the CCH &mdash; Wolters Kluwer portfolio reference; Solvency II / Solvency UK, the SFCR and supervisory returns (PRA); consolidated source per Oracle FCCS.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-3">
+        <h3 class="pn-title"><span class="pn-name">Microsoft Power BI</span><span class="pn-ptag">Layer 5 &middot; Management Information</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of Layer 5 &mdash; management information and self-service analytics from a single governed source</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 5 &middot; internal readers &middot; the MI view</span></h4>
+          <p>Microsoft Power BI completes Layer 5 with management information and self-service business intelligence. Where Workiva serves statutory readers and CCH Tagetik serves regulators, Power BI serves the internal audience &mdash; the board, the executive and the business &mdash; with dashboards and analysis. It closes the Microsoft-for-data axis that begins with the Azure results store in the actuarial pipeline, drawing on the same governed data the rest of the estate produces rather than on private extracts. Its purpose is not to be a book of record but to present what the records hold, so leadership steers from the same numbers that reach the accounts and the regulator.</p>
+          <h4 class="pn-label">Semantic Model &amp; Self-Service <span class="pn-strap">model &middot; measures &middot; drill &middot; refresh</span></h4>
+          <p>Power BI&rsquo;s strength is the governed semantic model: a defined layer of measures, relationships and hierarchies over which many users build their own reports without re-deriving the logic. Calculations are written once in the model and reused, so a metric means the same thing wherever it appears; reports refresh on a schedule against the source; and readers drill from a summary to the detail behind it. Self-service is therefore bounded by governance &mdash; business users explore freely, but on a curated model &mdash; which is what separates trustworthy management information from a proliferation of inconsistent spreadsheets.</p>
+          <h4 class="pn-label">Governance &amp; Distribution <span class="pn-strap">workspaces &middot; row-level security &middot; lineage</span></h4>
+          <p>Distribution is controlled. Content is published to workspaces and apps with role-based access; row-level security restricts what each reader sees; and certified or endorsed datasets mark the governed sources teams should build on. Lineage views show where a report&rsquo;s data originates, and sensitivity labels travel with exported content. For a regulated group this matters: management information is widely shared but must remain consistent and access-appropriate, and Power BI&rsquo;s governance &mdash; shared models, security and lineage &mdash; keeps a self-service estate from fragmenting into private, unreconcilable versions of the truth.</p>
+          <h4 class="pn-label">The Microsoft-for-Data Axis <span class="pn-strap">Azure &middot; Fabric &middot; one platform</span></h4>
+          <p>Power BI is the visible end of the group&rsquo;s Microsoft data platform. It reads from the governed enterprise data &mdash; including the Azure results store in the actuarial pipeline &mdash; and sits within the wider Microsoft Fabric and Azure estate the group runs for data, so the analytics layer shares the security and data foundation of everything beneath it. Concentrating management information on the same data platform avoids a separate BI silo with its own copies and its own definitions, and keeps the MI view connected, by construction, to the consolidated figures produced by FCCS and the source systems below.</p>
+          <h4 class="pn-label">One Source, Many Views <span class="pn-strap">FCCS &middot; governed datasets &middot; consistency</span></h4>
+          <p>What ties Power BI to the rest of the layer is that it reports from the governed source rather than from extracts of unknown vintage. It draws on the consolidated position and the source-system data the estate already produces, so the dashboard, the annual report and the regulatory return rest on one set of numbers. Management can slice and explore &mdash; by entity, product, channel or period &mdash; but on data that reconciles to the accounts. The result is an MI layer that is rich and self-service yet consistent with statutory and regulatory output, because all three read from the same place.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">self-service, without the sprawl</span></h4>
+          <p>Read against the eight principles, Power BI is the management-information specialist that delivers self-service without sacrificing a single source of truth. It owns the internal-reporting view, governed by shared models and security, and reports from the consolidated data rather than re-deriving it. Its contribution is to give leadership fast, flexible insight while keeping that insight tied to the same governed numbers as every external output &mdash; the antidote to the spreadsheet sprawl a finance function defaults to. A new dashboard or metric is built on the curated model, not on a fresh extract, which is what keeps management information trustworthy at scale.</p>
+          <p class="pn-sources">Sources: Microsoft Power BI documentation (semantic model and measures, row-level security, workspaces and apps, data lineage, sensitivity labels); Microsoft Fabric / Azure data platform; the Azure results store and the Microsoft-for-data axis per the architecture; consolidated source per Oracle FCCS.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-4">
+        <h3 class="pn-title"><span class="pn-name">Oracle FCCS &mdash; Consolidation</span><span class="pn-ptag">Layer 4 &middot; Consolidation</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of Layer 4 &mdash; where the group is consolidated and the close is brought to a head</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 4 &middot; elimination &middot; group view</span></h4>
+          <p>Oracle Financial Consolidation and Close Cloud Service (FCCS) carries Layer 4: it turns the balances of many legal entities into a single group position. It provides the machinery a multi-entity insurer needs and a ledger should not hold &mdash; intercompany elimination, currency translation under IAS 21, minority interests and group statutory output. It sits on top of the thin Fusion GL, takes its balances from the same Oracle estate that produces them, and supplies the consolidated group result to the disclosure layer above. The division of labour is deliberate: true consolidation &mdash; eliminations and cross-border restatement beyond what ledger translation offers &mdash; belongs in the EPM family, not in the general ledger.</p>
+          <h4 class="pn-label">The Consolidation Engine <span class="pn-strap">eliminations &middot; IAS 21 &middot; ownership</span></h4>
+          <p>At its core FCCS applies a consistent set of group rules period on period. Intercompany balances and transactions are eliminated against an ownership and entity structure; foreign-currency results are translated under IAS 21 with the cumulative translation adjustment carried correctly; minority (non-controlling) interests are calculated; and acquisitions and disposals are handled within the model. Supplemental, non-transactional data &mdash; the disclosures and notes that do not originate as journals &mdash; are collected here too, so that the consolidated picture is complete rather than merely arithmetic. The same governed chart and hierarchies, owned in Oracle EDM, ensure every entity consolidates in one language.</p>
+          <h4 class="pn-label">The Group Close <span class="pn-strap">calendar &middot; tasks &middot; sign-off</span></h4>
+          <p>Consolidation is also where the close is brought to a head. FCCS carries the group reporting calendar &mdash; tasks, dependencies, owners and status &mdash; and applies the elimination and ownership rules consistently each period, so the close runs to a governed schedule rather than a set of spreadsheets. It is the counterpart, at group level, to the entity close run in the Fusion GL and orchestrated by EPM Task Manager. The effect is a single, repeatable path from local books to a signed group result, with the supporting evidence captured as the close proceeds rather than reconstructed afterwards.</p>
+          <h4 class="pn-label">One Number, Many Audiences <span class="pn-strap">statutory &middot; regulatory &middot; management</span></h4>
+          <p>What FCCS produces is one consolidated position that serves every external reader. From it, a single group number flows upward into Workiva for the annual report and statutory accounts, into CCH Tagetik for the Solvency II and regulatory returns, and into Power BI for management information &mdash; rather than being assembled differently for each audience. For a regulated insurer, that single source is the foundation of consistency: the figure the regulator sees, the figure in the accounts and the figure on the board dashboard are the same figure, built once under governance and reused.</p>
+          <h4 class="pn-label">One Estate, Built Once <span class="pn-strap">native EPM &middot; shared data &middot; reuse</span></h4>
+          <p>FCCS is part of the Oracle EPM stack, alongside Planning, PCMCS and TRCS, and shares its data, security and master data rather than being interfaced to them. The consolidation reads the ledger that produced the balances, applies group rules once, and hands the result to disclosure &mdash; no re-keying, no parallel consolidation in spreadsheets. Running consolidation on the same estate as the ledger and the plan keeps the interface count low and the upgrade path single, which is what lets the group absorb a new entity or a changed ownership structure as a configuration of FCCS rather than as a new system.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">the group view, owned once</span></h4>
+          <p>Read against the eight principles, FCCS is the single owner of the group view: the one place eliminations, translation and minority interests are applied, sitting above a thin ledger and feeding every external output. Its value is that the consolidated position is built once and reused, with auditable lineage from the local books beneath it to the disclosures above. Measurement stays out of it &mdash; it consolidates consequence, it does not model &mdash; and a new book or a new rule is absorbed by the consolidation layer rather than by re-cutting the ledger. It is the hinge between record-keeping and reporting.</p>
+          <p class="pn-sources">Sources: Oracle FCCS documentation (eliminations, IAS 21 currency translation, minority interests, the close calendar); the General Ledger briefing (consolidation belongs in EPM, not the ledger); IAS 21 The Effects of Changes in Foreign Exchange Rates (IASB); group outputs to Workiva and CCH Tagetik per the architecture.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-5">
+        <h3 class="pn-title"><span class="pn-name">Oracle EPM Planning</span><span class="pn-ptag">Layer 3 &middot; Planning</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of Layer 3 &mdash; the forward-looking plan that connects strategy to the ledger</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 3 &middot; forward-looking &middot; internal view</span></h4>
+          <p>Oracle EPM Planning carries Layer 3: the forward-looking, internal view of the business &mdash; budgets, forecasts and the financial plan. Where the ledger records what happened and consolidation reports it, Planning models what is expected to happen, and does so on the same Oracle estate so that plan and actual are drawn from one source. It is the group&rsquo;s core financial planning platform, sitting alongside Oracle PCMCS for cost allocation and transfer pricing, and feeding management information rather than the statutory accounts. Its purpose is to make the plan a governed, connected artefact &mdash; not a sprawl of disconnected spreadsheets &mdash; that ties directly back to the chart of accounts and the actuals beneath it.</p>
+          <h4 class="pn-label">Driver-Based Modelling <span class="pn-strap">drivers &middot; scenarios &middot; rolling forecast</span></h4>
+          <p>Planning is built around driver-based models rather than static line entry. Assumptions and business drivers feed calculations that build the financial plan; multiple scenarios and versions can be held and compared; and rolling forecasts are maintained against actuals as the year unfolds. The platform supports the specialised plans a group needs &mdash; workforce and headcount, capital and project spend &mdash; and reconciles them into the financial plan. Because it shares the governed chart of accounts and hierarchies held in Oracle EDM, the plan is built in the same dimensions as the ledger, so a planned number and an actual number are directly comparable without mapping.</p>
+          <h4 class="pn-label">Plan Versus Actual <span class="pn-strap">one chart &middot; variance &middot; drill-back</span></h4>
+          <p>The value of running Planning on the Oracle estate is the closed loop with actuals. Actuals flow from the Fusion GL into Planning in the same dimensions, so budget-versus-actual variance is produced without reconciliation, and a variance can be drilled back to the ledger detail behind it. People cost flows in from Workday across the Finance&ndash;HR boundary; investment and fund results inform the asset side. The plan is therefore not a parallel universe but a forward extension of the same governed data, which is what makes a re-forecast a controlled update rather than a fresh round of spreadsheet collection.</p>
+          <h4 class="pn-label">The Insurer&rsquo;s Plan <span class="pn-strap">capital &middot; new business &middot; stress</span></h4>
+          <p>For a life and asset-management group, planning is more than a cost budget. It carries new-business and volume assumptions, expense and cost-allocation plans, and the capital and balance-sheet projections a regulated insurer must steer by. It connects to the actuarial and investment views that drive the group&rsquo;s economics, and supports the scenario and stress analysis that planning under uncertainty demands. Held in one governed platform, these plans roll up consistently and feed management reporting through Power BI, so leadership steers from a forward view that is built on the same numbers as the accounts.</p>
+          <h4 class="pn-label">One Estate, One Model <span class="pn-strap">native EPM &middot; shared data &middot; governance</span></h4>
+          <p>EPM Planning is part of the same Oracle EPM stack as FCCS, PCMCS and TRCS, sharing security, data and master data rather than being interfaced to them. Concentration on one estate keeps the plan, the consolidation and the ledger speaking the same language, with one upgrade path and one set of hierarchies. It replaces the classic failure mode of finance &mdash; a forest of linked workbooks with no governance &mdash; with a single, controlled planning system whose lineage is demonstrable. A new cost centre, product or scenario is a configuration of the model, not a new spreadsheet.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">the forward view, governed</span></h4>
+          <p>Read against the eight principles, Planning is the single owner of the forward view, kept in governed dimensions and tied to the actuals beneath it. Its contribution is that the plan and the accounts are one continuous data set rather than two, so management and statutory views reconcile by construction and a re-forecast flows through cleanly. Measurement of the balance sheet stays in the specialist engines; Planning consumes and projects rather than re-deriving. It completes the EPM layer above the ledger &mdash; plan, consolidate, disclose &mdash; on a single estate built to absorb change as configuration.</p>
+          <p class="pn-sources">Sources: Oracle EPM Planning (Planning and Budgeting Cloud) documentation (driver-based planning, scenarios and versions, workforce and capital planning); chart-of-accounts governance per Oracle EDM; plan-to-actual integration with Oracle Fusion GL; cost allocation per Oracle PCMCS.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-6">
+        <h3 class="pn-title"><span class="pn-name">Oracle Fusion ERP &mdash; General Ledger</span><span class="pn-ptag">Layer 2 &middot; Core Ledger</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of Layer 2 &mdash; the thin, durable ledger that records consequence, not detail</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 2 &middot; system of record &middot; record-to-report</span></h4>
+          <p>Oracle Fusion Cloud ERP carries Layer 2: the general ledger and the record-to-report spine on which the whole estate rests. It is the system of record &mdash; the single, governed book in which every entity&rsquo;s accounting consequence is held &mdash; and it is deliberately kept thin. Measurement and granular detail live upstream, in the sub-ledgers and the actuarial pipeline; the ledger receives only the summarised journals those systems post, so it records consequence rather than transaction-level detail. That discipline is what lets one ledger absorb a new fund, a new legal entity or IFRS 17 without re-platforming. Around it sit the Fusion modules &mdash; Payables, Receivables, Procurement, Payments, Projects, Intercompany, Tax &mdash; but the ledger itself is the anchor of the design.</p>
+          <h4 class="pn-label">A Thin, Multi-Ledger Core <span class="pn-strap">primary &middot; secondary &middot; reporting ledgers</span></h4>
+          <p>The ledger is multi-dimensional and multi-ledger by construction. A primary ledger holds the group&rsquo;s IFRS books, while secondary and reporting ledgers carry statutory or local-GAAP views and alternate currencies, each maintained in parallel and reconcilable by design. A single, governed chart of accounts &mdash; owned upstream in Oracle EDM &mdash; gives every entity the same account and hierarchy structure, so consolidation and disclosure read one language. An in-built Essbase cube sits over the ledger, allowing real-time, multi-dimensional reporting and full drill-down from a balance to the originating journal. The result is a ledger that is at once thin in what it stores and rich in how it can be queried.</p>
+          <h4 class="pn-label">The Close &amp; Its Controls <span class="pn-strap">period close &middot; journals &middot; audit trail</span></h4>
+          <p>Day to day, the ledger runs the financial close. Journals are captured, validated and approved through controlled workflow, with an audit trail on every entry and segregation of duties enforced by role. Period-end is orchestrated &mdash; open and close status by ledger and entity, with the close calendar carried in Oracle EPM Task Manager &mdash; so the group closes to a governed schedule rather than a set of manual checklists. Allocations, revaluations and translations run within the ledger to defined rules. Because the GL takes summarised postings through controlled bridges rather than re-keyed entries, the numbers in the accounts are traceable, by construction, to the systems that produced them.</p>
+          <h4 class="pn-label">One Estate, One Upgrade Path <span class="pn-strap">concentration &middot; cloud &middot; fewer interfaces</span></h4>
+          <p>The choice of Fusion ERP is a choice for concentration. Running the ledger, the EPM stack (Planning, FCCS, PCMCS, TRCS) and the Accounting Hub on a single Oracle estate keeps the interface count low and the upgrade path single: quarterly cloud updates apply across the suite, and the components share master data and security rather than being stitched together. For a regulated group, that coherence is a control in itself &mdash; fewer hand-offs, fewer reconciliations, and one place where the chart of accounts, the calendar and the security model are defined. It is the practical expression of the architecture&rsquo;s first principle: a handful of platforms doing most of the work.</p>
+          <h4 class="pn-label">The Bridges Into the Ledger <span class="pn-strap">Accounting Hub &middot; sub-ledgers &middot; one-way flow</span></h4>
+          <p>What protects the thin ledger is the way things enter it. The investment, fund-accounting and treasury books &mdash; Aladdin, InvestOne, Kyriba &mdash; post their summarised accounting effect upward; the actuarial results reach the ledger through Oracle Accounting Hub, which turns measured IFRS 17 outputs into balanced, audited journals. Data moves one way, from capture to ledger to consolidation to disclosure, and enters the books only through these controlled bridges. The ledger therefore never holds the underlying policy, position or instrument detail &mdash; it holds the consequence &mdash; and every figure in it carries a link back to the source that generated it.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">the anchor of the estate</span></h4>
+          <p>Read against the eight principles, the general ledger is the anchor: the one system of record for the group&rsquo;s accounting, kept thin so that it endures. Its contribution is not breadth of function but durability and lineage &mdash; it records the consequence of everything measured elsewhere, in one governed structure, on one estate, through controlled bridges. Consolidation, planning and disclosure all draw from it; the sub-ledgers and the actuarial pipeline all feed it. A new book, a new entity or a new standard is absorbed as configuration of the ledger and its bridges rather than as a re-build, which is exactly what a long-lived finance core must be able to do.</p>
+          <p class="pn-sources">Sources: Oracle Fusion Cloud ERP and General Ledger documentation (multi-ledger, period close, embedded Essbase reporting); the General Ledger briefing (record-to-report; the thin-ledger principle); IFRS 17 effective 1 January 2023 (IASB); chart-of-accounts governance per Oracle EDM.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-7">
+        <h3 class="pn-title"><span class="pn-name">Oracle Accounting Hub (IFRS 17)</span><span class="pn-ptag">IFRS 17 Bridge</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of the IFRS 17 bridge &mdash; where measured results become posted, auditable journals</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">the bridge &middot; actuarial results &rsaquo; ledger</span></h4>
+          <p>Oracle Accounting Hub sits at the single most sensitive join in the estate: the point where the actuarial measurement of insurance liabilities becomes accounting. The plate splits IFRS 17 deliberately &mdash; WTW RAFM measures, and the Accounting Hub posts &mdash; so that modelling and book-keeping are owned separately. Its job is to take the results of the IFRS 17 calculation (the contractual service margin, the fulfilment cash flows, the loss component) and turn them into balanced, audited journals in the Oracle GL. It is not a calculation engine and not a ledger; it is the controlled bridge that lets a third-party measurement system behave, to the general ledger, exactly like a native sub-ledger such as Payables.</p>
+          <h4 class="pn-label">An Accounting-Rules Engine <span class="pn-strap">sources &middot; rules &middot; balanced journals</span></h4>
+          <p>The Hub works by rules, not by re-keying. Business users define accounting rules against the source system&rsquo;s own data items &mdash; its sources &mdash; so that a journal&rsquo;s account, currency, debit or credit and description are derived from the contract group, cohort or transaction attribute. The engine then applies those rules to each incoming result and generates complete, balanced journal entries, processing primary, secondary and reporting ledgers in parallel and creating valid accounting for all or none. Because the rules live in finance and reference the source data directly, the mapping from a measured number to a posted journal is explicit, maintainable and owned by accountants rather than buried in code.</p>
+          <h4 class="pn-label">Lineage &amp; Audit Trail <span class="pn-strap">drill-back &middot; reconciliation &middot; evidence</span></h4>
+          <p>What makes the bridge defensible is the trail it keeps. Every posted journal retains a tight link to the originating transaction &mdash; distribution links, supporting references and source attributes carried onto the journal line &mdash; so a balance can be drilled back through the Hub to the actuarial result that produced it. Reconciliation and exception reporting let finance prove that what was measured equals what was posted before anything reaches the ledger of record. For a standard whose numbers are modelled, granular and assumption-driven, that visibility &mdash; measured input, applied rule, posted output, with exceptions surfaced for action &mdash; is the difference between an auditable IFRS 17 result and a black box.</p>
+          <h4 class="pn-label">IFRS 17 in the UK Insurer <span class="pn-strap">CSM &middot; GMM / VFA / PAA &middot; one standard</span></h4>
+          <p>For a UK life and pensions group, IFRS 17 &mdash; effective 1 January 2023 &mdash; is the standard that reshaped the insurance balance sheet, replacing IFRS 4 and introducing the contractual service margin and a uniform measurement of insurance contracts. The Accounting Hub is where that standard meets the books: it receives RAFM&rsquo;s measurement under the general measurement model, the variable fee approach or the premium allocation approach, and renders it into the new presentation &mdash; liability for remaining coverage, liability for incurred claims, insurance revenue &mdash; without the gross-written-premium and unearned-premium lines IFRS 4 once carried. One bridge, configured to the group&rsquo;s rules, serves every entity and every product.</p>
+          <h4 class="pn-label">One Estate, One Flow <span class="pn-strap">native to Oracle &middot; EDM &middot; FCCS</span></h4>
+          <p>Because the Hub is part of the Oracle estate, the IFRS 17 posting is not a bolt-on. It shares the chart of accounts and hierarchies governed in Oracle EDM, posts into the same Fusion GL that carries the rest of the group, and feeds the consolidated result upward into FCCS for the group view and into Workiva and CCH Tagetik for disclosure. The measurement detail stays in the actuarial pipeline; only the summarised, audited journals cross into the ledger. This is the architecture&rsquo;s one-way flow made concrete at its hardest point &mdash; the place where, in many insurers, actuarial and accounting fall out of step.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">measurement out of the ledger</span></h4>
+          <p>Read against the eight principles, the Accounting Hub embodies two of them: measurement held outside the ledger, and a one-way flow through controlled bridges. By owning the translation from modelled result to posted journal &mdash; and only that &mdash; it keeps the general ledger thin and the actuarial engine free to model, while guaranteeing that the two reconcile by construction. It is a small component with outsized importance: get this join wrong and the IFRS 17 numbers are indefensible; get it right, as this design does, and the most complex measurement in the group flows to the accounts with full lineage and no manual restatement.</p>
+          <p class="pn-sources">Sources: Oracle Accounting Hub Cloud Service documentation (accounting rules, sub-ledger journals, distribution links and supporting references); Oracle Financial Services IFRS 17 materials (CSM sub-ledger, productised interface to the Accounting Hub); IFRS 17 Insurance Contracts, effective 1 January 2023 (IASB); measurement engine per WTW RAFM.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-8">
+        <h3 class="pn-title"><span class="pn-name">BlackRock Aladdin</span><span class="pn-ptag">Layer 1 &middot; Source Systems</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of Layer 1 &mdash; the investment book of record for the group&rsquo;s invested assets</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 1 &middot; the largest balance-sheet driver</span></h4>
+          <p>BlackRock Aladdin serves as the investment book of record for the group&rsquo;s asset portfolios. For a life and asset-management group the invested-asset base is the single largest driver of the balance sheet, so the choice of a dedicated, institution-grade investment platform rather than a ledger asset module is deliberate and material. Aladdin maintains positions, market and model valuations, income, accruals and corporate actions across asset classes, and posts only the summarised accounting consequence upward to the ledger. It captures the full granularity of the investment domain &mdash; the detail a general ledger should never absorb &mdash; and surfaces to the GL and the actuarial pipeline the results that matter downstream.</p>
+          <h4 class="pn-label">One Investment Book of Record <span class="pn-strap">positions &middot; IBOR &middot; common data</span></h4>
+          <p>Aladdin&rsquo;s defining idea is a single, integrated investment book of record. Trades, cash movements, corporate actions and everything else that affects a position are captured in one place, in a common data language, across front, middle and back office. That integrated IBOR is what makes consistent valuation, exposure and accounting possible: positions and their economics are held once and used everywhere, rather than reconciled across fragmented systems. Through eFront, the same platform extends to private and alternative assets, giving a whole-portfolio view across public and private markets on one data model &mdash; important for an insurer whose asset mix spans both.</p>
+          <h4 class="pn-label">Risk, Valuation &amp; Analytics <span class="pn-strap">risk models &middot; scenarios &middot; stress</span></h4>
+          <p>Aladdin is best known for its risk analytics, and these matter as much to an insurer as the accounting. Proprietary multi-asset risk models, scenario analysis and stress testing run on the same governed position data, so risk, performance and valuation are read from one source rather than from separate tools. For a regulated balance sheet that must be steered through market volatility and assessed under prudential scenarios, that unified analytic layer &mdash; daily positions and exposures alongside model valuations and stress results &mdash; is a core capability, not an add-on, and it underpins the asset-side numbers that flow into measurement and reporting.</p>
+          <h4 class="pn-label">Asset&ndash;Liability &amp; the Insurer <span class="pn-strap">ALM &middot; SAA &middot; climate &middot; oversight</span></h4>
+          <p>For a life and pensions group the asset side cannot be read in isolation from the liabilities. Aladdin&rsquo;s investments in strategic asset allocation and asset&ndash;liability management support exactly that, and its climate analytics bring scenario-based climate risk onto the same platform &mdash; relevant as climate disclosure becomes part of the regulatory picture. Where a fund&rsquo;s NAV is struck by an administrator, Aladdin commonly provides the investment oversight and the analytic view over those records rather than replacing them. It is the institution-grade lens through which the group understands, values and governs the assets that dominate its balance sheet.</p>
+          <h4 class="pn-label">Into the Ledger &amp; the Pipeline <span class="pn-strap">summarised postings &middot; feeds &middot; oversight</span></h4>
+          <p>Aladdin sits in Layer 1 and feeds the layers above. It holds the investment detail and posts the summarised accounting effect into the Oracle GL, while supplying positions, valuations and income into the actuarial pipeline that measures the liabilities they back. The discipline is the architecture&rsquo;s: the ledger receives consequence, not the underlying instrument detail, and the asset numbers in the accounts and in the regulatory returns trace back to the investment book of record that produced them. It is admitted as a specialist because the domain &mdash; institutional, multi-asset, risk-intensive &mdash; genuinely demands one.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">a specialist where the balance sheet lives</span></h4>
+          <p>Read against the eight principles, Aladdin is the single book of record for the capability that most drives the group&rsquo;s balance sheet, admitted at the edge because the investment domain demands a best-in-class system. It keeps the granular position, valuation and risk detail out of the ledger and surfaces only the consequence, with lineage from the accounts back to the source. Its contribution is decisive precisely because, for a life and asset-management group, the assets are the business: getting their book of record, valuation and risk right is the foundation on which the ledger, the measurement and the disclosures all stand.</p>
+          <p class="pn-sources">Sources: BlackRock Aladdin documentation (investment book of record / IBOR; multi-asset risk models, scenario and stress analysis; eFront for private markets; strategic asset allocation, ALM and climate analytics for insurers); industry recognition (best buy-side IBOR; insurance asset-risk technology); investment-book role per the architecture companion.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-9">
+        <h3 class="pn-title"><span class="pn-name">FIS InvestOne</span><span class="pn-ptag">Layer 1 &middot; Source Systems</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of Layer 1 &mdash; the fund-accounting and NAV authority for pooled and unit-linked funds</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 1 &middot; fund books &middot; NAV authority</span></h4>
+          <p>FIS InvestOne (Asset Arena InvestOne) is the fund-accounting and NAV engine in Layer 1. It strikes daily and periodic valuations and maintains fund-level books of record for the group&rsquo;s pooled, unitised and unit-linked funds. It sits beside BlackRock Aladdin &mdash; Aladdin the investment book of record, InvestOne the fund-accounting and NAV authority &mdash; the two complementary rather than overlapping. Its purpose is the fund-accounting discipline an asset manager cannot do without: an accurate, controlled net asset value per fund, struck to a deadline, on which investors transact and from which the fund&rsquo;s books of record are kept.</p>
+          <h4 class="pn-label">Striking the NAV <span class="pn-strap">valuation &middot; trial balance &middot; pricing</span></h4>
+          <p>InvestOne&rsquo;s core work is the daily NAV. It values each fund&rsquo;s holdings, accrues income and expenses, processes corporate actions, and produces the fund trial balance from which the net asset value is calculated &mdash; for funds that price daily, every business day, to deadline. It handles the instrument types a diversified fund range demands and supports the multi-stage review by which fund accountants check valuations before release. The output is a defensible NAV and a complete fund book of record, which is the number investors deal on and the basis of the fund&rsquo;s own reporting.</p>
+          <h4 class="pn-label">Control &amp; Reconciliation <span class="pn-strap">reconciliation &middot; exceptions &middot; oversight</span></h4>
+          <p>Fund accounting is a control discipline as much as a calculation. InvestOne reconciles fund records to custodian, transfer-agent and portfolio data, surfaces exceptions for resolution, and supports the oversight and peer review that minimise the risk of a mis-struck NAV. It manages many funds on a single database with a large library of standard reports plus customisation, so a fund range is run consistently rather than fund by fund. For pooled and unit-linked business the accuracy and timeliness of these controls is what protects both the investor and the insurer from contingent liability.</p>
+          <h4 class="pn-label">Unit-Linked &amp; the Insurer <span class="pn-strap">unit pricing &middot; funds &middot; the asset manager</span></h4>
+          <p>For a life and asset-management group, fund accounting is doubly important. The unit-linked books that sit behind many life policies depend on accurate fund valuation and unit pricing, and the asset-management arm depends on a dependable NAV for its pooled vehicles. InvestOne provides the fund-accounting authority beneath both, feeding the fund-level numbers that the ledger and the actuarial pipeline consume. Whether the NAV is used to price units for policyholders or to report to fund investors, it is struck once, under control, in the system that owns fund accounting &mdash; not re-derived elsewhere.</p>
+          <h4 class="pn-label">Into the Ledger &amp; the Pipeline <span class="pn-strap">summarised postings &middot; feeds &middot; one source</span></h4>
+          <p>InvestOne sits in Layer 1 and feeds upward. It holds the fund-accounting detail and posts the summarised accounting effect into the Oracle GL, while supplying fund-level valuations and unit prices into the actuarial and reporting flows that need them. As with the other sub-ledgers, the ledger receives consequence rather than the underlying fund detail, and the fund numbers in the accounts trace back to the NAV authority that produced them. It is admitted as a specialist because daily, deadline-driven fund accounting and NAV are a domain a general ledger cannot serve.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">the NAV, owned in one place</span></h4>
+          <p>Read against the eight principles, InvestOne is the single owner of fund accounting and NAV, admitted at the edge because the domain demands a dedicated engine. It keeps the granular fund detail out of the ledger and surfaces only the consequence, with lineage from the accounts back to the struck NAV. Its contribution is the integrity of a number on which both policyholders and fund investors rely &mdash; the net asset value &mdash; produced to deadline, under control, in one place. A new fund or share class is onboarded into the same engine rather than spawning a new spreadsheet, which is what keeps the fund estate governed.</p>
+          <p class="pn-sources">Sources: FIS Asset Arena InvestOne materials and practitioner references (daily NAV, fund trial balance, many funds on a single database, 300+ standard reports, reconciliation and exceptions management); fund-administration practice (custodian / transfer-agent reconciliation and NAV oversight); fund-accounting role per the architecture companion.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-10">
+        <h3 class="pn-title"><span class="pn-name">Kyriba</span><span class="pn-ptag">Layer 1 &middot; Source Systems</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of Layer 1 &mdash; the treasury and cash-management platform that keeps the ledger thin</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 1 &middot; treasury &middot; cash &amp; liquidity</span></h4>
+          <p>Kyriba is the treasury and cash-management platform in Layer 1: a cloud liquidity-performance platform that owns cash visibility, forecasting, payments and financial-risk management for the group. It sits among the source systems beside Aladdin and InvestOne, holding the intraday and bank-level detail of the group&rsquo;s cash that a general ledger has no business carrying. Its purpose is to give the office of the CFO and the treasurer a single, real-time view of cash across accounts, entities, countries and currencies, and to surface to the ledger only the summarised accounting effect &mdash; keeping the GL thin while the operational detail of treasury lives where it belongs.</p>
+          <h4 class="pn-label">Cash, Forecasting &amp; Payments <span class="pn-strap">visibility &middot; forecast &middot; payments factory</span></h4>
+          <p>Kyriba unifies the treasury cycle on one platform. It delivers real-time cash-position dashboards from prior-day and intraday bank reporting; it forecasts cash and liquidity &mdash; increasingly with AI &mdash; across multiple scenarios and horizons; and it runs a payments factory that standardises and controls outbound payments from any ERP, with fraud screening on the flow. Cash pooling and in-house banking give real-time intercompany positions and interest calculation. These are the operational mechanics of treasury, run in one governed system rather than across a patchwork of bank portals and spreadsheets, which is what makes the group&rsquo;s cash both visible and controllable.</p>
+          <h4 class="pn-label">Reconciliation &amp; Accounting <span class="pn-strap">bank-to-book &middot; journals &middot; audit</span></h4>
+          <p>Kyriba is also where treasury meets the books. It performs bank-to-book (GL) reconciliation &mdash; matching bank transactions against booked entries imported from the general ledger &mdash; and generates journal entries for its cash and liquidity models, tracking treasury financial transactions (investments, debt, risk instruments) end to end. So the bridge into the ledger is clean: Kyriba holds the bank-level detail and the treasury accounting, then posts the summarised consequence into the Oracle GL with an audit trail. The ledger sees the cash and accounting effect, not every bank line &mdash; exactly the discipline the architecture applies to every sub-ledger.</p>
+          <h4 class="pn-label">Risk &amp; the Regulated Group <span class="pn-strap">FX &middot; interest rate &middot; controls</span></h4>
+          <p>For a regulated group, treasury is a risk function as much as a cash function. Kyriba supports exposure management, hedging, valuation and compliance for FX and interest-rate risk on the same platform, helping protect cash flows and earnings from market volatility &mdash; material for an insurer whose balance sheet is rate-sensitive. Its controls matter too: real-time payment-fraud screening, segregation of duties on the payments flow, and recognised security and assurance (ISO 27001, SOC 1 and SOC 2). Treasury risk and payment control are run as governed processes, which is what a regulated firm requires of the system that moves its money.</p>
+          <h4 class="pn-label">Connected to Banks &amp; ERP <span class="pn-strap">around 10,000 banks &middot; Oracle &middot; one source</span></h4>
+          <p>Kyriba&rsquo;s reach is its connectivity. It connects out of the box to thousands of banks &mdash; the platform cites in the order of 10,000 &mdash; and to the major ERPs, with pre-built connectors for Oracle Cloud, SAP, Workday and others, carrying payments, statements, cash management, GL export and reconciliation. In this estate that means Kyriba sits between the banks and the Oracle GL, unifying bank and ERP data into one cash picture and posting the accounting effect upward. The group gets one real-time source for cash, wired to both its banks and its ledger, rather than a separate, manually reconciled treasury silo.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">the cash detail, owned at the edge</span></h4>
+          <p>Read against the eight principles, Kyriba is the single owner of treasury and cash, admitted at the edge because real-time, multi-bank cash and payments are a domain a general ledger cannot serve. It keeps the intraday, bank-level detail out of the ledger and posts only the consequence, with reconciliation and lineage back to the bank. Its contribution is control over the group&rsquo;s liquidity and the integrity of its payments, run as governed processes and surfaced to the books through a clean bridge. New banks or accounts are onboarded into the same platform rather than a new spreadsheet, which is what keeps cash visible and the ledger thin.</p>
+          <p class="pn-sources">Sources: Kyriba documentation (liquidity-performance platform; cash visibility and forecasting; payments factory; bank-to-book / GL reconciliation; connectivity to around 10,000 banks and major ERPs; ISO 27001, SOC 1 and SOC 2); industry recognition (treasury management system of the year, 2025); treasury role per the architecture companion.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-11">
+        <h3 class="pn-title"><span class="pn-name">WTW RAFM</span><span class="pn-ptag">Layer 1 &middot; Insurance</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of the actuarial domain &mdash; the engine that measures the insurance liabilities</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">Layer 1 &middot; insurance &middot; the measurement engine</span></h4>
+          <p>WTW RAFM (RiskAgility Financial Modeller) is the actuarial modelling engine in the insurance pipeline of Layer 1: the system that measures the group&rsquo;s insurance liabilities. It is where the economics of long-dated life and pensions business are computed &mdash; projected cash flows, reserves and the IFRS 17 measurement that the accounting then reflects. It sits within the actuarial domain alongside the policy-data systems (BaNCS, Sonata) that feed it and the in-house Azure results store that holds its output. Its purpose is singular and central: to produce the measured liability numbers on which the insurance balance sheet depends, before any of them become accounting.</p>
+          <h4 class="pn-label">Modelling the Liabilities <span class="pn-strap">cash flows &middot; reserves &middot; assumptions</span></h4>
+          <p>RAFM&rsquo;s core work is actuarial projection. It models the future cash flows of insurance and reinsurance contracts under defined assumptions &mdash; mortality, persistency, expenses, economic scenarios &mdash; and computes the reserves and liability measures the business requires. These are not ledger entries but modelled results: the output of a calculation engine run over policy data and assumption sets, at the granularity the standard and the business demand. This is the measurement the architecture deliberately keeps out of the general ledger; it is heavy, assumption-driven and iterative, and it belongs in a specialist actuarial engine, not in an accounting system.</p>
+          <h4 class="pn-label">IFRS 17 Measurement <span class="pn-strap">CSM &middot; fulfilment cash flows &middot; the split</span></h4>
+          <p>Under IFRS 17, RAFM performs the measurement half of the standard. It computes the fulfilment cash flows, the risk adjustment and the contractual service margin &mdash; the CSM that spreads profit over the life of the coverage &mdash; for each group of contracts. This is the architecture&rsquo;s deliberate split: RAFM measures, and Oracle Accounting Hub posts. The actuarial engine produces the numbers the standard requires; the accounting bridge turns them into balanced journals. Keeping the two apart means the modelling can be as sophisticated as the business needs while the ledger stays thin and the postings stay auditable &mdash; the modelled result and the booked result reconciling by design.</p>
+          <h4 class="pn-label">Orchestration &amp; Control <span class="pn-strap">Unify &middot; runs &middot; governance</span></h4>
+          <p>At enterprise scale, actuarial modelling is as much about control as calculation. RAFM is orchestrated within WTW&rsquo;s wider environment &mdash; the Unify framework that automates and governs the end-to-end actuarial process: data in, model runs, results out, with version control and an audit trail over the runs. This matters because IFRS 17 and prudential reporting demand that a measured number be reproducible and explicable, not the product of an untracked model run. Governed orchestration is what turns a powerful actuarial engine into a defensible measurement process, with results that can be traced from a posted journal back to the run that produced them.</p>
+          <h4 class="pn-label">In the Pipeline <span class="pn-strap">policy data &rsaquo; RAFM &rsaquo; Azure &rsaquo; Accounting Hub</span></h4>
+          <p>RAFM sits in a clear pipeline. Policy and contract data flow in from the administration systems (BaNCS, Sonata), which remain business-owned; RAFM measures; the results land in the in-house Azure results store; and the measured outputs cross into the Oracle GL through the Accounting Hub as IFRS 17 journals. Data moves one way, from policy data through measurement to accounting, and the liability numbers in the accounts and the regulatory returns trace back through this chain to the actuarial run. RAFM is the measurement heart of that pipeline &mdash; the specialist the insurance domain genuinely requires.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">measurement, owned by the actuaries</span></h4>
+          <p>Read against the eight principles, RAFM is the single owner of insurance measurement, admitted because the actuarial domain demands a dedicated engine and because measurement is deliberately held outside the ledger. It computes the liabilities &mdash; including the IFRS 17 CSM &mdash; and hands them to the accounting bridge, keeping the modelling sophisticated and the ledger thin. Its contribution is foundational for a life insurer: the largest and most complex numbers on the balance sheet are produced here, under governance, with lineage to the accounts. The split between measuring and posting is what makes those numbers both rigorous and auditable.</p>
+          <p class="pn-sources">Sources: WTW RiskAgility Financial Modeller and WTW Unify materials (actuarial projection; IFRS 17 measurement &mdash; fulfilment cash flows, risk adjustment and CSM; orchestration and governance of model runs); the WTW reference briefing; the IFRS 17 measure / post split per the architecture plate and companion; IFRS 17 (IASB).</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-12">
+        <h3 class="pn-title"><span class="pn-name">Workday</span><span class="pn-ptag">Finance / HR Boundary</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of the Finance&ndash;HR boundary &mdash; the people estate that feeds Finance for cost</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">the boundary &middot; HR-owned &middot; feeds Finance</span></h4>
+          <p>Workday is the people estate at the Finance&ndash;HR boundary: the single book of record for the workforce, owned by HR and consumed by Finance for cost. It is deliberately placed on the boundary rather than inside the finance stack &mdash; HR runs it, but it feeds Finance the people-cost numbers the plan and the ledger need. It carries payroll, expenses, compensation and workforce reporting on one unified data model. Its purpose, from Finance&rsquo;s point of view, is to be the authoritative source of what the workforce costs, posting that cost to the ledger through controlled interfaces while HR retains ownership of the underlying people data.</p>
+          <h4 class="pn-label">Payroll &amp; the Pay Cycle <span class="pn-strap">gross-to-net &middot; HMRC RTI &middot; accruals</span></h4>
+          <p>Workday Payroll runs the UK pay cycle: gross-to-net calculation, statutory deductions, and Real Time Information (RTI) reporting to HMRC on or before each payment. It is the engine that turns employment into a paid, reported and accounted cost. The payroll result posts to the Oracle GL as summarised journals through a controlled interface &mdash; the ledger receives the cost, not every payslip line &mdash; and accruals are carried where the standard requires. For Finance, payroll is one of the largest and most sensitive cost lines, and Workday is where it is calculated, reported to the revenue authority and rendered into accounting.</p>
+          <h4 class="pn-label">Expenses &amp; Compensation <span class="pn-strap">expenses &middot; travel &middot; advanced comp</span></h4>
+          <p>Around payroll sit the other people-cost processes. Workday Expenses captures and controls employee expense &mdash; with travel booked through Egencia and flowing in &mdash; so that travel and expense cost is governed rather than collected ad hoc. Workday Advanced Compensation runs the merit, bonus and equity cycles, holding the compensation decisions that drive a large part of future cost. Each feeds Finance the numbers it needs: expense to the ledger, compensation to both the ledger and the workforce plan. These are the components that, with payroll, make Workday the complete people-cost picture rather than a payroll engine alone.</p>
+          <h4 class="pn-label">IR35 &amp; the UK Context <span class="pn-strap">off-payroll &middot; workforce &middot; compliance</span></h4>
+          <p>For a UK employer the people estate carries specific compliance. Off-payroll working (IR35) determinations &mdash; who is genuinely outside payroll and who must be taxed as an employee &mdash; are handled on the HR side, within the workforce and payroll processes Workday governs, before cost reaches Finance. RTI keeps payroll reporting current with HMRC, and the workforce records support the headcount and cost reporting the group runs. Keeping these obligations with HR, on the system that owns the people data, is the right placement: Finance consumes a compliant, governed people-cost number rather than trying to administer employment itself.</p>
+          <h4 class="pn-label">At the Boundary <span class="pn-strap">single people record &rsaquo; GL &amp; plan</span></h4>
+          <p>Workday&rsquo;s place in the architecture is the boundary it occupies. It is the single book of record for people &mdash; one model spanning HCM, payroll, expenses, compensation and workforce reporting &mdash; and it feeds across the boundary into Finance: cost to the Oracle GL through controlled interfaces, and people cost and headcount into EPM Planning for the workforce plan. HR owns the data; Finance receives the consequence. This is the architecture&rsquo;s discipline applied to the people domain: a clear owner, a clear boundary, and a one-way flow of governed cost from the people system into the ledger and the plan.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">people, owned once, costed cleanly</span></h4>
+          <p>Read against the eight principles, Workday is the single book of record for the workforce, placed on the boundary because people data is HR-owned but people cost is a Finance input. It keeps the detailed people data out of the ledger and feeds across only the cost, through controlled interfaces, with the UK&rsquo;s payroll and off-payroll obligations handled where they belong. Its contribution is a clean, compliant people-cost number for both the ledger and the plan &mdash; no parallel HR spreadsheets, no re-keyed payroll. A new role, grade or pay cycle is configured in Workday and flows through, which is what keeps people cost governed.</p>
+          <p class="pn-sources">Sources: Workday documentation (HCM, Payroll, Expenses, Advanced Compensation and workforce reporting on a unified data model); HMRC Real Time Information (RTI) and off-payroll working (IR35) rules; the Workday reference briefing; the Finance&ndash;HR boundary and plan integration per the architecture companion.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-13">
+        <h3 class="pn-title"><span class="pn-name">Oracle EDM</span><span class="pn-ptag">Foundation</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of the foundation &mdash; the governed master data on which clean lineage depends</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">foundation &middot; master data &middot; shared by all</span></h4>
+          <p>Oracle EDM (Enterprise Data Management) is a foundation platform: the system that governs the group&rsquo;s financial master data &mdash; chiefly the chart of accounts and the entity, cost-centre and other hierarchies on which every other system depends. It does not produce numbers or reports; it produces the structures the numbers are recorded and aggregated in. It sits beneath the stack rather than in a layer, shared by the Fusion GL, FCCS, EPM Planning and the Accounting Hub alike. Its purpose is to make master data a single, governed asset &mdash; defined once, under control &mdash; rather than a set of locally maintained, slowly diverging code lists.</p>
+          <h4 class="pn-label">One Governed Chart <span class="pn-strap">CoA &middot; hierarchies &middot; single definition</span></h4>
+          <p>EDM&rsquo;s core is a single, authoritative definition of the group&rsquo;s reference structures. The chart of accounts, the legal-entity and management hierarchies, the cost-centre and segment structures are mastered here, with their relationships and alternate roll-ups maintained in one place. Because every consuming system draws the same structures, an account or a hierarchy means the same thing in the ledger, the consolidation, the plan and the regulatory return. This is what lets the estate read one language: the consistency that makes consolidation arithmetic clean and disclosure comparable begins with a chart that is defined once and shared, not reconciled.</p>
+          <h4 class="pn-label">Change Under Governance <span class="pn-strap">request &middot; approve &middot; version</span></h4>
+          <p>Master data changes constantly &mdash; new accounts, new cost centres, reorganised hierarchies &mdash; and EDM governs that change. Requests are made, reviewed and approved through workflow, with validation against rules and a full history of what changed, when and by whom. A change is modelled and checked before it is released, not made directly in each system and reconciled afterwards. For a regulated group this governance is itself a control: the structures that determine how every figure is classified and aggregated are altered only through an auditable, approved process, which keeps the foundation stable and the change trail defensible.</p>
+          <h4 class="pn-label">Propagate, Don&rsquo;t Diverge <span class="pn-strap">change once &middot; distribute &middot; alignment</span></h4>
+          <p>The principle EDM enforces is change once and propagate. An approved change to the chart or a hierarchy is distributed from EDM to every subscribing system &mdash; the GL, FCCS, Planning, the Accounting Hub &mdash; so they stay aligned by design rather than drifting apart and being reconciled. This is the direct antidote to the most corrosive failure in a large finance estate: the same account or cost centre meaning subtly different things in different systems. By mastering the structures centrally and pushing change outward, EDM keeps the whole estate consistent without the endless mapping that divergence would otherwise demand.</p>
+          <h4 class="pn-label">Beneath the Estate <span class="pn-strap">Oracle-native &middot; subscribers &middot; clean lineage</span></h4>
+          <p>EDM is part of the Oracle EPM stack and integrates natively with the GL, the consolidation, planning and the Accounting Hub, which subscribe to its structures. Its position beneath the estate is the point: lineage is only as clean as the master data the systems share, so a balance can be traced and aggregated consistently from source to disclosure precisely because every system was built on the same governed chart and hierarchies. The foundation is invisible in the outputs but present in all of them &mdash; the reason the numbers reconcile and aggregate the way they should.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">the structures, governed centrally</span></h4>
+          <p>Read against the eight principles, EDM is the embodiment of governed master data: the structures changed once, under control, and propagated to all. It is admitted as a foundation because consistency and lineage across the estate depend on it &mdash; without a single governed chart, every other principle is harder to keep. Its contribution is quiet but pervasive: it is why the ledger, the consolidation, the plan and the returns speak one language, and why change does not fragment the estate. A new account or hierarchy is governed and distributed, not locally invented, which is what makes the whole architecture maintainable.</p>
+          <p class="pn-sources">Sources: Oracle Enterprise Data Management (Cloud) documentation (mastering the chart of accounts and hierarchies; request-and-approve workflow; versioning; distribution to subscribing applications); the master-data governance principle &mdash; change once, propagate &mdash; per the architecture companion; native integration with Oracle GL, FCCS, Planning and the Accounting Hub.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      <section class="pn-panel" id="pn-14">
+        <h3 class="pn-title"><span class="pn-name">MetricStream</span><span class="pn-ptag">Foundation</span></h3>
+        <div class="acc-body">
+          <p class="pn-lede"><em>A closer view of the foundation &mdash; the controls and attestation that make the estate auditable</em></p>
+          <h4 class="pn-label">Position &amp; Purpose <span class="pn-strap">foundation &middot; GRC &middot; controls &amp; attestation</span></h4>
+          <p>MetricStream is a foundation platform for governance, risk and compliance: the system in which the group&rsquo;s financial controls, risk registers and attestations are managed. It does not hold the numbers; it holds the evidence that the processes producing the numbers are controlled. It runs as a single connected GRC platform across enterprise and operational risk, compliance, internal audit and financial controls, beneath the finance stack rather than in a reporting layer. Its purpose is to make control demonstrable &mdash; to turn the claim that controls operate from an assertion into evidenced, tested, signed-off fact across the estate.</p>
+          <h4 class="pn-label">Financial Controls &amp; SOX <span class="pn-strap">RCM &middot; testing &middot; assertions &middot; evidence</span></h4>
+          <p>At its core for finance, MetricStream runs the controls-over-financial-reporting programme. It holds the framework of processes, risks, controls, financial accounts, assertions, evidence and tests &mdash; organised in a Risk and Control Matrix &mdash; and manages the planning, scheduling and execution of control tests for design and operating effectiveness. Owners, reviewers and approvers are assigned; results, certifications and remediation are tracked; and the whole is held in one place with a relational model linking risks to controls to accounts. This is the machinery that makes financial control a managed, evidenced discipline rather than a spreadsheet exercise reconstructed at year-end.</p>
+          <h4 class="pn-label">Attestation &amp; Certification <span class="pn-strap">sign-off &middot; workflow &middot; audit trail</span></h4>
+          <p>Attestation is where control becomes accountability. MetricStream runs the surveys, certifications and sign-offs by which control and process owners attest that controls have operated, through structured workflow with notifications and a complete audit trail. Internal audit works on the same platform &mdash; risk-based planning, fieldwork, findings and follow-up &mdash; so assurance and the controls it tests share one source of evidence. For a regulated group this is the difference between asserting that controls work and being able to prove it, with the certifications and evidence an auditor or supervisor expects held in one governed system.</p>
+          <h4 class="pn-label">UK SOX &amp; the Regime <span class="pn-strap">internal controls &middot; UK reform &middot; frameworks</span></h4>
+          <p>For a UK group the control environment is moving. The UK&rsquo;s corporate-governance reforms have raised expectations for internal controls over financial reporting &mdash; a UK analogue to SOX &mdash; and MetricStream offers a dedicated capability for exactly this, providing a uniform, integrated approach to risk and control data across financial processes, with control testing, certification and evidence. It maps controls across multiple frameworks so one control can satisfy several regimes, rationalising the control set rather than multiplying it. As UK internal-controls expectations firm up, a maintained GRC platform absorbs them as configuration rather than a new programme.</p>
+          <h4 class="pn-label">Connected, Not Siloed <span class="pn-strap">shared libraries &middot; board view &middot; rationalised</span></h4>
+          <p>MetricStream&rsquo;s value as a foundation is that it is connected. Shared libraries of risks, controls and regulations span the GRC domains, so a regulatory change can flow to the controls and risks it affects, and a single control can be tested once against several frameworks. Role-based dashboards give the board and the executive a real-time view of top risks, control status and audit findings &mdash; increasingly with risk expressed in financial terms. Rather than separate, siloed tools for SOX, audit and risk, the group runs one platform whose connections keep the control picture coherent across the estate.</p>
+          <h4 class="pn-label">Why It Earns Its Place <span class="pn-strap">control, evidenced across the estate</span></h4>
+          <p>Read against the eight principles, MetricStream is the foundation that makes the estate auditable: evidenced control and attestation, owned in one connected platform. It admits no measurement and produces no accounts; it governs the controls and the evidence that everything else is produced under control. Its contribution is the assurance layer a regulated finance function cannot do without &mdash; tested controls, recorded attestations, an audit trail &mdash; held centrally and rationalised across frameworks. A new control or regulation is added to the shared library and tested, not tracked in a private spreadsheet, which is what keeps the whole architecture not just consistent but demonstrably controlled.</p>
+          <p class="pn-sources">Sources: MetricStream documentation (Connected GRC; financial controls and SOX &mdash; Risk and Control Matrix, control testing, assertions, evidence, certifications, remediation; internal audit; the UK SOX solution; shared libraries and control rationalisation; board dashboards and risk quantification); UK internal-controls / corporate-governance reform context; the evidenced-control principle per the architecture companion.</p>
+        </div>
+        <p class="pn-return-row"><button type="button" class="pn-return">&uarr;&nbsp;All fourteen systems</button></p>
+      </section>
+
+      </div>
+    </section>
+    <section id="sources" class="arch-block">
+      <div class="sec-band z-core"><h2 class="sb-title">Sources</h2><span class="sb-strap">references</span></div>
+      <p class="sec-strapline">Reference briefings &middot; plate sources &middot; external confirmation</p>
+      <p class="src-line"><b>Reference briefings consulted</b> &mdash; Oracle Fusion Cloud Applications; Oracle Fusion General Ledger; WTW Insurance Consulting &amp; Technology; CCH &mdash; the Wolters Kluwer portfolio; Workday Enterprise Platform.</p>
+      <p class="src-line"><b>Plate sources</b> &mdash; APQC Process Classification Framework, &lsquo;Manage Financial Resources&rsquo;; IFRS 17, effective 1 January 2023 (IASB).</p>
+      <p class="src-line"><b>External confirmation</b> &mdash; Broadridge (RevPort, fee billing for asset managers); AutoRek (financial-services reconciliation and controls); TCS BaNCS and Gartner Peer Insights (UK life &amp; pensions policy administration).</p>
+    </section>
+
+  </main>
+
+<footer class="footband">
+  <a class="name" href="index.html">Amin Bilal</a>
+  <nav aria-label="Footer sections">
+    <a href="latest/">Latest</a>
+    <a href="technology.html">Technology</a>
+    <a href="physics.html">Physics</a>
+    <a href="markets.html">Markets</a>
+    <a href="quotes.html">Quotes</a>
+    <a href="books.html">Books</a>
+    <a href="football/">Football</a>
+  </nav>
+  <p class="tag">A worked reference architecture &middot; part of Executive Technology Literacy &middot; &copy; 2026</p>
+</footer>
+
+
+<script>
+(function(){
+  var tabs = [].slice.call(document.querySelectorAll('.pn-tab'));
+  var panels = [].slice.call(document.querySelectorAll('.pn-panel'));
+  if (!tabs.length || !panels.length) return;
+  function show(id, scroll){
+    panels.forEach(function(p){ p.hidden = (p.id !== id); });
+    tabs.forEach(function(b){
+      var on = b.getAttribute('data-pn') === id;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    if (scroll){ var p = document.getElementById(id); if (p) p.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+  tabs.forEach(function(b){ b.addEventListener('click', function(){ show(b.getAttribute('data-pn'), true); }); });
+  [].slice.call(document.querySelectorAll('.pn-return')).forEach(function(b){
+    b.addEventListener('click', function(){ document.querySelector('.pn-tabs').scrollIntoView({behavior:'smooth', block:'start'}); });
+  });
+  show('pn-1', false);
+})();
+</script>
+</body>
+</html>
