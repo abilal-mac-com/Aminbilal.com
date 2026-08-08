@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#131110">
+<meta name="theme-color" content="#110B0E">
 <title>Amin Bilal</title>
 <meta name="description" content="A miscellany of personal essays — a bit of this and a bit of that, pursued in earnest — on markets, physics and whatever else catches my interest.">
 
@@ -102,11 +102,18 @@
   ============================================================
 -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/Geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/Caveat.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Faces served from /assets/fonts via the @font-face block below; no external font request.
+     v5.0 (Aug 2026): fonts and accent unified with the estate; the landing keeps its own
+     small stylesheet, the photograph being its ground. -->
 
 <style>
+  @font-face{font-family:'Geist';font-style:normal;font-weight:100 900;font-display:swap;src:url('/assets/fonts/Geist.woff2') format('woff2');}
+  @font-face{font-family:'Geist Mono';font-style:normal;font-weight:100 900;font-display:swap;src:url('/assets/fonts/GeistMono.woff2') format('woff2');}
+  @font-face{font-family:'Newsreader';font-style:normal;font-weight:200 800;font-display:swap;src:url('/assets/fonts/Newsreader.woff2') format('woff2');}
+  @font-face{font-family:'Newsreader';font-style:italic;font-weight:200 800;font-display:swap;src:url('/assets/fonts/NewsreaderIt.woff2') format('woff2');}
+  @font-face{font-family:'Caveat';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/Caveat.woff2') format('woff2');}
   /* ============================================================
      index.html — presentation layer
      "The Drafting Board" — August 2026 restyle
@@ -151,10 +158,10 @@
   :root{
     --white:#FFFFFF;
     --b-tx:#F1ECE2;
-    --rose:#E8546F;
-    --display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
-    --serif:'Newsreader',Georgia,'Times New Roman',serif;
-    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    --rose:#F0566F;   /* v5 unified accent */
+    --display:'Geist','Helvetica Neue',Arial,sans-serif;
+    --serif:'Newsreader','Geist',Georgia,serif;
+    --mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
     --hand:'Caveat','Segoe Script','Bradley Hand',cursive;
     --ease:cubic-bezier(.22,.72,.24,1);
 
@@ -171,7 +178,7 @@
   }
   a{ color:var(--white); text-decoration:none; }
   [hidden]{ display:none !important; }
-  ::selection{ background:rgba(232,84,111,.3); }
+  ::selection{ background:rgba(240,86,111,.3); }
 
   /* ---- fixed background layers (untouched) ---- */
   .bg{
