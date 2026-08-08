@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#131110">
 <title>Quotes &mdash; Amin Bilal</title>
 <meta name="description" content="A commonplace book: notable quotations, grouped by theme, with attribution carried only as far as the evidence goes.">
 <meta name="author" content="Amin Bilal">
@@ -81,129 +82,324 @@
 
   Sections: #understanding  #markets  #work  #history
 
-  DRESS (July 2026 site restyle)
-    The page opens with the crimson masthead band (wordmark
-    returning to the landing page; six section links; current
-    page marked) and closes with the reversed foot band. The
-    section mark (the comma pair) sits above the kicker. All
-    of it is CSS and inline SVG - no external requests.
+  DRESS (August 2026 site restyle - "The Drafting Board")
+    The page opens with the dark glass band (wordmark returning to
+    the landing page; six section links; current page marked) and
+    closes with the reversed foot band. The commonplace book itself
+    sits on a light grey sheet laid on the dark board, each
+    quotation a white card. The section mark - the comma pair -
+    sits above the kicker and writes itself on load. The house
+    crimson rules the light sheet; on the dark board it lifts to a
+    rose of the same hue, the crimson being illegible there. All of
+    it is CSS and inline SVG - no external requests beyond the
+    established font link.
+
+  PAGE ARCHITECTURE
+    header.band
+    section.hero          -> mark, kicker, title, standfirst
+    main > section.sheet > div.sheet-inner > div.book
+                          -> the four folds (details.sec)
+    footer.footband
+
+    The page previously set its own 760px measure; it now takes the
+    house 1180px plate with the reading column constrained inside,
+    so the shared band and foot band align across the estate.
   ============================================================
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+  /* ============================================================
+     quotes.html — presentation layer
+     "The Drafting Board" — August 2026 restyle
+     ------------------------------------------------------------
+     Conformant with technology.html, finance-architecture.html,
+     markets.html and physics.html: identical tokens, type roles
+     and motion gating. Dark chrome, light sheet. Band, hero and
+     footer sit on a warm near-black board; the commonplace book
+     itself is laid on a bright, muted grey plate upon it, each
+     quotation a white card.
+
+     MEASURE  This page previously set its own 760px measure. It
+     now takes the house 1180px plate with the reading column
+     constrained inside it, as the volumes do, so the shared band
+     and footer align across the estate.
+
+     THE MARK  A pair of commas, drawn with currentColor, so it
+     follows the accent without intervention. On load the bowls
+     draw and the tails then follow — two commas being written.
+     Gated behind prefers-reduced-motion.
+
+     PALETTE  The house crimson (#861831) rules the light plate.
+     On dark surfaces it lifts to a rose of the same hue
+     (#E8546F), the darker crimson being illegible against the
+     board.
+
+     TYPE     Space Grotesk (display and interface), Newsreader
+     (the quotations, optical sizing), IBM Plex Mono (counts and
+     provenance).
+
+     The page remains a document first: the folds are native
+     details/summary and work with scripting disabled. The only
+     first-party script still does nothing but inject the
+     close-section control.
+     ============================================================ */
+
   :root{
-    --cream:#F9F8F3;
-    --ink:#1A1A1A;
-    --body:#26241F;
+    color-scheme:dark;
+    /* the board (dark chrome) */
+    --board:#131110;
+    --board-2:#1B1815;
+    --board-3:#221E1A;
+    --b-hair:#2C2823;
+    --b-hair-2:#3B352D;
+    --b-tx:#F1ECE2;
+    --b-mut:#A79F91;
+    --rose:#E8546F;
+    --rose-soft:rgba(232,84,111,.14);
+    /* the sheet (light surface) */
+    --paper:#F1F1EE;
+    --card:#FFFFFF;
+    --ink:#171716;
+    --body:#2B2B29;
+    --muted:#6C6C68;
+    --grey:#6C6C68;
+    --soft:#4A4A47;
+    --hair:#E2E2DE;
+    --hair-strong:#D3D3CE;
+    --rule:#E2E2DE;
+    --rule-strong:#D3D3CE;
     --crimson:#861831;
     --crimson-deep:#6C1327;
-    --grey:#5A5A5A;
-    --soft:#4A4843;
-    --rule:#D8D5CC;
-    --rule-strong:#C7C3B8;
-    --serif:'Lora', Georgia, 'Times New Roman', serif;
-    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --tint:rgba(134,24,49,.06);
+    --tint-strong:rgba(134,24,49,.12);
+    --display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+    --serif:'Newsreader',Georgia,'Times New Roman',serif;
+    --sans:'Space Grotesk','Liberation Sans',Arial,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    --wrap:1180px;
+    --radius:16px;
+    --radius-sm:12px;
+    --shadow:0 1px 2px rgba(19,18,16,.05), 0 16px 40px -24px rgba(134,24,49,.25);
+    --plate-shadow:0 30px 80px -35px rgba(0,0,0,.7);
+    --ease:cubic-bezier(.22,.72,.24,1);
   }
   *{ box-sizing:border-box; }
-  html{ -webkit-text-size-adjust:100%; }
+  html{ -webkit-text-size-adjust:100%; scrollbar-color:var(--b-hair-2) var(--board); }
+  @media (prefers-reduced-motion:no-preference){ html{ scroll-behavior:smooth; } }
   body{
-    margin:0; background:var(--cream); color:var(--body);
-    font-family:var(--serif); font-size:17px; line-height:1.6;
+    margin:0; background:var(--board); color:var(--b-tx);
+    font-family:var(--serif); font-size:19px; line-height:1.66;
+    font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
-  a{ color:var(--crimson); }
-  a:hover{ color:var(--crimson-deep); }
+  a{ color:var(--rose); text-decoration:none; }
+  a:hover{ color:#F0657E; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; border-radius:4px; }
+  ::selection{ background:rgba(232,84,111,.3); }
 
-  .mast{ max-width:760px; margin:0 auto; padding:44px 22px 8px; }
+  /* the light sheet re-establishes its own colour world */
+  .sheet-inner{
+    color-scheme:light;
+    background:var(--paper); color:var(--body);
+  }
+  .sheet-inner a{ color:var(--crimson); }
+  .sheet-inner a:hover{ color:var(--crimson-deep); }
+  .sheet-inner ::selection{ background:var(--tint-strong); }
+  .sheet-inner a:focus-visible, .sheet-inner button:focus-visible,
+  .sheet-inner summary:focus-visible{ outline-color:var(--crimson); }
+
+  /* ---------------- site band (sticky, dark glass) ---------------- */
+  .band{
+    background:rgba(19,17,16,.72);
+    -webkit-backdrop-filter:saturate(1.4) blur(14px);
+    backdrop-filter:saturate(1.4) blur(14px);
+    border-bottom:1px solid var(--b-hair);
+  }
+  .band-inner{
+    max-width:var(--wrap); margin:0 auto; padding:14px clamp(20px,5vw,56px);
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px 24px;
+  }
+  .wordmark{ font-family:var(--display); font-weight:700; font-size:16px; letter-spacing:-.01em;
+             color:var(--b-tx); text-decoration:none; margin-right:auto; white-space:nowrap; }
+  .wordmark:hover{ color:var(--rose); }
+  .band nav{ display:flex; flex-wrap:wrap; gap:6px 20px; }
+  .band nav a{ font-family:var(--mono); font-weight:500; font-size:11px;
+               letter-spacing:.12em; text-transform:uppercase; color:var(--b-mut);
+               text-decoration:none; padding-bottom:3px; border-bottom:2px solid transparent;
+               transition:color .16s var(--ease), border-color .16s var(--ease); }
+  .band nav a:hover{ color:var(--b-tx); }
+  .band nav a:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; }
+  .band nav a[aria-current="page"]{ color:var(--rose); border-bottom-color:var(--rose); }
+
+  @media (min-width:940px){
+    .band{ position:sticky; top:0; z-index:60; }
+    .band-inner{ flex-wrap:nowrap; height:60px; padding-top:0; padding-bottom:0; }
+    @supports (animation-timeline: scroll()){
+      .band::after{
+        content:""; position:absolute; left:0; bottom:-1px; height:2px; width:100%;
+        background:var(--rose); transform-origin:0 50%; transform:scaleX(0);
+        animation:trace-progress linear both; animation-timeline:scroll(root);
+      }
+    }
+  }
+  @keyframes trace-progress{ to{ transform:scaleX(1); } }
+
+  /* ---------------- hero ---------------- */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:clamp(52px,8vw,104px) 0 clamp(44px,6vw,72px);
+    border-bottom:1px solid var(--b-hair);
+    background-image:radial-gradient(rgba(241,236,226,.08) 1px, transparent 1.4px);
+    background-size:26px 26px;
+  }
+  .hero::after{ content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, rgba(19,17,16,0) 45%, var(--board) 97%); }
+  .hero .wrap{ position:relative; z-index:1; }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+
   .kicker{
-    font-family:var(--sans); font-weight:700; font-size:13px;
-    letter-spacing:.3em; text-transform:uppercase; color:var(--crimson);
-    margin:0 0 14px;
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-weight:500; text-transform:uppercase;
+    letter-spacing:.14em; color:var(--rose); font-size:11px; line-height:1.4;
+    margin:0 0 22px; padding:7px 14px; border:1px solid var(--b-hair-2);
+    border-radius:999px; background:transparent;
   }
   h1{
-    font-family:var(--serif); font-weight:600; color:var(--ink);
-    font-size:clamp(40px,7vw,56px); line-height:1.05; margin:0;
-    letter-spacing:-.012em;
+    font-family:var(--display); font-weight:700; color:var(--b-tx); text-transform:uppercase;
+    font-size:clamp(48px,10vw,132px); line-height:.94; letter-spacing:-.03em; margin:0;
   }
-  .titlerule{ width:76px; height:3px; background:var(--crimson); margin:22px 0; }
+  .titlerule{ width:56px; height:3px; background:var(--rose); border-radius:2px; margin:26px 0; }
   .stand{
-    font-size:19px; line-height:1.55; color:var(--soft);
-    margin:0 0 26px; max-width:640px;
+    font-family:var(--serif); font-size:clamp(19px,2vw,21.5px); line-height:1.6;
+    color:#DFD8CA; margin:0; max-width:64ch;
   }
-  .wrap{ max-width:760px; margin:0 auto; padding:8px 22px 30px; }
-  .sec{ border-top:1px solid var(--rule-strong); }
-  .sec:last-of-type{ border-bottom:1px solid var(--rule-strong); }
+
+  /* the mark: a pair of commas, written */
+  .mark{ color:var(--rose); margin:0 0 20px; }
+  .mark svg{ display:block; width:52px; height:52px; }
+  @media (prefers-reduced-motion:no-preference){
+    .mark svg circle{
+      stroke-dasharray:14; stroke-dashoffset:14;
+      animation:trace-draw .55s var(--ease) forwards;
+    }
+    .mark svg path{
+      stroke-dasharray:9; stroke-dashoffset:9;
+      animation:trace-draw .5s var(--ease) .45s forwards;
+    }
+    .mark svg circle:nth-of-type(2){ animation-delay:.2s; }
+    .mark svg path:nth-of-type(2){ animation-delay:.65s; }
+  }
+  @keyframes trace-draw{ to{ stroke-dashoffset:0; } }
+
+  /* ---------------- the sheet ---------------- */
+  .sheet{ background:var(--board); padding:clamp(40px,6vw,72px) 16px clamp(64px,9vw,104px); }
+  .sheet-inner{
+    max-width:var(--wrap); margin:0 auto;
+    border-radius:clamp(18px,3vw,28px);
+    padding:clamp(24px,4.5vw,56px) clamp(20px,4vw,56px) clamp(32px,5vw,64px);
+    box-shadow:var(--plate-shadow);
+  }
+  .book{ max-width:74ch; margin:0 auto; }
+
+  /* ---- the folds ---- */
+  .sec{ border-top:1px solid var(--hair-strong); scroll-margin-top:20px; }
+  .sec:first-of-type{ border-top:0; }
+  @media (min-width:940px){ .sec{ scroll-margin-top:80px; } }
   .sec > summary{
-    font-family:var(--sans); font-weight:700; font-size:14px;
-    letter-spacing:.22em; text-transform:uppercase; color:var(--crimson);
-    padding:18px 2px; margin:0; cursor:pointer;
-    display:flex; align-items:baseline; gap:12px; list-style:none;
+    font-family:var(--display); font-weight:700; color:var(--ink);
+    font-size:clamp(24px,3.4vw,34px); line-height:1.1; letter-spacing:-.024em;
+    padding:.95em 2px .9em; margin:0; cursor:pointer;
+    display:flex; align-items:baseline; gap:16px; list-style:none;
   }
   .sec > summary::-webkit-details-marker{ display:none; }
-  .sec > summary:focus-visible{ outline:2px solid var(--crimson); outline-offset:2px; }
-  .sec > summary .n{ font-size:12px; letter-spacing:.08em; color:var(--grey); }
-  .sec > summary::after{ content:"+"; margin-left:auto; font-size:17px; letter-spacing:0; }
-  .sec[open] > summary::after{ content:"\2013"; }
-  .fold{ padding:2px 0 14px; }
-  .fold-close{
-    display:block; margin:10px 0 8px; padding:8px 16px;
-    font-family:var(--sans); font-weight:700; font-size:12px;
-    letter-spacing:.06em; text-transform:uppercase;
-    color:var(--crimson); background:transparent;
-    border:1px solid var(--crimson); border-radius:2px; cursor:pointer;
+  .sec > summary:hover{ color:var(--crimson); }
+  .sec > summary:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; border-radius:6px; }
+  .sec > summary .n{
+    font-family:var(--mono); font-weight:600; font-size:11.5px; letter-spacing:.1em;
+    color:var(--crimson); align-self:center; padding:5px 11px;
+    border:1px solid var(--hair-strong); border-radius:999px; background:var(--card);
   }
-  .fold-close:hover{ color:var(--cream); background:var(--crimson); }
+  .sec > summary::after{
+    content:"+"; margin-left:auto; align-self:center;
+    font-family:var(--sans); font-weight:400; font-size:26px; line-height:1;
+    letter-spacing:0; color:var(--crimson);
+    transition:transform .22s var(--ease);
+  }
+  .sec[open] > summary::after{ transform:rotate(45deg); }
+  .fold{ padding:2px 0 22px; }
+
+  .fold-close{
+    display:inline-flex; align-items:center; margin:14px 0 4px;
+    font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.01em;
+    color:var(--crimson); background:transparent;
+    border:1.5px solid var(--crimson); border-radius:999px; padding:9px 18px; cursor:pointer;
+    transition:background .16s var(--ease), color .16s var(--ease), transform .16s var(--ease);
+  }
+  .fold-close:hover{ color:#fff; background:var(--crimson); transform:translateY(-1px); }
   .fold-close:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
-  .q{ border-top:1px solid var(--rule); padding:26px 0 22px; }
-  .fold > .q:first-of-type{ border-top:none; }
+
+  /* ---- the quotations ---- */
+  .q{
+    background:var(--card); border:1px solid var(--hair); border-radius:var(--radius-sm);
+    padding:clamp(18px,3vw,26px) clamp(18px,3vw,26px) clamp(16px,2.5vw,22px);
+    margin:0 0 12px;
+    transition:border-color .16s var(--ease), box-shadow .16s var(--ease);
+  }
+  .q:hover{ border-color:var(--hair-strong); box-shadow:var(--shadow); }
   .q blockquote{ margin:0; }
   .q blockquote p{
     margin:0; font-family:var(--serif); font-weight:500;
-    font-size:22px; line-height:1.5; color:var(--ink);
+    font-size:clamp(20px,2.4vw,23px); line-height:1.45; color:var(--ink);
+    letter-spacing:-.004em;
   }
   .attr{
-    font-family:var(--sans); font-weight:700; font-size:13px;
-    letter-spacing:.05em; color:var(--ink); margin:14px 0 0;
+    font-family:var(--sans); font-weight:700; font-size:13.5px; letter-spacing:-.004em;
+    color:var(--ink); margin:16px 0 0;
   }
-  .attr .dot{ color:var(--crimson); padding:0 2px; }
+  .attr .dot{ color:var(--crimson); padding:0 4px; }
   .prov{
-    font-family:var(--sans); font-weight:400; font-size:13px;
-    line-height:1.55; color:var(--grey); margin:6px 0 0; max-width:620px;
+    font-family:var(--mono); font-weight:400; font-size:11px;
+    line-height:1.65; letter-spacing:.01em; color:var(--muted);
+    margin:12px 0 0; padding-top:11px; border-top:1px solid var(--hair);
+    max-width:70ch;
   }
 
-  /* ---- masthead band, section mark, foot band (July 2026 restyle) ---- */
-  .band{ background:var(--crimson); border-bottom:3px solid var(--crimson-deep); }
-  .band-inner{ max-width:760px; margin:0 auto; padding:13px 22px;
-               display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; }
-  .wordmark{ font-family:var(--serif); font-weight:600; font-size:17px;
-             color:var(--cream); text-decoration:none; margin-right:auto; white-space:nowrap; }
-  .band nav{ display:flex; flex-wrap:wrap; gap:6px 18px; }
-  .band nav a{ font-family:var(--sans); font-weight:700; font-size:12px;
-               letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
-               opacity:.85; text-decoration:none; }
-  .band nav a:hover{ opacity:1; }
-  .band nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
-  .band nav a[aria-current="page"]{ opacity:1; border-bottom:2px solid var(--cream); padding-bottom:2px; }
+  /* ---- scroll reveals (progressive; supported browsers only) ---- */
+  @media (prefers-reduced-motion:no-preference){
+    @supports (animation-timeline: view()){
+      .q{
+        animation:rise .5s var(--ease) both;
+        animation-timeline:view();
+        animation-range:entry 0% entry 30%;
+      }
+    }
+  }
+  @keyframes rise{ from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:none;} }
 
-  .mark{ color:var(--crimson); margin:0 0 12px; }
-  .mark svg{ display:block; }
-
-  .footband{ background:var(--crimson); border-top:3px solid var(--crimson-deep);
-             margin-top:34px; text-align:center; padding:26px 22px 34px; }
-  .footband .name{ font-family:var(--serif); font-weight:600; font-size:16px;
-                   color:var(--cream); text-decoration:none; letter-spacing:.02em; }
-  .footband nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; margin-top:14px; }
-  .footband nav a{ font-family:var(--sans); font-weight:700; font-size:11.5px;
-                   letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
-                   opacity:.8; text-decoration:none; }
+  /* ---------------- footer ---------------- */
+  .footband{ background:#0C0B0A; border-top:3px solid var(--rose);
+             margin-top:0; text-align:center; padding:34px 22px 40px; }
+  .footband .name{ font-family:var(--display); font-weight:700; font-size:16px;
+                   color:var(--b-tx); text-decoration:none; letter-spacing:-.01em; }
+  .footband .name:hover{ color:#fff; }
+  .footband nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px 20px; margin-top:16px; }
+  .footband nav a{ font-family:var(--mono); font-weight:500; font-size:10.5px;
+                   letter-spacing:.12em; text-transform:uppercase; color:var(--b-tx);
+                   opacity:.6; text-decoration:none; transition:opacity .16s var(--ease); }
   .footband nav a:hover{ opacity:1; }
-  .footband nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
+  .footband nav a:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; opacity:1; }
 
-  @media (prefers-reduced-motion:reduce){ *{ scroll-behavior:auto !important; } }
-  html{ scroll-behavior:smooth; }
+  /* ---------------- responsive ---------------- */
+  @media (max-width:860px){ body{ font-size:17.5px; } }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important;
+       scroll-behavior:auto !important; }
+  }
 </style>
 
 <!-- Privacy-friendly analytics by Plausible -->
@@ -231,15 +427,20 @@
   </div>
 </header>
 
-<header class="mast">
-  <div class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.2" cy="9.8" r="2.1"/><path d="M10.3 10.1 C10.3 13 9.2 15 7.2 16.6"/><circle cx="14.8" cy="9.8" r="2.1"/><path d="M16.9 10.1 C16.9 13 15.8 15 13.8 16.6"/></svg></div>
-  <p class="kicker">Commonplace</p>
-  <h1>Quotes</h1>
-  <div class="titlerule" aria-hidden="true"></div>
-  <p class="stand">A commonplace book, kept in the old manner: passages that stopped me, grouped by head and ordered by argument &mdash; checked before they are believed. Attribution is carried only as far as the evidence goes.</p>
-</header>
+<section class="hero" aria-label="Masthead">
+  <div class="wrap">
+    <div class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.2" cy="9.8" r="2.1"/><path d="M10.3 10.1 C10.3 13 9.2 15 7.2 16.6"/><circle cx="14.8" cy="9.8" r="2.1"/><path d="M16.9 10.1 C16.9 13 15.8 15 13.8 16.6"/></svg></div>
+    <p class="kicker">Commonplace</p>
+    <h1>Quotes</h1>
+    <div class="titlerule" aria-hidden="true"></div>
+    <p class="stand">A commonplace book, kept in the old manner: passages that stopped me, grouped by head and ordered by argument &mdash; checked before they are believed. Attribution is carried only as far as the evidence goes.</p>
+  </div>
+</section>
 
-<main class="wrap">
+<main>
+<section class="sheet">
+  <div class="sheet-inner">
+    <div class="book">
 
 <details class="sec" id="understanding">
   <summary>Understanding <span class="n">28</span></summary>
@@ -685,6 +886,9 @@
   </div>
 </details>
 
+    </div>
+  </div>
+</section>
 </main>
 
 <footer class="footband">
