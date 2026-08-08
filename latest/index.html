@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#131110">
 <title>Latest &mdash; Amin Bilal</title>
 <meta name="description" content="Dated writing on technology, markets, physics and the intersections between them &mdash; newest first.">
 
@@ -49,14 +50,33 @@
   all sections; each entry is tagged with its domain.
 
   External dependencies:
-    · Lora, from Google Fonts (one <link> below).
+    · Space Grotesk, Newsreader and IBM Plex Mono, from Google Fonts (one <link> below).
     · Share image, expected at the site root:  og-latest.png (1200x630)
 
   ADDING A PIECE
     Individual articles live in the sibling folder /latest/.
     Copy the ENTRY TEMPLATE in the stream below, fill it in,
-    and place it at the TOP of .stream (newest first). Remove
-    the .stream-empty block once the first piece is in place.
+    and place it at the TOP of .stream (newest first).
+
+  DRESS (August 2026 site restyle - "The Drafting Board")
+    header.band
+    section.hero          -> mark, eyebrow, title, standfirst
+    main
+      section.ledger-strip -> the notes ledger, kept on the dark
+                              board because it is an index rather
+                              than reading
+      section.sheet > div.sheet-inner > section.stream
+                           -> the stream, on a light plate, each
+                              piece a white card
+    footer.footband
+
+    The house crimson rules the light plate; on the dark board it
+    lifts to a rose of the same hue, the crimson being illegible
+    there. The section mark is drawn with currentColor and follows
+    the accent. The .stream-empty state was styled but had no
+    markup left, the stream having been populated, so those rules
+    are not carried over; restoring an empty state would need both
+    the block and its rules back.
 
   ADDING A NOTE (ledger)
     Note pages live in /latest/notes/ (template and archive
@@ -69,109 +89,302 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+  /* ============================================================
+     latest/index.html — presentation layer
+     "The Drafting Board" — August 2026 restyle
+     ------------------------------------------------------------
+     Conformant with the rest of the estate: identical tokens,
+     type roles and motion gating. Dark chrome, light sheet. Band,
+     hero and the notes ledger sit on a warm near-black board; the
+     stream is laid on a bright, muted grey plate upon it, each
+     piece a white card.
+
+     WHY THE LEDGER STAYS DARK  The notes ledger is an index
+     rather than reading — three dated lines pointing elsewhere —
+     so it takes the strip the volumes give their status note,
+     between the hero and the reading plate. The stream is the
+     reading, and goes on the sheet.
+
+     THE MARK  A pin, drawn with currentColor, so it follows the
+     accent without intervention. On load the pin traces, then its
+     stem, then the dot. Gated behind prefers-reduced-motion.
+
+     PALETTE  The house crimson (#861831) rules the light plate.
+     On dark surfaces it lifts to a rose of the same hue
+     (#E8546F), the darker crimson being illegible against the
+     board.
+
+     TYPE     Space Grotesk (display and interface), Newsreader
+     (standfirsts, optical sizing), IBM Plex Mono (dates, tags and
+     labels — dates in particular want the tabular figures).
+
+     This page carries only the rules it uses. The .stream-empty
+     state was styled but had no markup left: the stream has been
+     populated since, so those rules are not reproduced.
+     ============================================================ */
+
   :root{
-    --cream:#F9F8F3;
-    --ink:#1A1A1A;
-    --body:#26241F;
+    color-scheme:dark;
+    /* the board (dark chrome) */
+    --board:#131110;
+    --board-2:#1B1815;
+    --board-3:#221E1A;
+    --b-hair:#2C2823;
+    --b-hair-2:#3B352D;
+    --b-tx:#F1ECE2;
+    --b-mut:#A79F91;
+    --rose:#E8546F;
+    --rose-soft:rgba(232,84,111,.14);
+    /* the sheet (light surface) */
+    --paper:#F1F1EE;
+    --card:#FFFFFF;
+    --ink:#171716;
+    --body:#2B2B29;
+    --muted:#6C6C68;
+    --grey:#6C6C68;
+    --soft:#4A4A47;
+    --hair:#E2E2DE;
+    --hair-strong:#D3D3CE;
+    --rule:#E2E2DE;
+    --rule-strong:#D3D3CE;
     --crimson:#861831;
     --crimson-deep:#6C1327;
-    --grey:#5A5A5A;
-    --soft:#4A4843;
-    --rule:#D8D5CC;
-    --rule-strong:#C7C3B8;
-    --serif:'Lora', Georgia, 'Times New Roman', serif;
-    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --tint:rgba(134,24,49,.06);
+    --tint-strong:rgba(134,24,49,.12);
+    --display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+    --serif:'Newsreader',Georgia,'Times New Roman',serif;
+    --sans:'Space Grotesk','Liberation Sans',Arial,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
     --wrap:1180px;
+    --radius:16px;
+    --radius-sm:12px;
+    --shadow:0 1px 2px rgba(19,18,16,.05), 0 16px 40px -24px rgba(134,24,49,.25);
+    --plate-shadow:0 30px 80px -35px rgba(0,0,0,.7);
+    --ease:cubic-bezier(.22,.72,.24,1);
   }
   *{ box-sizing:border-box; }
-  html{ -webkit-text-size-adjust:100%; }
+  html{ -webkit-text-size-adjust:100%; scrollbar-color:var(--b-hair-2) var(--board); }
+  @media (prefers-reduced-motion:no-preference){ html{ scroll-behavior:smooth; } }
   body{
-    margin:0; background:var(--cream); color:var(--body);
-    font-family:var(--serif); font-size:18px; line-height:1.62;
+    margin:0; background:var(--board); color:var(--b-tx);
+    font-family:var(--serif); font-size:19px; line-height:1.66;
+    font-optical-sizing:auto;
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
   .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
-  a{ color:var(--crimson); text-decoration:none; }
-  a:hover{ color:var(--crimson-deep); }
+  a{ color:var(--rose); text-decoration:none; }
+  a:hover{ color:#F0657E; }
   hr{ border:0; }
   [hidden]{ display:none !important; }
-  a:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+  ::selection{ background:rgba(232,84,111,.3); }
+  a:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; border-radius:4px; }
 
-  /* ---------------- breadcrumb ---------------- */
+  /* the light sheet re-establishes its own colour world */
+  .sheet-inner{
+    color-scheme:light;
+    background:var(--paper); color:var(--body);
+  }
+  .sheet-inner a{ color:var(--crimson); }
+  .sheet-inner a:hover{ color:var(--crimson-deep); }
+  .sheet-inner ::selection{ background:var(--tint-strong); }
+  .sheet-inner a:focus-visible{ outline-color:var(--crimson); }
 
-  /* ---------------- masthead ---------------- */
-  .eyebrow{ font-family:var(--sans); font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--crimson); font-size:12px; margin:0; }
-  .masthead{ padding:clamp(52px,9vw,104px) 0 clamp(34px,5vw,56px); border-bottom:1px solid var(--rule); }
-  .masthead-title{ font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(44px,8.5vw,84px); line-height:1.0; letter-spacing:-.015em; margin:20px 0 0; }
-  .masthead-sub{ font-family:var(--serif); font-style:italic; color:var(--grey); font-size:clamp(19px,2.6vw,25px); line-height:1.4; margin:18px 0 0; max-width:40ch; }
-  .byline{ font-family:var(--sans); text-transform:uppercase; letter-spacing:.2em; font-size:12.5px; color:var(--ink); margin:26px 0 0; }
-  .masthead-rule{ width:62px; height:3px; background:var(--crimson); margin:26px 0 0; }
-  .standfirst{ font-family:var(--serif); font-size:clamp(18px,2.1vw,21px); line-height:1.62; color:var(--soft); margin:26px 0 0; max-width:66ch; }
+  /* ---------------- site band (sticky, dark glass) ---------------- */
+  .band{
+    background:rgba(19,17,16,.72);
+    -webkit-backdrop-filter:saturate(1.4) blur(14px);
+    backdrop-filter:saturate(1.4) blur(14px);
+    border-bottom:1px solid var(--b-hair);
+  }
+  .band-inner{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 24px; padding-top:14px; padding-bottom:14px; }
+  .wordmark{ font-family:var(--display); font-weight:700; font-size:16px; letter-spacing:-.01em;
+             color:var(--b-tx); text-decoration:none; margin-right:auto; white-space:nowrap; }
+  .wordmark:hover{ color:var(--rose); }
+  .band nav{ display:flex; flex-wrap:wrap; gap:6px 20px; }
+  .band nav a{ font-family:var(--mono); font-weight:500; font-size:11px;
+               letter-spacing:.12em; text-transform:uppercase; color:var(--b-mut);
+               text-decoration:none; padding-bottom:3px; border-bottom:2px solid transparent;
+               transition:color .16s var(--ease), border-color .16s var(--ease); }
+  .band nav a:hover{ color:var(--b-tx); }
+  .band nav a:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; }
+  .band nav a[aria-current="page"]{ color:var(--rose); border-bottom-color:var(--rose); }
 
-  /* ---------------- notes ledger ---------------- */
-  .notes-ledger{ max-width:74ch; padding:clamp(18px,3vw,28px) 0 clamp(14px,2.4vw,22px); border-bottom:1px solid var(--rule); }
-  .ledger-head{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin:0 0 4px; }
-  .ledger-eyebrow{ font-family:var(--sans); font-weight:700; text-transform:uppercase; letter-spacing:.22em; color:var(--crimson); font-size:12px; margin:0; }
-  .ledger-all{ font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.05em; color:var(--crimson); }
-  .ledger-all:hover{ color:var(--crimson-deep); }
+  @media (min-width:940px){
+    .band{ position:sticky; top:0; z-index:60; }
+    .band-inner{ flex-wrap:nowrap; height:60px; padding-top:0; padding-bottom:0; }
+    @supports (animation-timeline: scroll()){
+      .band::after{
+        content:""; position:absolute; left:0; bottom:-1px; height:2px; width:100%;
+        background:var(--rose); transform-origin:0 50%; transform:scaleX(0);
+        animation:trace-progress linear both; animation-timeline:scroll(root);
+      }
+    }
+  }
+  @keyframes trace-progress{ to{ transform:scaleX(1); } }
+
+  /* ---------------- hero ---------------- */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:clamp(52px,8vw,104px) 0 clamp(44px,6vw,72px);
+    border-bottom:1px solid var(--b-hair);
+    background-image:radial-gradient(rgba(241,236,226,.08) 1px, transparent 1.4px);
+    background-size:26px 26px;
+  }
+  .hero::after{ content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, rgba(19,17,16,0) 45%, var(--board) 97%); }
+  .hero .wrap{ position:relative; z-index:1; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-weight:500; text-transform:uppercase;
+    letter-spacing:.14em; color:var(--rose); font-size:11px; line-height:1.4;
+    margin:0; padding:7px 14px; border:1px solid var(--b-hair-2);
+    border-radius:999px; background:transparent;
+  }
+  .masthead-title{
+    font-family:var(--display); font-weight:700; color:var(--b-tx); text-transform:uppercase;
+    font-size:clamp(56px,13vw,164px); line-height:.9; letter-spacing:-.035em; margin:24px 0 0;
+  }
+  .masthead-sub{
+    font-family:var(--serif); font-style:italic; color:var(--rose);
+    font-size:clamp(19px,2.5vw,26px); line-height:1.4; margin:20px 0 0; max-width:42ch;
+  }
+  .byline{ font-family:var(--mono); text-transform:uppercase; letter-spacing:.12em; font-size:11.5px; color:var(--b-mut); margin:26px 0 0; }
+  .masthead-rule{ width:56px; height:3px; background:var(--rose); border-radius:2px; margin:24px 0 0; }
+  .standfirst{
+    font-family:var(--serif); font-size:clamp(19px,2vw,21.5px); line-height:1.6;
+    color:#DFD8CA; margin:24px 0 0; max-width:66ch;
+  }
+
+  /* the mark: a pin, dropped */
+  .mark{ color:var(--rose); margin:0 0 20px; }
+  .mark svg{ display:block; width:52px; height:52px; }
+  @media (prefers-reduced-motion:no-preference){
+    .mark svg path{
+      stroke-dasharray:40; stroke-dashoffset:40;
+      animation:trace-draw 1s var(--ease) forwards;
+    }
+    .mark svg path:nth-of-type(2){ stroke-dasharray:7; stroke-dashoffset:7; animation-duration:.4s; animation-delay:.85s; }
+    .mark svg circle{ opacity:0; animation:node-in .4s var(--ease) 1.2s forwards; }
+  }
+  @keyframes trace-draw{ to{ stroke-dashoffset:0; } }
+  @keyframes node-in{ to{ opacity:1; } }
+
+  /* ---------------- the notes ledger: an index, so it stays on the board ---------------- */
+  .ledger-strip{ background:var(--board-2); border-bottom:1px solid var(--b-hair); }
+  .notes-ledger{ max-width:80ch; padding:clamp(22px,3.4vw,30px) 0 clamp(20px,3vw,26px); }
+  .ledger-head{ display:flex; align-items:baseline; justify-content:space-between; gap:14px; margin:0 0 10px; }
+  .ledger-eyebrow{
+    font-family:var(--mono); font-weight:600; text-transform:uppercase;
+    letter-spacing:.16em; color:var(--rose); font-size:10.5px; margin:0;
+  }
+  .ledger-all{ font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.01em; color:var(--rose); }
+  .ledger-all:hover{ color:#F0657E; text-decoration:underline; text-underline-offset:3px; }
   .ledger-list{ list-style:none; margin:0; padding:0; }
-  .ledger-line{ border-top:1px solid var(--rule); }
+  .ledger-line{ border-top:1px solid var(--b-hair); }
   .ledger-list .ledger-line:first-child{ border-top:0; }
-  .ledger-line a{ display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; padding:11px 0; color:inherit; }
-  .ll-date{ font-family:var(--sans); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey); font-variant-numeric:lining-nums tabular-nums; }
-  .ll-chip{ font-family:var(--sans); font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--cream); background:var(--crimson); border-radius:2px; padding:3px 9px; }
-  .ll-title{ font-family:var(--serif); font-weight:600; font-size:clamp(16.5px,2vw,18.5px); line-height:1.3; color:var(--ink); }
-  .ledger-line a:hover .ll-title{ color:var(--crimson); }
+  .ledger-line a{
+    display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
+    padding:12px 0; color:inherit; border-left:2px solid transparent; padding-left:0;
+    transition:border-color .16s var(--ease), padding-left .16s var(--ease);
+  }
+  .ledger-line a:hover{ border-left-color:var(--rose); padding-left:12px; }
+  .ll-date{
+    font-family:var(--mono); font-size:11px; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--b-mut); font-variant-numeric:lining-nums tabular-nums;
+  }
+  .ll-chip{
+    font-family:var(--mono); font-weight:600; font-size:9.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:#20090F; background:var(--rose);
+    border-radius:999px; padding:4px 10px;
+  }
+  .ll-title{
+    font-family:var(--sans); font-weight:500; font-size:clamp(16px,1.9vw,17.5px);
+    line-height:1.3; letter-spacing:-.008em; color:var(--b-tx);
+    transition:color .16s var(--ease);
+  }
+  .ledger-line a:hover .ll-title{ color:var(--rose); }
 
-  /* ---------------- the stream ---------------- */
-  .stream{ padding:clamp(30px,5vw,56px) 0 clamp(30px,5vw,52px); max-width:74ch; }
-  .piece{ padding:clamp(24px,3.4vw,34px) 0; border-top:1px solid var(--rule); }
-  .piece:first-child{ border-top:0; padding-top:0; }
-  .piece-meta{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin:0 0 11px; }
-  .piece-date{ font-family:var(--sans); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--grey); font-variant-numeric:lining-nums tabular-nums; }
-  .piece-tag{ font-family:var(--sans); font-weight:700; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--crimson); border:1px solid rgba(134,24,49,.4); border-radius:2px; padding:3px 9px; }
-  .piece-title{ font-family:var(--serif); font-weight:700; font-size:clamp(24px,3.4vw,32px); line-height:1.12; letter-spacing:-.01em; margin:0; }
-  .piece-title a{ color:var(--ink); }
+  /* ---------------- the stream, on a light plate ---------------- */
+  .sheet{ background:var(--board); padding:clamp(40px,6vw,72px) 16px clamp(64px,9vw,104px); }
+  .sheet-inner{
+    max-width:var(--wrap); margin:0 auto;
+    border-radius:clamp(18px,3vw,28px);
+    padding:clamp(24px,4.5vw,56px) clamp(20px,4vw,56px) clamp(28px,4.5vw,56px);
+    box-shadow:var(--plate-shadow);
+  }
+  .stream{ max-width:76ch; margin:0 auto; padding:0; }
+
+  .piece{
+    background:var(--card); border:1px solid var(--hair); border-radius:var(--radius);
+    padding:clamp(20px,3.2vw,30px) clamp(18px,3vw,30px) clamp(18px,2.6vw,26px);
+    margin:0 0 12px;
+    transition:border-color .16s var(--ease), box-shadow .16s var(--ease), transform .16s var(--ease);
+  }
+  .piece:hover{ border-color:var(--hair-strong); box-shadow:var(--shadow); transform:translateY(-2px); }
+  .piece-meta{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:0 0 12px; }
+  .piece-date{
+    font-family:var(--mono); font-size:11px; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--muted); font-variant-numeric:lining-nums tabular-nums;
+  }
+  .piece-tag{
+    font-family:var(--mono); font-weight:600; font-size:9.5px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--crimson);
+    border:1px solid var(--hair-strong); border-radius:999px; padding:4px 11px; background:var(--paper);
+  }
+  .piece-title{
+    font-family:var(--display); font-weight:700; font-size:clamp(24px,3.3vw,34px);
+    line-height:1.06; letter-spacing:-.028em; margin:0;
+  }
+  .piece-title a{ color:var(--ink); transition:color .16s var(--ease); }
   .piece-title a:hover{ color:var(--crimson); }
-  .piece-standfirst{ font-family:var(--serif); font-size:clamp(17px,1.9vw,19.5px); line-height:1.55; color:var(--soft); margin:10px 0 0; max-width:64ch; }
-  .piece-more{ display:inline-block; font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.05em; color:var(--crimson); margin-top:13px; }
-  .piece-more:hover{ color:var(--crimson-deep); }
+  .piece-standfirst{
+    font-family:var(--serif); font-size:clamp(17.5px,1.9vw,19.5px); line-height:1.55;
+    color:var(--soft); margin:12px 0 0; max-width:64ch;
+  }
+  .piece-more{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.01em;
+    color:var(--crimson); margin-top:16px;
+    transition:gap .16s var(--ease), color .16s var(--ease);
+  }
+  .piece-more:hover{ gap:12px; color:var(--crimson-deep); }
 
-  /* empty state - shown until the first piece is added */
-  .stream-empty{ padding:clamp(16px,3vw,32px) 0; }
-  .stream-empty p{ font-family:var(--serif); font-style:italic; color:var(--grey); font-size:clamp(18px,2.2vw,21px); line-height:1.5; margin:0; max-width:54ch; }
+  /* ---- scroll reveals (progressive; supported browsers only) ---- */
+  @media (prefers-reduced-motion:no-preference){
+    @supports (animation-timeline: view()){
+      .piece{
+        animation:rise .5s var(--ease) both;
+        animation-timeline:view();
+        animation-range:entry 0% entry 30%;
+      }
+    }
+  }
+  @keyframes rise{ from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:none;} }
 
   /* ---------------- footer ---------------- */
-  /* ---- masthead band, section mark, foot band (July 2026 restyle) ---- */
-  .band{ background:var(--crimson); border-bottom:3px solid var(--crimson-deep); }
-  .band-inner{ display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; padding-top:13px; padding-bottom:13px; }
-  .wordmark{ font-family:var(--serif); font-weight:600; font-size:17px;
-             color:var(--cream); text-decoration:none; margin-right:auto; white-space:nowrap; }
-  .band nav{ display:flex; flex-wrap:wrap; gap:6px 18px; }
-  .band nav a{ font-family:var(--sans); font-weight:700; font-size:12px;
-               letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
-               opacity:.85; text-decoration:none; }
-  .band nav a:hover{ opacity:1; }
-  .band nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
-  .band nav a[aria-current="page"]{ opacity:1; border-bottom:2px solid var(--cream); padding-bottom:2px; }
-
-  .mark{ color:var(--crimson); margin:0 0 12px; }
-  .mark svg{ display:block; }
-
-  .footband{ background:var(--crimson); border-top:3px solid var(--crimson-deep);
-             margin-top:34px; text-align:center; padding:26px 22px 34px; }
-  .footband .name{ font-family:var(--serif); font-weight:600; font-size:16px;
-                   color:var(--cream); text-decoration:none; letter-spacing:.02em; }
-  .footband nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; margin-top:14px; }
-  .footband nav a{ font-family:var(--sans); font-weight:700; font-size:11.5px;
-                   letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
-                   opacity:.8; text-decoration:none; }
+  .footband{ background:#0C0B0A; border-top:3px solid var(--rose);
+             margin-top:0; text-align:center; padding:34px 22px 40px; }
+  .footband .name{ font-family:var(--display); font-weight:700; font-size:16px;
+                   color:var(--b-tx); text-decoration:none; letter-spacing:-.01em; }
+  .footband .name:hover{ color:#fff; }
+  .footband nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px 20px; margin-top:16px; }
+  .footband nav a{ font-family:var(--mono); font-weight:500; font-size:10.5px;
+                   letter-spacing:.12em; text-transform:uppercase; color:var(--b-tx);
+                   opacity:.6; text-decoration:none; transition:opacity .16s var(--ease); }
   .footband nav a:hover{ opacity:1; }
-  .footband nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
+  .footband nav a:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; opacity:1; }
 
+  /* ---------------- responsive ---------------- */
+  @media (max-width:860px){ body{ font-size:17.5px; } }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+    .mark svg circle{ opacity:1; }
+  }
 </style>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa--HaR7sS_MuJb_jLlfRJDT.js"></script>
@@ -198,7 +411,7 @@
   </div>
 </header>
 
-<header class="masthead">
+<section class="hero" aria-label="Masthead">
   <div class="wrap">
     <div class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21 C9.2 17.5 7.2 14.4 7.2 11 A4.8 4.8 0 0 1 16.8 11 C16.8 14.4 14.8 17.5 12 21 Z"/><path d="M12 10 V15.5"/><circle cx="12" cy="8.6" r="1.1"/></svg></div>
     <p class="eyebrow">Dated Writing, Across the Sections</p>
@@ -208,45 +421,52 @@
     <hr class="masthead-rule">
     <p class="standfirst">A running series of short essays and notes, published as matters develop &mdash; weighted towards artificial intelligence, but ranging across markets, physics and the places the fields overlap. Each piece stands on its own, and the newest sit at the top.</p>
   </div>
-</header>
+</section>
 
-<main class="wrap">
-  <section class="notes-ledger" aria-label="Recent notes">
-    <div class="ledger-head">
-      <p class="ledger-eyebrow">Notes</p>
-      <a class="ledger-all" href="notes/index.html">All notes &rsaquo;</a>
+<main>
+
+  <section class="ledger-strip">
+    <div class="wrap">
+    <section class="notes-ledger" aria-label="Recent notes">
+      <div class="ledger-head">
+        <p class="ledger-eyebrow">Notes</p>
+        <a class="ledger-all" href="notes/index.html">All notes &rsaquo;</a>
+      </div>
+      <ul class="ledger-list">
+
+        <!-- LEDGER TEMPLATE - newest first; keep only the three most recent lines.
+        <li class="ledger-line">
+          <a href="notes/some-slug.html">
+            <span class="ll-date">20 July 2026</span>
+            <span class="ll-chip">Note</span>
+            <span class="ll-title">The title of the note</span>
+          </a>
+        </li>
+        -->
+
+        <li class="ledger-line">
+          <a href="notes/szekeres-not-erdos.html">
+            <span class="ll-date">22 July 2026</span>
+            <span class="ll-chip">Note</span>
+            <span class="ll-title">Szekeres, Not Erd&#337;s</span>
+          </a>
+        </li>
+
+        <li class="ledger-line">
+          <a href="notes/kimi-k3.html">
+            <span class="ll-date">20 July 2026</span>
+            <span class="ll-chip">Note</span>
+            <span class="ll-title">Kimi K3, Weighed</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
     </div>
-    <ul class="ledger-list">
-
-      <!-- LEDGER TEMPLATE - newest first; keep only the three most recent lines.
-      <li class="ledger-line">
-        <a href="notes/some-slug.html">
-          <span class="ll-date">20 July 2026</span>
-          <span class="ll-chip">Note</span>
-          <span class="ll-title">The title of the note</span>
-        </a>
-      </li>
-      -->
-
-      <li class="ledger-line">
-        <a href="notes/szekeres-not-erdos.html">
-          <span class="ll-date">22 July 2026</span>
-          <span class="ll-chip">Note</span>
-          <span class="ll-title">Szekeres, Not Erd&#337;s</span>
-        </a>
-      </li>
-
-      <li class="ledger-line">
-        <a href="notes/kimi-k3.html">
-          <span class="ll-date">20 July 2026</span>
-          <span class="ll-chip">Note</span>
-          <span class="ll-title">Kimi K3, Weighed</span>
-        </a>
-      </li>
-
-    </ul>
   </section>
 
+  <section class="sheet">
+    <div class="sheet-inner">
   <section class="stream" aria-label="Latest writing">
 
     <!-- ENTRY TEMPLATE - newest first. Copy this block, fill it in, and place it at the TOP of the stream.
@@ -392,6 +612,9 @@
     </article>
 
   </section>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footband">
