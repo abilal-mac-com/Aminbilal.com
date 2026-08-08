@@ -1095,6 +1095,53 @@ footer a{ color:var(--rose); }
 
 
 /* ============================================================================
+   ESTATE LEAKS - signal.css rules that can reach this page, opposed by name.
+
+   signal.css is loaded here for its tokens, faces and reset.  A nesting-aware
+   reach test says 36 of its rules can match markup on this page.  Page scopes
+   (.p-note, .p-football and the rest) cannot match, because this page carries
+   no body class - that is the whole point of scoping by sheet.  Most of what
+   remains is wanted: the reset, the board, the grain overlay, [hidden],
+   ::selection.  Five are not wanted, and are opposed explicitly rather than
+   left to the accident of source order.  If signal.css gains an unscoped rule
+   whose classes exist here, this block is where it must be answered.
+   ============================================================================ */
+
+/* the estate turns every link rose on hover.  Here links are fixture rows,
+   club names and grid cells - and inside a plate that hover would paint rose
+   on white paper. */
+a:hover{ color:inherit; }
+
+/* the estate wordmark takes margin-right:auto.  The annexe masthead is a flex
+   row in which .mainnav already claims margin-left:auto; two competing auto
+   margins would centre the row. */
+.wordmark{ margin-right:0; font-size:inherit; letter-spacing:normal;
+  color:inherit; }
+
+/* the estate's wordmark hover reaches here but lands inert, because both
+   children carry explicit colour.  Inert by accident is not the same as
+   answered: the hover is made real on the child instead, which is the
+   behaviour the estate intends anyway. */
+.wordmark:hover{ color:inherit; }
+.wordmark:hover b{ color:var(--rose); }
+
+/* the estate eyebrow is an inline-flex row with a gap; the annexe's is a
+   plain block paragraph. */
+.eyebrow{ display:block; align-items:normal; gap:normal;
+  font-weight:400; line-height:1.4; }
+
+/* the estate lede is set in Newsreader.  This is a data page: it reads in
+   Geist, and Newsreader is never fetched here. */
+.lede{ font-family:var(--f-body); font-weight:400; line-height:1.55; }
+
+/* the estate .hero is a full-height landing panel - display:flex,
+   min-height:min(92svh,980px), and a rose radial wash.  The annexe .hero is a
+   small bordered summary card that appears on 184 pages.  Unopposed, every one
+   of them would grow to near-viewport height. */
+.hero{ display:block; align-items:normal; min-height:0; background-image:none; }
+
+
+/* ============================================================================
    PLATES - the exemption, carried by two selectors.
    Inside these, the --f- tokens return to the annexe's original values, so
    every club colour, every result shade and every axis renders exactly as it
