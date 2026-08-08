@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#131110">
 <title>Books &mdash; Amin Bilal</title>
 <meta name="description" content="Eighty-three books on eleven shelves, from markets and empire to cosmology and the classics, each with a short case for why it earned its place in a personal library.">
 <meta name="author" content="Amin Bilal">
@@ -86,159 +87,397 @@
            #crashes #money #management #faith #inherited
            #subcontinent
 
-  DRESS (July 2026 site restyle)
-    The page opens with the crimson masthead band (wordmark
-    returning to the landing page; six section links; current
-    page marked) and closes with the reversed foot band. The
-    drawn shelf device, inline SVG, sits beneath the band; the
-    section mark (the small shelf) sits above the kicker; a
-    duotone of the author's own shelf, embedded as a data-URI
-    in the two house colours, follows the opening essay. All
-    of it is CSS and inline assets - no external requests.
+  DRESS (August 2026 site restyle - "The Drafting Board")
+    The page opens with the dark glass band (wordmark returning to
+    the landing page; six section links; current page marked) and
+    closes with the reversed foot band. The drawn shelf device,
+    inline SVG, now closes the hero rather than sitting beneath the
+    band; the section mark (the small shelf) sits above the kicker.
+    The register itself - opening essay, duotone plate and the
+    eleven shelves - sits on a light grey sheet laid on the dark
+    board, each book a white card. The house crimson rules the light
+    sheet; on the dark board it lifts to a rose of the same hue, the
+    crimson being illegible there. The banner's two colours are
+    hard-coded in its markup and are lifted by attribute selectors
+    in the stylesheet, leaving the markup untouched: crimson becomes
+    rose, and the cream bands struck across solid spines become the
+    board, so a solid spine reads as the inverse of a hollow one.
+    The duotone plate is a raster and cannot be recoloured, so it
+    sits in a white card where its cream ground reads as the print's
+    own paper. All of it is CSS and inline assets - no external
+    requests beyond the established font link.
+
+  PAGE ARCHITECTURE
+    header.band
+    section.hero          -> mark, kicker, title, standfirst, banner
+    main > section.sheet > div.sheet-inner > div.register
+                          -> opening essay, plate, eleven shelves
+    footer.footband
+
+    The page previously set its own 760px measure; it now takes the
+    house 1180px plate with the reading column constrained inside,
+    so the shared band and foot band align across the estate.
   ============================================================
 -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+  /* ============================================================
+     books.html — presentation layer
+     "The Drafting Board" — August 2026 restyle
+     ------------------------------------------------------------
+     Conformant with technology.html, finance-architecture.html,
+     markets.html, physics.html and quotes.html: identical tokens,
+     type roles and motion gating. Dark chrome, light sheet. Band,
+     hero and footer sit on a warm near-black board; the register
+     itself is laid on a bright, muted grey plate upon it, each
+     book a white card.
+
+     THE BANNER  The drawn shelf carries its two colours hard-coded
+     in the markup, so the board lifts them through attribute
+     selectors rather than rewriting sixty-seven attributes. The
+     crimson becomes rose. The cream bands are struck only across
+     solid spines, where they read as the ground showing through,
+     so they become the board itself — making a solid spine the
+     exact inverse of a hollow one, whose interior already shows
+     the board.
+
+     THE PLATE  The duotone photograph of the shelf is a raster
+     data-URI in crimson and cream and cannot be recoloured. It
+     therefore sits on the light sheet in a white card, where its
+     cream ground reads as the print's own paper — the same
+     treatment the maps and charts take elsewhere on the estate.
+
+     MEASURE  This page previously set its own 760px measure. It
+     now takes the house 1180px plate with the reading column
+     constrained inside it, so the shared band and footer align
+     across the estate.
+
+     PALETTE  The house crimson (#861831) rules the light plate.
+     On dark surfaces it lifts to a rose of the same hue
+     (#E8546F), the darker crimson being illegible against the
+     board.
+
+     TYPE     Space Grotesk (display and interface), Newsreader
+     (the essay and the reviews, optical sizing), IBM Plex Mono
+     (counts, authors and captions).
+
+     The page remains a document first: the double accordion is
+     native details/summary and works with scripting disabled. The
+     only first-party script still does nothing but inject the
+     close-shelf control.
+     ============================================================ */
+
   :root{
-    --cream:#F9F8F3;
-    --ink:#1A1A1A;
-    --body:#26241F;
+    color-scheme:dark;
+    /* the board (dark chrome) */
+    --board:#131110;
+    --board-2:#1B1815;
+    --board-3:#221E1A;
+    --b-hair:#2C2823;
+    --b-hair-2:#3B352D;
+    --b-tx:#F1ECE2;
+    --b-mut:#A79F91;
+    --rose:#E8546F;
+    --rose-soft:rgba(232,84,111,.14);
+    /* the sheet (light surface) */
+    --paper:#F1F1EE;
+    --card:#FFFFFF;
+    --ink:#171716;
+    --body:#2B2B29;
+    --muted:#6C6C68;
+    --grey:#6C6C68;
+    --soft:#4A4A47;
+    --hair:#E2E2DE;
+    --hair-strong:#D3D3CE;
+    --rule:#E2E2DE;
+    --rule-strong:#D3D3CE;
     --crimson:#861831;
     --crimson-deep:#6C1327;
-    --grey:#5A5A5A;
-    --soft:#4A4843;
-    --rule:#D8D5CC;
-    --rule-strong:#C7C3B8;
-    --serif:'Lora', Georgia, 'Times New Roman', serif;
-    --sans:'Liberation Sans', Arial, Helvetica, sans-serif;
+    --tint:rgba(134,24,49,.06);
+    --tint-strong:rgba(134,24,49,.12);
+    --display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+    --serif:'Newsreader',Georgia,'Times New Roman',serif;
+    --sans:'Space Grotesk','Liberation Sans',Arial,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    --wrap:1180px;
+    --radius:16px;
+    --radius-sm:12px;
+    --shadow:0 1px 2px rgba(19,18,16,.05), 0 16px 40px -24px rgba(134,24,49,.25);
+    --plate-shadow:0 30px 80px -35px rgba(0,0,0,.7);
+    --ease:cubic-bezier(.22,.72,.24,1);
   }
   *{ box-sizing:border-box; }
-  html{ -webkit-text-size-adjust:100%; }
+  html{ -webkit-text-size-adjust:100%; scrollbar-color:var(--b-hair-2) var(--board); }
+  @media (prefers-reduced-motion:no-preference){ html{ scroll-behavior:smooth; } }
   body{
-    margin:0; background:var(--cream); color:var(--body);
-    font-family:var(--serif); font-size:17px; line-height:1.6;
+    margin:0; background:var(--board); color:var(--b-tx);
+    font-family:var(--serif); font-size:19px; line-height:1.66;
+    font-optical-sizing:auto;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   }
-  a{ color:var(--crimson); }
-  a:hover{ color:var(--crimson-deep); }
+  a{ color:var(--rose); text-decoration:none; }
+  a:hover{ color:#F0657E; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; border-radius:4px; }
+  ::selection{ background:rgba(232,84,111,.3); }
 
-  .mast{ max-width:760px; margin:0 auto; padding:34px 22px 8px; }
+  /* the light sheet re-establishes its own colour world */
+  .sheet-inner{
+    color-scheme:light;
+    background:var(--paper); color:var(--body);
+  }
+  .sheet-inner a{ color:var(--crimson); }
+  .sheet-inner a:hover{ color:var(--crimson-deep); }
+  .sheet-inner ::selection{ background:var(--tint-strong); }
+  .sheet-inner a:focus-visible, .sheet-inner button:focus-visible,
+  .sheet-inner summary:focus-visible{ outline-color:var(--crimson); }
+
+  /* ---------------- site band (sticky, dark glass) ---------------- */
+  .band{
+    background:rgba(19,17,16,.72);
+    -webkit-backdrop-filter:saturate(1.4) blur(14px);
+    backdrop-filter:saturate(1.4) blur(14px);
+    border-bottom:1px solid var(--b-hair);
+  }
+  .band-inner{
+    max-width:var(--wrap); margin:0 auto; padding:14px clamp(20px,5vw,56px);
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px 24px;
+  }
+  .wordmark{ font-family:var(--display); font-weight:700; font-size:16px; letter-spacing:-.01em;
+             color:var(--b-tx); text-decoration:none; margin-right:auto; white-space:nowrap; }
+  .wordmark:hover{ color:var(--rose); }
+  .band nav{ display:flex; flex-wrap:wrap; gap:6px 20px; }
+  .band nav a{ font-family:var(--mono); font-weight:500; font-size:11px;
+               letter-spacing:.12em; text-transform:uppercase; color:var(--b-mut);
+               text-decoration:none; padding-bottom:3px; border-bottom:2px solid transparent;
+               transition:color .16s var(--ease), border-color .16s var(--ease); }
+  .band nav a:hover{ color:var(--b-tx); }
+  .band nav a:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; }
+  .band nav a[aria-current="page"]{ color:var(--rose); border-bottom-color:var(--rose); }
+
+  @media (min-width:940px){
+    .band{ position:sticky; top:0; z-index:60; }
+    .band-inner{ flex-wrap:nowrap; height:60px; padding-top:0; padding-bottom:0; }
+    @supports (animation-timeline: scroll()){
+      .band::after{
+        content:""; position:absolute; left:0; bottom:-1px; height:2px; width:100%;
+        background:var(--rose); transform-origin:0 50%; transform:scaleX(0);
+        animation:trace-progress linear both; animation-timeline:scroll(root);
+      }
+    }
+  }
+  @keyframes trace-progress{ to{ transform:scaleX(1); } }
+
+  /* ---------------- hero ---------------- */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:clamp(52px,8vw,104px) 0 clamp(30px,4vw,52px);
+    border-bottom:1px solid var(--b-hair);
+    background-image:radial-gradient(rgba(241,236,226,.08) 1px, transparent 1.4px);
+    background-size:26px 26px;
+  }
+  .hero::after{ content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, rgba(19,17,16,0) 50%, rgba(19,17,16,.55) 100%); }
+  .hero > *{ position:relative; z-index:1; }
+  .wrap{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+
   .kicker{
-    font-family:var(--sans); font-weight:700; font-size:13px;
-    letter-spacing:.3em; text-transform:uppercase; color:var(--crimson);
-    margin:0 0 14px;
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-weight:500; text-transform:uppercase;
+    letter-spacing:.14em; color:var(--rose); font-size:11px; line-height:1.4;
+    margin:0 0 22px; padding:7px 14px; border:1px solid var(--b-hair-2);
+    border-radius:999px; background:transparent;
   }
   h1{
-    font-family:var(--serif); font-weight:600; color:var(--ink);
-    font-size:clamp(40px,7vw,56px); line-height:1.05; margin:0;
-    letter-spacing:-.012em;
+    font-family:var(--display); font-weight:700; color:var(--b-tx); text-transform:uppercase;
+    font-size:clamp(48px,10vw,132px); line-height:.94; letter-spacing:-.03em; margin:0;
   }
-  .titlerule{ width:76px; height:3px; background:var(--crimson); margin:22px 0; }
+  .titlerule{ width:56px; height:3px; background:var(--rose); border-radius:2px; margin:26px 0; }
   .stand{
-    font-size:19px; line-height:1.55; color:var(--soft);
-    margin:0 0 26px; max-width:640px;
+    font-family:var(--serif); font-size:clamp(19px,2vw,21.5px); line-height:1.6;
+    color:#DFD8CA; margin:0; max-width:64ch;
   }
-  .wrap{ max-width:760px; margin:0 auto; padding:8px 22px 30px; }
 
-  .opening{ max-width:640px; margin:0 0 36px; }
-  .opening p{ margin:0 0 15px; }
+  /* the mark: a small shelf */
+  .mark{ color:var(--rose); margin:0 0 20px; }
+  .mark svg{ display:block; width:52px; height:52px; }
+  @media (prefers-reduced-motion:no-preference){
+    .mark svg path, .mark svg rect, .mark svg line{
+      stroke-dasharray:44; stroke-dashoffset:44;
+      animation:trace-draw .9s var(--ease) forwards;
+    }
+    .mark svg *:nth-child(2){ animation-delay:.2s; }
+    .mark svg *:nth-child(3){ animation-delay:.4s; }
+    .mark svg *:nth-child(4){ animation-delay:.6s; }
+  }
+  @keyframes trace-draw{ to{ stroke-dashoffset:0; } }
+
+  /* ---- the banner device: a drawn shelf ----
+     Presentation attributes lose to any CSS declaration, so the
+     hard-coded colours lift without touching the markup. The cream
+     bands are struck only across solid spines, so they become the
+     board: a solid spine is then the inverse of a hollow one. */
+  .banner{ margin:clamp(34px,5vw,56px) 0 0; color:var(--rose); }
+  .banner svg{ display:block; width:100%; height:auto; }
+  .banner svg [stroke="#861831"]{ stroke:var(--rose); }
+  .banner svg [fill="#861831"]{ fill:var(--rose); }
+  .banner svg [stroke="#F9F8F3"]{ stroke:var(--board); }
+  @media (prefers-reduced-motion:no-preference){
+    .banner svg rect, .banner svg path, .banner svg polyline{
+      opacity:0; animation:shelf-in .55s var(--ease) forwards;
+    }
+  }
+  @keyframes shelf-in{ to{ opacity:1; } }
+
+  /* ---------------- the sheet ---------------- */
+  .sheet{ background:var(--board); padding:clamp(40px,6vw,72px) 16px clamp(64px,9vw,104px); }
+  .sheet-inner{
+    max-width:var(--wrap); margin:0 auto;
+    border-radius:clamp(18px,3vw,28px);
+    padding:clamp(24px,4.5vw,56px) clamp(20px,4vw,56px) clamp(32px,5vw,64px);
+    box-shadow:var(--plate-shadow);
+  }
+  .register{ max-width:74ch; margin:0 auto; }
+
+  /* ---- the opening essay ---- */
+  .opening{ margin:0 0 40px; max-width:68ch; }
+  .opening p{ margin:0 0 1.05em; }
+  .opening p:last-child{ margin-bottom:0; }
   .pull{
-    font-family:var(--serif); font-style:italic; color:var(--crimson);
-    font-size:clamp(22px,3.4vw,28px); line-height:1.4; text-align:center;
-    margin:28px 0; padding:20px 0;
-    border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
+    margin:1.7em 0; padding:4px 0 6px 22px; border-left:3px solid var(--crimson);
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:clamp(22px,3vw,28px); line-height:1.4; color:var(--ink); text-align:left;
   }
 
-  .sec{ border-top:1px solid var(--rule-strong); }
-  .sec:last-of-type{ border-bottom:1px solid var(--rule-strong); }
+  /* ---- the duotone plate ---- */
+  .plate{
+    margin:0 0 44px; max-width:68ch;
+    background:var(--card); border:1px solid var(--hair); border-radius:var(--radius);
+    padding:clamp(14px,2.5vw,20px) clamp(14px,2.5vw,20px) 16px;
+  }
+  .plate img{ display:block; width:100%; height:auto; border-radius:var(--radius-sm); }
+  .plate figcaption{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase;
+    color:var(--muted); margin-top:14px;
+  }
+
+  /* ---- the shelves ---- */
+  .sec{ border-top:1px solid var(--hair-strong); scroll-margin-top:20px; }
+  .sec:first-of-type{ border-top:0; }
+  @media (min-width:940px){ .sec{ scroll-margin-top:80px; } }
   .sec > summary{
-    font-family:var(--sans); font-weight:700; font-size:14px;
-    letter-spacing:.22em; text-transform:uppercase; color:var(--crimson);
-    padding:18px 2px; margin:0; cursor:pointer;
-    display:flex; align-items:baseline; gap:12px; list-style:none;
+    font-family:var(--display); font-weight:700; color:var(--ink);
+    font-size:clamp(24px,3.4vw,34px); line-height:1.1; letter-spacing:-.024em;
+    padding:.95em 2px .9em; margin:0; cursor:pointer;
+    display:flex; align-items:baseline; gap:16px; list-style:none;
   }
   .sec > summary::-webkit-details-marker{ display:none; }
-  .sec > summary:focus-visible{ outline:2px solid var(--crimson); outline-offset:2px; }
-  .sec > summary .n{ font-size:12px; letter-spacing:.08em; color:var(--grey); }
-  .sec > summary::after{ content:"+"; margin-left:auto; font-size:17px; letter-spacing:0; }
-  .sec[open] > summary::after{ content:"\2013"; }
-  .fold{ padding:2px 0 14px; }
-  .fold-close{
-    display:block; margin:10px 0 8px; padding:8px 16px;
-    font-family:var(--sans); font-weight:700; font-size:12px;
-    letter-spacing:.06em; text-transform:uppercase;
-    color:var(--crimson); background:transparent;
-    border:1px solid var(--crimson); border-radius:2px; cursor:pointer;
+  .sec > summary:hover{ color:var(--crimson); }
+  .sec > summary:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; border-radius:6px; }
+  .sec > summary .n{
+    font-family:var(--mono); font-weight:600; font-size:11.5px; letter-spacing:.1em;
+    color:var(--crimson); align-self:center; padding:5px 11px;
+    border:1px solid var(--hair-strong); border-radius:999px; background:var(--card);
   }
-  .fold-close:hover{ color:var(--cream); background:var(--crimson); }
-  .fold-close:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+  .sec > summary::after{
+    content:"+"; margin-left:auto; align-self:center;
+    font-family:var(--sans); font-weight:400; font-size:26px; line-height:1;
+    letter-spacing:0; color:var(--crimson);
+    transition:transform .22s var(--ease);
+  }
+  .sec[open] > summary::after{ transform:rotate(45deg); }
+  .fold{ padding:2px 0 22px; }
 
-  .intro{ font-style:italic; color:var(--soft); max-width:640px; padding:4px 2px 8px; }
-  .intro p{ margin:0 0 12px; }
+  .intro{
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:19px; line-height:1.55; color:var(--soft);
+    max-width:66ch; padding:2px 2px 20px;
+  }
+  .intro p{ margin:0 0 .7em; }
   .intro p:last-child{ margin-bottom:0; }
 
-  .book{ border-top:1px solid var(--rule); }
-  .fold > .book:first-of-type{ border-top:none; }
+  .fold-close{
+    display:inline-flex; align-items:center; margin:16px 0 4px;
+    font-family:var(--sans); font-weight:700; font-size:12.5px; letter-spacing:.01em;
+    color:var(--crimson); background:transparent;
+    border:1.5px solid var(--crimson); border-radius:999px; padding:9px 18px; cursor:pointer;
+    transition:background .16s var(--ease), color .16s var(--ease), transform .16s var(--ease);
+  }
+  .fold-close:hover{ color:#fff; background:var(--crimson); transform:translateY(-1px); }
+  .fold-close:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; }
+
+  /* ---- the books ---- */
+  .book{
+    background:var(--card); border:1px solid var(--hair); border-radius:var(--radius-sm);
+    margin:0 0 10px; padding:0 clamp(14px,2.5vw,22px);
+    transition:border-color .16s var(--ease), box-shadow .16s var(--ease);
+  }
+  .book:hover{ border-color:var(--hair-strong); }
+  .book[open]{ box-shadow:var(--shadow); border-color:var(--hair-strong); }
   .book > summary{
-    list-style:none; cursor:pointer; padding:14px 2px;
-    display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;
+    list-style:none; cursor:pointer; padding:.85em 0 .8em;
+    display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
   }
   .book > summary::-webkit-details-marker{ display:none; }
   .book > summary::after{
-    content:"+"; margin-left:auto; font-family:var(--sans);
-    font-size:15px; color:var(--crimson);
+    content:"+"; margin-left:auto; align-self:center;
+    font-family:var(--sans); font-weight:400; font-size:20px; line-height:1;
+    color:var(--crimson); transition:transform .22s var(--ease);
   }
-  .book[open] > summary::after{ content:"\2013"; }
-  .book > summary:focus-visible{ outline:2px solid var(--crimson); outline-offset:2px; }
-  .t{ font-family:var(--serif); font-weight:600; font-size:18px; color:var(--ink); }
-  .by{ font-family:var(--sans); font-size:13px; color:var(--grey); letter-spacing:.02em; }
-  .rev{ margin:2px 0 18px; }
+  .book[open] > summary::after{ transform:rotate(45deg); }
+  .book > summary:hover .t{ color:var(--crimson); }
+  .book > summary:focus-visible{ outline:2px solid var(--crimson); outline-offset:3px; border-radius:6px; }
+  .t{
+    font-family:var(--display); font-weight:600; font-size:18.5px;
+    letter-spacing:-.014em; line-height:1.25; color:var(--ink);
+    transition:color .16s var(--ease);
+  }
+  .by{
+    font-family:var(--mono); font-weight:400; font-size:11px;
+    letter-spacing:.06em; color:var(--muted);
+  }
+  .rev{ padding:0 0 1.15em; }
   .rev p{
-    margin:0; max-width:640px; color:var(--body);
-    border-left:2px solid var(--crimson); padding-left:16px;
+    margin:0; max-width:64ch; color:var(--body); line-height:1.62;
+    border-left:3px solid var(--crimson); padding-left:18px;
   }
 
-  /* ---- masthead band, banner, mark, plate, foot band (July 2026 restyle) ---- */
-  .band{ background:var(--crimson); border-bottom:3px solid var(--crimson-deep); }
-  .band-inner{ max-width:760px; margin:0 auto; padding:13px 22px;
-               display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; }
-  .wordmark{ font-family:var(--serif); font-weight:600; font-size:17px;
-             color:var(--cream); text-decoration:none; margin-right:auto; white-space:nowrap; }
-  .band nav{ display:flex; flex-wrap:wrap; gap:6px 18px; }
-  .band nav a{ font-family:var(--sans); font-weight:700; font-size:12px;
-               letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
-               opacity:.85; text-decoration:none; }
-  .band nav a:hover{ opacity:1; }
-  .band nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
-  .band nav a[aria-current="page"]{ opacity:1; border-bottom:2px solid var(--cream); padding-bottom:2px; }
+  /* ---- scroll reveals (progressive; supported browsers only) ---- */
+  @media (prefers-reduced-motion:no-preference){
+    @supports (animation-timeline: view()){
+      .book{
+        animation:rise .5s var(--ease) both;
+        animation-timeline:view();
+        animation-range:entry 0% entry 30%;
+      }
+    }
+  }
+  @keyframes rise{ from{ opacity:0; transform:translateY(10px);} to{ opacity:1; transform:none;} }
 
-  .banner{ max-width:760px; margin:0 auto; padding:22px 22px 0; }
-  .banner svg{ display:block; width:100%; height:auto; }
-
-  .mark{ color:var(--crimson); margin:0 0 12px; }
-  .mark svg{ display:block; }
-
-  .plate{ max-width:640px; margin:0 0 36px; }
-  .plate img{ display:block; width:100%; height:auto; border:1px solid var(--rule); }
-  .plate figcaption{ font-family:var(--sans); font-size:12.5px; letter-spacing:.06em;
-                     text-transform:uppercase; color:var(--grey); margin-top:10px; }
-
-  .footband{ background:var(--crimson); border-top:3px solid var(--crimson-deep);
-             margin-top:34px; text-align:center; padding:26px 22px 34px; }
-  .footband .name{ font-family:var(--serif); font-weight:600; font-size:16px;
-                   color:var(--cream); text-decoration:none; letter-spacing:.02em; }
-  .footband nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px; margin-top:14px; }
-  .footband nav a{ font-family:var(--sans); font-weight:700; font-size:11.5px;
-                   letter-spacing:.14em; text-transform:uppercase; color:var(--cream);
-                   opacity:.8; text-decoration:none; }
+  /* ---------------- footer ---------------- */
+  .footband{ background:#0C0B0A; border-top:3px solid var(--rose);
+             margin-top:0; text-align:center; padding:34px 22px 40px; }
+  .footband .name{ font-family:var(--display); font-weight:700; font-size:16px;
+                   color:var(--b-tx); text-decoration:none; letter-spacing:-.01em; }
+  .footband .name:hover{ color:#fff; }
+  .footband nav{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px 20px; margin-top:16px; }
+  .footband nav a{ font-family:var(--mono); font-weight:500; font-size:10.5px;
+                   letter-spacing:.12em; text-transform:uppercase; color:var(--b-tx);
+                   opacity:.6; text-decoration:none; transition:opacity .16s var(--ease); }
   .footband nav a:hover{ opacity:1; }
-  .footband nav a:focus-visible{ outline:2px solid var(--cream); outline-offset:3px; opacity:1; }
+  .footband nav a:focus-visible{ outline:2px solid var(--rose); outline-offset:3px; opacity:1; }
 
-  @media (prefers-reduced-motion:reduce){ *{ scroll-behavior:auto !important; } }
-  html{ scroll-behavior:smooth; }
+  /* ---------------- responsive ---------------- */
+  @media (max-width:860px){ body{ font-size:17.5px; } }
+
+  @media (prefers-reduced-motion:reduce){
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important;
+       scroll-behavior:auto !important; }
+    .banner svg rect, .banner svg path, .banner svg polyline{ opacity:1; }
+  }
 </style>
 
 <!-- Privacy-friendly analytics by Plausible -->
@@ -265,19 +504,25 @@
   </div>
 </header>
 
-<div class="banner">
-<svg style="display:block;width:100%;height:auto" role="img" aria-label="A shelf of books, drawn in crimson and cream" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 200" stroke-linecap="round" stroke-linejoin="round"><rect x="30" y="48" width="26" height="132" fill="none" stroke="#861831" stroke-width="2"/><path d="M34 69 H52" stroke="#861831" stroke-width="2"/><path d="M34 156 H52" stroke="#861831" stroke-width="2"/><rect x="60" y="32" width="34" height="148" fill="#861831"/><path d="M64 56 H90" stroke="#F9F8F3" stroke-width="2"/><path d="M64 153 H90" stroke="#F9F8F3" stroke-width="2"/><rect x="98" y="62" width="22" height="118" fill="none" stroke="#861831" stroke-width="2"/><path d="M102 81 H116" stroke="#861831" stroke-width="2"/><path d="M102 159 H116" stroke="#861831" stroke-width="2"/><rect x="124" y="40" width="30" height="140" fill="none" stroke="#861831" stroke-width="2"/><path d="M128 62 H150" stroke="#861831" stroke-width="2"/><path d="M128 155 H150" stroke="#861831" stroke-width="2"/><rect x="158" y="54" width="24" height="126" fill="#861831"/><path d="M162 74 H178" stroke="#F9F8F3" stroke-width="2"/><path d="M162 157 H178" stroke="#F9F8F3" stroke-width="2"/><rect x="236" y="30" width="28" height="150" fill="none" stroke="#861831" stroke-width="2"/><path d="M240 54 H260" stroke="#861831" stroke-width="2"/><path d="M240 153 H260" stroke="#861831" stroke-width="2"/><rect x="268" y="42" width="40" height="138" fill="#861831"/><path d="M272 64 H304" stroke="#F9F8F3" stroke-width="2"/><path d="M272 155 H304" stroke="#F9F8F3" stroke-width="2"/><rect x="312" y="58" width="24" height="122" fill="none" stroke="#861831" stroke-width="2"/><path d="M316 78 H332" stroke="#861831" stroke-width="2"/><path d="M316 158 H332" stroke="#861831" stroke-width="2"/><rect x="340" y="36" width="30" height="144" fill="none" stroke="#861831" stroke-width="2"/><path d="M344 59 H366" stroke="#861831" stroke-width="2"/><path d="M344 154 H366" stroke="#861831" stroke-width="2"/><rect x="374" y="50" width="26" height="130" fill="#861831"/><path d="M378 71 H396" stroke="#F9F8F3" stroke-width="2"/><path d="M378 157 H396" stroke="#F9F8F3" stroke-width="2"/><rect x="466" y="30" width="30" height="150" fill="#861831"/><path d="M470 54 H492" stroke="#F9F8F3" stroke-width="2"/><path d="M470 153 H492" stroke="#F9F8F3" stroke-width="2"/><rect x="500" y="52" width="24" height="128" fill="none" stroke="#861831" stroke-width="2"/><path d="M504 72 H520" stroke="#861831" stroke-width="2"/><path d="M504 157 H520" stroke="#861831" stroke-width="2"/><rect x="528" y="38" width="34" height="142" fill="none" stroke="#861831" stroke-width="2"/><path d="M532 61 H558" stroke="#861831" stroke-width="2"/><path d="M532 154 H558" stroke="#861831" stroke-width="2"/><rect x="566" y="64" width="22" height="116" fill="#861831"/><path d="M570 83 H584" stroke="#F9F8F3" stroke-width="2"/><path d="M570 159 H584" stroke="#F9F8F3" stroke-width="2"/><rect x="592" y="44" width="28" height="136" fill="none" stroke="#861831" stroke-width="2"/><path d="M596 66 H616" stroke="#861831" stroke-width="2"/><path d="M596 156 H616" stroke="#861831" stroke-width="2"/><rect x="668" y="56" width="26" height="124" fill="none" stroke="#861831" stroke-width="2"/><path d="M672 76 H690" stroke="#861831" stroke-width="2"/><path d="M672 158 H690" stroke="#861831" stroke-width="2"/><rect x="698" y="34" width="36" height="146" fill="#861831"/><path d="M702 57 H730" stroke="#F9F8F3" stroke-width="2"/><path d="M702 154 H730" stroke="#F9F8F3" stroke-width="2"/><rect x="738" y="48" width="24" height="132" fill="none" stroke="#861831" stroke-width="2"/><path d="M742 69 H758" stroke="#861831" stroke-width="2"/><path d="M742 156 H758" stroke="#861831" stroke-width="2"/><rect x="766" y="62" width="30" height="118" fill="none" stroke="#861831" stroke-width="2"/><path d="M770 81 H792" stroke="#861831" stroke-width="2"/><path d="M770 159 H792" stroke="#861831" stroke-width="2"/><polygon points="410,180 433.5,175.0 462.6,38.1 439.1,43.1" fill="none" stroke="#861831" stroke-width="2"/><path d="M419.2 154.5 L434.8 151.2" stroke="#861831" stroke-width="2"/><path d="M437.2 69.6 L452.8 66.3" stroke="#861831" stroke-width="2"/><rect x="830" y="163" width="100" height="17" fill="#861831"/><path d="M916 166 V177" stroke="#F9F8F3" stroke-width="2"/><rect x="836" y="148" width="90" height="15" fill="none" stroke="#861831" stroke-width="2"/><path d="M912 151 V160" stroke="#861831" stroke-width="2"/><rect x="842" y="134" width="84" height="14" fill="none" stroke="#861831" stroke-width="2"/><path d="M912 137 V145" stroke="#861831" stroke-width="2"/><path d="M14 180.5 H946" stroke="#861831" stroke-width="2.5"/></svg>
-</div>
+<section class="hero" aria-label="Masthead">
+  <div class="wrap">
+    <div class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 20.5 H21.5"/><path d="M4 20.5 V8 H7 V20.5"/><path d="M8.5 20.5 V6.5 H11.5 V20.5"/><path d="M13 20.5 V9 H15.5 V20.5"/><path d="M16.9 20.3 L19.3 9.3 L21.4 9.9 L19.2 20.4"/></svg></div>
+    <p class="kicker">The Library</p>
+    <h1>Books</h1>
+    <div class="titlerule" aria-hidden="true"></div>
+    <p class="stand">The books I have found personally useful, arranged on eleven shelves with a short case for each &mdash; beginning with the house that sagged under the weight of its library.</p>
+  </div>
+  <div class="wrap">
+  <div class="banner">
+  <svg style="display:block;width:100%;height:auto" role="img" aria-label="A shelf of books, drawn in crimson and cream" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 200" stroke-linecap="round" stroke-linejoin="round"><rect x="30" y="48" width="26" height="132" fill="none" stroke="#861831" stroke-width="2"/><path d="M34 69 H52" stroke="#861831" stroke-width="2"/><path d="M34 156 H52" stroke="#861831" stroke-width="2"/><rect x="60" y="32" width="34" height="148" fill="#861831"/><path d="M64 56 H90" stroke="#F9F8F3" stroke-width="2"/><path d="M64 153 H90" stroke="#F9F8F3" stroke-width="2"/><rect x="98" y="62" width="22" height="118" fill="none" stroke="#861831" stroke-width="2"/><path d="M102 81 H116" stroke="#861831" stroke-width="2"/><path d="M102 159 H116" stroke="#861831" stroke-width="2"/><rect x="124" y="40" width="30" height="140" fill="none" stroke="#861831" stroke-width="2"/><path d="M128 62 H150" stroke="#861831" stroke-width="2"/><path d="M128 155 H150" stroke="#861831" stroke-width="2"/><rect x="158" y="54" width="24" height="126" fill="#861831"/><path d="M162 74 H178" stroke="#F9F8F3" stroke-width="2"/><path d="M162 157 H178" stroke="#F9F8F3" stroke-width="2"/><rect x="236" y="30" width="28" height="150" fill="none" stroke="#861831" stroke-width="2"/><path d="M240 54 H260" stroke="#861831" stroke-width="2"/><path d="M240 153 H260" stroke="#861831" stroke-width="2"/><rect x="268" y="42" width="40" height="138" fill="#861831"/><path d="M272 64 H304" stroke="#F9F8F3" stroke-width="2"/><path d="M272 155 H304" stroke="#F9F8F3" stroke-width="2"/><rect x="312" y="58" width="24" height="122" fill="none" stroke="#861831" stroke-width="2"/><path d="M316 78 H332" stroke="#861831" stroke-width="2"/><path d="M316 158 H332" stroke="#861831" stroke-width="2"/><rect x="340" y="36" width="30" height="144" fill="none" stroke="#861831" stroke-width="2"/><path d="M344 59 H366" stroke="#861831" stroke-width="2"/><path d="M344 154 H366" stroke="#861831" stroke-width="2"/><rect x="374" y="50" width="26" height="130" fill="#861831"/><path d="M378 71 H396" stroke="#F9F8F3" stroke-width="2"/><path d="M378 157 H396" stroke="#F9F8F3" stroke-width="2"/><rect x="466" y="30" width="30" height="150" fill="#861831"/><path d="M470 54 H492" stroke="#F9F8F3" stroke-width="2"/><path d="M470 153 H492" stroke="#F9F8F3" stroke-width="2"/><rect x="500" y="52" width="24" height="128" fill="none" stroke="#861831" stroke-width="2"/><path d="M504 72 H520" stroke="#861831" stroke-width="2"/><path d="M504 157 H520" stroke="#861831" stroke-width="2"/><rect x="528" y="38" width="34" height="142" fill="none" stroke="#861831" stroke-width="2"/><path d="M532 61 H558" stroke="#861831" stroke-width="2"/><path d="M532 154 H558" stroke="#861831" stroke-width="2"/><rect x="566" y="64" width="22" height="116" fill="#861831"/><path d="M570 83 H584" stroke="#F9F8F3" stroke-width="2"/><path d="M570 159 H584" stroke="#F9F8F3" stroke-width="2"/><rect x="592" y="44" width="28" height="136" fill="none" stroke="#861831" stroke-width="2"/><path d="M596 66 H616" stroke="#861831" stroke-width="2"/><path d="M596 156 H616" stroke="#861831" stroke-width="2"/><rect x="668" y="56" width="26" height="124" fill="none" stroke="#861831" stroke-width="2"/><path d="M672 76 H690" stroke="#861831" stroke-width="2"/><path d="M672 158 H690" stroke="#861831" stroke-width="2"/><rect x="698" y="34" width="36" height="146" fill="#861831"/><path d="M702 57 H730" stroke="#F9F8F3" stroke-width="2"/><path d="M702 154 H730" stroke="#F9F8F3" stroke-width="2"/><rect x="738" y="48" width="24" height="132" fill="none" stroke="#861831" stroke-width="2"/><path d="M742 69 H758" stroke="#861831" stroke-width="2"/><path d="M742 156 H758" stroke="#861831" stroke-width="2"/><rect x="766" y="62" width="30" height="118" fill="none" stroke="#861831" stroke-width="2"/><path d="M770 81 H792" stroke="#861831" stroke-width="2"/><path d="M770 159 H792" stroke="#861831" stroke-width="2"/><polygon points="410,180 433.5,175.0 462.6,38.1 439.1,43.1" fill="none" stroke="#861831" stroke-width="2"/><path d="M419.2 154.5 L434.8 151.2" stroke="#861831" stroke-width="2"/><path d="M437.2 69.6 L452.8 66.3" stroke="#861831" stroke-width="2"/><rect x="830" y="163" width="100" height="17" fill="#861831"/><path d="M916 166 V177" stroke="#F9F8F3" stroke-width="2"/><rect x="836" y="148" width="90" height="15" fill="none" stroke="#861831" stroke-width="2"/><path d="M912 151 V160" stroke="#861831" stroke-width="2"/><rect x="842" y="134" width="84" height="14" fill="none" stroke="#861831" stroke-width="2"/><path d="M912 137 V145" stroke="#861831" stroke-width="2"/><path d="M14 180.5 H946" stroke="#861831" stroke-width="2.5"/></svg>
+  </div>
+  </div>
+</section>
 
-<header class="mast">
-  <div class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 20.5 H21.5"/><path d="M4 20.5 V8 H7 V20.5"/><path d="M8.5 20.5 V6.5 H11.5 V20.5"/><path d="M13 20.5 V9 H15.5 V20.5"/><path d="M16.9 20.3 L19.3 9.3 L21.4 9.9 L19.2 20.4"/></svg></div>
-  <p class="kicker">The Library</p>
-  <h1>Books</h1>
-  <div class="titlerule" aria-hidden="true"></div>
-  <p class="stand">The books I have found personally useful, arranged on eleven shelves with a short case for each &mdash; beginning with the house that sagged under the weight of its library.</p>
-</header>
-
-<main class="wrap">
+<main>
+<section class="sheet">
+  <div class="sheet-inner">
+    <div class="register">
 
 <div class="opening">
   <p>When I was in my twenties I worked in the Risk department at JP Morgan. My boss&rsquo;s boss was Andy Threadgold, the Chief Risk Officer &mdash; an Englishman, and more particularly a Yorkshireman, running the function out of New York. He was several rungs above me and never once behaved as though he knew it, which is the only reason someone that junior felt able to ask him about his house.</p>
@@ -744,6 +989,9 @@
   </div>
 </details>
 
+    </div>
+  </div>
+</section>
 </main>
 
 <footer class="footband">
