@@ -33,7 +33,6 @@
 @font-face{font-family:'Newsreader';font-style:italic;font-weight:200 800;font-display:swap;src:url('/assets/fonts/NewsreaderIt.woff2') format('woff2');}
 @font-face{font-family:'Caveat';font-style:normal;font-weight:400 700;font-display:swap;src:url('/assets/fonts/Caveat.woff2') format('woff2');}
 @font-face{font-family:'Architects Daughter';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/ArchDaughter.woff2') format('woff2');}
-%%HEADER%%
 
   :root{
     color-scheme:dark;
@@ -73,6 +72,12 @@
     --serif:'Newsreader','Geist',Georgia,serif;
     --sans:'Geist','Liberation Sans',Arial,sans-serif;
     --mono:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    /* finance-architecture plate zones (light artwork scope) */
+    --gold-fill:#F6EFD8;
+    --gold-rule:#CDB878;
+    --gold-ink:#2A230D;
+    --zone-hr:#DEDEDA;
+    --zone-plat:#8A8A84;
     /* geometry & motion */
     --wrap:1180px;
     --radius:22px;
@@ -628,12 +633,12 @@
   }
 
   /* the hero ground: aurora field + drafting dots, fading to the board */
-  .hero{ background-image:radial-gradient(60%% 50%% at 10%% 0%%, rgba(240,86,111,.28), transparent 60%%), radial-gradient(55%% 46%% at 92%% 12%%, rgba(120,32,90,.3), transparent 62%%), radial-gradient(46%% 40%% at 30%% 100%%, rgba(217,164,65,.12), transparent 58%%), radial-gradient(rgba(245,238,233,.06) 1px, transparent 1.4px); background-size:auto,auto,auto,26px 26px; }
+  .hero{ background-image:radial-gradient(60% 50% at 10% 0%, rgba(240,86,111,.28), transparent 60%), radial-gradient(55% 46% at 92% 12%, rgba(120,32,90,.3), transparent 62%), radial-gradient(46% 40% at 30% 100%, rgba(217,164,65,.12), transparent 58%), radial-gradient(rgba(245,238,233,.06) 1px, transparent 1.4px); background-size:auto,auto,auto,26px 26px; }
   .hero::after{ background:linear-gradient(180deg, transparent 45%, var(--board) 97%); }
 
   /* display ink */
   .masthead-title{
-    background:linear-gradient(120deg, #F7EEE9 20%%, #F0566F 78%%, #D9A441 105%%);
+    background:linear-gradient(120deg, #F7EEE9 20%, #F0566F 78%, #D9A441 105%);
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
   @supports not (background-clip:text){ .masthead-title{ background:none; color:var(--ink); } }
@@ -692,15 +697,15 @@
   body::after{
     content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
     background:
-      radial-gradient(80%% 60%% at 15%% -10%%, rgba(201,58,87,.22), transparent 62%%),
-      radial-gradient(70%% 55%% at 100%% 8%%, rgba(94,26,74,.3), transparent 60%%),
-      radial-gradient(60%% 50%% at 40%% 110%%, rgba(64,26,12,.4), transparent 60%%);
+      radial-gradient(80% 60% at 15% -10%, rgba(201,58,87,.22), transparent 62%),
+      radial-gradient(70% 55% at 100% 8%, rgba(94,26,74,.3), transparent 60%),
+      radial-gradient(60% 50% at 40% 110%, rgba(64,26,12,.4), transparent 60%);
   }
   .rail-item, .page-content details.acc, .page-content .tq, .prep-page, .page-content .tq-bar{
     border:1px solid transparent;
     background:
       linear-gradient(var(--card), var(--card)) padding-box,
-      linear-gradient(135deg, rgba(240,86,111,.42), rgba(245,238,233,.1) 40%%, rgba(217,164,65,.28)) border-box;
+      linear-gradient(135deg, rgba(240,86,111,.42), rgba(245,238,233,.1) 40%, rgba(217,164,65,.28)) border-box;
   }
   .showcase-cta a{ background:linear-gradient(135deg, var(--rose), #D9A441); color:#1C0A0F;
                    border-color:transparent; }
