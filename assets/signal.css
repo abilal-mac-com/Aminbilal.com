@@ -598,15 +598,24 @@
   }
 
   /* ---------------- figures (inline SVG diagrams) ---------------- */
+  /* Native to the board, 9 August 2026 (wave 1 of the visual upgrade).
+     The figures no longer sit on their own paper. The light token re-pin and
+     the cream plate are withdrawn, so the estate tokens flow through, and the
+     drawings' hard-coded values are lifted to the dark bloodline by attribute
+     selector; the markup of technology.html is not touched at all.
+       - Doctrine requires the lift rather than merely permitting it:
+         --crimson-true is a reserved print value and may not appear on a dark
+         ground (section 7 of the architecture record).
+       - Scoped to .fig alone. The AI on One Page sheet (.map-sheet) keeps its
+         paper by design and carries the very same hex values; it must never be
+         caught by these selectors, so none of them is written bare.
+       - The five t-* rules gain `svg text` so that they outrank the attribute
+         lifts by specificity rather than by source order. The element set they
+         match is unchanged: all 59 text elements across the five figures carry
+         a t-* class, and every one is a <text> inside the <svg>. */
   .fig{
-    /* an artwork plate: the drawing's own paper, lit on the board */
-    color-scheme:light;
-    --ink:#1A1A1A; --grey:#5A5A5A; --soft:#4A4843; --muted:#6B675C;
-    --crimson:var(--crimson-true); --rule:#C7C3B8;
-    margin:2.6em auto 2.2em; max-width:680px; background:var(--cream);
-    border:0; border-radius:var(--radius);
-    box-shadow:0 0 0 1px rgba(255,255,255,.09), var(--plate-shadow);
-    padding:clamp(18px,3.5vw,28px) clamp(18px,3.5vw,28px) 20px;
+    margin:2.6em auto 2.2em; max-width:680px;
+    border:0; padding:0;
   }
   .fig svg{ display:block; width:100%; height:auto; }
   .fig figcaption{
@@ -615,11 +624,29 @@
   }
   .fig .fig-n{ font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--crimson); }
   .fig .fig-c{ display:block; font-family:var(--serif); font-style:italic; letter-spacing:0; font-size:14.5px; color:var(--soft); margin-top:6px; }
-  .fig .t-title{ font-family:var(--display); font-weight:600; fill:var(--ink); }
-  .fig .t-layer{ font-family:var(--serif); font-weight:400; fill:var(--ink); }
-  .fig .t-glossy{ font-family:var(--mono); font-weight:400; fill:var(--grey); }
-  .fig .t-tag{ font-family:var(--mono); font-weight:600; fill:var(--crimson); letter-spacing:.06em; }
-  .fig .t-open{ font-family:var(--serif); font-weight:400; font-style:italic; fill:var(--grey); }
+  .fig svg text.t-title{ font-family:var(--display); font-weight:600; fill:var(--ink); }
+  .fig svg text.t-layer{ font-family:var(--serif); font-weight:400; fill:var(--ink); }
+  .fig svg text.t-glossy{ font-family:var(--mono); font-weight:400; fill:var(--grey); }
+  .fig svg text.t-tag{ font-family:var(--mono); font-weight:600; fill:var(--crimson); letter-spacing:.06em; }
+  .fig svg text.t-open{ font-family:var(--serif); font-weight:400; font-style:italic; fill:var(--grey); }
+
+  /* the drawing itself, lifted for the dark ground; text is governed above */
+  .fig svg [fill="#861831"]{ fill:var(--crimson); }
+  .fig svg [stroke="#861831"]{ stroke:var(--crimson); }
+  .fig svg [fill="#F9F8F3"]{ fill:var(--board); }
+  .fig svg [fill="#5A5A5A"]{ fill:var(--muted); }
+  .fig svg [stroke="#5A5A5A"]{ stroke:var(--muted); }
+  .fig svg [fill="#4A4843"]{ fill:var(--soft); }
+  .fig svg [stroke="#C7C3B8"]{ stroke:var(--rule-strong); }
+  .fig svg [stroke="#D8D5CC"]{ stroke:var(--rule); }
+
+  /* tints and ghost strokes need more of themselves on a dark ground */
+  .fig svg [fill-opacity="0.05"]{ fill-opacity:.14; }
+  .fig svg [fill-opacity="0.08"]{ fill-opacity:.16; }
+  .fig svg [stroke-opacity="0.35"]{ stroke-opacity:.45; }
+
+  /* gold is the medal: the replayed balance, and the quorum that may act */
+  .fig svg text.t-title[fill="#861831"]{ fill:var(--gold); }
 
 
   /* ============================================================
