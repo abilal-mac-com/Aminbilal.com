@@ -643,18 +643,31 @@
   .fig{
     margin:2.6em auto 2.2em; max-width:680px;
     border:0; padding:0;
+    /* Annotation values for a dark ground, 9 August 2026. The estate's chrome
+       tokens are calibrated for furniture read at a glance; text inside a
+       diagram has to be read properly, and on the retired plate these same
+       roles sat at Lc 74-87. These restore that on the board. Scoped to .fig,
+       so no other page is touched and :root is not disturbed. --crimson is
+       deliberately NOT re-pinned here: it also draws 40 strokes and fills,
+       which are graphics and need no lifting. */
+    --grey:#DFD5D0;        /* t-glossy, t-open   Lc 82.0, plate had 79.6 */
+    --muted:#D5CACB;       /* figcaption         Lc 75.7, plate had 74.0 */
+    --soft:#E5DBDC;        /* fig-c              Lc 85.9, plate had 86.8 */
+    --fig-label:#FDBAC5;   /* fig-n, t-tag       Lc 75.2, plate had 86.5;
+                              hue 350.1deg, the rose line at a higher
+                              lightness, which the one-hue doctrine allows */
   }
   .fig svg{ display:block; width:100%; height:auto; }
   .fig figcaption{
     font-family:var(--mono); font-size:11px; letter-spacing:.02em; color:var(--muted);
     text-align:center; margin-top:16px; line-height:1.55;
   }
-  .fig .fig-n{ font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--crimson); }
+  .fig .fig-n{ font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--fig-label); }
   .fig .fig-c{ display:block; font-family:var(--serif); font-style:italic; letter-spacing:0; font-size:14.5px; color:var(--soft); margin-top:6px; }
   .fig svg text.t-title{ font-family:var(--display); font-weight:600; fill:var(--ink); }
   .fig svg text.t-layer{ font-family:var(--serif); font-weight:400; fill:var(--ink); }
   .fig svg text.t-glossy{ font-family:var(--mono); font-weight:400; fill:var(--grey); }
-  .fig svg text.t-tag{ font-family:var(--mono); font-weight:600; fill:var(--crimson); letter-spacing:.06em; }
+  .fig svg text.t-tag{ font-family:var(--mono); font-weight:600; fill:var(--fig-label); letter-spacing:.06em; }
   .fig svg text.t-open{ font-family:var(--serif); font-weight:400; font-style:italic; fill:var(--grey); }
 
   /* the drawing itself, lifted for the dark ground; text is governed above */
