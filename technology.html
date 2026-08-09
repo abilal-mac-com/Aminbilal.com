@@ -83,7 +83,7 @@
 
 <link rel="preload" href="/assets/fonts/Geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/Newsreader.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/signal.css?v=5.4">
+<link rel="stylesheet" href="/assets/signal.css?v=5.5">
 <!-- v5.0 (Aug 2026): presentation via /assets/signal.css, a recorded invariant change from the single-file model; this page carries only its body class (p-technology). Fonts self-hosted at /assets/fonts. Rollback is per-page from source. -->
 
 
@@ -4661,7 +4661,83 @@
     <details class="acc">
       <summary class="acc-head"><span class="ct-num">II</span><span class="acc-title">The Service Models and What Each Delegates</span></summary>
       <div class="acc-body">
-        <p>The four service models met in the networks block &mdash; infrastructure, platform, software and function &mdash; are best understood as rungs on a ladder of delegation, each handing more of the operational burden to the provider and retaining less control. With <strong>IaaS</strong> one rents virtual machines and assembles everything above; with <strong>PaaS</strong> the operating system and runtime are the provider&rsquo;s problem and one supplies only code and configuration; with <strong>SaaS</strong> one rents the finished application by the seat; with <strong>FaaS</strong>, the serverless model, one supplies individual functions and pays only for the milliseconds they execute. Legacy migrations typically enter at IaaS &mdash; the &ldquo;lift and shift&rdquo; that moves machines without changing them &mdash; and the recurring disappointment of first-wave cloud programmes was discovering that a lifted-and-shifted estate costs more than it did on-premises, because it imported the old low-utilisation habits into a metered environment. The savings live higher up the ladder, where the provider&rsquo;s scale operates what the firm used to staff.</p>
+        <p>The four service models met in the networks block &mdash; infrastructure, platform, function and software &mdash; are best understood as rungs on a ladder of delegation, each handing more of the operational burden to the provider and retaining less control. The table below sets out what each model delegates and what it meters. Read left to right, the boundary between what the customer holds and what the provider holds slides down the stack; and <strong>FaaS</strong>, the serverless model, separates from <strong>PaaS</strong> not by the layer it manages but by the unit it charges for &mdash; the milliseconds a function actually executes, rather than an instance held ready. Legacy migrations typically enter at IaaS &mdash; the &ldquo;lift and shift&rdquo; that moves machines without changing them &mdash; and the recurring disappointment of first-wave cloud programmes was discovering that a lifted-and-shifted estate costs more than it did on-premises, because it imported the old low-utilisation habits into a metered environment. The savings live higher up the ladder, where the provider&rsquo;s scale operates what the firm used to staff.</p>
+        <figure class="fig svc">
+          <div class="svc-frame">
+            <table>
+              <thead>
+                <tr>
+                  <td class="svc-corner"></td>
+                  <th scope="col">IaaS<span class="svc-g">Infrastructure</span></th>
+                  <th scope="col">PaaS<span class="svc-g">Platform</span></th>
+                  <th scope="col">FaaS<span class="svc-g">Function</span></th>
+                  <th scope="col">SaaS<span class="svc-g">Software</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Application code</th>
+                  <td class="svc-you">You</td>
+                  <td class="svc-you">You</td>
+                  <td class="svc-you">You</td>
+                  <td>Provider</td>
+                </tr>
+                <tr>
+                  <th scope="row">Runtime</th>
+                  <td class="svc-you">You</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                </tr>
+                <tr>
+                  <th scope="row">Operating system</th>
+                  <td class="svc-you">You</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                </tr>
+                <tr>
+                  <th scope="row">Virtualisation</th>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                </tr>
+                <tr>
+                  <th scope="row">Servers and storage</th>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                </tr>
+                <tr>
+                  <th scope="row">Network and facilities</th>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                  <td>Provider</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row">What you pay for</th>
+                  <td>Machine-hours</td>
+                  <td>Instance-hours</td>
+                  <td>Per execution</td>
+                  <td>Per seat</td>
+                </tr>
+                <tr>
+                  <th scope="row">What never moves</th>
+                  <td class="svc-you" colspan="4">Data, identity, configuration &mdash; and accountability</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <figcaption>
+            <span class="fig-n">Table 1</span>
+            <span class="fig-c">Each model slides the boundary further down the stack. The last row does not move at all.</span>
+          </figcaption>
+        </figure>
         <p>One doctrine on this ladder must be carried into every conversation: the <strong>shared responsibility model</strong>. The provider is responsible for the security and resilience <em>of</em> the cloud &mdash; the buildings, the hardware, the hypervisor; the customer remains responsible for security and resilience <em>in</em> the cloud &mdash; what is configured, who has access, how data is classified and encrypted, whether backups exist and restore. The great majority of publicised &ldquo;cloud breaches&rdquo; are nothing of the kind: they are customer misconfigurations &mdash; the storage bucket left open to the world, the credential with too much power &mdash; on infrastructure that performed exactly as promised. Delegation moves work; it does not move accountability, and a regulator will make the same point in the vocabulary of Block Ten: outsourcing is permitted, abdication is not.</p>
         <p class="ct-quote">The provider secures the cloud; the customer secures what it puts there. Delegation moves work, never accountability.</p>
       </div>
