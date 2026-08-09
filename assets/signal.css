@@ -1637,6 +1637,74 @@ font-family:var(--display); font-weight:700; color:var(--b-tx); text-transform:u
 }
 
 
+/* ======== page: p-home ======== */
+.p-home{
+
+  /* the hero: the Veil, drawn in the estate's own hand */
+  .home-hero{
+    position:relative; overflow:hidden;
+    min-height:min(92svh, 860px);
+    display:grid; place-items:center;
+    border-bottom:1px solid var(--hair);
+  }
+  .home-veil{ position:absolute; inset:0; pointer-events:none; }
+  .home-veil svg{ width:100%; height:100%; display:block; }
+
+  .home-mast{
+    position:relative; z-index:1; text-align:center; padding:0 20px;
+    /* seat the masthead in the lower third, beneath the veil */
+    transform:translateY(clamp(130px, 19vh, 180px));
+  }
+  .home-name{
+    font-family:var(--display); font-weight:800; color:var(--ink);
+    font-size:clamp(46px, 8.6vw, 96px); line-height:1.02;
+    letter-spacing:-.028em; margin:0;
+  }
+  .home-rule{
+    width:132px; height:5px; border-radius:2px; background:var(--rose);
+    margin:clamp(14px,2.2vw,20px) auto clamp(18px,2.6vw,26px);
+  }
+  .home-strap{
+    font-family:var(--mono); font-weight:500; color:var(--muted);
+    font-size:clamp(10.5px, 1.35vw, 15px); letter-spacing:.42em;
+    text-transform:uppercase; margin:0 0 0 .42em;
+  }
+
+  /* seven doors: every way in, so rose */
+  .home-doors{
+    max-width:var(--wrap); margin:0 auto;
+    padding:clamp(40px,7vw,84px) clamp(20px,5vw,56px) clamp(64px,9vw,110px);
+    display:grid; gap:clamp(14px,2vw,22px);
+    grid-template-columns:repeat(auto-fill, minmax(min(300px,100%), 1fr));
+  }
+  .home-door{
+    display:block; padding:22px 24px 24px; text-decoration:none;
+    background:var(--card-solid); border:1px solid var(--hair);
+    border-left:3px solid var(--crimson); border-radius:var(--radius-sm);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    transition:border-color .18s var(--ease), transform .18s var(--ease),
+               box-shadow .18s var(--ease);
+  }
+  .home-door:hover{
+    transform:translateY(-2px); border-color:var(--hair-strong);
+    border-left-color:var(--crimson);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.07),
+               0 18px 40px -20px rgba(0,0,0,.7), 0 12px 36px -16px var(--glow);
+  }
+  .home-door--wide{ grid-column:1 / -1; }
+  .home-door .door-title{
+    display:block; font-family:var(--display); font-weight:600; color:var(--ink);
+    font-size:clamp(19px,2.2vw,23px); line-height:1.2; letter-spacing:-.02em;
+    margin:0;
+  }
+  .home-door .door-sub{
+    display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--muted); margin:12px 0 0;
+  }
+
+}
+
+
 /* ======== hoisted keyframes (deduped) ======== */
   @keyframes tape-in{ to{ opacity:1; } }
   @keyframes shelf-in{ to{ opacity:1; } }
