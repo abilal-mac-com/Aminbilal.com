@@ -827,7 +827,14 @@
   .z-hr{ background:var(--zone-hr); }
   .z-plat{ background:var(--zone-plat); }
 
-  .plate-grid{ display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:26px; align-items:start; }
+  /* single column first; the commentary side-car returns at 940px.
+     (2026-08-09: the two-column grid had no narrow collapse - on phones the
+     plate crushed to a sliver and its cells overflowed beneath the
+     commentary. Phones read plate first, commentary after, in DOM order.) */
+  .plate-grid{ display:grid; grid-template-columns:minmax(0,1fr); gap:26px; align-items:start; }
+  @media (min-width:940px){
+    .plate-grid{ grid-template-columns:minmax(0,1fr) 300px; }
+  }
   .plate, .commentary{
     color-scheme:light;
     --ink:#1A1A1A; --grey:#5A5A5A; --soft:#4A4843; --muted:#6B675C; --body:#2B2B29;
@@ -854,6 +861,9 @@
   .cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
   .cols-3{ grid-template-columns:repeat(3,minmax(0,1fr)); }
   .cols-4{ grid-template-columns:repeat(4,minmax(0,1fr)); }
+  @media (max-width:559px){
+    .cols-4{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  }
   .cell{
     border:1px solid var(--hair); border-radius:8px; background:var(--paper);
     padding:10px 12px 11px; transition:border-color .16s var(--ease), background-color .16s var(--ease);
