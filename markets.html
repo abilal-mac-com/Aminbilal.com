@@ -52,9 +52,8 @@
 
   PAGE ARCHITECTURE (August 2026 restyle, in conformance with technology.html)
     section.hero          → masthead, closing with the candlestick banner
-    aside.status-note     → volume status
     main.series
-      section.toc         → nav.rail, the contents card grid
+      section.toc         → nav.rail, the contents strip
       section.sheet       → div.panels, the reading plate (11 panels)
 
     The rail is a grid of cards rather than a side column, so a card tap
@@ -82,7 +81,7 @@
 
 <link rel="preload" href="/assets/fonts/Geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/Newsreader.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/signal.css?v=5.0">
+<link rel="stylesheet" href="/assets/signal.css?v=5.7">
 <!-- v5.0 (Aug 2026): presentation via /assets/signal.css, a recorded invariant change from the single-file model; this page carries only its body class (p-markets). Fonts self-hosted at /assets/fonts. Rollback is per-page from source. -->
 
 
@@ -139,13 +138,6 @@
     </div>
   </div>
   </section>
-
-  <aside class="status-note" aria-label="Volume status">
-    <div class="wrap">
-      <p class="status-kicker">Volume Status</p>
-      <p class="progress">The Introduction and all eight chapters are complete. Every chapter opens to its full Content, Key Takeaways and FAQs; the <a href="#assertions">Fifty Key Assertions</a> distil the volume into a standing reference, and the <a href="#glossary">Glossary of Terms</a> defines the working vocabulary.</p>
-    </div>
-  </aside>
 
   <main class="series">
 

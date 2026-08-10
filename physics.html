@@ -52,9 +52,8 @@
 
   PAGE ARCHITECTURE (August 2026 restyle, in conformance with technology.html)
     section.hero          → masthead
-    aside.status-note     → primer status
     main.series
-      section.toc         → nav.rail, the contents card grid
+      section.toc         → nav.rail, the contents strip
       section.sheet       → div.panels, the reading plate (8 panels)
 
     The rail is a grid of cards rather than a side column, so a card tap
@@ -80,7 +79,7 @@
 
 <link rel="preload" href="/assets/fonts/Geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/Newsreader.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/signal.css?v=5.0">
+<link rel="stylesheet" href="/assets/signal.css?v=5.7">
 <!-- v5.0 (Aug 2026): presentation via /assets/signal.css, a recorded invariant change from the single-file model; this page carries only its body class (p-physics). Fonts self-hosted at /assets/fonts. Rollback is per-page from source. -->
 
 
@@ -131,13 +130,6 @@
       <p class="standfirst">Photons, fermions, bosons, the four forces, energy and mass &mdash; and how they combine to produce the material universe. This primer rebuilds the physical world patiently and from first principles, assuming no prior scientific knowledge. Each movement sets out what is genuinely settled, and then faces squarely the questions that science cannot yet answer &mdash; because the honest edge of knowledge is the most interesting place in the subject.</p>
     </div>
   </section>
-
-  <aside class="status-note" aria-label="Primer status">
-    <div class="wrap">
-      <p class="status-kicker">Primer Status</p>
-      <p class="progress">The Introduction and all six movements are complete. Every movement opens to its full Content, Key Takeaways and FAQs, and the <a href="#assertions">Fifty Key Assertions</a> distil the settled material into a standing reference.</p>
-    </div>
-  </aside>
 
   <main class="series">
 
