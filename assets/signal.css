@@ -899,6 +899,57 @@
                    border-color:transparent; }
   .showcase-cta a:hover{ background:linear-gradient(135deg, #FF6F87, #E8B558); color:#1C0A0F; }
 
+  /* ---- the navigation family, 10 August 2026 -------------------------------
+     Five links join the showcase call to action in its rose-to-gold treatment:
+     the two hero calls to action, the two pager arms, and the back link. All
+     five navigate between places, which is what the family marks. The 96
+     .page-btn panel tabs are deliberately excluded - they switch what is shown
+     within a panel, and at 96 a gradient would signal nothing.
+
+     Two mechanisms, chosen by what each element is:
+       - The two hero pills take the fill, identical to the showcase CTA, so
+         top and foot read as one family.
+       - The pager's direction label is four characters wide, where a gradient
+         cannot be seen. It takes a solid lifted rose and a 28px gradient rule
+         beneath, which is where the sweep has room to register. The rule is a
+         pseudo-element, so no markup changes.
+       - The back link is long enough to carry the gradient as text, behind an
+         @supports guard with a solid colour declared first, so the label can
+         never vanish if background-clip is unsupported.
+
+     Values. Fill: #F0566F to #D9A441, exactly the showcase CTA's. Text: the
+     lifted pair #FA92A3 to #E8B558, because the fill's rose end measures
+     Lc 41.4 as text on the board and the lifted end measures 59.7, against
+     47.0 for the flat crimson these carried before. Small text does not take
+     the fill values anywhere in this block. */
+  .hero-cta .pdf-btn,
+  .hero-cta .page-btn{
+    background:linear-gradient(135deg, var(--rose), #D9A441);
+    border-color:transparent; color:#1C0A0F;
+  }
+  .hero-cta .pdf-btn:hover,
+  .hero-cta .page-btn:hover{
+    background:linear-gradient(135deg, #FF6F87, #E8B558);
+    border-color:transparent; color:#1C0A0F;
+  }
+  .hero-cta .page-btn .pb-dot{ background:currentColor; opacity:.5; }
+  .hero-cta .page-btn:hover .pb-dot{ opacity:.8; }
+
+  .flip-dir{ color:#FA92A3; }
+  .flip-dir::after{
+    content:""; display:block; width:28px; height:2px; margin-top:6px; border-radius:2px;
+    background:linear-gradient(90deg, var(--rose), #D9A441);
+  }
+  .flip.next .flip-dir::after{ margin-left:auto; }
+
+  .back-to-block{ color:#FA92A3; }
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    .back-to-block{
+      background:linear-gradient(90deg, #FA92A3, #E8B558);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+  }
+
   /* ---- second accent, formalised ----------------------------------
      Rose is the hand: everything you can act on, and where you are.
      Gold is the medal: what is complete, correct, or distinguished.
