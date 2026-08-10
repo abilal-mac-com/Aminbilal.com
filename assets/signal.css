@@ -339,6 +339,71 @@
   /* ---------------- the reading sheet: a light plate on the board ---------------- */
   .sheet{ background:transparent; border-top:1px solid var(--b-hair); padding:clamp(48px,7vw,88px) 0 clamp(72px,10vw,120px); }
   .sheet .panels{ max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px); }
+
+  /* ---- the contents rail as a left-hand strip, restored 10 August 2026 ----
+     The v5 migration kept this markup entire - <main class="series"> with a
+     .toc and a .sheet as its only two children, and the rail still declaring
+     aria-orientation="vertical" - and replaced only the CSS. The strip is
+     therefore recoverable without editing a single page.
+
+     Scoping. .rail, .series and .toc appear on exactly three pages:
+     technology, physics and markets. They are safe unscoped. .sheet is NOT:
+     books, quotes, latest and finance-architecture carry it too, so every
+     rule here that touches it is written as `.series > .sheet`.
+
+     Breakpoint. Below 940px nothing changes at all and the card grid stands.
+     940px is the masthead's own breakpoint, so no new one is introduced.
+
+     Sticking. The strip pins below the 60px band. The breadcrumb is not a
+     factor: it lives in #page-view, which is hidden whenever .series is on
+     screen. The strip carries its own scroll because technology has 23 items
+     and would otherwise run past the foot of the window with no way to reach
+     the end; physics has 8 and markets 11 and will never scroll. dvh follows
+     vh so that iPad Safari's shifting toolbar does not clip the last item. */
+  @media (min-width:940px){
+    .series{
+      max-width:var(--wrap); margin:0 auto; padding:0 clamp(20px,5vw,56px);
+      display:grid; grid-template-columns:322px minmax(0,1fr);
+      gap:clamp(28px,4vw,64px); align-items:start;
+    }
+    .series > .toc, .series > .sheet{ padding:clamp(36px,5vw,60px) 0 clamp(60px,8vw,96px); }
+    .series > .sheet{ border-top:0; }
+    .series > .toc > .wrap{ max-width:none; padding:0; }
+    .series > .sheet > .wrap{ max-width:70ch; padding:0; }
+    .series > .toc{
+      position:sticky; top:82px; overflow-y:auto; overscroll-behavior:contain;
+      max-height:calc(100vh - 112px);
+      max-height:calc(100dvh - 112px);
+    }
+
+    .rail{ grid-template-columns:minmax(0,1fr); gap:0; }
+    .rail-head{
+      font-family:var(--mono); font-weight:600; font-size:11.5px;
+      letter-spacing:.2em; text-transform:uppercase; color:var(--b-mut);
+      padding-bottom:12px; margin-bottom:0; border-bottom:1px solid var(--b-hair-2);
+    }
+    .rail-part{ margin-top:22px; padding:0 0 9px 12px; }
+    .rail-item{
+      display:grid; grid-template-columns:30px minmax(0,1fr) 14px;
+      align-items:baseline; column-gap:12px; gap:0; min-height:0;
+      background:transparent; border:0; border-left:2px solid transparent;
+      border-radius:0; padding:12px 12px 12px 12px;
+    }
+    /* hover must not colour the left edge, or every hovered row reads as
+       selected; and the separator below must survive the hover. */
+    .rail-item:hover{
+      transform:none; box-shadow:none; background-color:var(--board-2);
+      border-color:transparent;
+    }
+    .rail-item + .rail-item{ border-top:1px solid var(--b-hair); }
+    .rail-item[aria-selected="true"]{
+      background-color:var(--rose-soft); border-left-color:var(--rose); box-shadow:none;
+    }
+    .rail-title{ margin-top:0; font-size:15px; padding-right:0; }
+    #tab-introduction .rail-title{ margin-top:0; font-size:15px; }
+    .rail-dot{ position:static; align-self:center; top:auto; right:auto; transform:none; }
+    #tab-introduction .rail-dot{ top:auto; transform:none; }
+  }
   .panel{ max-width:76ch; margin:0 auto; scroll-margin-top:16px; }
   @media (min-width:940px){ .panel{ scroll-margin-top:84px; } }
   .panel-head-row{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap; }
