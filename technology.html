@@ -52,9 +52,8 @@
 
   PAGE ARCHITECTURE (landing view, August 2026 restyle)
     section.hero          → masthead, calls to action, contents schematic
-    aside.status-note     → programme status
     main.series
-      section.toc         → nav.rail, the contents card grid
+      section.toc         → nav.rail, the contents strip
       section.sheet       → div.panels, the reading plate (23 panels)
     section.showcase      → feature band, links the architecture annexe
 
@@ -83,7 +82,7 @@
 
 <link rel="preload" href="/assets/fonts/Geist.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/Newsreader.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/signal.css?v=5.5">
+<link rel="stylesheet" href="/assets/signal.css?v=5.6">
 <!-- v5.0 (Aug 2026): presentation via /assets/signal.css, a recorded invariant change from the single-file model; this page carries only its body class (p-technology). Fonts self-hosted at /assets/fonts. Rollback is per-page from source. -->
 
 
@@ -179,13 +178,6 @@
       </div>
     </div>
   </section>
-
-  <aside class="status-note" aria-label="Programme status">
-    <div class="wrap">
-      <p class="status-kicker">Programme Status</p>
-      <p class="progress">Part One &mdash; the Introduction and all ten building blocks &mdash; is complete, each block opening to its full Content, Key Takeaways, FAQs, Test and Personalities; the Introduction, <a href="#block-1">Block One</a> and <a href="#block-7">Block Seven</a> are additionally accompanied by typeset PDFs. <a href="#applied">Part Two</a> &mdash; the applied volume on the enterprise finance estate &mdash; is likewise complete across its nine chapters, each carrying the same Content, Key Takeaways, FAQs, Test and Personalities. A companion showcase &mdash; <a href="finance-architecture.html">Finance Application Architecture</a> &mdash; draws the estate that volume describes as a single worked reference.</p>
-    </div>
-  </aside>
 
   <main class="series">
 
