@@ -1419,6 +1419,47 @@
     max-width:70ch;
   }
 
+  /* ---- quotes: section glosses and the provenance line, 10 August 2026 -----
+     Two additions, both scoped to .p-quotes. The scoping is not decorative:
+     books.html carries twelve .sec elements of its own against this page's
+     four, and .book is used 84 times there against once here. Nothing below
+     may be written bare.
+
+     The head. A section title was a bare text node inside <summary>, which
+     cannot be positioned, so the markup gains .sec-head wrapping a .sec-line
+     (title and count, on one baseline) above a .sec-gloss. The count and the
+     "+" keep their existing rules; only their alignment is restated, because
+     the head is now two lines rather than one.
+
+     The provenance. This page's standfirst claims that attribution is checked
+     before it is believed, and that claim was rendered in --muted at 11px:
+     Lc 39.8 against the card these sit on, the quietest thing on the page. It
+     is labelled by a ::before, so all 55 gain it from one rule and the 18
+     quotes carrying no provenance note are untouched. Values measured on the
+     card ground #1C1518, not on the board:
+         gloss      #CFC4C5   Lc 71.4
+         provenance #D5CACB   Lc 75.0, from 39.8
+         label      #FDBAC5   Lc 74.5, the same text-safe rose as the figures */
+  .p-quotes .sec > summary{ align-items:flex-start; }
+  .p-quotes .sec-head{
+    display:flex; flex-direction:column; gap:9px; flex:1 1 auto; min-width:0;
+  }
+  .p-quotes .sec-line{ display:flex; align-items:baseline; gap:16px; }
+  .p-quotes .sec-line .n{ align-self:baseline; }
+  .p-quotes .sec > summary::after{ align-self:flex-start; }
+  .p-quotes .sec-gloss{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:clamp(15px,1.7vw,17px); line-height:1.45; letter-spacing:0;
+    color:#CFC4C5; max-width:54ch;
+  }
+
+  .p-quotes .prov{ color:#D5CACB; }
+  .p-quotes .prov::before{
+    content:"Provenance"; display:block; margin-bottom:5px;
+    font-family:var(--mono); font-weight:600; font-size:9.5px;
+    letter-spacing:.18em; text-transform:uppercase; color:#FDBAC5;
+  }
+
 
 }
 
